@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import Any
+import time
 
 import requests
 
@@ -17,12 +18,21 @@ class KankaClient:
     token: str
     base_url: str = "https://api.kanka.io/1.0"
     timeout_seconds: int = 20
+    minimum_request_interval_seconds: float = 2.1
 
     def __post_init__(self) -> None:
         self.token = self.token.strip()
         self.base_url = self.base_url.rstrip("/")
+        self._last_request_at = 0.0
         if not self.token or self.token == "replace_with_your_kanka_token":
             raise KankaError("KANKA_API_TOKEN is missing or still contains the placeholder.")
+
+    def _wait_for_rate_limit(self) -> None:
+        """Keep requests below Kanka's standard 30-request-per-minute limit."""
+        elapsed = time.monotonic() - self._last_request_at
+        remaining = self.minimum_request_interval_seconds - elapsed
+        if remaining > 0:
+            time.sleep(remaining)
 
     def _get(self, path: str, params: dict[str, Any] | None = None) -> dict[str, Any]:
         url = f"{self.base_url}/{path.lstrip('/')}"
@@ -30,9 +40,10 @@ class KankaClient:
             "Authorization": f"Bearer {self.token}",
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "User-Agent": "Kanka-Librarian/0.1",
+            "User-Agent": "Kanka-Librarian/0.2",
         }
 
+        self._wait_for_rate_limit()
         try:
             response = requests.get(
                 url,
@@ -40,13 +51,19 @@ class KankaClient:
                 params=params,
                 timeout=self.timeout_seconds,
             )
+            self._last_request_at = time.monotonic()
         except requests.RequestException as exc:
             raise KankaError(f"Could not reach Kanka: {exc}") from exc
 
         if response.status_code == 401:
             raise KankaError("Kanka rejected the token. Check that it was copied correctly and has not expired.")
+        if response.status_code == 403:
+            raise KankaError("Kanka denied access to this campaign or endpoint.")
+        if response.status_code == 404:
+            raise KankaError("Kanka could not find the requested campaign or entity.")
         if response.status_code == 429:
-            raise KankaError("Kanka's API rate limit was reached. Wait briefly before trying again.")
+            retry_after = response.headers.get("Retry-After", "a short time")
+            raise KankaError(f"Kanka's API rate limit was reached. Retry after {retry_after}.")
         if not response.ok:
             raise KankaError(
                 f"Kanka returned HTTP {response.status_code}: {response.text[:300]}"
@@ -61,17 +78,17 @@ class KankaClient:
             raise KankaError("Kanka returned an unexpected response shape.")
         return payload
 
-    def list_campaigns(self) -> list[dict[str, Any]]:
-        """Return every campaign available to the authenticated Kanka user."""
-        campaigns: list[dict[str, Any]] = []
+    def _get_all_pages(self, path: str) -> list[dict[str, Any]]:
+        """Read every page from a Kanka list endpoint."""
+        items: list[dict[str, Any]] = []
         page = 1
 
         while True:
-            payload = self._get("campaigns", params={"page": page})
+            payload = self._get(path, params={"page": page})
             data = payload.get("data", [])
             if not isinstance(data, list):
-                raise KankaError("Kanka's campaigns response did not contain a list.")
-            campaigns.extend(item for item in data if isinstance(item, dict))
+                raise KankaError(f"Kanka's {path} response did not contain a list.")
+            items.extend(item for item in data if isinstance(item, dict))
 
             meta = payload.get("meta", {})
             current_page = int(meta.get("current_page", page)) if isinstance(meta, dict) else page
@@ -80,4 +97,20 @@ class KankaClient:
                 break
             page = current_page + 1
 
-        return campaigns
+        return items
+
+    def list_campaigns(self) -> list[dict[str, Any]]:
+        """Return every campaign available to the authenticated Kanka user."""
+        return self._get_all_pages("campaigns")
+
+    def get_campaign(self, campaign_id: int) -> dict[str, Any]:
+        """Return one campaign by ID without changing it."""
+        payload = self._get(f"campaigns/{campaign_id}")
+        data = payload.get("data")
+        if not isinstance(data, dict):
+            raise KankaError("Kanka's campaign response did not contain an object.")
+        return data
+
+    def list_locations(self, campaign_id: int) -> list[dict[str, Any]]:
+        """Return every location in one campaign without changing anything."""
+        return self._get_all_pages(f"campaigns/{campaign_id}/locations")
