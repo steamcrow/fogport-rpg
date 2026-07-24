@@ -1,6 +1,8 @@
-# Fogport RPG — Kanka Librarian
+# Kanka Librarian
 
-A safe, approval-first bridge between ChatGPT-driven RPG sessions and Kanka.
+A safe, approval-first bridge between AI-driven RPG sessions and Kanka.
+
+Fogport is the first supported world, but Kanka Librarian is intended to work across every Kanka campaign the account can access.
 
 ## Current milestone
 
@@ -39,7 +41,7 @@ It does **not** create, update, or delete Kanka data yet.
 
 ## API token
 
-Kanka tokens are secrets and expire after roughly one year. The token belongs in a local `.env` file or an encrypted hosting secret—not in this repository.
+Kanka tokens are secrets and are valid for roughly one year. The token belongs in a local `.env` file or an encrypted hosting secret—not in this repository.
 
 ## Planned phases
 
