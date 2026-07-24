@@ -40,7 +40,7 @@ class KankaClient:
             "Authorization": f"Bearer {self.token}",
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "User-Agent": "Kanka-Librarian/0.2",
+            "User-Agent": "Kanka-Librarian/0.3",
         }
 
         self._wait_for_rate_limit()
@@ -114,3 +114,7 @@ class KankaClient:
     def list_locations(self, campaign_id: int) -> list[dict[str, Any]]:
         """Return every location in one campaign without changing anything."""
         return self._get_all_pages(f"campaigns/{campaign_id}/locations")
+
+    def list_characters(self, campaign_id: int) -> list[dict[str, Any]]:
+        """Return every character in one campaign without changing anything."""
+        return self._get_all_pages(f"campaigns/{campaign_id}/characters")
