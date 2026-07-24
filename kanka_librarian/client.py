@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Any
 import time
 
@@ -19,11 +19,11 @@ class KankaClient:
     base_url: str = "https://api.kanka.io/1.0"
     timeout_seconds: int = 20
     minimum_request_interval_seconds: float = 2.1
+    _last_request_at: float = field(default=0.0, init=False, repr=False)
 
     def __post_init__(self) -> None:
         self.token = self.token.strip()
         self.base_url = self.base_url.rstrip("/")
-        self._last_request_at = 0.0
         if not self.token or self.token == "replace_with_your_kanka_token":
             raise KankaError("KANKA_API_TOKEN is missing or still contains the placeholder.")
 
