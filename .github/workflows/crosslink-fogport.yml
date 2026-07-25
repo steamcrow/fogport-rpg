@@ -1,0 +1,54 @@
+name: "Kanka Librarian — Cross-link Fogport"
+
+on:
+  workflow_dispatch:
+    inputs:
+      manifest:
+        description: "Approved cross-link cleanup filename"
+        required: true
+        default: "fogport-first-cleanup.json"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kanka-librarian-fogport
+  cancel-in-progress: false
+
+jobs:
+  crosslink:
+    name: "FOGPORT 410879 — add and verify entity links"
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install --requirement requirements.txt
+      - name: Validate repository tests
+        run: python -m unittest discover -s tests
+      - name: Build registry, apply approved links, and verify
+        env:
+          KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+          KANKA_ENABLE_WRITES: FOGPORT_410879
+          PYTHONPATH: ${{ github.workspace }}
+        run: |
+          filename="${{ inputs.manifest }}"
+          [[ "$filename" =~ ^[A-Za-z0-9._-]+\.json$ ]]
+          manifest="kanka_librarian/approved_crosslinks/$filename"
+          test -f "$manifest"
+          python scripts/crosslink_cleanup.py \
+            "$manifest" \
+            --apply \
+            --registry "receipts/fogport-entity-registry.json" \
+            --receipt "receipts/${filename%.json}-receipt.json"
+      - name: Preserve registry and verification receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fogport-crosslink-registry-and-receipt
+          path: receipts/
+          if-no-files-found: error
+          retention-days: 90
