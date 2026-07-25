@@ -29,6 +29,24 @@ def selected_fields(item: dict[str, Any], fields: tuple[str, ...]) -> dict[str, 
     return {field: item.get(field) for field in fields}
 
 
+def collect_related(
+    sections: tuple[list[dict[str, Any]], ...],
+    field: str,
+) -> list[dict[str, Any]]:
+    """Flatten related records while preserving their owning entity ID."""
+    collected: list[dict[str, Any]] = []
+    for section in sections:
+        for entity in section:
+            entity_id = entity.get("entity_id")
+            related = entity.get(field, [])
+            if not isinstance(related, list):
+                continue
+            for record in related:
+                if isinstance(record, dict):
+                    collected.append({"source_entity_id": entity_id, **record})
+    return collected
+
+
 def build_snapshot(
     campaign: dict[str, Any],
     locations: list[dict[str, Any]],
@@ -37,12 +55,14 @@ def build_snapshot(
     creatures: list[dict[str, Any]],
     races: list[dict[str, Any]],
     posts: list[dict[str, Any]],
+    attributes: list[dict[str, Any]],
+    relationships: list[dict[str, Any]],
 ) -> dict[str, Any]:
     return {
-        "schema_version": 3,
+        "schema_version": 4,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "mode": "read-only",
-        "content_scope": "descriptions-and-posts",
+        "content_scope": "full-lore-context",
         "campaign": selected_fields(
             campaign,
             ("id", "name", "visibility", "locale"),
@@ -62,6 +82,7 @@ def build_snapshot(
                     "type",
                     "parent_id",
                     "entry",
+                    "tags",
                     "is_private",
                     "updated_at",
                 ),
@@ -85,6 +106,7 @@ def build_snapshot(
                     "title",
                     "location_id",
                     "entry",
+                    "tags",
                     "is_private",
                     "is_dead",
                     "updated_at",
@@ -108,6 +130,7 @@ def build_snapshot(
                     "type",
                     "location_id",
                     "entry",
+                    "tags",
                     "is_private",
                     "updated_at",
                 ),
@@ -140,6 +163,42 @@ def build_snapshot(
                 races,
                 key=lambda value: (
                     str(value.get("name") or "").casefold(),
+                    int(value.get("id") or 0),
+                ),
+            )
+        ],
+        "attributes": [
+            selected_fields(
+                item,
+                (
+                    "id", "entity_id", "source_entity_id", "name", "value", "parsed",
+                    "type_id", "default_order", "is_private", "is_pinned",
+                    "created_at", "updated_at",
+                ),
+            )
+            for item in sorted(
+                attributes,
+                key=lambda value: (
+                    int(value.get("source_entity_id") or value.get("entity_id") or 0),
+                    int(value.get("default_order") or 0),
+                    int(value.get("id") or 0),
+                ),
+            )
+        ],
+        "relationships": [
+            selected_fields(
+                item,
+                (
+                    "id", "source_entity_id", "owner_id", "target_id", "relation",
+                    "attitude", "visibility_id", "is_pinned", "colour",
+                    "created_at", "updated_at",
+                ),
+            )
+            for item in sorted(
+                relationships,
+                key=lambda value: (
+                    int(value.get("owner_id") or value.get("source_entity_id") or 0),
+                    int(value.get("target_id") or 0),
                     int(value.get("id") or 0),
                 ),
             )
@@ -179,6 +238,7 @@ def build_snapshot(
                     "organisation_id",
                     "location_id",
                     "entry",
+                    "tags",
                     "is_private",
                     "updated_at",
                 ),
@@ -217,28 +277,24 @@ def main() -> int:
                 f"received {actual_name or 'Unnamed'} ({actual_id})."
             )
 
-        locations = client.list_locations(MAELSTROS_CAMPAIGN_ID)
-        characters = client.list_characters(MAELSTROS_CAMPAIGN_ID)
-        organizations = client.list_organizations(MAELSTROS_CAMPAIGN_ID)
-        creatures = client.list_creatures(MAELSTROS_CAMPAIGN_ID)
-        races = client.list_races(MAELSTROS_CAMPAIGN_ID)
+        locations = client.list_locations(MAELSTROS_CAMPAIGN_ID, related=True)
+        characters = client.list_characters(MAELSTROS_CAMPAIGN_ID, related=True)
+        organizations = client.list_organizations(MAELSTROS_CAMPAIGN_ID, related=True)
+        creatures = client.list_creatures(MAELSTROS_CAMPAIGN_ID, related=True)
+        races = client.list_races(MAELSTROS_CAMPAIGN_ID, related=True)
 
-        entity_ids = {
-            int(item["entity_id"])
-            for section in (locations, characters, organizations, creatures, races)
-            for item in section
-            if item.get("entity_id") is not None
-        }
-        posts: list[dict[str, Any]] = []
-        for entity_id in sorted(entity_ids):
-            posts.extend(
-                client.list_entity_posts(MAELSTROS_CAMPAIGN_ID, entity_id)
-            )
+        sections = (locations, characters, organizations, creatures, races)
+        posts = collect_related(sections, "posts")
+        attributes = collect_related(sections, "attributes")
+        relationships = collect_related(sections, "relations")
     except KankaError as exc:
         print(f"Kanka Librarian error: {exc}", file=sys.stderr)
         return 1
 
-    snapshot = build_snapshot(campaign, locations, characters, organizations, creatures, races, posts)
+    snapshot = build_snapshot(
+        campaign, locations, characters, organizations, creatures, races,
+        posts, attributes, relationships,
+    )
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(
         json.dumps(snapshot, ensure_ascii=False, indent=2) + "\n",
@@ -254,6 +310,8 @@ def main() -> int:
     print(f"Creatures exported: {len(creatures)}")
     print(f"Peoples exported from Kanka Races: {len(races)}")
     print(f"Entity posts exported: {len(posts)}")
+    print(f"Attributes exported: {len(attributes)}")
+    print(f"Relationships exported: {len(relationships)}")
     print(f"Temporary snapshot written to: {output_path}")
     print("No Kanka data was created, updated, deleted, copied, or moved.")
     return 0
