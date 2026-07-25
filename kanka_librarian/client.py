@@ -156,6 +156,9 @@ class KankaClient:
         """Return every creature in one campaign without changing anything."""
         return self._get_all_pages(f"campaigns/{campaign_id}/creatures")
 
+    def list_races(self, campaign_id: int) -> list[dict[str, Any]]:
+        """Return every Kanka race in one campaign without changing anything."""
+        return self._get_all_pages(f"campaigns/{campaign_id}/races")
 
     def list_entity_posts(self, campaign_id: int, entity_id: int) -> list[dict[str, Any]]:
         """Return every public and private post attached to one entity."""
