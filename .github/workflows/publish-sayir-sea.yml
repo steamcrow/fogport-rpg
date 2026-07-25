@@ -67,7 +67,7 @@ jobs:
         env:
           KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
           KANKA_ENABLE_WRITES: FOGPORT_410879
-        run: python kanka_librarian/apply_approved_proposal.py kanka_librarian/approved/sayir-sea.json --execute
+        run: python scripts/apply_approved_proposal.py kanka_librarian/approved/sayir-sea.json --execute
 
       - name: Verify publication and record IDs
         env:
