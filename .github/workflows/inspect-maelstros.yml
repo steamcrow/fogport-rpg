@@ -17,7 +17,7 @@ jobs:
   snapshot-maelstros:
     name: Validate secure unified MAELSTROS snapshot
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 30
 
     steps:
       - name: Check out repository
@@ -51,7 +51,7 @@ jobs:
           snapshot = json.loads(path.read_text(encoding="utf-8"))
 
           assert snapshot["mode"] == "read-only"
-          assert snapshot["content_scope"] == "descriptions"
+          assert snapshot["content_scope"] == "descriptions-and-posts"
           assert snapshot["campaign"]["id"] == 29474
           assert snapshot["campaign"]["name"].casefold() == "maelstros"
           assert snapshot["protected_campaign"] == {
@@ -70,18 +70,26 @@ jobs:
               "characters",
               "organizations",
               "creatures",
+              "posts",
           }
 
           for section in ("locations", "characters", "organizations", "creatures"):
               for entity in snapshot[section]:
                   assert "entry" in entity
 
+          for post in snapshot["posts"]:
+              assert "entity_id" in post
+              assert "entry" in post
+              assert "visibility_id" in post
+              assert "is_private" in post
+
           print(
               "Validated temporary full-content snapshot without printing entity content: "
               f"{len(snapshot['locations'])} locations, "
               f"{len(snapshot['characters'])} characters, "
               f"{len(snapshot['organizations'])} organizations, "
-              f"{len(snapshot['creatures'])} creatures."
+              f"{len(snapshot['creatures'])} creatures, "
+              f"{len(snapshot['posts'])} entity posts."
           )
           PY
 
