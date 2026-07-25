@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": [
+    "lott"
+  ],
+  "approval_questions": [],
+  "proposals": [
+    {
+      "temp_id": "lott",
+      "action": "create",
+      "section": "characters",
+      "name": "Lott",
+      "type": "Scarred brute of Nine Spoons",
+      "is_private": false,
+      "entry": "<p><strong>Age:</strong> About fifty<br><strong>Home:</strong> Nine Spoons<br><strong>Known associate:</strong> Byl Hasbaine<br><strong>Favored weapon:</strong> Kils</p>\n\n<p>Lott is a hulking, heavily scarred man from Nine Spoons. His nose has been broken crooked, several teeth are missing, and old wounds have healed into pink seams across his face and hands.</p>\n\n<p>He is immensely strong, poorly educated, and much more observant than strangers assume. Lott rarely says more than one or two words. This is not stupidity or uncertainty. He simply sees little reason to say something twice—or to explain what a look has already made clear.</p>\n\n<p>Lott has killed before. The details are not commonly discussed.</p>\n\n<p>He has been Byl Hasbaine’s companion for many years. Their friendship began in Nine Spoons and is old, comfortable, and largely unspoken. Lott follows Byl without hesitation.</p>\n\n<p>His favorite weapon is Kils, a massive antique sailor’s cutlass. Nevertheless, Lott can turn almost anything within reach—a chair leg, soup pot, brick, length of chain, serving tray, or another man—into a brutally effective weapon.</p>\n\n<p>At the Twisted Eel Pawnshop, he prefers chowder and ale.</p>\n\n<h2>Fate Character</h2>\n\n<p><strong>High Concept:</strong> The Scarred Brute of Nine Spoons<br><strong>Trouble:</strong> A Murderer’s Reputation Never Dies<br><strong>Refresh:</strong> 3</p>\n\n<h3>Other Aspects</h3>\n<ul>\n<li>I Follow Mr. Byl. Don’t Ask Why.</li>\n<li>Anything Within Reach Is a Weapon</li>\n<li>One Look Is Usually Enough</li>\n</ul>\n\n<h3>Skills</h3>\n<ul>\n<li><strong>Superb (+5):</strong> Physique</li>\n<li><strong>Great (+4):</strong> Fight</li>\n<li><strong>Good (+3):</strong> Notice, Will</li>\n<li><strong>Fair (+2):</strong> Athletics, Provoke, Stealth</li>\n<li><strong>Average (+1):</strong> Burglary, Contacts, Crafts, Shoot</li>\n</ul>\n\n<h3>Stunts</h3>\n\n<p><strong>Improvised Butchery:</strong> Lott gains +2 to Fight when attacking with something never intended to be a weapon, provided it breaks, becomes unusable, or is discarded after the exchange.</p>\n\n<p><strong>Behind Me:</strong> Once per scene, when someone in Lott’s zone is attacked, he may place himself between them and the attacker. Lott becomes the target and makes the defense roll.</p>\n\n<p><strong>One Look:</strong> Lott may use Notice instead of Empathy to determine whether someone intends immediate violence, is concealing a weapon, or is preparing an ambush.</p>\n\n<h3>Kils</h3>\n\n<p>Lott’s enormous antique sailor’s cutlass. When weapon ratings are being used, Kils is <strong>Weapon:2</strong>. It is conspicuous, difficult to conceal, and recognizable to people familiar with Nine Spoons.</p>\n\n<h3>Stress and Consequences</h3>\n<ul>\n<li><strong>Physical Stress:</strong> 4 boxes</li>\n<li><strong>Mental Stress:</strong> 3 boxes</li>\n<li><strong>Consequences:</strong> Mild (2), Moderate (4), Severe (6)</li>\n<li><strong>Additional Mild Physical Consequence:</strong> From his exceptional Physique</li>\n</ul>",
+      "fields": {},
+      "resolved_references": [],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — Lott",
+          "entry": "<p><strong>Do not reveal directly to the player.</strong></p>\n\n<p>The following matters remain deliberately unresolved:</p>\n<ul>\n<li>Lott’s real name.</li>\n<li>Why he first began following Byl.</li>\n<li>The extent and circumstances of his history as a murderer.</li>\n<li>Where Kils came from.</li>\n<li>Whether the story of the name “Lott” is literally true: after killing several thugs with nothing but his thumbs, he was supposedly asked who he was and answered, “LOT.” This might have been his name, a body count, or merely the end of the conversation.</li>\n</ul>\n\n<p>Do not resolve these questions by improvisation. They remain live campaign mysteries until Daniel establishes the answers through play or direct canon.</p>",
+          "visibility_id": 3
+        }
+      ],
+      "attributes": [],
+      "relationships": [],
+      "publication": {
+        "references": [
+          {
+            "phrase": "Nine Spoons",
+            "name": "Nine Spoons",
+            "section": "locations"
+          },
+          {
+            "phrase": "Byl Hasbaine",
+            "name": "Byl Hasbaine",
+            "section": "characters"
+          },
+          {
+            "phrase": "Kils",
+            "name": "Kils",
+            "section": "items"
+          },
+          {
+            "phrase": "The Twisted Eel Pawnshop",
+            "name": "The Twisted Eel Pawnshop",
+            "section": "locations"
+          }
+        ]
+      },
+      "blocked": false
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-25T00:00:00-07:00",
+    "proposal_sha256": "7fb5819699cd964ff119aea39ce88cd9124f2bdfcb4cc84cf2122a5a2fcc2088"
+  }
+}
