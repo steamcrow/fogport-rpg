@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": [
+    "the-shambles"
+  ],
+  "approval_questions": [],
+  "proposals": [
+    {
+      "temp_id": "the-shambles",
+      "action": "create",
+      "section": "locations",
+      "name": "The Shambles",
+      "type": "Slums District",
+      "is_private": false,
+      "entry": "<p>Beyond Fogport’s southeastern walls sprawls the Shambles, a vast patchwork of overcrowded neighborhoods built from salvaged timber, broken brick, shipwreck lumber, and anything else its residents could carry, steal, or persuade to remain standing. Poor, unruly, and largely abandoned by city authorities, the Shambles survives through its own trades, customs, rivalries, and fierce communal loyalties.</p>\n\n<ul>\n<li><strong>Cinderhook:</strong> A smoke-blackened neighborhood of scrap foundries, tinkers, and illicit workshops where nearly anything can be repaired—or dangerously improved.</li>\n<li><strong>The Crooked Wash:</strong> A damp maze of laundries, bathhouses, dye vats, and steaming gutters where information changes hands as frequently as clothing.</li>\n<li><strong>Saint Rattle’s:</strong> Built around a nameless roadside shrine mistaken for a saint, this quarter is crowded with fortune-tellers, counterfeit relics, cheap miracles, and the desperately hopeful.</li>\n<li><strong>Patchcoat:</strong> A brightly ramshackle neighborhood whose homes are repaired with painted doors, theater scenery, ship panels, and stolen signs, making every street resemble a vast, weather-beaten quilt.</li>\n<li><strong>Nine Spoons:</strong> One of the Shambles’ hardest neighborhoods, Nine Spoons is poor, violent, resourceful, and fiercely proud—a place that teaches its children how to recognize danger, escape trouble, and share their last piece of bread. The feral orphans known as the <strong>Gutterkin</strong> haunt its drains, rooftops, and abandoned buildings; even the Feratu avoid some of their tunnels.</li>\n</ul>",
+      "fields": {},
+      "resolved_references": [],
+      "posts": [],
+      "attributes": [],
+      "relationships": [],
+      "blocked": false
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-24T17:00:00-07:00",
+    "proposal_sha256": "ae73ebedfdf0696e7c08af92f2ef22e0af4015791c893910c59545e1c76f153b"
+  }
+}
