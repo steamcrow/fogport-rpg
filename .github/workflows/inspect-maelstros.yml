@@ -70,12 +70,16 @@ jobs:
               "characters",
               "organizations",
               "creatures",
+              "peoples",
               "posts",
           }
 
-          for section in ("locations", "characters", "organizations", "creatures"):
+          for section in ("locations", "characters", "organizations", "creatures", "peoples"):
               for entity in snapshot[section]:
                   assert "entry" in entity
+
+          for person_type in snapshot["peoples"]:
+              assert person_type["source_entity_type"] == "race"
 
           for post in snapshot["posts"]:
               assert "entity_id" in post
@@ -89,6 +93,7 @@ jobs:
               f"{len(snapshot['characters'])} characters, "
               f"{len(snapshot['organizations'])} organizations, "
               f"{len(snapshot['creatures'])} creatures, "
+              f"{len(snapshot['peoples'])} peoples (from Kanka Races), "
               f"{len(snapshot['posts'])} entity posts."
           )
           PY
