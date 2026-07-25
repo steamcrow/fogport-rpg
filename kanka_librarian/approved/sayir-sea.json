@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": [
+    "sayir-sea"
+  ],
+  "approval_questions": [],
+  "proposals": [
+    {
+      "temp_id": "sayir-sea",
+      "action": "create",
+      "section": "locations",
+      "name": "Sayir Sea",
+      "type": "Sea",
+      "is_private": false,
+      "entry": "The Sayir Sea is an old and uncertain body of water upon which Fogport and its distant trading partners stand. Ships cross it constantly, but no two sailors seem to agree about its true breadth, its deepest reaches, or everything that lies along its shores.\n\nFog settles over its waters without warning. Islands appear where charts show open sea, while familiar landmarks sometimes fail to appear at all. Currents carry vessels farther than they should—or return them to ports they never meant to revisit. Sailors tell of lights beneath the waves, bells heard far from land, and ships entering Fogport with cargoes whose ports of origin cannot be found on any reputable map.\n\nNevertheless, the Sayir Sea is a working sea. It carries merchants, passengers, immigrants, soldiers, pilgrims, fishermen, monsters, rumors, diseases, and fashions between Fogport and other cities. Most voyages are completed safely. Most unusual sightings have perfectly reasonable explanations.\n\nProbably.",
+      "resolved_references": [],
+      "posts": [],
+      "attributes": [],
+      "relationships": [],
+      "blocked": false
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-24T17:00:00-07:00",
+    "proposal_sha256": "815a6f01d64649b3f684f16f5574dc0e681b87e70d70e9bd434703ecfb7fd990"
+  }
+}
