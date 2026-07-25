@@ -61,9 +61,10 @@ def main() -> None:
     if len(matches) > 1:
         raise SystemExit(f"More than one {change['name']!r} exists; refusing to guess.")
 
-    # Kanka uses two different identifiers for a location:
-    # - `id` is the location record ID required by the locations API's parent_id.
-    # - `entity_id` is the generic entity ID used by links, posts, and Overview URLs.
+    # Kanka uses two different identifiers for a location. Despite its name,
+    # the locations API's `parent_id` field expects the parent's global entity
+    # ID, not the parent location record ID. The location record ID is used
+    # only in the locations endpoint path when updating that location.
     parent_location_id = int(parents[0]["id"])
     parent_entity_id = int(parents[0]["entity_id"])
     entry = str(change.get("entry", ""))
@@ -76,7 +77,7 @@ def main() -> None:
         "type": str(change.get("type", "")),
         "is_private": bool(change.get("is_private", False)),
         "entry": entry,
-        "parent_id": parent_location_id,
+        "parent_id": parent_entity_id,
     }
 
     writer = KankaWriter(token=token, expected_campaign_id=CAMPAIGN_ID)
