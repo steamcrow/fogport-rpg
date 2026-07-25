@@ -196,6 +196,26 @@ class KankaClient:
         params = {"related": 1} if related else None
         return self._get_all_pages(f"campaigns/{campaign_id}/races", params=params)
 
+    def list_families(
+        self,
+        campaign_id: int,
+        *,
+        related: bool = False,
+    ) -> list[dict[str, Any]]:
+        """Return every family in one campaign without changing anything."""
+        params = {"related": 1} if related else None
+        return self._get_all_pages(f"campaigns/{campaign_id}/families", params=params)
+
+    def list_journals(
+        self,
+        campaign_id: int,
+        *,
+        related: bool = False,
+    ) -> list[dict[str, Any]]:
+        """Return every journal in one campaign without changing anything."""
+        params = {"related": 1} if related else None
+        return self._get_all_pages(f"campaigns/{campaign_id}/journals", params=params)
+
     def list_entity_posts(self, campaign_id: int, entity_id: int) -> list[dict[str, Any]]:
         """Return every public and private post attached to one entity."""
         return self._get_all_pages(
