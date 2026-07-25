@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": [
+    "grig"
+  ],
+  "approval_questions": [],
+  "proposals": [
+    {
+      "temp_id": "grig",
+      "action": "create",
+      "section": "creatures",
+      "name": "Grig",
+      "type": "Sapient people",
+      "is_private": false,
+      "entry": "<p>Grigs are small, gremlin-like people who have lived in Fogport for approximately five or six centuries. They stand between two and three feet tall and possess enormous bat-like ears, clawed hands and feet, fangs, sharp teeth, and a wicked bite. Humans commonly consider them ugly.</p>\n\n<p>Grigs are omnivorous. They strongly prefer meat, enjoy apples and other fruit, and dislike leafy greens.</p>\n\n<h2>Arrival and Persecution</h2>\n\n<p>The first Grigs appeared in Fogport aboard a crude raft from an unknown place. Humans immediately hunted them as vermin. Grigs reproduced rapidly enough to survive and eventually became a substantial part of the city’s population.</p>\n\n<p>Fogport’s treatment of Grigs changed in name more often than in substance. They were hunted, kept as exotic pets, enslaved as domestic labor, and later described as servants. Many remain enslaved, indentured, or nominally free while an employer controls their movement.</p>\n\n<h2>Borrowed Dreams</h2>\n\n<p>Grigs borrow the dreams of nearby sleepers. They experience fragments of memories, fears, desires, and secrets as distorted symbols. They cannot reliably choose the sleeper or interpret what they see. A Grig beneath a murderer’s bed might wake muttering about a red washbasin and a crow with human teeth without understanding either image.</p>\n\n<p>This ability helps explain why humans kept Grigs as pets, curiosities, household spies, and unwilling dream readers. Grigs often know alarming things about the households they serve while lacking the context to explain them.</p>\n\n<p>Sleeping Grigs may speak their own names to hold onto their identities. Their great ears sometimes flutter as though listening. Grigs often sleep together, protected by familiar communal dreams. Batley’s habit of announcing “BATLEY!” when approaching a sleeper is therefore proper Grig etiquette as well as being distinctly Batley.</p>\n\n<h2>Grig Tack</h2>\n\n<p>Outside Fogport’s slum districts, Grigs are legally required to wear padlocked iron masks or helmets called <strong>Grig Tack</strong>. The iron suppresses their dream-reading and frequently impairs speech.</p>\n\n<p>Roughly three quarters of Fogport’s Grigs are found in Tack—as slaves, indentured servants, or supposedly free workers whose employers retain the key. The word <em>tack</em> is deliberately dehumanizing: respectable households speak of equipping Grigs like domestic animals.</p>\n\n<p>Wealthy families may commission polished or ornate Tack bearing a household crest and describe its decoration as kindness. The wealthiest households and powerful institutions keep enslaved Grigs masked so they cannot read the dreams of their masters.</p>\n\n<p>Grig Tack is generally neither required nor tolerated within the slums. A barefaced Grig beyond them is treated as both a legal offense and a threat to respectable privacy.</p>",
+      "fields": {},
+      "resolved_references": [],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — Grig",
+          "entry": "<p><strong>Unresolved canon—do not reveal or decide casually.</strong></p>\n\n<ul><li>The place from which the first Grig raft came is unknown.</li><li>Whether present-day Grigs preserve any true account of their origin is unknown.</li><li>Dream fragments are symbolic and unreliable; they should provide clues, complications, or emotional truths rather than effortless solutions.</li></ul>",
+          "visibility_id": 3
+        }
+      ],
+      "attributes": [],
+      "relationships": [],
+      "publication": {
+        "references": [
+          {
+            "phrase": "Fogport",
+            "name": "Fogport",
+            "section": "locations"
+          },
+          {
+            "phrase": "Batley",
+            "name": "Batley",
+            "section": "characters"
+          }
+        ]
+      },
+      "blocked": false
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-25T00:00:00-07:00",
+    "proposal_sha256": "597bb2f1f46d2492343d02d7f146eae456856d036d5f4542d8d44dd5d845012e"
+  }
+}
