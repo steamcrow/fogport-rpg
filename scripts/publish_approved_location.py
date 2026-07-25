@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 
 from kanka_librarian.client import KankaClient
+from kanka_librarian.crosslinks import build_registry, link_entry, load_aliases
 from kanka_librarian.publisher import validate_approved_proposal
 from kanka_librarian.writer import KankaWriter
 
@@ -72,6 +73,22 @@ def main() -> None:
         entry = entry.replace(
             link_phrase, f"[entity:{parent_entity_id}|{link_phrase}]", 1
         )
+    alias_path = (
+        Path(__file__).resolve().parents[1]
+        / "kanka_librarian"
+        / "crosslink_aliases.json"
+    )
+    registry = build_registry(
+        client,
+        CAMPAIGN_ID,
+        load_aliases(alias_path),
+    )
+    entry, _ = link_entry(
+        entry,
+        registry,
+        source_entity_id=int(matches[0]["entity_id"]) if matches else None,
+        source_private=bool(change.get("is_private", False)),
+    )
     payload = {
         "name": str(change["name"]),
         "type": str(change.get("type", "")),
@@ -134,9 +151,15 @@ def main() -> None:
         post_name = str(approved_post.get("name", "")).strip()
         if not post_name:
             raise SystemExit("Approved post is missing its name.")
+        post_entry, _ = link_entry(
+            str(approved_post.get("entry", "")),
+            registry,
+            source_entity_id=entity_id,
+            source_private=int(approved_post.get("visibility_id", 3)) == 3,
+        )
         post_payload = {
             "name": post_name,
-            "entry": str(approved_post.get("entry", "")),
+            "entry": post_entry,
             "entity_id": entity_id,
             "visibility_id": int(approved_post.get("visibility_id", 3)),
         }
