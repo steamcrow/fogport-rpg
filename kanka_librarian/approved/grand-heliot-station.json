@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": ["grand-heliot-station"],
+  "approval_questions": [],
+  "proposals": [
+    {
+      "temp_id": "grand-heliot-station",
+      "action": "create",
+      "section": "locations",
+      "name": "Grand Heliot Station",
+      "type": "Central tram and freight terminal",
+      "is_private": false,
+      "entry": "<p>Grand Heliot Station is the monumental hinge between Fogport’s harbor and the city beyond.</p>\n\n<p>Its footprint is surprisingly compact. Rather than sprawling across the waterfront, it rises steeply behind an immense clock façade, with four iron arches supporting tall vaulted train sheds of glass and wrought iron. Towers, clocks, statuary, elevated platforms, and stacked concourses make the station appear far larger than the ground it occupies.</p>\n\n<p>Its grand stairs descend directly into the Grand Promenade. A traveler can step from a ship, cross the wedge-shaped arrival dock, and board a tram without passing through an ordinary city street.</p>\n\n<p>The oldest portions of Grand Heliot predate the Catastrophe. The present tram system does not. After the old routes were broken, Fogport rebuilt its transportation network outward from the surviving station, sending new rails across repaired bridges, improvised viaducts, and the structural bones of the ruined city. This is why the tramways radiate from Grand Heliot rather than following a tidy grid.</p>\n\n<p>Passenger traffic consists primarily of electric trams and trolley cars. Small steam locomotives move cargo through lower platforms and freight sidings. No automobiles use the rails; motor traffic, carts, tuk-tuks, and pedestrians occupy the lower roads beneath them.</p>\n\n<p>Inside, steam gathers below the glass vaults. Brass clocks hang above crowded platforms. Bells, whistles, shouted destinations, and metal departure boards produce a continuous mechanical uproar. Some roof panes are mismatched, some platforms lean, and certain sealed passages still lead toward routes abandoned after the Catastrophe.</p>\n\n<p>Nevertheless, Grand Heliot remains magnificent. For residents of places like Nine Spoons, it is proof that Fogport is larger than the few streets they know—and that somewhere beyond them might still be reached.</p>",
+      "fields": {},
+      "resolved_references": [],
+      "posts": [],
+      "attributes": [],
+      "relationships": [],
+      "publication": {
+        "parent_name": "Blackwake",
+        "parent_link_phrase": "Blackwake"
+      },
+      "blocked": false
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-25T00:00:00-07:00",
+    "proposal_sha256": "e454c22c64f9ccb12056dcd055eaa0e4b6b32ef5c2e803099af9aedc95e299f7"
+  }
+}
