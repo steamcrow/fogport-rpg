@@ -144,10 +144,6 @@ def main() -> None:
             raise SystemExit(f"Multiple gallery images match {filename}; refusing to guess.")
         if matches:
             remote = matches[0]
-            if int(remote.get("size") or -1) != image["size"]:
-                raise SystemExit(
-                    f"Gallery already contains a different image named {filename}."
-                )
             created = False
         else:
             remote = _upload(token, image)
@@ -160,7 +156,7 @@ def main() -> None:
         ).get("data", {})
         if (
             str(verified.get("id")) != str(remote["id"])
-            or int(verified.get("size") or -1) != image["size"]
+            or not _same_name(verified, filename)
             or not verified.get("path")
         ):
             raise SystemExit(f"Gallery read-back failed for {filename}.")
