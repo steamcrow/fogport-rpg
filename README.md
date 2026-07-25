@@ -27,12 +27,26 @@ not trigger another Actions workflow.
 - `publish-approved-character.yml`: single-character fallback.
 - `publish-approved-creature.yml`: single-creature fallback.
 - `publish-approved-location.yml`: single-location fallback.
+- `crosslink-fogport.yml`: rebuilds the live entity registry and applies one
+  approval-locked, link-only cleanup to existing entries and posts.
 - `ci.yml`: runs the safety tests on supported Python versions.
 
 Batch runs are sequential and safe to rerun. Each item uses exact-name
 duplicate detection, updates an existing matching record in place, verifies
 the public entity through Kanka, verifies every GM post as administrator-only,
 and emits both an individual and combined receipt.
+
+Every publisher now rebuilds a campaign-wide registry from Kanka before
+rendering new text. The registry records both the resource ID used for updates
+and the global entity ID used in `[entity:ID|text]` links. Canonical names are
+automatic; human-approved aliases live in
+`kanka_librarian/crosslink_aliases.json`.
+
+The cross-linker changes only unlinked text. It protects HTML tags and existing
+Kanka links, links only the first useful occurrence of each target, rejects
+ambiguous aliases, avoids self-links, and never links a private target from
+public text. The rebuilt registry and exact read-back receipt are retained as
+workflow artifacts rather than becoming a hand-maintained ID database.
 
 ## Safety rules
 
@@ -43,6 +57,8 @@ and emits both an individual and combined receipt.
 - Never expose delete operations through the publishing workflows.
 - Refuse ambiguous duplicate names instead of guessing.
 - Preserve nested locations and Kanka entity links.
+- Treat cross-link cleanup as idempotent: a safe rerun adds no duplicate or
+  nested links.
 - Store hidden material in separately labeled `GAMEMASTER SECRETS` posts with
   administrator-only visibility.
 - A workflow trigger, queue entry, or API write is not success. Only exact
@@ -95,7 +111,6 @@ pip install -r requirements.txt
 python -m unittest discover -s tests
 ```
 
-The Librarian intentionally keeps its small Kanka adapter for now. The useful
-reliability patterns from `python-kanka` and `mcp-kanka` are being adopted
-incrementally, but their current packages pin Python to a runtime newer than
-the established Fogport workflow.
+The Librarian intentionally keeps its small Kanka adapter for now. Reliability
+patterns from `python-kanka` and `mcp-kanka` are being adopted incrementally
+without making the working Fogport publisher depend on either package.
