@@ -18,49 +18,32 @@ class PublishError(ValueError):
 
 
 class EntityWriter(Protocol):
-    def create_entity(
-        self, campaign_id: int, section: str, payload: dict[str, Any]
-    ) -> dict[str, Any]: ...
-
-    def update_entity(
-        self,
-        campaign_id: int,
-        section: str,
-        kanka_id: int,
-        payload: dict[str, Any],
-    ) -> dict[str, Any]: ...
+    def create_entity(self, campaign_id: int, section: str, payload: dict[str, Any]) -> dict[str, Any]: ...
+    def update_entity(self, campaign_id: int, section: str, kanka_id: int, payload: dict[str, Any]) -> dict[str, Any]: ...
+    def create_post(self, campaign_id: int, entity_id: int, payload: dict[str, Any]) -> dict[str, Any]: ...
+    def create_attribute(self, campaign_id: int, entity_id: int, payload: dict[str, Any]) -> dict[str, Any]: ...
+    def create_relation(self, campaign_id: int, entity_id: int, payload: dict[str, Any]) -> dict[str, Any]: ...
 
 
 def proposal_digest(proposal: dict[str, Any]) -> str:
-    """Hash the exact proposal content, excluding its approval envelope."""
     unsigned = deepcopy(proposal)
     unsigned.pop("approval", None)
-    canonical = json.dumps(
-        unsigned, ensure_ascii=False, sort_keys=True, separators=(",", ":")
-    ).encode("utf-8")
+    canonical = json.dumps(unsigned, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
     return hashlib.sha256(canonical).hexdigest()
 
 
-def approve_proposal(
-    proposal: dict[str, Any],
-    *,
-    approved_by: str,
-    approved_at: str | None = None,
-) -> dict[str, Any]:
-    """Return a signed-by-digest approval envelope for human-reviewed content."""
+def approve_proposal(proposal: dict[str, Any], *, approved_by: str, approved_at: str | None = None) -> dict[str, Any]:
     approved = deepcopy(proposal)
     approved["approval"] = {
         "status": "approved",
         "approved_by": approved_by,
-        "approved_at": approved_at
-        or datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        "approved_at": approved_at or datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "proposal_sha256": proposal_digest(proposal),
     }
     return approved
 
 
 def validate_approved_proposal(proposal: dict[str, Any]) -> None:
-    """Reject the batch unless its content and approval are internally exact."""
     if proposal.get("mode") != "proposal-only":
         raise PublishError("Only proposal-only documents can be approved.")
     if proposal.get("campaign_id") != MAELSTROS_CAMPAIGN_ID:
@@ -69,7 +52,6 @@ def validate_approved_proposal(proposal: dict[str, Any]) -> None:
         raise PublishError("Fogport campaign 410879 is protected.")
     if proposal.get("approval_questions"):
         raise PublishError("Approval questions must be resolved before publishing.")
-
     approval = proposal.get("approval")
     if not isinstance(approval, dict) or approval.get("status") != "approved":
         raise PublishError("An explicit approval envelope is required.")
@@ -94,11 +76,15 @@ def validate_approved_proposal(proposal: dict[str, Any]) -> None:
         seen_temp_ids.add(temp_id)
         if action == "update" and not change.get("kanka_id"):
             raise PublishError(f"Update {temp_id} is missing its Kanka resource id.")
+        dependents = change.get("posts", []) or change.get("attributes", []) or change.get("relationships", [])
+        if action == "update" and dependents and not change.get("entity_id"):
+            raise PublishError(f"Update {temp_id} needs its Kanka entity_id for dependent content.")
+        for field in ("posts", "attributes", "relationships"):
+            if field in change and not isinstance(change[field], list):
+                raise PublishError(f"{temp_id}.{field} must be a list.")
 
 
-def _render_entry(
-    change: dict[str, Any], created_ids: dict[str, dict[str, int]]
-) -> str:
+def _render_entry(change: dict[str, Any], created_ids: dict[str, dict[str, int]]) -> str:
     rendered = str(change.get("entry") or "")
     for reference in change.get("resolved_references", []):
         phrase = str(reference.get("phrase") or reference.get("name") or "")
@@ -120,12 +106,7 @@ def _render_entry(
     return rendered
 
 
-def _payload(
-    change: dict[str, Any],
-    created_ids: dict[str, dict[str, int]],
-    *,
-    include_entry: bool,
-) -> dict[str, Any]:
+def _payload(change: dict[str, Any], created_ids: dict[str, dict[str, int]], *, include_entry: bool) -> dict[str, Any]:
     payload: dict[str, Any] = {"name": str(change["name"])}
     for key in ("type", "is_private", "tags"):
         if key in change:
@@ -146,13 +127,27 @@ def _payload(
     return payload
 
 
-def apply_approved_proposal(
-    proposal: dict[str, Any],
-    writer: EntityWriter,
-    *,
-    execute: bool = False,
-) -> dict[str, Any]:
-    """Create shells first, then publish linked body copy and updates."""
+def _entity_id(change: dict[str, Any], created_ids: dict[str, dict[str, int]]) -> int:
+    if change["action"] == "create":
+        return created_ids[str(change["temp_id"])]["entity_id"]
+    return int(change["entity_id"])
+
+
+def _relationship_payload(relationship: dict[str, Any], created_ids: dict[str, dict[str, int]]) -> dict[str, Any]:
+    payload = {key: value for key, value in relationship.items() if key not in {"target_temp_id"}}
+    target_temp_id = relationship.get("target_temp_id")
+    if target_temp_id:
+        target = created_ids.get(str(target_temp_id))
+        if not target:
+            raise PublishError(f"Relationship target {target_temp_id} was not created.")
+        payload["target_id"] = target["entity_id"]
+    if not payload.get("target_id"):
+        raise PublishError("Every relationship needs target_id or target_temp_id.")
+    return payload
+
+
+def apply_approved_proposal(proposal: dict[str, Any], writer: EntityWriter, *, execute: bool = False) -> dict[str, Any]:
+    """Create shells, write linked entries, then publish approved dependent content."""
     validate_approved_proposal(proposal)
     changes = {str(item["temp_id"]): item for item in proposal["proposals"]}
     create_order = [str(item) for item in proposal.get("create_order", [])]
@@ -164,11 +159,11 @@ def apply_approved_proposal(
         "campaign_id": MAELSTROS_CAMPAIGN_ID,
         "execute": execute,
         "creates_planned": len(creates),
-        "updates_planned": sum(
-            item["action"] == "update" for item in changes.values()
-        ),
-        "created": [],
-        "updated": [],
+        "updates_planned": sum(item["action"] == "update" for item in changes.values()),
+        "posts_planned": sum(len(item.get("posts", [])) for item in changes.values()),
+        "attributes_planned": sum(len(item.get("attributes", [])) for item in changes.values()),
+        "relationships_planned": sum(len(item.get("relationships", [])) for item in changes.values()),
+        "created": [], "updated": [], "posts_created": [], "attributes_created": [], "relationships_created": [],
         "kanka_writes_performed": False,
     }
     if not execute:
@@ -177,40 +172,32 @@ def apply_approved_proposal(
     created_ids: dict[str, dict[str, int]] = {}
     for temp_id in create_order:
         change = changes[temp_id]
-        result = writer.create_entity(
-            MAELSTROS_CAMPAIGN_ID,
-            str(change["section"]),
-            _payload(change, created_ids, include_entry=False),
-        )
+        result = writer.create_entity(MAELSTROS_CAMPAIGN_ID, str(change["section"]), _payload(change, created_ids, include_entry=False))
         if not result.get("id") or not result.get("entity_id"):
             raise PublishError(f"Kanka did not return both ids for {temp_id}.")
-        created_ids[temp_id] = {
-            "id": int(result["id"]),
-            "entity_id": int(result["entity_id"]),
-        }
-        summary["created"].append(
-            {"temp_id": temp_id, "id": result["id"], "entity_id": result["entity_id"]}
-        )
+        created_ids[temp_id] = {"id": int(result["id"]), "entity_id": int(result["entity_id"])}
+        summary["created"].append({"temp_id": temp_id, **created_ids[temp_id]})
 
     for temp_id in create_order:
         change = changes[temp_id]
-        writer.update_entity(
-            MAELSTROS_CAMPAIGN_ID,
-            str(change["section"]),
-            created_ids[temp_id]["id"],
-            _payload(change, created_ids, include_entry=True),
-        )
-
+        writer.update_entity(MAELSTROS_CAMPAIGN_ID, str(change["section"]), created_ids[temp_id]["id"], _payload(change, created_ids, include_entry=True))
     for temp_id, change in changes.items():
         if change["action"] != "update":
             continue
-        writer.update_entity(
-            MAELSTROS_CAMPAIGN_ID,
-            str(change["section"]),
-            int(change["kanka_id"]),
-            _payload(change, created_ids, include_entry=True),
-        )
+        writer.update_entity(MAELSTROS_CAMPAIGN_ID, str(change["section"]), int(change["kanka_id"]), _payload(change, created_ids, include_entry=True))
         summary["updated"].append({"temp_id": temp_id, "id": int(change["kanka_id"])})
+
+    for temp_id, change in changes.items():
+        entity_id = _entity_id(change, created_ids)
+        for post in change.get("posts", []):
+            result = writer.create_post(MAELSTROS_CAMPAIGN_ID, entity_id, dict(post))
+            summary["posts_created"].append({"temp_id": temp_id, "id": result.get("id")})
+        for attribute in change.get("attributes", []):
+            result = writer.create_attribute(MAELSTROS_CAMPAIGN_ID, entity_id, dict(attribute))
+            summary["attributes_created"].append({"temp_id": temp_id, "id": result.get("id")})
+        for relationship in change.get("relationships", []):
+            result = writer.create_relation(MAELSTROS_CAMPAIGN_ID, entity_id, _relationship_payload(relationship, created_ids))
+            summary["relationships_created"].append({"temp_id": temp_id, "id": result.get("id")})
 
     summary["kanka_writes_performed"] = True
     return summary
