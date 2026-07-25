@@ -6,11 +6,13 @@ on:
     paths:
       - ".github/workflows/inspect-maelstros.yml"
       - "scripts/snapshot_maelstros.py"
+      - "scripts/apply_approved_proposal.py"
       - "kanka_librarian.py"
       - "kanka_librarian/**"
       - "requirements.txt"
       - "tests/**"
       - "docs/NOTE_TO_PROPOSAL.md"
+      - "docs/APPROVAL_AND_PUBLISH.md"
 
 permissions:
   contents: read
