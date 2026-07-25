@@ -54,6 +54,8 @@ def build_snapshot(
     organizations: list[dict[str, Any]],
     creatures: list[dict[str, Any]],
     races: list[dict[str, Any]],
+    families: list[dict[str, Any]],
+    journals: list[dict[str, Any]],
     posts: list[dict[str, Any]],
     attributes: list[dict[str, Any]],
     relationships: list[dict[str, Any]],
@@ -163,6 +165,55 @@ def build_snapshot(
             for item in sorted(
                 races,
                 key=lambda value: (
+                    str(value.get("name") or "").casefold(),
+                    int(value.get("id") or 0),
+                ),
+            )
+        ],
+        "families": [
+            selected_fields(
+                item,
+                (
+                    "id",
+                    "entity_id",
+                    "name",
+                    "type",
+                    "family_id",
+                    "location_id",
+                    "entry",
+                    "tags",
+                    "is_private",
+                    "updated_at",
+                ),
+            )
+            for item in sorted(
+                families,
+                key=lambda value: (
+                    str(value.get("name") or "").casefold(),
+                    int(value.get("id") or 0),
+                ),
+            )
+        ],
+        "journals": [
+            selected_fields(
+                item,
+                (
+                    "id",
+                    "entity_id",
+                    "name",
+                    "type",
+                    "date",
+                    "character_id",
+                    "entry",
+                    "tags",
+                    "is_private",
+                    "updated_at",
+                ),
+            )
+            for item in sorted(
+                journals,
+                key=lambda value: (
+                    str(value.get("date") or ""),
                     str(value.get("name") or "").casefold(),
                     int(value.get("id") or 0),
                 ),
@@ -283,8 +334,12 @@ def main() -> int:
         organizations = client.list_organizations(MAELSTROS_CAMPAIGN_ID, related=True)
         creatures = client.list_creatures(MAELSTROS_CAMPAIGN_ID, related=True)
         races = client.list_races(MAELSTROS_CAMPAIGN_ID, related=True)
+        families = client.list_families(MAELSTROS_CAMPAIGN_ID, related=True)
+        journals = client.list_journals(MAELSTROS_CAMPAIGN_ID, related=True)
 
-        sections = (locations, characters, organizations, creatures, races)
+        sections = (
+            locations, characters, organizations, creatures, races, families, journals,
+        )
         posts = collect_related(sections, "posts")
         attributes = collect_related(sections, "attributes")
         relationships = collect_related(sections, "relations")
@@ -294,7 +349,7 @@ def main() -> int:
 
     snapshot = build_snapshot(
         campaign, locations, characters, organizations, creatures, races,
-        posts, attributes, relationships,
+        families, journals, posts, attributes, relationships,
     )
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(
@@ -310,6 +365,8 @@ def main() -> int:
     print(f"Organizations exported: {len(organizations)}")
     print(f"Creatures exported: {len(creatures)}")
     print(f"Peoples exported from Kanka Races: {len(races)}")
+    print(f"Families exported: {len(families)}")
+    print(f"Journals exported: {len(journals)}")
     print(f"Entity posts exported: {len(posts)}")
     print(f"Attributes exported: {len(attributes)}")
     print(f"Relationships exported: {len(relationships)}")
