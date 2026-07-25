@@ -1,4 +1,4 @@
-"""Write-only Kanka adapter with an explicit MAELSTROS safety lock."""
+"""Write-only Kanka adapter locked to one explicitly selected campaign."""
 
 from __future__ import annotations
 
@@ -24,17 +24,26 @@ SECTION_ENDPOINTS = {
 
 
 class KankaWriter(KankaClient):
-    """Create and update entities; deliberately exposes no delete operation."""
+    """Create and update entities in exactly one campaign; exposes no delete."""
 
-    def _send(
-        self, method: str, path: str, payload: dict[str, Any]
-    ) -> dict[str, Any]:
+    def __init__(self, *, token: str, expected_campaign_id: int, **kwargs: Any) -> None:
+        super().__init__(token=token, **kwargs)
+        self.expected_campaign_id = int(expected_campaign_id)
+
+    def _assert_campaign(self, campaign_id: int) -> None:
+        if int(campaign_id) != self.expected_campaign_id:
+            raise KankaError(
+                f"Cross-campaign write blocked: writer is locked to "
+                f"{self.expected_campaign_id}, received {campaign_id}."
+            )
+
+    def _send(self, method: str, path: str, payload: dict[str, Any]) -> dict[str, Any]:
         url = f"{self.base_url}/{path.lstrip('/')}"
         headers = {
             "Authorization": f"Bearer {self.token}",
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "User-Agent": "Kanka-Librarian/0.5",
+            "User-Agent": "Kanka-Librarian/0.6",
         }
         response: requests.Response | None = None
         for attempt in range(self.max_rate_limit_retries + 1):
@@ -60,7 +69,7 @@ class KankaWriter(KankaClient):
         body = response.json()
         data = body.get("data")
         if not isinstance(data, dict):
-            raise KankaError("Kanka write response did not contain an entity object.")
+            raise KankaError("Kanka write response did not contain an object.")
         return data
 
     @staticmethod
@@ -70,24 +79,22 @@ class KankaWriter(KankaClient):
         except KeyError as exc:
             raise KankaError(f"Unsupported Kanka section: {section}") from exc
 
-    def create_entity(
-        self, campaign_id: int, section: str, payload: dict[str, Any]
-    ) -> dict[str, Any]:
-        if campaign_id != 29474:
-            raise KankaError("Writer is hard-locked to MAELSTROS campaign 29474.")
-        endpoint = self._endpoint(section)
-        return self._send("POST", f"campaigns/{campaign_id}/{endpoint}", payload)
+    def create_entity(self, campaign_id: int, section: str, payload: dict[str, Any]) -> dict[str, Any]:
+        self._assert_campaign(campaign_id)
+        return self._send("POST", f"campaigns/{campaign_id}/{self._endpoint(section)}", payload)
 
-    def update_entity(
-        self,
-        campaign_id: int,
-        section: str,
-        kanka_id: int,
-        payload: dict[str, Any],
-    ) -> dict[str, Any]:
-        if campaign_id != 29474:
-            raise KankaError("Writer is hard-locked to MAELSTROS campaign 29474.")
-        endpoint = self._endpoint(section)
-        return self._send(
-            "PATCH", f"campaigns/{campaign_id}/{endpoint}/{int(kanka_id)}", payload
-        )
+    def update_entity(self, campaign_id: int, section: str, kanka_id: int, payload: dict[str, Any]) -> dict[str, Any]:
+        self._assert_campaign(campaign_id)
+        return self._send("PATCH", f"campaigns/{campaign_id}/{self._endpoint(section)}/{int(kanka_id)}", payload)
+
+    def create_post(self, campaign_id: int, entity_id: int, payload: dict[str, Any]) -> dict[str, Any]:
+        self._assert_campaign(campaign_id)
+        return self._send("POST", f"campaigns/{campaign_id}/entities/{int(entity_id)}/posts", payload)
+
+    def create_attribute(self, campaign_id: int, entity_id: int, payload: dict[str, Any]) -> dict[str, Any]:
+        self._assert_campaign(campaign_id)
+        return self._send("POST", f"campaigns/{campaign_id}/entities/{int(entity_id)}/attributes", payload)
+
+    def create_relation(self, campaign_id: int, entity_id: int, payload: dict[str, Any]) -> dict[str, Any]:
+        self._assert_campaign(campaign_id)
+        return self._send("POST", f"campaigns/{campaign_id}/entities/{int(entity_id)}/relations", payload)
