@@ -1,0 +1,125 @@
+name: Publish Fogport to Kanka
+
+on:
+  push:
+    paths:
+      - ".github/workflows/publish-fogport.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    name: Publish approved Fogport
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: python -m pip install --requirement requirements.txt
+
+      - name: Verify exact approved proposal
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from kanka_librarian.publisher import validate_approved_proposal
+          document = json.loads(Path("kanka_librarian/approved/fogport.json").read_text(encoding="utf-8"))
+          validate_approved_proposal(document)
+          assert document["approval"]["proposal_sha256"] == "a52a12067718501672b33c7af230870078fb9d78b9c45bce4bf401234f905412"
+          assert len(document["proposals"]) == 1
+          proposal = document["proposals"][0]
+          assert proposal["name"] == "Fogport"
+          assert proposal["fields"]["parent_id"] == 9614795
+          assert proposal["resolved_references"][0]["entity_id"] == 9614795
+          PY
+
+      - name: Check for an existing exact location
+        id: preflight
+        env:
+          KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os
+          from pathlib import Path
+          from kanka_librarian.client import KankaClient
+          matches = [
+              item for item in KankaClient(os.environ["KANKA_API_TOKEN"]).list_locations(410879)
+              if str(item.get("name", "")).casefold() == "fogport"
+          ]
+          if len(matches) > 1:
+              raise SystemExit("More than one exact Fogport location exists; refusing to guess.")
+          with Path(os.environ["GITHUB_OUTPUT"]).open("a") as output:
+              output.write(f"exists={'true' if matches else 'false'}\n")
+          PY
+
+      - name: Publish to Fogport campaign
+        if: steps.preflight.outputs.exists == 'false'
+        env:
+          KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+          KANKA_ENABLE_WRITES: FOGPORT_410879
+          PYTHONPATH: ${{ github.workspace }}
+        run: python scripts/apply_approved_proposal.py kanka_librarian/approved/fogport.json --execute
+
+      - name: Verify publication and record IDs
+        env:
+          KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+        run: |
+          mkdir -p kanka_librarian/published
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          from kanka_librarian.client import KankaClient
+          matches = [
+              item for item in KankaClient(os.environ["KANKA_API_TOKEN"]).list_locations(410879)
+              if str(item.get("name", "")).casefold() == "fogport"
+          ]
+          if len(matches) != 1:
+              raise SystemExit(f"Expected exactly one Fogport after publishing; found {len(matches)}.")
+          item = matches[0]
+          entry = str(item.get("entry", ""))
+          if "Fogport is an ancient, fog-soaked port city" not in entry:
+              raise SystemExit("Fogport exists but its approved description was not present.")
+          if "[entity:9614795|Sayir Sea]" not in entry:
+              raise SystemExit("Fogport exists but its Sayir Sea inline link was not present.")
+          parent_id = item.get("parent_id")
+          if parent_id not in (2166159, 9614795):
+              raise SystemExit(f"Fogport has unexpected parent_id {parent_id!r}.")
+          result = {
+              "campaign_id": 410879,
+              "campaign_name": "Fogport",
+              "location_id": item.get("id"),
+              "entity_id": item.get("entity_id"),
+              "parent_location_id": 2166159,
+              "parent_entity_id": 9614795,
+              "name": item.get("name"),
+              "type": item.get("type"),
+              "is_private": item.get("is_private"),
+              "published_description_verified": True,
+              "inline_link_verified": True,
+              "kanka_url": f"https://app.kanka.io/w/410879/entities/{item.get('entity_id')}"
+          }
+          Path("kanka_librarian/published/fogport.json").write_text(
+              json.dumps(result, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          PY
+
+      - name: Commit publication receipt
+        run: |
+          git config user.name "Kanka Librarian"
+          git config user.email "actions@users.noreply.github.com"
+          git add kanka_librarian/published/fogport.json
+          git commit -m "Record published Fogport Kanka IDs"
+          git push
