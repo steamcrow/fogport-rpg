@@ -2,9 +2,6 @@ name: "Kanka Librarian — Fogport: Publish Twisted Eel Pawnshop"
 
 on:
   workflow_dispatch:
-  schedule:
-    # Chat approval is committed first; this safely picks it up without a second button.
-    - cron: "3-58/5 * * * *"
 
 permissions:
   contents: read
