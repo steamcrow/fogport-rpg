@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": ["blackwake"],
+  "approval_questions": [],
+  "proposals": [
+    {
+      "temp_id": "blackwake",
+      "action": "create",
+      "section": "locations",
+      "name": "Blackwake",
+      "type": "Railway and commercial district",
+      "is_private": false,
+      "entry": "<p>Blackwake rises behind Grand Heliot Station, following the great rail viaducts as they divide and climb into Fogport.</p>\n\n<p>It is a densely built district of railway offices, warehouses, tram yards, lodging houses, shops, tenements, taverns, and businesses catering to people who have only just arrived—or are desperately trying to leave. The streets beneath the elevated tracks are dark even at midday. Steam pours from vents overhead, iron wheels hammer across the arches, and every conversation must occasionally pause for a passing trolley.</p>\n\n<p>Blackwake’s position makes it one of Fogport’s busiest crossroads. Travelers arriving by ship pass through the Grand Promenade and enter the station, where the city’s post-Catastrophe tramways carry them toward nearly every major district. Cargo follows a rougher path through Blackwake’s warehouses and freight yards, hauled by small steam engines along separate sidings.</p>\n\n<p>The district is respectable enough to possess clerks, uniforms, regulations, and polished brass signs, but too crowded and useful to remain genuinely genteel. Porters, railway workers, commercial agents, foreign sailors, newspaper sellers, confidence tricksters, and cheap hoteliers all compete beneath the same blackened arches.</p>\n\n<p>Blackwake is better maintained than Nine Spoons, though hardly more humane. Grigs are generally required to wear Grig Tack here. Beggars driven out of Blackwake’s principal streets simply cross into the Grand Promenade, where new arrivals are more generous and the authorities less certain of their jurisdiction.</p>\n\n<p>Above everything stands the clock façade of Grand Heliot Station. Nearly every street in Blackwake can see some portion of it, although its clocks rarely agree.</p>",
+      "fields": {},
+      "resolved_references": [],
+      "posts": [],
+      "attributes": [],
+      "relationships": [],
+      "publication": {
+        "parent_name": "Fogport",
+        "parent_link_phrase": "Fogport"
+      },
+      "blocked": false
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-25T00:00:00-07:00",
+    "proposal_sha256": "48a5e461df204a47ca332053235df45a281fdc6bb5c1bd02f32ddffd11a5ac4b"
+  }
+}
