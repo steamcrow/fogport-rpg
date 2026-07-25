@@ -2,6 +2,9 @@ name: "Kanka Librarian — Fogport: Publish Twisted Eel Pawnshop"
 
 on:
   workflow_dispatch:
+  schedule:
+    # Chat approval is committed first; this safely picks it up without a second button.
+    - cron: "3-58/5 * * * *"
 
 permissions:
   contents: read
@@ -98,22 +101,33 @@ jobs:
               token=os.environ["KANKA_API_TOKEN"],
               expected_campaign_id=campaign_id,
           )
+          already_published = False
           if matches:
               location_id = int(matches[0]["id"])
+              direct = client._get(f"campaigns/{campaign_id}/locations/{location_id}")
+              current = direct.get("data", {})
+              already_published = (
+                  str(current.get("name", "")) == change["name"]
+                  and current.get("parent_id") == parent_entity_id
+                  and str(current.get("entry", "")) == entry
+                  and bool(current.get("is_private")) == bool(change["is_private"])
+              )
+              item = current
           else:
               result = writer.create_entity(campaign_id, "locations", payload)
               location_id = int(result["id"])
+              item = result
 
-          item = None
-          for attempt in range(3):
-              item = writer.update_entity(campaign_id, "locations", location_id, payload)
-              if item.get("parent_id") == parent_entity_id:
-                  break
-              time.sleep(3)
-              direct = client._get(f"campaigns/{campaign_id}/locations/{location_id}")
-              item = direct.get("data", {})
-              if item.get("parent_id") == parent_entity_id:
-                  break
+          if not already_published:
+              for attempt in range(3):
+                  item = writer.update_entity(campaign_id, "locations", location_id, payload)
+                  if item.get("parent_id") == parent_entity_id:
+                      break
+                  time.sleep(3)
+                  direct = client._get(f"campaigns/{campaign_id}/locations/{location_id}")
+                  item = direct.get("data", {})
+                  if item.get("parent_id") == parent_entity_id:
+                      break
 
           if not isinstance(item, dict):
               raise SystemExit("Kanka did not return the Twisted Eel Pawnshop record.")
@@ -138,6 +152,7 @@ jobs:
           overview_url = f"https://app.kanka.io/w/{campaign_id}/entities/{entity_id}"
           receipt = {
               "published": True,
+              "already_current": already_published,
               "campaign": actual_campaign_name,
               "campaign_id": campaign_id,
               "location_id": location_id,
