@@ -29,9 +29,11 @@ class BatchPublisherTests(unittest.TestCase):
         self.root = Path(self.temp.name)
         (self.root / "kanka_librarian/approved").mkdir(parents=True)
         (self.root / "kanka_librarian/approved_characters").mkdir(parents=True)
+        (self.root / "kanka_librarian/approved_creatures").mkdir(parents=True)
         (self.root / "scripts").mkdir()
         (self.root / "kanka_librarian/approved/room.json").write_text("{}")
         (self.root / "kanka_librarian/approved_characters/person.json").write_text("{}")
+        (self.root / "kanka_librarian/approved_creatures/grig.json").write_text("{}")
 
     def tearDown(self):
         self.temp.cleanup()
@@ -44,10 +46,17 @@ class BatchPublisherTests(unittest.TestCase):
                     "kind": "character",
                     "proposal": "kanka_librarian/approved_characters/person.json",
                 },
+                {
+                    "kind": "creature",
+                    "proposal": "kanka_librarian/approved_creatures/grig.json",
+                },
             ]
         )
         result = validate_batch(document, self.root)
-        self.assertEqual([item[0] for item in result], ["location", "character"])
+        self.assertEqual(
+            [item[0] for item in result],
+            ["location", "character", "creature"],
+        )
 
     def test_rejects_edit_after_approval(self):
         document = approved_batch(
