@@ -118,3 +118,7 @@ class KankaClient:
     def list_characters(self, campaign_id: int) -> list[dict[str, Any]]:
         """Return every character in one campaign without changing anything."""
         return self._get_all_pages(f"campaigns/{campaign_id}/characters")
+
+    def list_organizations(self, campaign_id: int) -> list[dict[str, Any]]:
+        """Return every organization in one campaign without changing anything."""
+        return self._get_all_pages(f"campaigns/{campaign_id}/organisations")
