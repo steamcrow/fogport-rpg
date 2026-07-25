@@ -65,17 +65,19 @@ jobs:
               "protected_campaign",
               "locations",
               "characters",
+              "organizations",
           }
 
           forbidden = {"entry", "image", "image_full", "tooltip", "header_full"}
-          for section in ("locations", "characters"):
+          for section in ("locations", "characters", "organizations"):
               for entity in snapshot[section]:
                   assert forbidden.isdisjoint(entity)
 
           print(
               "Validated metadata-only snapshot: "
               f"{len(snapshot['locations'])} locations, "
-              f"{len(snapshot['characters'])} characters."
+              f"{len(snapshot['characters'])} characters, "
+              f"{len(snapshot['organizations'])} organizations."
           )
           PY
 
