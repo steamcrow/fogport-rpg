@@ -19,6 +19,7 @@ class KankaClient:
     base_url: str = "https://api.kanka.io/1.0"
     timeout_seconds: int = 20
     minimum_request_interval_seconds: float = 2.1
+    max_rate_limit_retries: int = 8
     _last_request_at: float = field(default=0.0, init=False, repr=False)
 
     def __post_init__(self) -> None:
@@ -43,27 +44,55 @@ class KankaClient:
             "User-Agent": "Kanka-Librarian/0.4",
         }
 
-        self._wait_for_rate_limit()
-        try:
-            response = requests.get(
-                url,
-                headers=headers,
-                params=params,
-                timeout=self.timeout_seconds,
-            )
-            self._last_request_at = time.monotonic()
-        except requests.RequestException as exc:
-            raise KankaError(f"Could not reach Kanka: {exc}") from exc
+        response: requests.Response | None = None
+        for attempt in range(self.max_rate_limit_retries + 1):
+            self._wait_for_rate_limit()
+            try:
+                response = requests.get(
+                    url,
+                    headers=headers,
+                    params=params,
+                    timeout=self.timeout_seconds,
+                )
+                self._last_request_at = time.monotonic()
+            except requests.RequestException as exc:
+                raise KankaError(f"Could not reach Kanka: {exc}") from exc
 
+            if response.status_code != 429:
+                break
+
+            if attempt >= self.max_rate_limit_retries:
+                raise KankaError(
+                    "Kanka's API rate limit remained exhausted after "
+                    f"{self.max_rate_limit_retries} automatic retries."
+                )
+
+            retry_after_header = response.headers.get("Retry-After")
+            reset_header = response.headers.get("X-RateLimit-Reset")
+            delay_seconds = 60.0
+
+            if retry_after_header:
+                try:
+                    delay_seconds = max(1.0, float(retry_after_header))
+                except ValueError:
+                    pass
+            elif reset_header:
+                try:
+                    delay_seconds = max(1.0, float(reset_header) - time.time())
+                except ValueError:
+                    pass
+
+            # Add a small cushion so the retry does not arrive on the reset boundary.
+            time.sleep(delay_seconds + 1.0)
+
+        if response is None:
+            raise KankaError("Kanka did not return a response.")
         if response.status_code == 401:
             raise KankaError("Kanka rejected the token. Check that it was copied correctly and has not expired.")
         if response.status_code == 403:
             raise KankaError("Kanka denied access to this campaign or endpoint.")
         if response.status_code == 404:
             raise KankaError("Kanka could not find the requested campaign or entity.")
-        if response.status_code == 429:
-            retry_after = response.headers.get("Retry-After", "a short time")
-            raise KankaError(f"Kanka's API rate limit was reached. Retry after {retry_after}.")
         if not response.ok:
             raise KankaError(
                 f"Kanka returned HTTP {response.status_code}: {response.text[:300]}"
