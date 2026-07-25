@@ -56,12 +56,15 @@ def build_snapshot(
     races: list[dict[str, Any]],
     families: list[dict[str, Any]],
     journals: list[dict[str, Any]],
+    events: list[dict[str, Any]],
+    items: list[dict[str, Any]],
+    quests: list[dict[str, Any]],
     posts: list[dict[str, Any]],
     attributes: list[dict[str, Any]],
     relationships: list[dict[str, Any]],
 ) -> dict[str, Any]:
     return {
-        "schema_version": 4,
+        "schema_version": 5,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "mode": "read-only",
         "content_scope": "full-lore-context",
@@ -219,6 +222,56 @@ def build_snapshot(
                 ),
             )
         ],
+        "events": [
+            selected_fields(
+                item,
+                (
+                    "id", "entity_id", "name", "type", "date", "location_id",
+                    "entry", "tags", "is_private", "updated_at",
+                ),
+            )
+            for item in sorted(
+                events,
+                key=lambda value: (
+                    str(value.get("date") or ""),
+                    str(value.get("name") or "").casefold(),
+                    int(value.get("id") or 0),
+                ),
+            )
+        ],
+        "items": [
+            selected_fields(
+                item,
+                (
+                    "id", "entity_id", "name", "type", "location_id",
+                    "character_id", "price", "size", "entry", "tags",
+                    "is_private", "updated_at",
+                ),
+            )
+            for item in sorted(
+                items,
+                key=lambda value: (
+                    str(value.get("name") or "").casefold(),
+                    int(value.get("id") or 0),
+                ),
+            )
+        ],
+        "quests": [
+            selected_fields(
+                item,
+                (
+                    "id", "entity_id", "name", "type", "character_id",
+                    "entry", "tags", "is_private", "updated_at",
+                ),
+            )
+            for item in sorted(
+                quests,
+                key=lambda value: (
+                    str(value.get("name") or "").casefold(),
+                    int(value.get("id") or 0),
+                ),
+            )
+        ],
         "attributes": [
             selected_fields(
                 item,
@@ -336,9 +389,13 @@ def main() -> int:
         races = client.list_races(MAELSTROS_CAMPAIGN_ID, related=True)
         families = client.list_families(MAELSTROS_CAMPAIGN_ID, related=True)
         journals = client.list_journals(MAELSTROS_CAMPAIGN_ID, related=True)
+        events = client.list_events(MAELSTROS_CAMPAIGN_ID, related=True)
+        items = client.list_items(MAELSTROS_CAMPAIGN_ID, related=True)
+        quests = client.list_quests(MAELSTROS_CAMPAIGN_ID, related=True)
 
         sections = (
             locations, characters, organizations, creatures, races, families, journals,
+            events, items, quests,
         )
         posts = collect_related(sections, "posts")
         attributes = collect_related(sections, "attributes")
@@ -349,7 +406,8 @@ def main() -> int:
 
     snapshot = build_snapshot(
         campaign, locations, characters, organizations, creatures, races,
-        families, journals, posts, attributes, relationships,
+        families, journals, events, items, quests,
+        posts, attributes, relationships,
     )
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(
@@ -367,6 +425,9 @@ def main() -> int:
     print(f"Peoples exported from Kanka Races: {len(races)}")
     print(f"Families exported: {len(families)}")
     print(f"Journals exported: {len(journals)}")
+    print(f"Events exported: {len(events)}")
+    print(f"Items exported: {len(items)}")
+    print(f"Quests exported: {len(quests)}")
     print(f"Entity posts exported: {len(posts)}")
     print(f"Attributes exported: {len(attributes)}")
     print(f"Relationships exported: {len(relationships)}")

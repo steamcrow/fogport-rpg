@@ -216,6 +216,33 @@ class KankaClient:
         params = {"related": 1} if related else None
         return self._get_all_pages(f"campaigns/{campaign_id}/journals", params=params)
 
+    def list_events(
+        self, campaign_id: int, *, related: bool = False,
+    ) -> list[dict[str, Any]]:
+        """Return every event in one campaign without changing anything."""
+        return self._get_all_pages(
+            f"campaigns/{campaign_id}/events",
+            params={"related": 1} if related else None,
+        )
+
+    def list_items(
+        self, campaign_id: int, *, related: bool = False,
+    ) -> list[dict[str, Any]]:
+        """Return every item in one campaign without changing anything."""
+        return self._get_all_pages(
+            f"campaigns/{campaign_id}/items",
+            params={"related": 1} if related else None,
+        )
+
+    def list_quests(
+        self, campaign_id: int, *, related: bool = False,
+    ) -> list[dict[str, Any]]:
+        """Return every quest in one campaign without changing anything."""
+        return self._get_all_pages(
+            f"campaigns/{campaign_id}/quests",
+            params={"related": 1} if related else None,
+        )
+
     def list_entity_posts(self, campaign_id: int, entity_id: int) -> list[dict[str, Any]]:
         """Return every public and private post attached to one entity."""
         return self._get_all_pages(
