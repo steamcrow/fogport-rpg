@@ -1,0 +1,123 @@
+name: Publish Nine Spoons to Kanka
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    name: Publish approved Nine Spoons
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: python -m pip install --requirement requirements.txt
+
+      - name: Verify and publish exact approved entry
+        env:
+          KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+          KANKA_ENABLE_WRITES: FOGPORT_410879
+          PYTHONPATH: ${{ github.workspace }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import time
+          from pathlib import Path
+
+          from kanka_librarian.client import KankaClient
+          from kanka_librarian.publisher import validate_approved_proposal
+          from kanka_librarian.writer import KankaWriter
+
+          document = json.loads(
+              Path("kanka_librarian/approved/nine-spoons.json").read_text(encoding="utf-8")
+          )
+          validate_approved_proposal(document)
+          assert document["approval"]["proposal_sha256"] == "43716b9f11c6861679418b4807c5ef8297af4e9f5eb7c15fa98d55077264753c"
+          assert len(document["proposals"]) == 1
+          change = document["proposals"][0]
+          assert change["name"] == "Nine Spoons"
+
+          client = KankaClient(os.environ["KANKA_API_TOKEN"])
+          locations = client.list_locations(410879)
+          shambles = [
+              item for item in locations
+              if str(item.get("name", "")).casefold() == "the shambles"
+          ]
+          matches = [
+              item for item in locations
+              if str(item.get("name", "")).casefold() == "nine spoons"
+          ]
+          if len(shambles) != 1:
+              raise SystemExit(f"Expected exactly one Shambles; found {len(shambles)}.")
+          if len(matches) > 1:
+              raise SystemExit("More than one exact Nine Spoons location exists; refusing to guess.")
+
+          parent_entity_id = int(shambles[0]["entity_id"])
+          entry = change["entry"].replace(
+              "the Shambles", f"[entity:{parent_entity_id}|the Shambles]", 1
+          )
+          payload = {
+              "name": change["name"],
+              "type": change["type"],
+              "is_private": change["is_private"],
+              "entry": entry,
+              "parent_id": parent_entity_id,
+          }
+          writer = KankaWriter(
+              token=os.environ["KANKA_API_TOKEN"],
+              expected_campaign_id=410879,
+          )
+          if matches:
+              location_id = int(matches[0]["id"])
+          else:
+              result = writer.create_entity(410879, "locations", payload)
+              location_id = int(result["id"])
+
+          item = None
+          for attempt in range(3):
+              item = writer.update_entity(410879, "locations", location_id, payload)
+              if item.get("parent_id") == parent_entity_id:
+                  break
+              time.sleep(3)
+              direct = client._get(f"campaigns/410879/locations/{location_id}")
+              item = direct.get("data", {})
+              if item.get("parent_id") == parent_entity_id:
+                  break
+
+          if not isinstance(item, dict):
+              raise SystemExit("Kanka did not return the Nine Spoons location record.")
+          if item.get("parent_id") != parent_entity_id:
+              raise SystemExit(f"Nine Spoons has unexpected parent_id {item.get('parent_id')!r}.")
+
+          published_entry = str(item.get("entry", ""))
+          required = (
+              "Rusted Saint", "Gutterkin", "Feratu", "Twisted Eel",
+              "Mercy", "Byl Hasbaine", "Lott", "Nine Spoons teaches survival"
+          )
+          for phrase in required:
+              if phrase not in published_entry:
+                  raise SystemExit(f"Published entry is missing {phrase}.")
+          if f"[entity:{parent_entity_id}|the Shambles]" not in published_entry:
+              raise SystemExit("Published entry is missing its Shambles inline link.")
+
+          print(json.dumps({
+              "published": True,
+              "location_id": location_id,
+              "entity_id": item.get("entity_id"),
+              "parent_entity_id": parent_entity_id,
+              "name": item.get("name"),
+          }, indent=2))
+          PY
