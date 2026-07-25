@@ -92,21 +92,43 @@ def main() -> None:
     writer.update_entity(CAMPAIGN_ID, "locations", location_id, payload)
     direct = client._get(f"campaigns/{CAMPAIGN_ID}/locations/{location_id}")
     item = direct.get("data", {})
-    expected = {
+    expected_location = {
         "name": payload["name"],
         "type": payload["type"],
         "is_private": payload["is_private"],
         "entry": payload["entry"],
-        "parent_id": payload["parent_id"],
     }
-    actual = {key: item.get(key) for key in expected}
-    if actual != expected:
+    actual_location = {key: item.get(key) for key in expected_location}
+    if actual_location != expected_location:
         raise SystemExit(
             "Kanka read-back did not match approval:\n"
-            + json.dumps({"expected": expected, "actual": actual}, indent=2)
+            + json.dumps(
+                {"expected": expected_location, "actual": actual_location},
+                indent=2,
+            )
         )
 
     entity_id = int(item["entity_id"])
+    # Location resources intentionally omit hierarchy fields. Verify the
+    # parent through the global entity resource, which always exposes
+    # `parent_id`. Reading parent_id from the location resource made every
+    # correctly nested location appear to have a null parent.
+    entity_direct = client._get(
+        f"campaigns/{CAMPAIGN_ID}/entities/{entity_id}"
+    ).get("data", {})
+    actual_parent_id = entity_direct.get("parent_id")
+    if actual_parent_id != parent_entity_id:
+        raise SystemExit(
+            "Kanka hierarchy read-back did not match approval:\n"
+            + json.dumps(
+                {
+                    "expected": {"parent_id": parent_entity_id},
+                    "actual": {"parent_id": actual_parent_id},
+                },
+                indent=2,
+            )
+        )
+
     posts_verified = []
     for approved_post in change.get("posts", []):
         post_name = str(approved_post.get("name", "")).strip()
