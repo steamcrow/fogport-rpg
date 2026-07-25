@@ -153,6 +153,7 @@ def build_snapshot(
                         "name",
                         "type",
                         "entry",
+                        "tags",
                         "is_private",
                         "updated_at",
                     ),
