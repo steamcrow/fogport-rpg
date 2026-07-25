@@ -34,6 +34,7 @@ def build_snapshot(
     locations: list[dict[str, Any]],
     characters: list[dict[str, Any]],
     organizations: list[dict[str, Any]],
+    creatures: list[dict[str, Any]],
 ) -> dict[str, Any]:
     return {
         "schema_version": 1,
@@ -92,6 +93,27 @@ def build_snapshot(
                 ),
             )
         ],
+        "creatures": [
+            selected_fields(
+                item,
+                (
+                    "id",
+                    "entity_id",
+                    "name",
+                    "type",
+                    "location_id",
+                    "is_private",
+                    "updated_at",
+                ),
+            )
+            for item in sorted(
+                creatures,
+                key=lambda value: (
+                    str(value.get("name") or "").casefold(),
+                    int(value.get("id") or 0),
+                ),
+            )
+        ],
         "organizations": [
             selected_fields(
                 item,
@@ -143,11 +165,12 @@ def main() -> int:
         locations = client.list_locations(MAELSTROS_CAMPAIGN_ID)
         characters = client.list_characters(MAELSTROS_CAMPAIGN_ID)
         organizations = client.list_organizations(MAELSTROS_CAMPAIGN_ID)
+        creatures = client.list_creatures(MAELSTROS_CAMPAIGN_ID)
     except KankaError as exc:
         print(f"Kanka Librarian error: {exc}", file=sys.stderr)
         return 1
 
-    snapshot = build_snapshot(campaign, locations, characters, organizations)
+    snapshot = build_snapshot(campaign, locations, characters, organizations, creatures)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(
         json.dumps(snapshot, ensure_ascii=False, indent=2) + "\n",
@@ -160,6 +183,7 @@ def main() -> int:
     print(f"Locations exported: {len(locations)}")
     print(f"Characters exported: {len(characters)}")
     print(f"Organizations exported: {len(organizations)}")
+    print(f"Creatures exported: {len(creatures)}")
     print(f"Snapshot written to: {output_path}")
     print("No Kanka data was created, updated, deleted, copied, or moved.")
     return 0
