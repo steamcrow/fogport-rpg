@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": [
+    "twisted-eel-pawnshop"
+  ],
+  "approval_questions": [],
+  "proposals": [
+    {
+      "temp_id": "twisted-eel-pawnshop",
+      "action": "create",
+      "section": "locations",
+      "name": "The Twisted Eel Pawnshop",
+      "type": "Pawnshop, Public House & Lodging",
+      "is_private": false,
+      "entry": "<h2>Where it stands</h2>\n\n<p>The Twisted Eel Pawnshop stands in Nine Spoons, partway up the western waterfront slope between the failing docks and the <strong>Rusted Saint</strong>. It faces a cramped little junction where several steep lanes converge, making it a natural meeting place for dockworkers, traders, thieves, neighbors, and strangers newly arrived from the harbor.</p>\n\n<p>The enormous floating fisher-slum can be glimpsed beyond the roofs and rigging across the water.</p>\n\n<h2>Exterior</h2>\n\n<p>The Eel is a narrow, crooked, three-story building assembled from old brick, ship timber, patched plaster, and pieces borrowed from several previous buildings. Its upper floors lean slightly over the street, supported by heavy black beams whose carved ends have been softened by weather and salt.</p>\n\n<p>A long iron eel twists around the bracket above the entrance. Time and rust have fused it into a knot, giving the establishment its name. A green-glass lantern hangs from its open mouth, casting a sickly light over the door after dark.</p>\n\n<p>The broad front windows are crowded with pawned goods: clocks, tools, instruments, weapons, boots, framed portraits, prosthetic limbs, religious objects, unopened boxes, and things whose purpose is not immediately apparent. Small handwritten tags hang from many of them. Some list prices; others simply say <strong>HELD</strong>, <strong>ASK MERCY</strong>, or <strong>NOT FOR SALE</strong>.</p>\n\n<blockquote><p>HOT FOOD<br>CHEAP DRINK<br>ROOMS<br>PAWNS TAKEN<br>QUESTIONS DISCOURAGED</p></blockquote>\n\n<h2>Interior</h2>\n\n<p>The ground floor is simultaneously a public house, eating room, pawnshop, and neighborhood refuge. It is warm, crowded, and considerably deeper than its narrow exterior suggests—although perhaps only because every wall is hidden beneath shelves.</p>\n\n<p>The mismatched tables are also display cases, their recessed interiors crowded with pawned jewelry, charms, curiosities, small weapons, and stranger objects. Each is protected by <strong>triple-blessed glass</strong>—expensive, nearly unbreakable, and entirely justified by the clientele.</p>\n\n<p>The walls hold pawned possessions, bottles, tools, curiosities, and objects left behind by people who never returned for them. Fishing nets hang from the ceiling to catch falling plaster—and occasionally serve as additional storage.</p>\n\n<p>A long, scarred counter runs along one side. <strong>Mercy</strong>, the Eel’s owner, conducts nearly all business from behind it: drinks, meals, rooms, loans, purchases, local information, and judgments about who may remain inside. The best pawned goods are kept in locked cabinets behind her. The most dangerous ones are kept somewhere else.</p>\n\n<p>Behind the public room lie the kitchen, pantry, cellar stairs, and whatever private spaces Mercy does not permit customers to investigate.</p>\n\n<p>A narrow staircase climbs to the lodging floors. The upstairs corridors are close, uneven, and perpetually scented with boiled cabbage, lamp oil, damp wool, and the harbor. The rooms are small but defensible. <strong>Byl Hasbaine and Lott currently live here</strong>, making the Twisted Eel their home as well as their neighborhood headquarters.</p>\n\n<p>The Eel is not respectable, elegant, or entirely safe—but in Nine Spoons, it is one of the places where a person can close the door and reasonably expect it to remain closed.</p>",
+      "fields": {},
+      "resolved_references": [],
+      "posts": [],
+      "attributes": [],
+      "relationships": [],
+      "blocked": false
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-24T17:00:00-07:00",
+    "proposal_sha256": "51e61689202ac1acd6687f6e1cba65f6ec5cd1ff831214847e8e09680eff49a9"
+  }
+}
