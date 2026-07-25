@@ -91,6 +91,20 @@ class KankaWriter(KankaClient):
         self._assert_campaign(campaign_id)
         return self._send("POST", f"campaigns/{campaign_id}/entities/{int(entity_id)}/posts", payload)
 
+    def update_post(
+        self,
+        campaign_id: int,
+        entity_id: int,
+        post_id: int,
+        payload: dict[str, Any],
+    ) -> dict[str, Any]:
+        self._assert_campaign(campaign_id)
+        return self._send(
+            "PATCH",
+            f"campaigns/{campaign_id}/entities/{int(entity_id)}/posts/{int(post_id)}",
+            payload,
+        )
+
     def create_attribute(self, campaign_id: int, entity_id: int, payload: dict[str, Any]) -> dict[str, Any]:
         self._assert_campaign(campaign_id)
         return self._send("POST", f"campaigns/{campaign_id}/entities/{int(entity_id)}/attributes", payload)
