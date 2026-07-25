@@ -36,11 +36,11 @@ jobs:
           from kanka_librarian.publisher import validate_approved_proposal
           document = json.loads(Path("kanka_librarian/approved/fogport.json").read_text(encoding="utf-8"))
           validate_approved_proposal(document)
-          assert document["approval"]["proposal_sha256"] == "1608bb7e3e82a3e5e6e0558776e01ab242dea987858b54a30ebc58b1f5686bc8"
+          assert document["approval"]["proposal_sha256"] == "a52a12067718501672b33c7af230870078fb9d78b9c45bce4bf401234f905412"
           assert len(document["proposals"]) == 1
           proposal = document["proposals"][0]
           assert proposal["name"] == "Fogport"
-          assert proposal["fields"]["parent_id"] == 2166159
+          assert proposal["fields"]["parent_id"] == 9614795
           assert proposal["resolved_references"][0]["entity_id"] == 9614795
           PY
 
@@ -61,6 +61,44 @@ jobs:
               raise SystemExit("More than one exact Fogport location exists; refusing to guess.")
           with Path(os.environ["GITHUB_OUTPUT"]).open("a") as output:
               output.write(f"exists={'true' if matches else 'false'}\n")
+          PY
+
+      - name: Repair existing Fogport hierarchy
+        if: steps.preflight.outputs.exists == 'true'
+        env:
+          KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+          KANKA_ENABLE_WRITES: FOGPORT_410879
+          PYTHONPATH: ${{ github.workspace }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          from kanka_librarian.client import KankaClient
+          from kanka_librarian.publisher import validate_approved_proposal
+          from kanka_librarian.writer import KankaWriter
+
+          document = json.loads(Path("kanka_librarian/approved/fogport.json").read_text(encoding="utf-8"))
+          validate_approved_proposal(document)
+          change = document["proposals"][0]
+          matches = [
+              item for item in KankaClient(os.environ["KANKA_API_TOKEN"]).list_locations(410879)
+              if str(item.get("name", "")).casefold() == "fogport"
+          ]
+          if len(matches) != 1:
+              raise SystemExit(f"Expected one existing Fogport; found {len(matches)}.")
+          entry = change["entry"].replace("Sayir Sea", "[entity:9614795|Sayir Sea]", 1)
+          payload = {
+              "name": change["name"],
+              "type": change["type"],
+              "is_private": change["is_private"],
+              "entry": entry,
+              "parent_id": 9614795,
+          }
+          KankaWriter(
+              token=os.environ["KANKA_API_TOKEN"],
+              expected_campaign_id=410879,
+          ).update_entity(410879, "locations", int(matches[0]["id"]), payload)
           PY
 
       - name: Publish to Fogport campaign
@@ -94,7 +132,7 @@ jobs:
           if "[entity:9614795|Sayir Sea]" not in entry:
               raise SystemExit("Fogport exists but its Sayir Sea inline link was not present.")
           parent_id = item.get("parent_id")
-          if parent_id != 2166159:
+          if parent_id != 9614795:
               raise SystemExit(f"Fogport has unexpected parent_id {parent_id!r}.")
           result = {
               "campaign_id": 410879,
