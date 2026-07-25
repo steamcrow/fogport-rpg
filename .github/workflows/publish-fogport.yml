@@ -36,11 +36,11 @@ jobs:
           from kanka_librarian.publisher import validate_approved_proposal
           document = json.loads(Path("kanka_librarian/approved/fogport.json").read_text(encoding="utf-8"))
           validate_approved_proposal(document)
-          assert document["approval"]["proposal_sha256"] == "a52a12067718501672b33c7af230870078fb9d78b9c45bce4bf401234f905412"
+          assert document["approval"]["proposal_sha256"] == "1608bb7e3e82a3e5e6e0558776e01ab242dea987858b54a30ebc58b1f5686bc8"
           assert len(document["proposals"]) == 1
           proposal = document["proposals"][0]
           assert proposal["name"] == "Fogport"
-          assert proposal["fields"]["parent_id"] == 9614795
+          assert proposal["fields"]["parent_id"] == 2166159
           assert proposal["resolved_references"][0]["entity_id"] == 9614795
           PY
 
@@ -94,7 +94,7 @@ jobs:
           if "[entity:9614795|Sayir Sea]" not in entry:
               raise SystemExit("Fogport exists but its Sayir Sea inline link was not present.")
           parent_id = item.get("parent_id")
-          if parent_id not in (2166159, 9614795):
+          if parent_id != 2166159:
               raise SystemExit(f"Fogport has unexpected parent_id {parent_id!r}.")
           result = {
               "campaign_id": 410879,
