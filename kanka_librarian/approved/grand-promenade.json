@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": ["grand-promenade"],
+  "approval_questions": [],
+  "proposals": [
+    {
+      "temp_id": "grand-promenade",
+      "action": "create",
+      "section": "locations",
+      "name": "The Grand Promenade",
+      "type": "Arrival-dock district",
+      "is_private": false,
+      "entry": "<p>The Grand Promenade is the enormous wedge-shaped dock projecting from the foot of Grand Heliot Station into Fogport’s harbor.</p>\n\n<p>Nearly everyone arriving in Fogport by passenger ship first steps ashore here. The city therefore presents them with a carefully unmanaged welcoming committee of porters, vendors, beggars, guides, performers, thieves, preachers, lodging agents, currency changers, children for hire, and people selling maps whose streets may never have existed.</p>\n\n<p>Ships berth along both sides of the wedge. Cargo is diverted toward lower freight piers, while passengers are funneled up the broad central quay toward Grand Heliot’s clock tower and monumental stairs. The closer one comes to the station, the grander the paving, lamps, and statuary become. Near the water, repairs are made with mismatched stone, timber, iron plate, and pieces salvaged from drowned structures below.</p>\n\n<p>The Promenade never truly closes. Morning belongs to fish sellers and incoming laborers. Afternoon brings passenger vessels and commercial traffic. At night, food stalls, musicians, confidence games, lantern shows, and illicit markets occupy the spaces between the warehouses and boarding ramps.</p>\n\n<p>Fogport’s authorities call it a ceremonial gateway. Blackwake’s merchants call it valuable frontage. Its beggars call it the best place in the city to meet someone who has not yet learned to say no.</p>",
+      "fields": {},
+      "resolved_references": [],
+      "posts": [],
+      "attributes": [],
+      "relationships": [],
+      "publication": {
+        "parent_name": "Fogport",
+        "parent_link_phrase": "Fogport"
+      },
+      "blocked": false
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-25T00:00:00-07:00",
+    "proposal_sha256": "496efb9f1ee6d69b375f92dd9d7be606620e6062cd87799a0f683c7b73e3f21c"
+  }
+}
