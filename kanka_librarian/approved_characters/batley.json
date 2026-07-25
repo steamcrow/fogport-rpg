@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": [
+    "batley"
+  ],
+  "approval_questions": [],
+  "proposals": [
+    {
+      "temp_id": "batley",
+      "action": "create",
+      "section": "characters",
+      "name": "Batley",
+      "type": "Grig busboy and general runner",
+      "is_private": false,
+      "entry": "<p><strong>Species:</strong> Grig<br><strong>Occupation:</strong> Busboy and general runner<br><strong>Employer:</strong> Mercy Vale<br><strong>Location:</strong> The Twisted Eel Pawnshop</p>\n\n<p>Batley is the Twisted Eel’s little Grig busboy. He clears tables, carries messages, fetches whatever Mercy requires, and scampers throughout the building on quick errands.</p>\n\n<p>He is unfailingly earnest and gives tiny, formal bows when addressed. When Mercy once sent him upstairs to wake Lott, Batley obediently raced up the stairs—and attempted to rouse him by loudly shouting:</p>\n\n<p><strong>“BATLEY!”</strong></p>\n\n<p>Whether this was confusion, Grig etiquette, or simply Batley being Batley remains uncertain.</p>\n\n<p>Batley appears accustomed to Mercy’s authority and the Eel’s dangerous clientele. Like most Grigs in Fogport, he occupies the peculiar position of being accepted as a servant while still treated as an outsider by much of human society.</p>",
+      "fields": {},
+      "resolved_references": [],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — Batley",
+          "entry": "<p><strong>Do not reveal directly to the player.</strong></p>\n\n<p>Batley currently has no established hidden agenda or secret history. His loyalty to Mercy and his earnest behavior are genuine as far as present canon establishes.</p>\n\n<p>Do not decide yet whether his habit of shouting “BATLEY!” was confusion, Grig etiquette, or something peculiar to Batley. Preserve that ambiguity until play gives us a better answer.</p>",
+          "visibility_id": 3
+        }
+      ],
+      "attributes": [],
+      "relationships": [],
+      "publication": {
+        "references": [
+          {
+            "phrase": "Mercy Vale",
+            "name": "Mercy Vale",
+            "section": "characters"
+          },
+          {
+            "phrase": "The Twisted Eel Pawnshop",
+            "name": "The Twisted Eel Pawnshop",
+            "section": "locations"
+          },
+          {
+            "phrase": "Lott",
+            "name": "Lott",
+            "section": "characters"
+          }
+        ]
+      },
+      "blocked": false
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-25T00:00:00-07:00",
+    "proposal_sha256": "b2ea91d9cada606a904f774e574017d771d96f38666900ee020436719889be23"
+  }
+}
