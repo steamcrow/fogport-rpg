@@ -24,6 +24,10 @@ PUBLISHERS = {
         Path("kanka_librarian/approved"),
         Path("scripts/publish_approved_location.py"),
     ),
+    "creature": (
+        Path("kanka_librarian/approved_creatures"),
+        Path("scripts/publish_approved_creature.py"),
+    ),
 }
 
 
