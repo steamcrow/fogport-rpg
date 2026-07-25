@@ -35,6 +35,7 @@ def build_snapshot(
     characters: list[dict[str, Any]],
     organizations: list[dict[str, Any]],
     creatures: list[dict[str, Any]],
+    races: list[dict[str, Any]],
     posts: list[dict[str, Any]],
 ) -> dict[str, Any]:
     return {
@@ -119,6 +120,30 @@ def build_snapshot(
                 ),
             )
         ],
+        "peoples": [
+            {
+                **selected_fields(
+                    item,
+                    (
+                        "id",
+                        "entity_id",
+                        "name",
+                        "type",
+                        "entry",
+                        "is_private",
+                        "updated_at",
+                    ),
+                ),
+                "source_entity_type": "race",
+            }
+            for item in sorted(
+                races,
+                key=lambda value: (
+                    str(value.get("name") or "").casefold(),
+                    int(value.get("id") or 0),
+                ),
+            )
+        ],
         "posts": [
             selected_fields(
                 item,
@@ -196,10 +221,11 @@ def main() -> int:
         characters = client.list_characters(MAELSTROS_CAMPAIGN_ID)
         organizations = client.list_organizations(MAELSTROS_CAMPAIGN_ID)
         creatures = client.list_creatures(MAELSTROS_CAMPAIGN_ID)
+        races = client.list_races(MAELSTROS_CAMPAIGN_ID)
 
         entity_ids = {
             int(item["entity_id"])
-            for section in (locations, characters, organizations, creatures)
+            for section in (locations, characters, organizations, creatures, races)
             for item in section
             if item.get("entity_id") is not None
         }
@@ -212,7 +238,7 @@ def main() -> int:
         print(f"Kanka Librarian error: {exc}", file=sys.stderr)
         return 1
 
-    snapshot = build_snapshot(campaign, locations, characters, organizations, creatures, posts)
+    snapshot = build_snapshot(campaign, locations, characters, organizations, creatures, races, posts)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(
         json.dumps(snapshot, ensure_ascii=False, indent=2) + "\n",
@@ -226,6 +252,7 @@ def main() -> int:
     print(f"Characters exported: {len(characters)}")
     print(f"Organizations exported: {len(organizations)}")
     print(f"Creatures exported: {len(creatures)}")
+    print(f"Peoples exported from Kanka Races: {len(races)}")
     print(f"Entity posts exported: {len(posts)}")
     print(f"Temporary snapshot written to: {output_path}")
     print("No Kanka data was created, updated, deleted, copied, or moved.")
