@@ -1,0 +1,158 @@
+name: "Kanka Librarian — Fogport: Publish Twisted Eel Pawnshop"
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    name: "FOGPORT 410879 — Publish approved Twisted Eel Pawnshop"
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: python -m pip install --requirement requirements.txt
+
+      - name: Verify Fogport and publish exact approved entry
+        env:
+          KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+          KANKA_ENABLE_WRITES: FOGPORT_410879
+          PYTHONPATH: ${{ github.workspace }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import time
+          from pathlib import Path
+
+          from kanka_librarian.client import KankaClient
+          from kanka_librarian.publisher import validate_approved_proposal
+          from kanka_librarian.writer import KankaWriter
+
+          campaign_id = 410879
+          expected_campaign_name = "Fogport"
+          approved_digest = "51e61689202ac1acd6687f6e1cba65f6ec5cd1ff831214847e8e09680eff49a9"
+
+          document = json.loads(
+              Path("kanka_librarian/approved/twisted-eel-pawnshop.json").read_text(encoding="utf-8")
+          )
+          validate_approved_proposal(document)
+          assert document["approval"]["proposal_sha256"] == approved_digest
+          assert len(document["proposals"]) == 1
+          change = document["proposals"][0]
+          assert change["name"] == "The Twisted Eel Pawnshop"
+
+          client = KankaClient(os.environ["KANKA_API_TOKEN"])
+          campaign = client.get_campaign(campaign_id)
+          actual_campaign_name = str(campaign.get("name", "")).strip()
+          if actual_campaign_name.casefold() != expected_campaign_name.casefold():
+              raise SystemExit(
+                  f"Campaign lock failed: ID {campaign_id} is {actual_campaign_name!r}, "
+                  f"not {expected_campaign_name!r}."
+              )
+
+          locations = client.list_locations(campaign_id)
+          parents = [
+              item for item in locations
+              if str(item.get("name", "")).casefold() == "nine spoons"
+          ]
+          accepted_names = {
+              "the twisted eel pawnshop",
+              "twisted eel pawnshop",
+              "the twisted eel",
+              "twisted eel",
+          }
+          matches = [
+              item for item in locations
+              if str(item.get("name", "")).casefold() in accepted_names
+          ]
+          if len(parents) != 1:
+              raise SystemExit(f"Expected exactly one Nine Spoons in Fogport; found {len(parents)}.")
+          if len(matches) > 1:
+              raise SystemExit("More than one Twisted Eel candidate exists; refusing to guess.")
+
+          parent_entity_id = int(parents[0]["entity_id"])
+          entry = change["entry"].replace(
+              "Nine Spoons", f"[entity:{parent_entity_id}|Nine Spoons]", 1
+          )
+          payload = {
+              "name": change["name"],
+              "type": change["type"],
+              "is_private": change["is_private"],
+              "entry": entry,
+              "parent_id": parent_entity_id,
+          }
+          writer = KankaWriter(
+              token=os.environ["KANKA_API_TOKEN"],
+              expected_campaign_id=campaign_id,
+          )
+          if matches:
+              location_id = int(matches[0]["id"])
+          else:
+              result = writer.create_entity(campaign_id, "locations", payload)
+              location_id = int(result["id"])
+
+          item = None
+          for attempt in range(3):
+              item = writer.update_entity(campaign_id, "locations", location_id, payload)
+              if item.get("parent_id") == parent_entity_id:
+                  break
+              time.sleep(3)
+              direct = client._get(f"campaigns/{campaign_id}/locations/{location_id}")
+              item = direct.get("data", {})
+              if item.get("parent_id") == parent_entity_id:
+                  break
+
+          if not isinstance(item, dict):
+              raise SystemExit("Kanka did not return the Twisted Eel Pawnshop record.")
+          if item.get("parent_id") != parent_entity_id:
+              raise SystemExit(f"Twisted Eel Pawnshop has unexpected parent_id {item.get('parent_id')!r}.")
+          if str(item.get("name", "")) != change["name"]:
+              raise SystemExit("Published name does not match the approved title.")
+
+          published_entry = str(item.get("entry", ""))
+          required = (
+              "Where it stands", "Exterior", "Interior", "Rusted Saint",
+              "triple-blessed glass", "Mercy", "Byl Hasbaine", "Lott",
+              "QUESTIONS DISCOURAGED"
+          )
+          for phrase in required:
+              if phrase not in published_entry:
+                  raise SystemExit(f"Published entry is missing {phrase}.")
+          if f"[entity:{parent_entity_id}|Nine Spoons]" not in published_entry:
+              raise SystemExit("Published entry is missing its Nine Spoons inline link.")
+
+          entity_id = int(item["entity_id"])
+          overview_url = f"https://app.kanka.io/w/{campaign_id}/entities/{entity_id}"
+          receipt = {
+              "published": True,
+              "campaign": actual_campaign_name,
+              "campaign_id": campaign_id,
+              "location_id": location_id,
+              "entity_id": entity_id,
+              "parent_entity_id": parent_entity_id,
+              "name": item.get("name"),
+              "overview_url": overview_url,
+          }
+          print(json.dumps(receipt, indent=2))
+
+          summary_path = os.environ.get("GITHUB_STEP_SUMMARY")
+          if summary_path:
+              with open(summary_path, "a", encoding="utf-8") as summary:
+                  summary.write("# Fogport publication verified\n\n")
+                  summary.write(f"- Campaign: **{actual_campaign_name}** ({campaign_id})\n")
+                  summary.write("- Entity: **The Twisted Eel Pawnshop**\n")
+                  summary.write(f"- [Open Twisted Eel Pawnshop Overview]({overview_url})\n")
+          PY
