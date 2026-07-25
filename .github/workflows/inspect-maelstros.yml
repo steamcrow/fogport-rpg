@@ -1,14 +1,20 @@
-name: Inspect MAELSTROS — Read Only
+name: Kanka Librarian — MAELSTROS Read Only
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/inspect-maelstros.yml"
+      - "scripts/snapshot_maelstros.py"
+      - "kanka_librarian.py"
+      - "requirements.txt"
 
 permissions:
   contents: read
 
 jobs:
-  inspect-maelstros:
-    name: Read MAELSTROS location hierarchy
+  snapshot-maelstros:
+    name: Validate unified MAELSTROS snapshot
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -25,7 +31,56 @@ jobs:
       - name: Install dependencies
         run: python -m pip install --requirement requirements.txt
 
-      - name: Inspect MAELSTROS only
+      - name: Build metadata-only snapshot
         env:
           KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
-        run: python scripts/inspect_maelstros.py
+          KANKA_SNAPSHOT_PATH: ${{ runner.temp }}/maelstros-snapshot.json
+        run: python scripts/snapshot_maelstros.py
+
+      - name: Validate safe snapshot shape
+        env:
+          KANKA_SNAPSHOT_PATH: ${{ runner.temp }}/maelstros-snapshot.json
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          path = Path(os.environ["KANKA_SNAPSHOT_PATH"])
+          snapshot = json.loads(path.read_text(encoding="utf-8"))
+
+          assert snapshot["mode"] == "read-only"
+          assert snapshot["campaign"]["id"] == 29474
+          assert snapshot["campaign"]["name"].casefold() == "maelstros"
+          assert snapshot["protected_campaign"] == {
+              "id": 410879,
+              "name": "Fogport",
+              "accessed": False,
+          }
+          assert set(snapshot) == {
+              "schema_version",
+              "generated_at",
+              "mode",
+              "campaign",
+              "protected_campaign",
+              "locations",
+              "characters",
+          }
+
+          forbidden = {"entry", "image", "image_full", "tooltip", "header_full"}
+          for section in ("locations", "characters"):
+              for entity in snapshot[section]:
+                  assert forbidden.isdisjoint(entity)
+
+          print(
+              "Validated metadata-only snapshot: "
+              f"{len(snapshot['locations'])} locations, "
+              f"{len(snapshot['characters'])} characters."
+          )
+          PY
+
+      - name: Remove temporary snapshot
+        if: always()
+        env:
+          KANKA_SNAPSHOT_PATH: ${{ runner.temp }}/maelstros-snapshot.json
+        run: rm -f -- "$KANKA_SNAPSHOT_PATH"
