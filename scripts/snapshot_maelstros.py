@@ -57,9 +57,6 @@ def build_snapshot(
                     "type",
                     "parent_id",
                     "is_private",
-                    "entry",
-                    "image",
-                    "image_full",
                     "updated_at",
                 ),
             )
@@ -83,9 +80,6 @@ def build_snapshot(
                     "location_id",
                     "is_private",
                     "is_dead",
-                    "entry",
-                    "image",
-                    "image_full",
                     "updated_at",
                 ),
             )
