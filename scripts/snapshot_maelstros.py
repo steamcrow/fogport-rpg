@@ -37,9 +37,10 @@ def build_snapshot(
     creatures: list[dict[str, Any]],
 ) -> dict[str, Any]:
     return {
-        "schema_version": 1,
+        "schema_version": 2,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "mode": "read-only",
+        "content_scope": "descriptions",
         "campaign": selected_fields(
             campaign,
             ("id", "name", "visibility", "locale"),
@@ -58,6 +59,7 @@ def build_snapshot(
                     "name",
                     "type",
                     "parent_id",
+                    "entry",
                     "is_private",
                     "updated_at",
                 ),
@@ -80,6 +82,7 @@ def build_snapshot(
                     "type",
                     "title",
                     "location_id",
+                    "entry",
                     "is_private",
                     "is_dead",
                     "updated_at",
@@ -102,6 +105,7 @@ def build_snapshot(
                     "name",
                     "type",
                     "location_id",
+                    "entry",
                     "is_private",
                     "updated_at",
                 ),
@@ -124,6 +128,7 @@ def build_snapshot(
                     "type",
                     "organisation_id",
                     "location_id",
+                    "entry",
                     "is_private",
                     "updated_at",
                 ),
@@ -177,14 +182,14 @@ def main() -> int:
         encoding="utf-8",
     )
 
-    print("KANKA LIBRARIAN — READ-ONLY SNAPSHOT")
+    print("KANKA LIBRARIAN — READ-ONLY FULL-CONTENT SNAPSHOT")
     print(f"Target campaign: {actual_name} (ID: {actual_id})")
     print(f"Protected campaign: Fogport (ID: {FOGPORT_CAMPAIGN_ID}) — NOT ACCESSED")
     print(f"Locations exported: {len(locations)}")
     print(f"Characters exported: {len(characters)}")
     print(f"Organizations exported: {len(organizations)}")
     print(f"Creatures exported: {len(creatures)}")
-    print(f"Snapshot written to: {output_path}")
+    print(f"Temporary snapshot written to: {output_path}")
     print("No Kanka data was created, updated, deleted, copied, or moved.")
     return 0
 
