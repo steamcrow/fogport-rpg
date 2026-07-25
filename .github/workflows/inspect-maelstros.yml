@@ -71,12 +71,17 @@ jobs:
               "organizations",
               "creatures",
               "peoples",
+              "families",
+              "journals",
               "posts",
               "attributes",
               "relationships",
           }
 
-          for section in ("locations", "characters", "organizations", "creatures", "peoples"):
+          for section in (
+              "locations", "characters", "organizations", "creatures",
+              "peoples", "families", "journals",
+          ):
               for entity in snapshot[section]:
                   assert "entry" in entity
                   assert "tags" in entity
@@ -110,6 +115,8 @@ jobs:
               f"{len(snapshot['organizations'])} organizations, "
               f"{len(snapshot['creatures'])} creatures, "
               f"{len(snapshot['peoples'])} peoples (from Kanka Races), "
+              f"{len(snapshot['families'])} families, "
+              f"{len(snapshot['journals'])} journals, "
               f"{len(snapshot['posts'])} entity posts, "
               f"{len(snapshot['attributes'])} attributes, "
               f"{len(snapshot['relationships'])} relationships."
