@@ -1,0 +1,49 @@
+name: "Kanka Librarian — Publish approved Fogport creature"
+
+on:
+  workflow_dispatch:
+    inputs:
+      proposal:
+        description: "Approved creature proposal filename"
+        required: true
+        default: "grig.json"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kanka-librarian-fogport
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: "FOGPORT 410879 — publish creature and verify"
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install --requirement requirements.txt
+      - name: Publish and exact-read-back
+        env:
+          KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+          KANKA_ENABLE_WRITES: FOGPORT_410879
+          PYTHONPATH: ${{ github.workspace }}
+        run: |
+          filename="${{ inputs.proposal }}"
+          [[ "$filename" =~ ^[A-Za-z0-9._-]+\.json$ ]]
+          proposal="kanka_librarian/approved_creatures/$filename"
+          test -f "$proposal"
+          python scripts/publish_approved_creature.py \
+            "$proposal" \
+            --receipt "receipts/${filename%.json}.json"
+      - name: Preserve verified receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: kanka-creature-publication-receipt
+          path: receipts/*.json
+          if-no-files-found: error
+          retention-days: 90
