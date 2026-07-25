@@ -102,6 +102,70 @@ def main() -> None:
         )
 
     entity_id = int(item["entity_id"])
+    posts_verified = []
+    for approved_post in change.get("posts", []):
+        post_name = str(approved_post.get("name", "")).strip()
+        if not post_name:
+            raise SystemExit("Approved post is missing its name.")
+        post_payload = {
+            "name": post_name,
+            "entry": str(approved_post.get("entry", "")),
+            "entity_id": entity_id,
+            "visibility_id": int(approved_post.get("visibility_id", 3)),
+        }
+        if post_payload["visibility_id"] != 3:
+            raise SystemExit(
+                f"GM post {post_name!r} must use administrator-only visibility_id 3."
+            )
+
+        existing_posts = client.list_entity_posts(CAMPAIGN_ID, entity_id)
+        post_matches = [
+            post for post in existing_posts
+            if str(post.get("name", "")).casefold() == post_name.casefold()
+        ]
+        if len(post_matches) > 1:
+            raise SystemExit(
+                f"More than one post named {post_name!r} exists; refusing to guess."
+            )
+        if post_matches:
+            post_id = int(post_matches[0]["id"])
+            post_created = False
+            writer.update_post(
+                CAMPAIGN_ID, entity_id, post_id, post_payload
+            )
+        else:
+            created_post = writer.create_post(
+                CAMPAIGN_ID, entity_id, post_payload
+            )
+            post_id = int(created_post["id"])
+            post_created = True
+
+        direct_post = client._get(
+            f"campaigns/{CAMPAIGN_ID}/entities/{entity_id}/posts/{post_id}"
+        ).get("data", {})
+        expected_post = {
+            "name": post_payload["name"],
+            "entry": post_payload["entry"],
+            "entity_id": post_payload["entity_id"],
+            "visibility_id": post_payload["visibility_id"],
+        }
+        actual_post = {key: direct_post.get(key) for key in expected_post}
+        if actual_post != expected_post:
+            raise SystemExit(
+                "Kanka GM-post read-back did not match approval:\n"
+                + json.dumps(
+                    {"expected": expected_post, "actual": actual_post}, indent=2
+                )
+            )
+        posts_verified.append(
+            {
+                "id": post_id,
+                "name": post_name,
+                "created": post_created,
+                "visibility_id": 3,
+            }
+        )
+
     receipt = {
         "published": True,
         "created": created,
@@ -112,6 +176,7 @@ def main() -> None:
         "parent_entity_id": parent_entity_id,
         "name": item["name"],
         "overview_url": f"https://app.kanka.io/w/{CAMPAIGN_ID}/entities/{entity_id}",
+        "private_posts_verified": posts_verified,
     }
     args.receipt.parent.mkdir(parents=True, exist_ok=True)
     args.receipt.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
@@ -123,6 +188,11 @@ def main() -> None:
             stream.write("# Fogport publication verified\n\n")
             stream.write(f"- Entity: **{item['name']}**\n")
             stream.write(f"- [Open Kanka Overview]({receipt['overview_url']})\n")
+            for post in posts_verified:
+                stream.write(
+                    f"- Private post verified: **{post['name']}** "
+                    "(administrators only)\n"
+                )
 
 
 if __name__ == "__main__":
