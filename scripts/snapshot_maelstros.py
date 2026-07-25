@@ -35,12 +35,13 @@ def build_snapshot(
     characters: list[dict[str, Any]],
     organizations: list[dict[str, Any]],
     creatures: list[dict[str, Any]],
+    posts: list[dict[str, Any]],
 ) -> dict[str, Any]:
     return {
-        "schema_version": 2,
+        "schema_version": 3,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "mode": "read-only",
-        "content_scope": "descriptions",
+        "content_scope": "descriptions-and-posts",
         "campaign": selected_fields(
             campaign,
             ("id", "name", "visibility", "locale"),
@@ -118,6 +119,30 @@ def build_snapshot(
                 ),
             )
         ],
+        "posts": [
+            selected_fields(
+                item,
+                (
+                    "id",
+                    "entity_id",
+                    "name",
+                    "entry",
+                    "position",
+                    "visibility_id",
+                    "is_private",
+                    "created_at",
+                    "updated_at",
+                ),
+            )
+            for item in sorted(
+                posts,
+                key=lambda value: (
+                    int(value.get("entity_id") or 0),
+                    int(value.get("position") or 0),
+                    int(value.get("id") or 0),
+                ),
+            )
+        ],
         "organizations": [
             selected_fields(
                 item,
@@ -171,11 +196,23 @@ def main() -> int:
         characters = client.list_characters(MAELSTROS_CAMPAIGN_ID)
         organizations = client.list_organizations(MAELSTROS_CAMPAIGN_ID)
         creatures = client.list_creatures(MAELSTROS_CAMPAIGN_ID)
+
+        entity_ids = {
+            int(item["entity_id"])
+            for section in (locations, characters, organizations, creatures)
+            for item in section
+            if item.get("entity_id") is not None
+        }
+        posts: list[dict[str, Any]] = []
+        for entity_id in sorted(entity_ids):
+            posts.extend(
+                client.list_entity_posts(MAELSTROS_CAMPAIGN_ID, entity_id)
+            )
     except KankaError as exc:
         print(f"Kanka Librarian error: {exc}", file=sys.stderr)
         return 1
 
-    snapshot = build_snapshot(campaign, locations, characters, organizations, creatures)
+    snapshot = build_snapshot(campaign, locations, characters, organizations, creatures, posts)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(
         json.dumps(snapshot, ensure_ascii=False, indent=2) + "\n",
@@ -189,6 +226,7 @@ def main() -> int:
     print(f"Characters exported: {len(characters)}")
     print(f"Organizations exported: {len(organizations)}")
     print(f"Creatures exported: {len(creatures)}")
+    print(f"Entity posts exported: {len(posts)}")
     print(f"Temporary snapshot written to: {output_path}")
     print("No Kanka data was created, updated, deleted, copied, or moved.")
     return 0
