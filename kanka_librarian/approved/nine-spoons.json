@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": ["nine-spoons"],
+  "approval_questions": [],
+  "proposals": [
+    {
+      "temp_id": "nine-spoons",
+      "action": "create",
+      "section": "locations",
+      "name": "Nine Spoons",
+      "type": "Slum Neighborhood",
+      "is_private": false,
+      "entry": "<p>Nine Spoons is one of the hardest neighborhoods in the Shambles: poor, violent, resourceful, and fiercely proud. It occupies the Shambles’ western waterfront, facing the enormous fisher-slum barge offshore. Its crowded lanes descend through crooked tenements, patched roofs, abandoned buildings, and failing docks toward the black water.</p>\n\n<p>The neighborhood’s unmistakable landmark is the <strong>Rusted Saint</strong>. It appears to be a towering, weather-blackened iron pole, but close inspection reveals the last remnants of an enormous metal statue. Salt, fog, and generations of corrosion have devoured nearly everything that once identified it. From certain angles, residents claim they can still make out a hand, a crown, a weapon, or the folds of a long coat—but no two people agree on whom or what it portrayed.</p>\n\n<p>Children in Nine Spoons learn quickly. Residents know the shortcuts, warning signs, gang boundaries, dangerous buildings, honest thieves, dishonest priests, hidden exits, and which smiles cannot be trusted. The neighborhood has produced remarkable criminals, artists, heroes, monsters, and survivors.</p>\n\n<p>The <strong>Gutterkin</strong>, Fogport’s feral orphans, haunt its rooftops, drains, abandoned buildings, and underground passages. Most steal. Some beg. A few guide travelers—for a price. The worst hunt. No one knows how many there are, and even the Feratu avoid certain tunnels beneath Nine Spoons.</p>\n\n<p>Among the neighborhood’s best-known establishments is the <strong>Twisted Eel</strong>, owned by Mercy, where Byl Hasbaine and Lott presently make their home.</p>\n\n<p>Nine Spoons teaches its people when to smile, when to run, when to draw steel—and when to share their last piece of bread.</p>\n\n<p><strong>Nine Spoons teaches survival.</strong></p>",
+      "fields": {},
+      "resolved_references": [],
+      "posts": [],
+      "attributes": [],
+      "relationships": [],
+      "blocked": false
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-24T17:00:00-07:00",
+    "proposal_sha256": "43716b9f11c6861679418b4807c5ef8297af4e9f5eb7c15fa98d55077264753c"
+  }
+}
