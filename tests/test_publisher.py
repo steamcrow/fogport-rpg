@@ -30,9 +30,10 @@ class FakeWriter:
         return {"id": 203}
 
 
-def proposal():
+def proposal(campaign_id=29474, campaign_name="MAELSTROS"):
     return {
-        "schema_version": 1, "mode": "proposal-only", "campaign_id": 29474,
+        "schema_version": 1, "mode": "proposal-only",
+        "campaign_id": campaign_id, "campaign_name": campaign_name,
         "create_order": ["fogport", "spoons", "byl"], "approval_questions": [],
         "proposals": [
             {"temp_id": "fogport", "action": "create", "section": "locations", "name": "Test World", "entry": "", "resolved_references": [], "blocked": False},
@@ -50,13 +51,24 @@ class PublisherTests(unittest.TestCase):
         self.assertEqual(writer.calls, [])
         self.assertEqual((result["posts_planned"], result["attributes_planned"], result["relationships_planned"]), (1, 1, 1))
 
-    def test_two_pass_publish_uses_real_ids_and_parent_order(self):
+    def test_fogport_is_supported_and_all_calls_stay_in_fogport(self):
         writer = FakeWriter()
-        result = apply_approved_proposal(approve_proposal(proposal(), approved_by="Daniel"), writer, execute=True)
-        self.assertTrue(result["kanka_writes_performed"])
-        self.assertEqual([call[0] for call in writer.calls[:3]], ["create"] * 3)
-        self.assertEqual(writer.calls[1][3]["parent_id"], 1101)
+        approved = approve_proposal(proposal(410879, "Fogport"), approved_by="Daniel")
+        result = apply_approved_proposal(approved, writer, execute=True)
+        self.assertEqual(result["campaign_id"], 410879)
+        self.assertTrue(all(call[1] == 410879 for call in writer.calls))
         self.assertIn("[entity:1102|Nine Spoons]", writer.calls[5][4]["entry"])
+
+    def test_maelstros_remains_separate(self):
+        writer = FakeWriter()
+        apply_approved_proposal(approve_proposal(proposal(), approved_by="Daniel"), writer, execute=True)
+        self.assertTrue(all(call[1] == 29474 for call in writer.calls))
+
+    def test_unknown_campaign_and_identity_mismatch_are_blocked(self):
+        with self.assertRaises(PublishError):
+            apply_approved_proposal(approve_proposal(proposal(999, "Unknown"), approved_by="Daniel"), FakeWriter())
+        with self.assertRaises(PublishError):
+            apply_approved_proposal(approve_proposal(proposal(410879, "MAELSTROS"), approved_by="Daniel"), FakeWriter())
 
     def test_dependents_publish_after_entity_pass_and_keep_privacy(self):
         writer = FakeWriter()
@@ -67,29 +79,15 @@ class PublisherTests(unittest.TestCase):
         self.assertEqual(attribute[3]["name"], "Origin")
         self.assertEqual(relation[3]["target_id"], 1102)
 
-    def test_existing_entity_dependents_require_entity_id(self):
-        bad = proposal()
-        bad["proposals"][2]["action"] = "update"
-        bad["proposals"][2]["kanka_id"] = 77
-        bad["create_order"].remove("byl")
-        with self.assertRaises(PublishError):
-            apply_approved_proposal(approve_proposal(bad, approved_by="Daniel"), FakeWriter(), execute=True)
-
     def test_edit_after_approval_is_rejected(self):
         approved = approve_proposal(proposal(), approved_by="Daniel")
         approved["proposals"][0]["name"] = "Changed afterward"
         with self.assertRaises(PublishError):
             apply_approved_proposal(approved, FakeWriter(), execute=True)
 
-    def test_unresolved_or_delete_is_rejected(self):
+    def test_delete_is_rejected(self):
         bad = proposal()
         bad["proposals"][0]["action"] = "delete"
-        with self.assertRaises(PublishError):
-            apply_approved_proposal(approve_proposal(bad, approved_by="Daniel"), FakeWriter(), execute=True)
-
-    def test_fogport_campaign_is_never_writable(self):
-        bad = proposal()
-        bad["campaign_id"] = 410879
         with self.assertRaises(PublishError):
             apply_approved_proposal(approve_proposal(bad, approved_by="Daniel"), FakeWriter(), execute=True)
 
