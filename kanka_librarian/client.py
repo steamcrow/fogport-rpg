@@ -107,13 +107,13 @@ class KankaClient:
             raise KankaError("Kanka returned an unexpected response shape.")
         return payload
 
-    def _get_all_pages(self, path: str) -> list[dict[str, Any]]:
+    def _get_all_pages(\n        self,\n        path: str,\n        params: dict[str, Any] | None = None,\n    ) -> list[dict[str, Any]]:
         """Read every page from a Kanka list endpoint."""
         items: list[dict[str, Any]] = []
         page = 1
 
         while True:
-            payload = self._get(path, params={"page": page})
+            page_params = dict(params or {})\n            page_params["page"] = page\n            payload = self._get(path, params=page_params)
             data = payload.get("data", [])
             if not isinstance(data, list):
                 raise KankaError(f"Kanka's {path} response did not contain a list.")
@@ -140,25 +140,55 @@ class KankaClient:
             raise KankaError("Kanka's campaign response did not contain an object.")
         return data
 
-    def list_locations(self, campaign_id: int) -> list[dict[str, Any]]:
+    def list_locations(
+        self,
+        campaign_id: int,
+        *,
+        related: bool = False,
+    ) -> list[dict[str, Any]]:
         """Return every location in one campaign without changing anything."""
-        return self._get_all_pages(f"campaigns/{campaign_id}/locations")
+        params = {"related": 1} if related else None
+        return self._get_all_pages(f"campaigns/{campaign_id}/locations", params=params)
 
-    def list_characters(self, campaign_id: int) -> list[dict[str, Any]]:
+    def list_characters(
+        self,
+        campaign_id: int,
+        *,
+        related: bool = False,
+    ) -> list[dict[str, Any]]:
         """Return every character in one campaign without changing anything."""
-        return self._get_all_pages(f"campaigns/{campaign_id}/characters")
+        params = {"related": 1} if related else None
+        return self._get_all_pages(f"campaigns/{campaign_id}/characters", params=params)
 
-    def list_organizations(self, campaign_id: int) -> list[dict[str, Any]]:
+    def list_organizations(
+        self,
+        campaign_id: int,
+        *,
+        related: bool = False,
+    ) -> list[dict[str, Any]]:
         """Return every organization in one campaign without changing anything."""
-        return self._get_all_pages(f"campaigns/{campaign_id}/organisations")
+        params = {"related": 1} if related else None
+        return self._get_all_pages(f"campaigns/{campaign_id}/organisations", params=params)
 
-    def list_creatures(self, campaign_id: int) -> list[dict[str, Any]]:
+    def list_creatures(
+        self,
+        campaign_id: int,
+        *,
+        related: bool = False,
+    ) -> list[dict[str, Any]]:
         """Return every creature in one campaign without changing anything."""
-        return self._get_all_pages(f"campaigns/{campaign_id}/creatures")
+        params = {"related": 1} if related else None
+        return self._get_all_pages(f"campaigns/{campaign_id}/creatures", params=params)
 
-    def list_races(self, campaign_id: int) -> list[dict[str, Any]]:
+    def list_races(
+        self,
+        campaign_id: int,
+        *,
+        related: bool = False,
+    ) -> list[dict[str, Any]]:
         """Return every Kanka race in one campaign without changing anything."""
-        return self._get_all_pages(f"campaigns/{campaign_id}/races")
+        params = {"related": 1} if related else None
+        return self._get_all_pages(f"campaigns/{campaign_id}/races", params=params)
 
     def list_entity_posts(self, campaign_id: int, entity_id: int) -> list[dict[str, Any]]:
         """Return every public and private post attached to one entity."""
