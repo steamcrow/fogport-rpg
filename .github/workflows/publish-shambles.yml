@@ -37,6 +37,7 @@ jobs:
           python - <<'PY'
           import json
           import os
+          import time
           from pathlib import Path
 
           from kanka_librarian.client import KankaClient
@@ -83,23 +84,31 @@ jobs:
               expected_campaign_id=410879,
           )
           if shambles:
-              result = writer.update_entity(
-                  410879, "locations", int(shambles[0]["id"]), payload
-              )
               location_id = int(shambles[0]["id"])
           else:
               result = writer.create_entity(410879, "locations", payload)
               location_id = int(result["id"])
 
-          refreshed = [
-              item for item in client.list_locations(410879)
-              if str(item.get("name", "")).casefold() == "the shambles"
-          ]
-          if len(refreshed) != 1:
-              raise SystemExit(f"Expected exactly one Shambles after publishing; found {len(refreshed)}.")
-          item = refreshed[0]
+          # Kanka's list endpoint can briefly return its pre-update representation.
+          # Patch the exact existing record and verify that same record directly.
+          item = None
+          for attempt in range(3):
+              result = writer.update_entity(
+                  410879, "locations", location_id, payload
+              )
+              item = result
+              if item.get("parent_id") == fogport_entity_id:
+                  break
+              time.sleep(3)
+              direct = client._get(f"campaigns/410879/locations/{location_id}")
+              item = direct.get("data", {})
+              if item.get("parent_id") == fogport_entity_id:
+                  break
+          if not isinstance(item, dict):
+              raise SystemExit("Kanka did not return the Shambles location record.")
           if item.get("parent_id") != fogport_entity_id:
               raise SystemExit(f"Shambles has unexpected parent_id {item.get('parent_id')!r}.")
+
           published_entry = str(item.get("entry", ""))
           for required in ("Cinderhook", "The Crooked Wash", "Saint Rattle", "Patchcoat", "Nine Spoons", "Gutterkin"):
               if required not in published_entry:
