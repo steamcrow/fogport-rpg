@@ -51,7 +51,7 @@ jobs:
           snapshot = json.loads(path.read_text(encoding="utf-8"))
 
           assert snapshot["mode"] == "read-only"
-          assert snapshot["content_scope"] == "descriptions-and-posts"
+          assert snapshot["content_scope"] == "full-lore-context"
           assert snapshot["campaign"]["id"] == 29474
           assert snapshot["campaign"]["name"].casefold() == "maelstros"
           assert snapshot["protected_campaign"] == {
@@ -72,14 +72,30 @@ jobs:
               "creatures",
               "peoples",
               "posts",
+              "attributes",
+              "relationships",
           }
 
           for section in ("locations", "characters", "organizations", "creatures", "peoples"):
               for entity in snapshot[section]:
                   assert "entry" in entity
+                  assert "tags" in entity
 
           for person_type in snapshot["peoples"]:
               assert person_type["source_entity_type"] == "race"
+
+          for attribute in snapshot["attributes"]:
+              assert "source_entity_id" in attribute
+              assert "name" in attribute
+              assert "value" in attribute
+              assert "is_private" in attribute
+
+          for relationship in snapshot["relationships"]:
+              assert "source_entity_id" in relationship
+              assert "owner_id" in relationship
+              assert "target_id" in relationship
+              assert "relation" in relationship
+              assert "visibility_id" in relationship
 
           for post in snapshot["posts"]:
               assert "entity_id" in post
@@ -94,7 +110,9 @@ jobs:
               f"{len(snapshot['organizations'])} organizations, "
               f"{len(snapshot['creatures'])} creatures, "
               f"{len(snapshot['peoples'])} peoples (from Kanka Races), "
-              f"{len(snapshot['posts'])} entity posts."
+              f"{len(snapshot['posts'])} entity posts, "
+              f"{len(snapshot['attributes'])} attributes, "
+              f"{len(snapshot['relationships'])} relationships."
           )
           PY
 
