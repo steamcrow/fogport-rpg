@@ -107,13 +107,19 @@ class KankaClient:
             raise KankaError("Kanka returned an unexpected response shape.")
         return payload
 
-    def _get_all_pages(\n        self,\n        path: str,\n        params: dict[str, Any] | None = None,\n    ) -> list[dict[str, Any]]:
+    def _get_all_pages(
+        self,
+        path: str,
+        params: dict[str, Any] | None = None,
+    ) -> list[dict[str, Any]]:
         """Read every page from a Kanka list endpoint."""
         items: list[dict[str, Any]] = []
         page = 1
 
         while True:
-            page_params = dict(params or {})\n            page_params["page"] = page\n            payload = self._get(path, params=page_params)
+            page_params = dict(params or {})
+            page_params["page"] = page
+            payload = self._get(path, params=page_params)
             data = payload.get("data", [])
             if not isinstance(data, list):
                 raise KankaError(f"Kanka's {path} response did not contain a list.")
