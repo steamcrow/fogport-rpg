@@ -3,8 +3,8 @@
 A safe, approval-first bridge between AI-driven RPG sessions and Kanka.
 
 Fogport is the first production campaign. The Librarian can publish verified
-characters and nested locations, attach administrator-only Gamemaster posts,
-and process a whole approved episode as one batch.
+characters, creatures, and nested locations, attach administrator-only
+Gamemaster posts, and process a whole approved episode as one batch.
 
 ## Normal Fogport workflow
 
@@ -23,8 +23,9 @@ not trigger another Actions workflow.
 ## Production workflows
 
 - `publish-approved-batch.yml`: preferred episode workflow; publishes an
-  ordered mixture of approved characters and locations.
+  ordered mixture of approved characters, creatures, and locations.
 - `publish-approved-character.yml`: single-character fallback.
+- `publish-approved-creature.yml`: single-creature fallback.
 - `publish-approved-location.yml`: single-location fallback.
 - `ci.yml`: runs the safety tests on supported Python versions.
 
@@ -66,6 +67,10 @@ already approved proposal files in dependency order:
     {
       "kind": "character",
       "proposal": "kanka_librarian/approved_characters/example-person.json"
+    },
+    {
+      "kind": "creature",
+      "proposal": "kanka_librarian/approved_creatures/example-creature.json"
     }
   ],
   "approval": {
