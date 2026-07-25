@@ -52,9 +52,9 @@
         ]
       },
       "artwork": {
-        "main_image_path": "assets/portraits/lott.jpg",
-        "sha256": "d1204d3061d97858eefef20da45df23040ceb74f1e2fa4399542e56dcc69aa82",
-        "visual_description": "A full-color vertical portrait of Lott outside the Twisted Eel: a hulking scarred man of about fifty in battered workman's clothes, calmly watching the viewer with one enormous hand on Kils, his antique sailor's cutlass. Blue-green Fogport fog and uneven tavern gaslight emphasize his quiet intelligence and physical danger.",
+        "main_image_path": "assets/portraits/lott-concept-v2.jpg",
+        "sha256": "78e3c555a6de6f3a952d55c559017e896d15e5415553a6d6fd8de4c9d45352b4",
+        "visual_description": "A full-body painterly dark-fantasy character illustration of Lott: a hulking, heavily scarred man of about fifty with broken features, enormous scarred hands, battered workman's clothes, and Kils held low and ready without heroic flourish. Visible brushwork, worn materials, a strong readable silhouette, and restrained blue-green Fogport atmosphere establish the canonical character-art style while preserving his watchful intelligence and physical danger.",
         "reference_authorities": [
           "Lott character sheet",
           "Fogport core city map"
@@ -67,6 +67,6 @@
     "status": "approved",
     "approved_by": "Daniel Davis",
     "approved_at": "2026-07-25T00:00:00-07:00",
-    "proposal_sha256": "beef50e694fa8a14df6c3ee0185a0618445bcf716879cab34ff3c924e3df4bda"
+    "proposal_sha256": "9b6bf1941484cb0d23d79e1512b9ead926eb314df04a9e53d186a0f520350bc0"
   }
 }

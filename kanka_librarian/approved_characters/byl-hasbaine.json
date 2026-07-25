@@ -42,9 +42,9 @@
         ]
       },
       "artwork": {
-        "main_image_path": "assets/portraits/byl-hasbaine.jpg",
-        "sha256": "83e6e3c536fddddf5eb2ff14282e372b5a177370cef228772a4849a3aff1176c",
-        "visual_description": "A full-color vertical portrait of Byl Hasbaine in Nine Spoons: a lanky albino Wild Operator in a towering battered top hat and threadbare gentleman's clothes, holding an old coin above an impossible smoke-shadow with one hand near his worn rapier. Blue-green harbor fog and uneven amber gaslight place him firmly in Fogport.",
+        "main_image_path": "assets/portraits/byl-hasbaine-concept-v2.jpg",
+        "sha256": "aa7622791f9991d507c8b9422f0ef16bc6a184efce86d31af43467d1c9f1da36",
+        "visual_description": "A full-body painterly dark-fantasy character illustration of Byl Hasbaine: a lanky albino Wild Operator with a sharp, sly face, towering battered top hat, ragged gentleman's clothes, an old coin trailing restrained unnatural smoke, and one hand resting near his worn rapier. The pale textured ground, visible brushwork, worn materials, and muted blue-green atmosphere establish Fogport's canonical character-art style.",
         "reference_authorities": [
           "Byl Hasbaine character sheet",
           "Fogport core city map"
@@ -57,6 +57,6 @@
     "status": "approved",
     "approved_by": "Daniel Davis",
     "approved_at": "2026-07-25T00:00:00-07:00",
-    "proposal_sha256": "eaab876ad47f2e1dbbe7fcb59c496d40642a5821dccfddd5539b2b7034f6924d"
+    "proposal_sha256": "f17d74685cf98ce2e0849438f08b49b28afff1ffccd59e3dd0c42c7141613213"
   }
 }
