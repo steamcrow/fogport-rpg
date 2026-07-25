@@ -10,7 +10,7 @@ on:
       proposal:
         description: "Approved character proposal filename"
         required: true
-        default: "mercy-vale.json"
+        default: "batley.json"
 
 permissions:
   contents: read
