@@ -1,0 +1,43 @@
+name: "Kanka Librarian — Publish Blackwake, Grand Heliot, and the Grand Promenade"
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kanka-librarian-fogport
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: "FOGPORT 410879 — publish three linked locations and verify"
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install --requirement requirements.txt
+      - name: Validate repository tests
+        run: python -m unittest discover -s tests
+      - name: Publish approved linked locations
+        env:
+          KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+          KANKA_ENABLE_WRITES: FOGPORT_410879
+          PYTHONPATH: ${{ github.workspace }}
+        run: |
+          python scripts/publish_approved_batch.py \
+            kanka_librarian/approved_batches/blackwake-heliot-promenade.json \
+            --receipt receipts/blackwake-heliot-promenade.json
+      - name: Preserve all verified receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: blackwake-heliot-promenade-publication-receipts
+          path: receipts/
+          if-no-files-found: warn
+          retention-days: 90
