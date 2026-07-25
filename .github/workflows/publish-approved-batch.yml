@@ -35,11 +35,13 @@ jobs:
           KANKA_ENABLE_WRITES: FOGPORT_410879
           PYTHONPATH: ${{ github.workspace }}
         run: |
-          batch="kanka_librarian/approved_batches/${{ inputs.batch }}"
+          filename="${{ inputs.batch }}"
+          [[ "$filename" =~ ^[A-Za-z0-9._-]+\.json$ ]]
+          batch="kanka_librarian/approved_batches/$filename"
           test -f "$batch"
           python scripts/publish_approved_batch.py \
             "$batch" \
-            --receipt "receipts/${{ inputs.batch }}"
+            --receipt "receipts/$filename"
       - name: Preserve all verified receipts
         if: always()
         uses: actions/upload-artifact@v4
