@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": [
+    "fogport"
+  ],
+  "approval_questions": [],
+  "proposals": [
+    {
+      "temp_id": "fogport",
+      "action": "create",
+      "section": "locations",
+      "name": "Fogport",
+      "type": "City",
+      "is_private": false,
+      "entry": "Fogport is an ancient, fog-soaked port city on the Sayir Sea, where strange people live among strange things. Ghosts, magic, monsters, and impossibilities are real here, yet everyday life continues around them.\n\nThe city is crowded, damp, dangerous, melancholy, whimsical, hungry, and beautiful. Buildings lean, bridges groan, pipes whistle, iron rusts, and brick crumbles. Everything has been repaired many times; nothing feels new. Every district has its own personality, every neighborhood its own unwritten rules, and every street another story.\n\nFogport survived the Catastrophe, though many of its people did not. Permanent scars remain: damaged districts, streets that simply stop, abandoned buildings, leaking ancient magic, and monsters born—or newly settled—in the aftermath. The old wound is never entirely closed.\n\nStill, the city lives. Bakers open in the morning. Fish markets shout. Children invent games. Couples fall in love. Artists paint. Ships unload. Fogport survives not because it is safe, but because its people refuse to surrender it.",
+      "fields": {
+        "parent_id": 9614795
+      },
+      "resolved_references": [
+        {
+          "phrase": "Sayir Sea",
+          "name": "Sayir Sea",
+          "status": "existing",
+          "entity_id": 9614795
+        }
+      ],
+      "posts": [],
+      "attributes": [],
+      "relationships": [],
+      "blocked": false
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-24T17:00:00-07:00",
+    "proposal_sha256": "a52a12067718501672b33c7af230870078fb9d78b9c45bce4bf401234f905412"
+  }
+}
