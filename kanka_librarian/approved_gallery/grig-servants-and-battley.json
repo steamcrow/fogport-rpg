@@ -1,0 +1,57 @@
+{
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "collection": "Grig servants and Battley",
+  "images": [
+    {
+      "path": "assets/gallery/grig-servants/kitchen-maid.jpg",
+      "sha256": "0e2ced8be172718702d8e8e464db0c8233c4752e8b278d07adb4aac0adb5ca4d",
+      "visibility_id": 1
+    },
+    {
+      "path": "assets/gallery/grig-servants/kitchen-porter.jpg",
+      "sha256": "0f4a7c4c6641e3e0936ecd10fc6e361eb639bf679aa900a6563f527ba1ec6a70",
+      "visibility_id": 1
+    },
+    {
+      "path": "assets/gallery/grig-servants/household-valet.jpg",
+      "sha256": "a1bc04ec15749fd6962bc98da5b42d22be7af14a6ee00fa5ad960b1bb04c25c4",
+      "visibility_id": 1
+    },
+    {
+      "path": "assets/gallery/grig-servants/key-steward.jpg",
+      "sha256": "095d2f6b76f0c81e2a96a178b021fc7271af6ca930850ecd4779a5b3ae3bc4e1",
+      "visibility_id": 1
+    },
+    {
+      "path": "assets/gallery/grig-servants/stable-hand.jpg",
+      "sha256": "d03bd057e7f91b4327cb03c4c26f44dcb5092218198caa1361331f5baec1f291",
+      "visibility_id": 1
+    },
+    {
+      "path": "assets/gallery/grig-servants/dock-porter.jpg",
+      "sha256": "08fac77e52e7670733925bcc8050b54078bfcb05b0e1581d60351f8b7f45920b",
+      "visibility_id": 1
+    },
+    {
+      "path": "assets/gallery/grig-servants/chamber-servant.jpg",
+      "sha256": "94b7e893d5d173987c2137d5f10d59fb1c2cc34288397a7120018b71f6a57899",
+      "visibility_id": 1
+    },
+    {
+      "path": "assets/gallery/grig-servants/senior-household-steward.jpg",
+      "sha256": "ca5853f9ff3baa37c0621102afcdf1e6c64a60cae5bd95a3a4845be36903d8a2",
+      "visibility_id": 1
+    },
+    {
+      "path": "assets/portraits/battley-canonical-v1.jpg",
+      "sha256": "88640e49e68c1c11d50a7d41f9c27446341c5263299d140d3e1a36ffb2a0c917",
+      "visibility_id": 1
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-25T00:00:00-07:00"
+  }
+}
