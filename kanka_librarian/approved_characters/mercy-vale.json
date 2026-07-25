@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": [
+    "mercy-vale"
+  ],
+  "approval_questions": [],
+  "proposals": [
+    {
+      "temp_id": "mercy-vale",
+      "action": "create",
+      "section": "characters",
+      "name": "Mercy Vale",
+      "type": "Pawnbroker, publican, and neighborhood fixer",
+      "is_private": false,
+      "entry": "<p><strong>Age:</strong> Late sixties<br><strong>Occupation:</strong> Pawnbroker, publican, and neighborhood fixer<br><strong>Home:</strong> The Twisted Eel Pawnshop, Nine Spoons</p>\n\n<p>Mercy Vale is the elderly proprietor of the Twisted Eel Pawnshop. Small and neatly dressed in black, she wears her silver hair in a severe bun and peers through half-moon spectacles. She resembles everyone’s favorite grandmother—until she speaks, at which point most people remember to be afraid of her.</p>\n\n<p>Mercy has a criminal past and gives little indication that she has entirely retired. She possesses extensive underworld connections, commands the loyalty of Nine Spoons’ feral children, and conducts business that respectable Fogport prefers not to acknowledge.</p>\n\n<p>Nevertheless, Mercy appears to possess a good heart. She feeds and shelters abandoned children, protects people the city has discarded, and sometimes offers work to those who would otherwise have none. Her kindness is practical, unsentimental, and frequently indistinguishable from criminal conspiracy.</p>\n\n<p>Mercy is currently evaluating Byl Hasbaine and Lott, occasionally employing them when a problem requires discretion, violence, unusual magic—or all three.</p>",
+      "fields": {},
+      "resolved_references": [],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — Mercy Vale",
+          "entry": "<p><strong>Do not reveal directly to the player.</strong></p>\n\n<p>Mercy never truly retired from crime. The Twisted Eel remains a fencing operation, an intelligence exchange, and a protected meeting ground for work that cannot pass through respectable channels.</p>\n\n<p>Her affection for Nine Spoons’ feral children is genuine. She uses them as lookouts, messengers, and information gatherers, but considers them under her protection rather than disposable assets. Anyone who exploits or seriously harms one of them becomes Mercy’s personal concern.</p>\n\n<p>Mercy’s good heart is real, though she expresses it through control, leverage, and carefully chosen crimes. She believes the law abandoned Nine Spoons long before she did, and she judges an act by whom it protects rather than whether it is legal.</p>\n\n<p>She is testing Byl and Lott as independent agents who can handle dangerous matters without drawing the Watch directly to the Eel. She sees promise in Byl’s magic and loyalty in Lott, but worries that Byl’s growing power will attract attention from officials, licensed magicians, or cults.</p>",
+          "visibility_id": 3
+        }
+      ],
+      "attributes": [],
+      "relationships": [],
+      "publication": {
+        "references": [
+          {
+            "phrase": "The Twisted Eel Pawnshop",
+            "name": "The Twisted Eel Pawnshop",
+            "section": "locations"
+          },
+          {
+            "phrase": "Nine Spoons",
+            "name": "Nine Spoons",
+            "section": "locations"
+          },
+          {
+            "phrase": "Byl Hasbaine",
+            "name": "Byl Hasbaine",
+            "section": "characters"
+          },
+          {
+            "phrase": "Lott",
+            "name": "Lott",
+            "section": "characters"
+          }
+        ]
+      },
+      "blocked": false
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-25T00:00:00-07:00",
+    "proposal_sha256": "93e3a3e1c1fdc6cb720386ea134053f981c547355e88279f65897b3eb53cf27a"
+  }
+}
