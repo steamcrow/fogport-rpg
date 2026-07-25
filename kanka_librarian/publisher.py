@@ -9,8 +9,10 @@ import json
 import re
 from typing import Any, Protocol
 
-MAELSTROS_CAMPAIGN_ID = 29474
-PROTECTED_FOGPORT_CAMPAIGN_ID = 410879
+SUPPORTED_CAMPAIGNS = {
+    29474: "MAELSTROS",
+    410879: "Fogport",
+}
 
 
 class PublishError(ValueError):
@@ -43,13 +45,24 @@ def approve_proposal(proposal: dict[str, Any], *, approved_by: str, approved_at:
     return approved
 
 
-def validate_approved_proposal(proposal: dict[str, Any]) -> None:
+def validate_approved_proposal(proposal: dict[str, Any]) -> int:
     if proposal.get("mode") != "proposal-only":
         raise PublishError("Only proposal-only documents can be approved.")
-    if proposal.get("campaign_id") != MAELSTROS_CAMPAIGN_ID:
-        raise PublishError("Publisher is hard-locked to MAELSTROS campaign 29474.")
-    if proposal.get("campaign_id") == PROTECTED_FOGPORT_CAMPAIGN_ID:
-        raise PublishError("Fogport campaign 410879 is protected.")
+    try:
+        campaign_id = int(proposal.get("campaign_id"))
+    except (TypeError, ValueError) as exc:
+        raise PublishError("Proposal is missing a valid campaign_id.") from exc
+    if campaign_id not in SUPPORTED_CAMPAIGNS:
+        raise PublishError(
+            f"Campaign {campaign_id} is not configured. Supported campaigns: "
+            + ", ".join(f"{name} ({key})" for key, name in SUPPORTED_CAMPAIGNS.items())
+        )
+    expected_name = SUPPORTED_CAMPAIGNS[campaign_id]
+    supplied_name = str(proposal.get("campaign_name") or "")
+    if supplied_name and supplied_name.casefold() != expected_name.casefold():
+        raise PublishError(
+            f"Campaign identity mismatch: {campaign_id} must be named {expected_name}."
+        )
     if proposal.get("approval_questions"):
         raise PublishError("Approval questions must be resolved before publishing.")
     approval = proposal.get("approval")
@@ -82,6 +95,7 @@ def validate_approved_proposal(proposal: dict[str, Any]) -> None:
         for field in ("posts", "attributes", "relationships"):
             if field in change and not isinstance(change[field], list):
                 raise PublishError(f"{temp_id}.{field} must be a list.")
+    return campaign_id
 
 
 def _render_entry(change: dict[str, Any], created_ids: dict[str, dict[str, int]]) -> str:
@@ -134,7 +148,7 @@ def _entity_id(change: dict[str, Any], created_ids: dict[str, dict[str, int]]) -
 
 
 def _relationship_payload(relationship: dict[str, Any], created_ids: dict[str, dict[str, int]]) -> dict[str, Any]:
-    payload = {key: value for key, value in relationship.items() if key not in {"target_temp_id"}}
+    payload = {key: value for key, value in relationship.items() if key != "target_temp_id"}
     target_temp_id = relationship.get("target_temp_id")
     if target_temp_id:
         target = created_ids.get(str(target_temp_id))
@@ -148,7 +162,7 @@ def _relationship_payload(relationship: dict[str, Any], created_ids: dict[str, d
 
 def apply_approved_proposal(proposal: dict[str, Any], writer: EntityWriter, *, execute: bool = False) -> dict[str, Any]:
     """Create shells, write linked entries, then publish approved dependent content."""
-    validate_approved_proposal(proposal)
+    campaign_id = validate_approved_proposal(proposal)
     changes = {str(item["temp_id"]): item for item in proposal["proposals"]}
     create_order = [str(item) for item in proposal.get("create_order", [])]
     creates = [key for key, value in changes.items() if value["action"] == "create"]
@@ -156,7 +170,8 @@ def apply_approved_proposal(proposal: dict[str, Any], writer: EntityWriter, *, e
         raise PublishError("create_order must contain every create exactly once.")
 
     summary = {
-        "campaign_id": MAELSTROS_CAMPAIGN_ID,
+        "campaign_id": campaign_id,
+        "campaign_name": SUPPORTED_CAMPAIGNS[campaign_id],
         "execute": execute,
         "creates_planned": len(creates),
         "updates_planned": sum(item["action"] == "update" for item in changes.values()),
@@ -172,7 +187,7 @@ def apply_approved_proposal(proposal: dict[str, Any], writer: EntityWriter, *, e
     created_ids: dict[str, dict[str, int]] = {}
     for temp_id in create_order:
         change = changes[temp_id]
-        result = writer.create_entity(MAELSTROS_CAMPAIGN_ID, str(change["section"]), _payload(change, created_ids, include_entry=False))
+        result = writer.create_entity(campaign_id, str(change["section"]), _payload(change, created_ids, include_entry=False))
         if not result.get("id") or not result.get("entity_id"):
             raise PublishError(f"Kanka did not return both ids for {temp_id}.")
         created_ids[temp_id] = {"id": int(result["id"]), "entity_id": int(result["entity_id"])}
@@ -180,23 +195,23 @@ def apply_approved_proposal(proposal: dict[str, Any], writer: EntityWriter, *, e
 
     for temp_id in create_order:
         change = changes[temp_id]
-        writer.update_entity(MAELSTROS_CAMPAIGN_ID, str(change["section"]), created_ids[temp_id]["id"], _payload(change, created_ids, include_entry=True))
+        writer.update_entity(campaign_id, str(change["section"]), created_ids[temp_id]["id"], _payload(change, created_ids, include_entry=True))
     for temp_id, change in changes.items():
         if change["action"] != "update":
             continue
-        writer.update_entity(MAELSTROS_CAMPAIGN_ID, str(change["section"]), int(change["kanka_id"]), _payload(change, created_ids, include_entry=True))
+        writer.update_entity(campaign_id, str(change["section"]), int(change["kanka_id"]), _payload(change, created_ids, include_entry=True))
         summary["updated"].append({"temp_id": temp_id, "id": int(change["kanka_id"])})
 
     for temp_id, change in changes.items():
         entity_id = _entity_id(change, created_ids)
         for post in change.get("posts", []):
-            result = writer.create_post(MAELSTROS_CAMPAIGN_ID, entity_id, dict(post))
+            result = writer.create_post(campaign_id, entity_id, dict(post))
             summary["posts_created"].append({"temp_id": temp_id, "id": result.get("id")})
         for attribute in change.get("attributes", []):
-            result = writer.create_attribute(MAELSTROS_CAMPAIGN_ID, entity_id, dict(attribute))
+            result = writer.create_attribute(campaign_id, entity_id, dict(attribute))
             summary["attributes_created"].append({"temp_id": temp_id, "id": result.get("id")})
         for relationship in change.get("relationships", []):
-            result = writer.create_relation(MAELSTROS_CAMPAIGN_ID, entity_id, _relationship_payload(relationship, created_ids))
+            result = writer.create_relation(campaign_id, entity_id, _relationship_payload(relationship, created_ids))
             summary["relationships_created"].append({"temp_id": temp_id, "id": result.get("id")})
 
     summary["kanka_writes_performed"] = True
