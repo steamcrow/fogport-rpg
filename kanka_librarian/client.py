@@ -40,7 +40,7 @@ class KankaClient:
             "Authorization": f"Bearer {self.token}",
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "User-Agent": "Kanka-Librarian/0.3",
+            "User-Agent": "Kanka-Librarian/0.4",
         }
 
         self._wait_for_rate_limit()
@@ -126,3 +126,10 @@ class KankaClient:
     def list_creatures(self, campaign_id: int) -> list[dict[str, Any]]:
         """Return every creature in one campaign without changing anything."""
         return self._get_all_pages(f"campaigns/{campaign_id}/creatures")
+
+
+    def list_entity_posts(self, campaign_id: int, entity_id: int) -> list[dict[str, Any]]:
+        """Return every public and private post attached to one entity."""
+        return self._get_all_pages(
+            f"campaigns/{campaign_id}/entities/{entity_id}/posts"
+        )
