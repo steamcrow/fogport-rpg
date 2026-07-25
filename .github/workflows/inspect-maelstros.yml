@@ -1,4 +1,4 @@
-name: Kanka Librarian — MAELSTROS Read Only
+name: Kanka Librarian — MAELSTROS Secure Read Only
 
 on:
   workflow_dispatch:
@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   snapshot-maelstros:
-    name: Validate unified MAELSTROS snapshot
+    name: Validate secure unified MAELSTROS snapshot
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -32,13 +32,13 @@ jobs:
       - name: Install dependencies
         run: python -m pip install --requirement requirements.txt
 
-      - name: Build metadata-only snapshot
+      - name: Build temporary full-content snapshot
         env:
           KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
           KANKA_SNAPSHOT_PATH: ${{ runner.temp }}/maelstros-snapshot.json
         run: python scripts/snapshot_maelstros.py
 
-      - name: Validate safe snapshot shape
+      - name: Validate secure snapshot shape
         env:
           KANKA_SNAPSHOT_PATH: ${{ runner.temp }}/maelstros-snapshot.json
         run: |
@@ -51,6 +51,7 @@ jobs:
           snapshot = json.loads(path.read_text(encoding="utf-8"))
 
           assert snapshot["mode"] == "read-only"
+          assert snapshot["content_scope"] == "descriptions"
           assert snapshot["campaign"]["id"] == 29474
           assert snapshot["campaign"]["name"].casefold() == "maelstros"
           assert snapshot["protected_campaign"] == {
@@ -62,6 +63,7 @@ jobs:
               "schema_version",
               "generated_at",
               "mode",
+              "content_scope",
               "campaign",
               "protected_campaign",
               "locations",
@@ -70,13 +72,12 @@ jobs:
               "creatures",
           }
 
-          forbidden = {"entry", "image", "image_full", "tooltip", "header_full"}
           for section in ("locations", "characters", "organizations", "creatures"):
               for entity in snapshot[section]:
-                  assert forbidden.isdisjoint(entity)
+                  assert "entry" in entity
 
           print(
-              "Validated metadata-only snapshot: "
+              "Validated temporary full-content snapshot without printing entity content: "
               f"{len(snapshot['locations'])} locations, "
               f"{len(snapshot['characters'])} characters, "
               f"{len(snapshot['organizations'])} organizations, "
