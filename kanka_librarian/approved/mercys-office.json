@@ -16,7 +16,13 @@
       "entry": "<p>Mercy’s office sits directly behind the pawnshop counter in the Twisted Eel Pawnshop, positioned so she can hear most of what happens in the public room without being seen. Its stout door is fitted with three locks, a narrow inspection grille, and a small brass plaque reading:</p>\n\n<blockquote><p><strong>MERCY</strong><br><strong>KNOCK ONCE. WAIT.</strong></p></blockquote>\n\n<p>The office is compact, orderly, and surprisingly comfortable. Dark wooden cabinets cover two walls, each crowded with ledgers, contracts, pawn tickets, correspondence, and neatly labeled keys. A scarred desk occupies the center beneath a green-shaded lamp. Two comfortable chairs face Mercy’s own; a third, considerably less comfortable chair, is bolted to the floor.</p>\n\n<p>Behind the desk stands a tall iron safe engraved with faded blessings and surrounded by shelves of reference books: appraisal guides, criminal registers, family histories, occult catalogues, and several volumes whose titles have been carefully scraped away. Especially valuable, dangerous, or sensitive pawns are examined here before being placed elsewhere.</p>\n\n<p>A speaking tube connects the office to the kitchen, while a narrow reinforced window allows Mercy to watch the pawnshop floor. The room has no obvious second exit, though few people familiar with Mercy believe that means there isn’t one.</p>\n\n<p>Mercy uses the office to keep the Eel’s accounts, negotiate private loans, settle neighborhood disputes, and conduct business unsuitable for the public counter. Tea is frequently served. Voices are rarely raised.</p>\n\n<p>People enter Mercy’s office to ask for money, mercy, information, or protection. They generally leave having received some combination of the four—and owing considerably more than they expected.</p>",
       "fields": {},
       "resolved_references": [],
-      "posts": [],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — TEST",
+          "entry": "<p><strong>TEST ONLY:</strong> This administrator-only article confirms that the Kanka Librarian can attach hidden Gamemaster material to a public core entry. It contains no campaign secret.</p>",
+          "visibility_id": 3
+        }
+      ],
       "attributes": [],
       "relationships": [],
       "publication": {
@@ -30,6 +36,6 @@
     "status": "approved",
     "approved_by": "Daniel Davis",
     "approved_at": "2026-07-25T00:00:00-07:00",
-    "proposal_sha256": "7ac1f11301940033e78219d4a5fe74598f17b3eb2e98292d7e237296d92efdf0"
+    "proposal_sha256": "8e0be0a17e913b7907f7549f68db71f256a2eb2da09696b02ca5e144285f9cfe"
   }
 }
