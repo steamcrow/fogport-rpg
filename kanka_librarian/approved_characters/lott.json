@@ -52,8 +52,8 @@
         ]
       },
       "artwork": {
-        "main_image_path": "assets/portraits/lott.png",
-        "sha256": "828b5dddc3cef9b6715bb4d6edc0fa52884a1f6ef1dd289976e5f08ed50021bf",
+        "main_image_path": "assets/portraits/lott.jpg",
+        "sha256": "d1204d3061d97858eefef20da45df23040ceb74f1e2fa4399542e56dcc69aa82",
         "visual_description": "A full-color vertical portrait of Lott outside the Twisted Eel: a hulking scarred man of about fifty in battered workman's clothes, calmly watching the viewer with one enormous hand on Kils, his antique sailor's cutlass. Blue-green Fogport fog and uneven tavern gaslight emphasize his quiet intelligence and physical danger.",
         "reference_authorities": [
           "Lott character sheet",
@@ -67,6 +67,6 @@
     "status": "approved",
     "approved_by": "Daniel Davis",
     "approved_at": "2026-07-25T00:00:00-07:00",
-    "proposal_sha256": "db5b60875b9f6d6656bc8eea41f74626cb4e9feceb5280f32a843bb44c7eb233"
+    "proposal_sha256": "beef50e694fa8a14df6c3ee0185a0618445bcf716879cab34ff3c924e3df4bda"
   }
 }

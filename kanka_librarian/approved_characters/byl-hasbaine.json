@@ -42,8 +42,8 @@
         ]
       },
       "artwork": {
-        "main_image_path": "assets/portraits/byl-hasbaine.png",
-        "sha256": "b7cf7415c5b300d86c0aca67e84e91cdc8f4c64812cb3ee141f451081da5a1d6",
+        "main_image_path": "assets/portraits/byl-hasbaine.jpg",
+        "sha256": "83e6e3c536fddddf5eb2ff14282e372b5a177370cef228772a4849a3aff1176c",
         "visual_description": "A full-color vertical portrait of Byl Hasbaine in Nine Spoons: a lanky albino Wild Operator in a towering battered top hat and threadbare gentleman's clothes, holding an old coin above an impossible smoke-shadow with one hand near his worn rapier. Blue-green harbor fog and uneven amber gaslight place him firmly in Fogport.",
         "reference_authorities": [
           "Byl Hasbaine character sheet",
@@ -57,6 +57,6 @@
     "status": "approved",
     "approved_by": "Daniel Davis",
     "approved_at": "2026-07-25T00:00:00-07:00",
-    "proposal_sha256": "a057bd54aa8ce68ffe12170d0b5a1b3c10194db9b0f51972e48c4737b5207015"
+    "proposal_sha256": "eaab876ad47f2e1dbbe7fcb59c496d40642a5821dccfddd5539b2b7034f6924d"
   }
 }
