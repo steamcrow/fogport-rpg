@@ -15,6 +15,7 @@ import requests
 
 CAMPAIGN_ID = 410879
 CAMPAIGN_NAME = "Fogport"
+KANKA_MAX_IMAGE_BYTES = 3072 * 1024
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -96,6 +97,12 @@ def validate_manifest(path: Path) -> tuple[dict[str, Any], Path, str]:
         raise SystemExit("World-map image path escapes the repository.") from exc
     if not image_path.is_file() or image_path.suffix.lower() not in {".png", ".jpg", ".jpeg", ".webp"}:
         raise SystemExit("Approved world-map image is missing or invalid.")
+    image_bytes = image_path.stat().st_size
+    if image_bytes > KANKA_MAX_IMAGE_BYTES:
+        raise SystemExit(
+            "Approved world-map image exceeds Kanka's current 3072 KB upload limit: "
+            f"{image_bytes} bytes."
+        )
     actual_sha = hashlib.sha256(image_path.read_bytes()).hexdigest()
     if actual_sha != str(document["sha256"]).lower():
         raise SystemExit("Approved world-map image changed after approval.")
@@ -232,6 +239,7 @@ def main() -> None:
         "location_id": int(final["location_id"]),
         "width": int(final["width"]),
         "height": int(final["height"]),
+        "upload_bytes": image_path.stat().st_size,
         "source_sha256": image_sha,
         "kanka_uuid": uploaded["uuid"],
         "overview_url": f"https://app.kanka.io/w/{CAMPAIGN_ID}/maps/{map_id}",
