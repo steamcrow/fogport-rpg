@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 from copy import deepcopy
 import hashlib
+import html
 import json
 import os
 from pathlib import Path
@@ -144,6 +145,9 @@ _BLOCK_TAGS = (
 def normalize_kanka_html(value: Any) -> str:
     """Ignore only whitespace Kanka removes between adjacent block tags."""
     normalized = str(value or "").replace("\r\n", "\n").strip()
+    # Kanka HTML-escapes literal text characters such as ampersands on write.
+    # Decode both sides before comparison so equivalent text stays equivalent.
+    normalized = html.unescape(normalized)
     return re.sub(
         rf"(</?(?:{_BLOCK_TAGS})\b[^>]*>)\s+(?=</?(?:{_BLOCK_TAGS})\b)",
         r"\1",
