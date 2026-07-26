@@ -7,3 +7,5 @@ Triggers a fresh idempotent publication of **One Door Remaining** after:
 - identifying Nettle as Gutterkin;
 - refreshing Byl to 3 Fate points for Episode 6;
 - adding `Episode 5 — One Door Remaining` as Battley's Journal.
+
+- accepting Kanka's equivalent HTML entity escaping during exact read-back.
