@@ -9,3 +9,4 @@ Triggers a fresh idempotent publication of **One Door Remaining** after:
 - adding `Episode 5 — One Door Remaining` as Battley's Journal.
 
 - accepting Kanka's equivalent HTML entity escaping during exact read-back.
+- sending nested locations with Kanka's documented `parent_id` field and the parent location's generic entity ID.
