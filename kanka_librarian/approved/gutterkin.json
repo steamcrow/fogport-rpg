@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "mode": "compiled-episode",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "episode": "Gutterkin Creature Entry",
+  "aliases": {},
+  "changes": [
+    {
+      "section": "creatures",
+      "name": "Gutterkin",
+      "type": "Ageless feral children",
+      "is_private": false,
+      "gallery_image_match": "gutterkin",
+      "entry": "<p>Every city has abandoned children. Fogport has children who abandoned civilization.</p>\n\n<p>The Gutterkin look, at first, like ordinary children: small bodies, young faces, and tangled, wind-wild hair. A closer look reveals their shark-black eyes, sharp teeth, and clawed hands and feet. Their skin darkens along the fingers and toes until the tips are pure black. They sometimes steal clothing, but what they wear is usually ragged, mismatched, and scavenged from people who no longer need it.</p>\n\n<p>They may look like children, but they are far stronger than grown adults. Even the strongest sailor would be wise not to grapple with one. Monsters and men alike fear them—and both have reason.</p>\n\n<p>Gutterkin live in rooftops, sewers, abandoned factories, collapsed districts, and other spaces the city believes empty. They know Fogport's forgotten ways better than almost anyone. They can appear without a sound and vanish just as quickly.</p>\n\n<p>Not all Gutterkin are alike. Some are playful, mischievous, or merely hungry. Many steal. Some beg. A few will guide travellers for food, treasure, or a favor. Others hunt in packs, kill without hesitation, and eat human flesh.</p>\n\n<p>No one knows how many exist, or how long they have lived. The common tale says they were children orphaned and stunted by the Catastrophe, left ageless in its wake. Others insist they simply emerge from old drains whenever the fog grows thick. Whatever the truth, the Gutterkin do not grow up—and certain tunnels beneath Nine Spoons belong to them so completely that even the Feratu will not enter.</p>\n\n<p>Never underestimate the children of Fogport. Especially when there are too many of them. Especially when they are smiling.</p>",
+      "references": [
+        {
+          "phrase": "Fogport",
+          "name": "Fogport",
+          "section": "locations"
+        },
+        {
+          "phrase": "Nine Spoons",
+          "name": "Nine Spoons",
+          "section": "locations"
+        },
+        {
+          "phrase": "Feratu",
+          "name": "Feratu",
+          "section": "creatures"
+        }
+      ],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — Gutterkin",
+          "entry": "<ul><li>The Gutterkin's true origin has not been established. Their connection to the Catastrophe is a widespread belief, not confirmed canon.</li><li>Whether they are literally ageless, merely extremely long-lived, or repeatedly replaced has not been proven.</li><li>Different Gutterkin bands may be playful, transactional, protective, predatory, or cannibalistic. Do not treat every Gutterkin as having the same temperament.</li><li>The nature of the hungry presence in the forbidden tunnels beneath Nine Spoons remains unrevealed.</li><li>Nettle is Gutterkin, but her history, loyalties, and relationship to any particular band remain unresolved.</li></ul>",
+          "visibility_id": 3,
+          "references": [
+            {
+              "phrase": "Nine Spoons",
+              "name": "Nine Spoons",
+              "section": "locations"
+            },
+            {
+              "phrase": "Nettle",
+              "name": "Nettle",
+              "section": "characters"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section": "characters",
+      "name": "Nettle",
+      "type": "Gutterkin child of Nine Spoons",
+      "references": [
+        {
+          "phrase": "Gutterkin",
+          "name": "Gutterkin",
+          "section": "creatures"
+        },
+        {
+          "phrase": "Nine Spoons",
+          "name": "Nine Spoons",
+          "section": "locations"
+        }
+      ]
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-26T08:00:00-07:00",
+    "document_sha256": "dad9afb4936f46e061f18e62d3de120f75dbf153e34e4dafe0e13b828ed42da9"
+  }
+}
