@@ -17,6 +17,7 @@ from scripts.publish_compiled_episode import (
     find_match,
     normalize_kanka_html,
     read_back_matches,
+    read_location_parent_entity_id,
     resolve_location_parent_entity_id,
 )
 
@@ -105,6 +106,22 @@ class CompiledEpisodeTests(unittest.TestCase):
         with self.assertRaises(EpisodeError):
             resolve_location_parent_entity_id("Fogport", {})
 
+
+    def test_location_parent_is_read_from_generic_entity_endpoint(self):
+        class FakeClient:
+            def __init__(self):
+                self.paths = []
+
+            def _get(self, path):
+                self.paths.append(path)
+                return {"data": {"id": 123, "parent_id": 941}}
+
+        client = FakeClient()
+        self.assertEqual(read_location_parent_entity_id(client, 123), 941)
+        self.assertEqual(
+            client.paths,
+            ["campaigns/410879/entities/123"],
+        )
 
 if __name__ == "__main__":
     unittest.main()
