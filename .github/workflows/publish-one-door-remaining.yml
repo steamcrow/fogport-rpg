@@ -1,4 +1,4 @@
-name: "Kanka Librarian — Publish One Door Remaining"
+name: "Fogport Librarian — Episode 5: One Door Remaining"
 
 on:
   workflow_dispatch:
@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   publish:
-    name: "FOGPORT 410879 — compile, publish, and verify episode"
+    name: "FOGPORT ONLY (410879) — publish and verify Episode 5"
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
