@@ -1,5 +1,8 @@
 import importlib.util
+import hashlib
+import json
 import sys
+import tempfile
 import types
 import unittest
 from pathlib import Path
@@ -36,6 +39,30 @@ class FogportWorldMapTests(unittest.TestCase):
             MODULE.headers("secret", json_body=True)["Content-Type"],
             "application/json",
         )
+
+    def test_validate_manifest_rejects_image_over_kanka_limit(self):
+        with tempfile.TemporaryDirectory(dir=MODULE.ROOT) as directory:
+            root = Path(directory)
+            image = root / "map.jpg"
+            image.write_bytes(b"x" * (MODULE.KANKA_MAX_IMAGE_BYTES + 1))
+            manifest = root / "manifest.json"
+            manifest.write_text(
+                json.dumps(
+                    {
+                        "campaign_id": MODULE.CAMPAIGN_ID,
+                        "campaign_name": MODULE.CAMPAIGN_NAME,
+                        "image_path": str(image.relative_to(MODULE.ROOT)),
+                        "sha256": hashlib.sha256(image.read_bytes()).hexdigest(),
+                        "approval": {
+                            "status": "approved",
+                            "approved_by": "Daniel Davis",
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            with self.assertRaisesRegex(SystemExit, "3072 KB upload limit"):
+                MODULE.validate_manifest(manifest)
 
 
 if __name__ == "__main__":
