@@ -249,9 +249,355 @@
           "visibility_id": 3
         }
       ]
+    },
+    {
+      "key": "saint-orra",
+      "section": "characters",
+      "name": "Saint Orra of the Last Light",
+      "type": "Patron Saint of Those Finding Their Way Home",
+      "is_private": false,
+      "entry": "<p>Saint Orra predates House Heliot. During the Black Founding Storm, she climbed the old chapel tower and burned its pews, books, doors, and roof to keep one harbor light alive for three nights. More than a hundred boats followed it home. At dawn she was gone; scorched footprints went up the tower, but none came down.</p><p>She is patron of sailors, lamplighters, tram conductors, missing children, and anyone trying to find the way home. Fogporters insist: <em>Orra belongs to the city, not the Crown.</em></p>",
+      "references": [
+        {
+          "phrase": "House Heliot",
+          "key": "house-heliot"
+        }
+      ],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — Saint Orra",
+          "entry": "<p>Orra's beacon magically took the idea of being lost from the sailors below. The price may have been Orra's own place in the world. No grave, birth record, or reliable portrait of her exists.</p>",
+          "visibility_id": 3
+        }
+      ]
+    },
+    {
+      "key": "captain-mirelle-vane",
+      "section": "characters",
+      "name": "Captain Mirelle Vane",
+      "type": "Harbor Hero",
+      "is_private": false,
+      "entry": "<p>Mirelle Vane was a tugmaster, salvager, union negotiator, and Fogport's favorite harbor hero. During the Black Gale she lit the drowned channels with a chain of burning boats and brought thirty-one vessels home.</p><p>Official portraits give her a naval coat she never owned. Dockside versions show her correctly: sleeves rolled, nose broken, one boot full of seawater, and smoking beneath a NO SMOKING notice.</p>",
+      "references": [
+        {
+          "phrase": "Black Gale",
+          "key": "black-gale"
+        }
+      ]
+    },
+    {
+      "key": "sister-ilyra-fenn",
+      "section": "characters",
+      "name": "Sister Ilyra Fenn",
+      "type": "Physician and Civic Hero",
+      "is_private": false,
+      "entry": "<p>Ilyra Fenn was seven when the Catastrophe took her parents. She became a street physician, treating anyone who reached her door before asking whether they could pay.</p><p>During the War of Shut Gates, Fenn opened South Gate and brought food into the sealed districts. Her red shawl hangs above Hushwater Hospital.</p>",
+      "references": [
+        {
+          "phrase": "Catastrophe",
+          "key": "catastrophe"
+        },
+        {
+          "phrase": "War of Shut Gates",
+          "key": "shut-gates-war"
+        },
+        {
+          "phrase": "Hushwater Hospital",
+          "key": "hushwater-hospital"
+        }
+      ],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — Sister Ilyra Fenn",
+          "entry": "<p>Fenn's ledgers prove the Protectorate exaggerated the postwar fever and knowingly withheld food and medicine from the southern districts.</p>",
+          "visibility_id": 3
+        }
+      ]
+    },
+    {
+      "key": "last-light",
+      "section": "events",
+      "name": "The Last Light",
+      "type": "Sacred History",
+      "date": "312 B.Cat. (traditional)",
+      "is_private": false,
+      "entry": "<p>During the Black Founding Storm, Orra kept a beacon burning atop the old chapel for three nights and guided more than a hundred boats home. The city still leaves one lamp burning for those who have not yet returned.</p>",
+      "references": [
+        {
+          "phrase": "Orra",
+          "key": "saint-orra"
+        }
+      ]
+    },
+    {
+      "key": "three-hour-war",
+      "section": "events",
+      "name": "The Three-Hour War",
+      "type": "Civil War",
+      "date": "171 B.Cat.",
+      "is_private": false,
+      "entry": "<p>A royal cutter tried to seize the Harbor Guild's floating counting-house. The Guild chained the harbor and fired ceremonial cannon loaded with invoices. Three hours later the Crown withdrew and both sides declared victory. Fogport still uses <em>Three-Hour War</em> for any short, unnecessary quarrel.</p>",
+      "references": [
+        {
+          "phrase": "Fogport",
+          "name": "Fogport",
+          "section": "locations"
+        }
+      ],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — The Three-Hour War",
+          "entry": "<p>The counting-house held ledgers proving House Heliot had imported forbidden magical apparatus. The surviving books were transferred beneath the Old Palace.</p>",
+          "visibility_id": 3
+        }
+      ]
+    },
+    {
+      "key": "vane-born",
+      "section": "events",
+      "name": "Mirelle Vane Is Born",
+      "type": "Heroic Life",
+      "date": "126 B.Cat.",
+      "is_private": false,
+      "entry": "<p>Mirelle Vane was born aboard the salvage tug <em>Indelicate</em> during a collision. Her birth certificate lists her birthplace as Dock 14, the Sayir Sea, and \"under protest.\"</p>",
+      "references": [
+        {
+          "phrase": "Mirelle Vane",
+          "key": "captain-mirelle-vane"
+        },
+        {
+          "phrase": "Sayir Sea",
+          "name": "Sayir Sea",
+          "section": "locations"
+        }
+      ]
+    },
+    {
+      "key": "royal-menagerie",
+      "section": "events",
+      "name": "The Royal Menagerie Opens",
+      "type": "Civic Building",
+      "date": "109 B.Cat.",
+      "is_private": false,
+      "entry": "<p>The Royal Menagerie opened beneath Crown Hill with iron galleries, flooded vaults, and creatures acquired through diplomacy, purchase, confiscation, and clerical error. Its lower exhibits were sealed after the Catastrophe and never fully inventoried.</p>",
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — The Royal Menagerie",
+          "entry": "<p>The deepest galleries collapsed into the buried Continuance complex. Several enclosures remain intact and their feeding mechanisms still operate. The Menagerie is an upper approach to Fogport's great dungeon.</p>",
+          "visibility_id": 3
+        }
+      ]
+    },
+    {
+      "key": "black-gale",
+      "section": "events",
+      "name": "The Night of Ten Thousand Lanterns",
+      "type": "Heroic Deed",
+      "date": "88 B.Cat.",
+      "is_private": false,
+      "entry": "<p>During the Black Gale, Captain Mirelle Vane set every available boat alight and anchored them through the drowned channel. Thirty-one ships followed the burning road home; the thirty-second arrived next morning carrying only wet footprints.</p>",
+      "references": [
+        {
+          "phrase": "Captain Mirelle Vane",
+          "key": "captain-mirelle-vane"
+        }
+      ]
+    },
+    {
+      "key": "orra-statue-raised",
+      "section": "events",
+      "name": "The Raising of Saint Orra",
+      "type": "Civic Monument",
+      "date": "72 B.Cat.",
+      "is_private": false,
+      "entry": "<p>House Heliot raised the colossal statue of Saint Orra over a circular tram plaza, her caged lamp held above the rooftops. Grand Heliot Station was built around her in a radial plan, making the people's saint the unwilling centerpiece of royal modernity.</p>",
+      "references": [
+        {
+          "phrase": "House Heliot",
+          "key": "house-heliot"
+        },
+        {
+          "phrase": "Saint Orra",
+          "key": "saint-orra"
+        },
+        {
+          "phrase": "Grand Heliot Station",
+          "name": "Grand Heliot Station",
+          "section": "locations"
+        }
+      ]
+    },
+    {
+      "key": "vane-dies",
+      "section": "events",
+      "name": "Captain Mirelle Vane Dies",
+      "type": "Heroic Life",
+      "date": "52 B.Cat.",
+      "is_private": false,
+      "entry": "<p>Mirelle Vane died at seventy-four steering a runaway funeral barge away from a school ferry. She asked to be buried facing the harbor so she could \"keep an eye on the bastards.\" Dockworkers turn her statue seaward every year; the Ministry turns it back.</p>",
+      "references": [
+        {
+          "phrase": "Mirelle Vane",
+          "key": "captain-mirelle-vane"
+        }
+      ]
+    },
+    {
+      "key": "ilyra-born",
+      "section": "events",
+      "name": "Ilyra Fenn Is Born",
+      "type": "Heroic Life",
+      "date": "7 B.Cat.",
+      "is_private": false,
+      "entry": "<p>Ilyra Fenn was born above a Nine Spoons washhouse during a storm that rained tiny clear frogs. Her mother kept three in a jam jar; one survived longer than anyone expected.</p>",
+      "references": [
+        {
+          "phrase": "Ilyra Fenn",
+          "key": "sister-ilyra-fenn"
+        },
+        {
+          "phrase": "Nine Spoons",
+          "name": "Nine Spoons",
+          "section": "locations"
+        }
+      ]
+    },
+    {
+      "key": "bread-riot",
+      "section": "events",
+      "name": "The Seven-Day Bread Riot",
+      "type": "Civil Unrest",
+      "date": "2 A.Cat.",
+      "is_private": false,
+      "entry": "<p>When ration officers reserved Blackwake's flour for ministries and soldiers, bakers opened their ovens to the public. Citizens defended the bread lines with peel boards, soup ladles, roof tiles, and one extremely patient donkey. Fogport bakers have considered themselves a branch of government ever since.</p>",
+      "references": [
+        {
+          "phrase": "Blackwake",
+          "name": "Blackwake",
+          "section": "locations"
+        }
+      ]
+    },
+    {
+      "key": "shut-gates-war",
+      "section": "events",
+      "name": "The War of Shut Gates",
+      "type": "War",
+      "date": "18–21 A.Cat.",
+      "is_private": false,
+      "entry": "<p>A foreign quarantine fleet blockaded Fogport after ships arrived with impossible cargo and passengers who cast no reflections. Lord Protector Crake sealed the landward gates too, trapping the poorest districts between hunger and the guns offshore. The siege ended after Sister Ilyra Fenn opened South Gate.</p>",
+      "references": [
+        {
+          "phrase": "Fogport",
+          "name": "Fogport",
+          "section": "locations"
+        },
+        {
+          "phrase": "Lord Protector Crake",
+          "key": "silas-crake"
+        },
+        {
+          "phrase": "Sister Ilyra Fenn",
+          "key": "sister-ilyra-fenn"
+        }
+      ],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — The War of Shut Gates",
+          "entry": "<p>Crake prolonged the closure for eleven months after the fleet offered terms. The sealed districts contained Continuance witnesses and an archivist who claimed Queen Adelaine had a living heir.</p>",
+          "visibility_id": 3
+        }
+      ]
+    },
+    {
+      "key": "fenn-opens-gate",
+      "section": "events",
+      "name": "Sister Fenn Opens South Gate",
+      "type": "Heroic Deed",
+      "date": "20 A.Cat.",
+      "is_private": false,
+      "entry": "<p>Ilyra Fenn crossed the barricades beneath a red hospital flag and persuaded the exhausted garrison to open South Gate. Her convoy brought flour, lamp oil, quinine, and forty-seven letters the Ministry had refused to deliver.</p>",
+      "references": [
+        {
+          "phrase": "Ilyra Fenn",
+          "key": "sister-ilyra-fenn"
+        }
+      ]
+    },
+    {
+      "key": "red-funeral",
+      "section": "events",
+      "name": "The Red Funeral of Ilyra Fenn",
+      "type": "Heroic Life",
+      "date": "24 A.Cat.",
+      "is_private": false,
+      "entry": "<p>Ilyra Fenn died of lung fever contracted while treating prisoners. Mourners tied red cloth to every door between Nine Spoons and Blackwake. So many attended that her coffin reached the cemetery three days late with four passengers sitting on it.</p>",
+      "references": [
+        {
+          "phrase": "Ilyra Fenn",
+          "key": "sister-ilyra-fenn"
+        },
+        {
+          "phrase": "Nine Spoons",
+          "name": "Nine Spoons",
+          "section": "locations"
+        },
+        {
+          "phrase": "Blackwake",
+          "name": "Blackwake",
+          "section": "locations"
+        }
+      ]
+    },
+    {
+      "key": "hushwater-hospital",
+      "section": "events",
+      "name": "Hushwater Hospital Opens",
+      "type": "Civic Building",
+      "date": "29 A.Cat.",
+      "is_private": false,
+      "entry": "<p>Hushwater Hospital opened in a converted tram depot using money collected after Ilyra Fenn's funeral. It accepts the sick, poor, monstrous, and—between midnight and dawn—patients who are legally dead but remain capable of filling out forms. Its red doors never close.</p>",
+      "references": [
+        {
+          "phrase": "Ilyra Fenn",
+          "key": "sister-ilyra-fenn"
+        }
+      ]
+    },
+    {
+      "key": "statues-turn",
+      "section": "events",
+      "name": "The Statues Turn Inward",
+      "type": "Civic Mystery",
+      "date": "36 A.Cat.",
+      "is_private": false,
+      "entry": "<p>During a windless night, seventy-three statues turned to face the vanished Old Palace. Saint Orra's enormous head bowed and her lamp burned black until dawn. The government blamed subsidence. None has permitted itself to be moved back.</p>",
+      "references": [
+        {
+          "phrase": "Saint Orra",
+          "key": "saint-orra"
+        }
+      ],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — The Statues Turn Inward",
+          "entry": "<p>The monuments were components in the Continuance Engine's city-sized diagram. Their movement shows the buried mechanism attempted to realign itself and has begun drawing a minute amount of continuance from the repaired city.</p>",
+          "visibility_id": 3
+        }
+      ]
     }
   ],
   "elements": [
+    {
+      "name": "The Last Light",
+      "entity_key": "last-light",
+      "era_key": "before",
+      "date": "312 B.Cat. (traditional)",
+      "entry": "Orra keeps one light burning through the Black Founding Storm.",
+      "colour": "yellow",
+      "position": 1,
+      "visibility_id": 1
+    },
     {
       "name": "The First Sea Wall and Royal Charter",
       "entity_key": "charter",
@@ -259,7 +605,17 @@
       "date": "269 B.Cat.",
       "entry": "Fogport receives its royal charter.",
       "colour": "blue",
-      "position": 1,
+      "position": 2,
+      "visibility_id": 1
+    },
+    {
+      "name": "The Three-Hour War",
+      "entity_key": "three-hour-war",
+      "era_key": "before",
+      "date": "171 B.Cat.",
+      "entry": "The Crown and Harbor Guild fight an unnecessary little war.",
+      "colour": "red",
+      "position": 3,
       "visibility_id": 1
     },
     {
@@ -269,7 +625,47 @@
       "date": "144 B.Cat.",
       "entry": "The Crown gives bureaucracy a permanent home.",
       "colour": "blue",
-      "position": 2,
+      "position": 4,
+      "visibility_id": 1
+    },
+    {
+      "name": "Mirelle Vane Is Born",
+      "entity_key": "vane-born",
+      "era_key": "before",
+      "date": "126 B.Cat.",
+      "entry": "Fogport's harbor hero is born during a collision.",
+      "colour": "green",
+      "position": 5,
+      "visibility_id": 1
+    },
+    {
+      "name": "The Royal Menagerie Opens",
+      "entity_key": "royal-menagerie",
+      "era_key": "before",
+      "date": "109 B.Cat.",
+      "entry": "Crown Hill acquires a magnificent and troubling collection.",
+      "colour": "blue",
+      "position": 6,
+      "visibility_id": 1
+    },
+    {
+      "name": "The Night of Ten Thousand Lanterns",
+      "entity_key": "black-gale",
+      "era_key": "before",
+      "date": "88 B.Cat.",
+      "entry": "Captain Vane lights a road home across the drowned harbor.",
+      "colour": "green",
+      "position": 7,
+      "visibility_id": 1
+    },
+    {
+      "name": "The Raising of Saint Orra",
+      "entity_key": "orra-statue-raised",
+      "era_key": "before",
+      "date": "72 B.Cat.",
+      "entry": "The people's saint becomes the center of the royal tramways.",
+      "colour": "yellow",
+      "position": 8,
       "visibility_id": 1
     },
     {
@@ -277,9 +673,19 @@
       "entity_key": "heliot-station",
       "era_key": "before",
       "date": "66 B.Cat.",
-      "entry": "Rail and tram lines bind the city to its harbor and neighbors.",
+      "entry": "Rail and tram lines bind the city to its neighbors.",
       "colour": "green",
-      "position": 3,
+      "position": 9,
+      "visibility_id": 1
+    },
+    {
+      "name": "Captain Mirelle Vane Dies",
+      "entity_key": "vane-dies",
+      "era_key": "before",
+      "date": "52 B.Cat.",
+      "entry": "Fogport buries its favorite harbor captain.",
+      "colour": "green",
+      "position": 10,
       "visibility_id": 1
     },
     {
@@ -289,7 +695,17 @@
       "date": "19 B.Cat.",
       "entry": "Queen Adelaine IV promises that Fogport shall endure.",
       "colour": "yellow",
-      "position": 4,
+      "position": 11,
+      "visibility_id": 1
+    },
+    {
+      "name": "Ilyra Fenn Is Born",
+      "entity_key": "ilyra-born",
+      "era_key": "before",
+      "date": "7 B.Cat.",
+      "entry": "A future hero is born above a Nine Spoons washhouse.",
+      "colour": "green",
+      "position": 12,
       "visibility_id": 1
     },
     {
@@ -313,20 +729,80 @@
       "visibility_id": 1
     },
     {
+      "name": "The Seven-Day Bread Riot",
+      "entity_key": "bread-riot",
+      "era_key": "after",
+      "date": "2 A.Cat.",
+      "entry": "Fogport's bakers defend the public ovens.",
+      "colour": "yellow",
+      "position": 3,
+      "visibility_id": 1
+    },
+    {
+      "name": "The War of Shut Gates",
+      "entity_key": "shut-gates-war",
+      "era_key": "after",
+      "date": "18–21 A.Cat.",
+      "entry": "Fogport is blockaded from without and sealed from within.",
+      "colour": "red",
+      "position": 4,
+      "visibility_id": 1
+    },
+    {
+      "name": "Sister Fenn Opens South Gate",
+      "entity_key": "fenn-opens-gate",
+      "era_key": "after",
+      "date": "20 A.Cat.",
+      "entry": "A physician breaks the siege with a hospital cart.",
+      "colour": "green",
+      "position": 5,
+      "visibility_id": 1
+    },
+    {
+      "name": "The Red Funeral of Ilyra Fenn",
+      "entity_key": "red-funeral",
+      "era_key": "after",
+      "date": "24 A.Cat.",
+      "entry": "Red cloth marks a hero's final journey.",
+      "colour": "green",
+      "position": 6,
+      "visibility_id": 1
+    },
+    {
+      "name": "Hushwater Hospital Opens",
+      "entity_key": "hushwater-hospital",
+      "era_key": "after",
+      "date": "29 A.Cat.",
+      "entry": "A hospital opens doors that never close.",
+      "colour": "blue",
+      "position": 7,
+      "visibility_id": 1
+    },
+    {
+      "name": "The Statues Turn Inward",
+      "entity_key": "statues-turn",
+      "era_key": "after",
+      "date": "36 A.Cat.",
+      "entry": "The monuments turn toward the vanished palace.",
+      "colour": "purple",
+      "position": 8,
+      "visibility_id": 1
+    },
+    {
       "name": "The Forty-Third Continuance",
       "entity_key": "silas-crake",
       "era_key": "after",
       "date": "43 A.Cat. — Present Day",
-      "entry": "The Lord Protector renews the emergency for one further year.",
+      "entry": "The Lord Protector renews the emergency.",
       "colour": "purple",
-      "position": 3,
+      "position": 9,
       "visibility_id": 1
     }
   ],
   "approval": {
     "status": "approved",
     "approved_by": "Daniel Davis",
-    "approved_at": "2026-07-26T13:00:00-07:00",
-    "document_sha256": "4852f735a9f416f214fbfcdd10585fbd1aa12f2fa03d4de42feff73b6369a28c"
+    "approved_at": "2026-07-26T13:52:00-07:00",
+    "document_sha256": "3133fc5722a10cf8a6f3a1b4f564d8b04d79d6f5e92d6591a002c25bc01c0c48"
   }
 }
