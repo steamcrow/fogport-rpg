@@ -1,0 +1,13 @@
+{
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "creature_name": "Bell-Dead",
+  "image_path": "assets/creatures/bell-dead.jpg",
+  "sha256": "2c542adfe0391cb7ce4bf673cc7cb3239eca73fa88ac9f9ff106d4d48a4f3430",
+  "canon_note": "Bell-Dead bodies may be physically rearranged. The pictured specimen has its left hand and left foot transposed.",
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-26T10:00:00-07:00"
+  }
+}
