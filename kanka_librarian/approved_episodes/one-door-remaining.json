@@ -31,7 +31,7 @@
       "section": "characters",
       "name": "Byl Hasbaine",
       "append_marker": "<h2>Episode: One Door Remaining</h2>",
-      "append_entry": "<h2>Episode: One Door Remaining</h2>\n<p>During the expedition beneath Saint Orlan’s Tide Chapel, Byl travelled with Lott, Grannie Wren, Battley, and Nettle. He destroyed a bell-dead creature by turning his brass knuckles into remembered sunlight, distracted Gideon Bramble with stagecraft and a paper bird, and stole the impossible sound of Bramble’s Grand Key into the Jack of Bells.</p>\n<p>When the sound threatened to tear the card apart, Byl spread it throughout his deck. Each empowered card can open one Bramble lock and is then spent. Four cards have been used; <strong>48 empowered cards remain</strong>.</p>\n<p>Byl escaped with every member of his company. He currently has <strong>2 Fate points</strong>.</p>\n<h3>Known Surname Aliases</h3>\n<ul><li>Blacksaft</li><li>Blackroot</li></ul>",
+      "append_entry": "<h2>Episode: One Door Remaining</h2>\n<p>During the expedition beneath Saint Orlan’s Tide Chapel, Byl travelled with Lott, Grannie Wren, Battley, and Nettle. He destroyed a bell-dead creature by turning his brass knuckles into remembered sunlight, distracted Gideon Bramble with stagecraft and a paper bird, and stole the impossible sound of Bramble’s Grand Key into the Jack of Bells.</p>\n<p>When the sound threatened to tear the card apart, Byl spread it throughout his deck. Each empowered card can open one Bramble lock and is then spent. Four cards have been used; <strong>48 empowered cards remain</strong>.</p>\n<p>Byl escaped with every member of his company. He ended the episode with <strong>2 Fate points</strong> and begins the next episode at his <strong>Refresh of 3</strong>.</p>\n<h3>Known Surname Aliases</h3>\n<ul><li>Blacksaft</li><li>Blackroot</li></ul>",
       "references": [
         {
           "phrase": "Lott",
@@ -214,9 +214,9 @@
     {
       "section": "characters",
       "name": "Nettle",
-      "type": "Feral child of Nine Spoons",
+      "type": "Gutterkin child of Nine Spoons",
       "is_private": false,
-      "entry": "<p>Nettle is one of Fogport’s feral children and joined Byl Hasbaine, Lott, Grannie Wren, and Battley beneath Saint Orlan’s Tide Chapel.</p>\n<p>She is small, quick, practical, and unimpressed by adult assurances. During the escape she carried Byl’s ruined pistol, hid beneath Gideon Bramble’s workbenches, and made it safely back to the street with the company.</p>\n<p>Once everyone had escaped, her principal complaint was that Byl had said there would be treasure.</p>",
+      "entry": "<p>Nettle is a nine-year-old Gutterkin girl from Nine Spoons. She is small, quick, sharp-toothed, practical, perpetually hungry, and unimpressed by adult assurances. She has been known to eat a boiled egg shell and all.</p>\n<p>Nettle joined Byl Hasbaine, Lott, Grannie Wren, and Battley beneath Saint Orlan’s Tide Chapel. During the escape she carried Byl’s ruined pistol, hid beneath Gideon Bramble’s workbenches, and made it safely back to the street with the company.</p>\n<p>Once everyone had escaped, her principal complaint was that Byl had said there would be treasure.</p>",
       "references": [
         {
           "phrase": "Nine Spoons",
@@ -741,11 +741,77 @@
       ]
     },
     {
+      "section": "journals",
+      "name": "Episode 5 — One Door Remaining",
+      "type": "Battley’s account",
+      "is_private": false,
+      "entry": "<h2>As recorded by Battley</h2>\n<p>I believed Grannie Wren’s expedition beneath Saint Orlan’s Tide Chapel would be unpleasant. I did not expect it to alter my opinion of every person involved.</p>\n<p>The drowned crypts were full of bell-dead: corpses with little bells in their mouths, crawling over the stones as if death had made them spiders. I was afraid. I record that plainly because anyone claiming otherwise was either not there or is Mr. Lott.</p>\n<p>Mr. Hasbaine threw his brass knuckles at one of the creatures and somehow filled the crypt with true sunlight. For one instant I remembered that the sky possesses a color other than grey. The dead burned. I had previously considered Mr. Hasbaine an entertaining fraud with dangerous ambitions. I am no longer confident which half of that judgment was mistaken.</p>\n<p>We escaped into the buried workshop of Gideon Bramble, an ancient locksmith wired into a machine that had consumed his legs and, I fear, much of the rest of him. I pitied him before he began opening locks made for mouths, eyes, hearts, and memories. I pitied him afterward as well, which was considerably worse.</p>\n<p>Mr. Hasbaine distracted him with flattery and a paper bird while Grannie worked upon an unfinished door. Mr. Bramble then demonstrated his Grand Key: a sound capable of opening every Bramble lock in Fogport. Mr. Hasbaine stole the sound into a playing card, denied doing so, and persuaded its inventor that the tuning fork was merely out of tune. It was the most shameless thing I have ever witnessed. It may also have saved us.</p>\n<p>Something claiming to be Geoffrey Bramble reached through the unfinished door. It sounded frightened. Its hand was less convincing. We forced the lever together while it begged us to stop. I can still hear it. Grannie insisted that it was no longer Geoffrey, and I chose to believe her because the alternative would mean that we closed the door upon a lost son while his father watched.</p>\n<p>When the door collapsed, Mr. Hasbaine divided the stolen sound throughout his deck. He then opened our escape route and, through excessive enthusiasm, also released a drowned Thrallo inside an iron diving suit. Mr. Lott fought it in a stairway scarcely wide enough to contain his shoulders. Nettle carried the ruined pistol and never once admitted to being frightened. Grannie kept moving despite looking as though terror had reached inside her and taken hold.</p>\n<p>We reached the quay together. Mr. Hasbaine turned back to help the last of us. Mr. Lott made certain that he and Byl were the final two through the door. No one abandoned Nettle. No one abandoned me.</p>\n<p>Gideon Bramble remained below. I heard him call for Geoffrey as the bell-dead entered his workshop. I do not know whether leaving him was necessary. I only know that I was relieved to be alive, ashamed of that relief, and profoundly grateful when I counted our company and found every one of us upon the street.</p>\n<p>I had thought I was accompanying Mr. Hasbaine and Mr. Lott as an employee of the Twisted Eel. Somewhere beneath the chapel, without consulting me, they became my friends.</p>\n<p>I swallowed crypt water belonging to several different people. I remain employable, although I believe I have earned a day away from the washing-up.</p>\n<p>—Battley</p>",
+      "references": [
+        {
+          "phrase": "Grannie Wren",
+          "name": "Grannie Wren",
+          "section": "characters"
+        },
+        {
+          "phrase": "Saint Orlan’s Tide Chapel",
+          "name": "Saint Orlan’s Tide Chapel",
+          "section": "locations"
+        },
+        {
+          "phrase": "bell-dead",
+          "name": "Bell-Dead",
+          "section": "creatures"
+        },
+        {
+          "phrase": "Mr. Lott",
+          "name": "Lott",
+          "section": "characters"
+        },
+        {
+          "phrase": "Mr. Hasbaine",
+          "name": "Byl Hasbaine",
+          "section": "characters"
+        },
+        {
+          "phrase": "Gideon Bramble",
+          "name": "Gideon Bramble",
+          "section": "characters"
+        },
+        {
+          "phrase": "Grand Key",
+          "name": "The Deck of Little Thieves",
+          "section": "items"
+        },
+        {
+          "phrase": "Geoffrey Bramble",
+          "name": "Geoffrey Bramble",
+          "section": "characters"
+        },
+        {
+          "phrase": "Nettle",
+          "name": "Nettle",
+          "section": "characters"
+        },
+        {
+          "phrase": "Twisted Eel",
+          "name": "The Twisted Eel Pawnshop",
+          "section": "locations"
+        }
+      ],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — Episode 5",
+          "entry": "<ul><li>Gideon Bramble’s fate is unknown.</li><li>Whether any part of the returning presence was truly Geoffrey is unknown.</li><li>Grannie Wren’s intended use for the Final Green Lock is unrevealed.</li><li>The long-term cost and capabilities of the Deck of Little Thieves remain unresolved.</li><li>The opened locks within the workshop may have released unidentified things.</li><li>The forgotten quay exit was obstructed, not permanently proven sealed.</li></ul>",
+          "visibility_id": 3
+        }
+      ]
+    },
+    {
       "section": "events",
       "name": "One Door Remaining",
       "type": "Fogport campaign episode",
       "is_private": false,
-      "entry": "<p>Grannie Wren led Byl Hasbaine, Lott, Battley, and Nettle beneath Saint Orlan’s Tide Chapel, where they fled bell-dead corpses into the hidden workshop of Gideon Bramble, last proprietor of G. Bramble & Sons.</p>\n<p>While Byl distracted the ancient locksmith with flattery, tricks, and a paper bird, Grannie removed Geoffrey Bramble’s key from an unfinished door. Gideon demonstrated the Grand Key, an impossible sound that could open every Bramble lock. Byl stole the sound into the Jack of Bells.</p>\n<p>The company destroyed the unfinished door before the thing claiming to be Geoffrey could force its way through. The door collapsed into the Final Green Lock. Byl divided the Grand Key throughout his deck, creating single-use keys.</p>\n<p>Four cards were spent during the escape, one accidentally freeing an undead Thrallo trapped inside an iron diving suit. The company reached a forgotten quay beneath Fogport’s old sea wall and escaped together. Gideon Bramble was left behind as the bell-dead entered his workshop.</p>\n<p><strong>Everyone in the company made it out. Gideon Bramble’s fate is unknown. Byl has 48 empowered cards and 2 Fate points remaining.</strong></p>",
+      "entry": "<p>Grannie Wren led Byl Hasbaine, Lott, Battley, and Nettle beneath Saint Orlan’s Tide Chapel, where they fled bell-dead corpses into the hidden workshop of Gideon Bramble, last proprietor of G. Bramble & Sons.</p>\n<p>While Byl distracted the ancient locksmith with flattery, tricks, and a paper bird, Grannie removed Geoffrey Bramble’s key from an unfinished door. Gideon demonstrated the Grand Key, an impossible sound that could open every Bramble lock. Byl stole the sound into the Jack of Bells.</p>\n<p>The company destroyed the unfinished door before the thing claiming to be Geoffrey could force its way through. The door collapsed into the Final Green Lock. Byl divided the Grand Key throughout his deck, creating single-use keys.</p>\n<p>Four cards were spent during the escape, one accidentally freeing an undead Thrallo trapped inside an iron diving suit. The company reached a forgotten quay beneath Fogport’s old sea wall and escaped together. Gideon Bramble was left behind as the bell-dead entered his workshop.</p>\n<p><strong>Everyone in the company made it out. Gideon Bramble’s fate is unknown. Byl has 48 empowered cards. He ended the episode with 2 Fate points and begins Episode 6 at his Refresh of 3.</strong></p>",
       "references": [
         {
           "phrase": "Grannie Wren",
@@ -825,7 +891,7 @@
   "approval": {
     "status": "approved",
     "approved_by": "Daniel Davis",
-    "approved_at": "2026-07-25T00:00:00-07:00",
-    "document_sha256": "77f29ecd7dce6dfa6d381b1e1756697e90ede8c47573de98568af8cecfcd886e"
+    "approved_at": "2026-07-25T20:21:00-07:00",
+    "document_sha256": "5ed9e4d5f380e1d51243356db961b9558f0097dd83537e128662d7b45966b1cd"
   }
 }
