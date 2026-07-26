@@ -2,6 +2,9 @@ name: "Kanka Librarian — Publish One Door Remaining"
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - "kanka_librarian/repairs/**"
 
 permissions:
   contents: read
