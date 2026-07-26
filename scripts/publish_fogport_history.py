@@ -172,8 +172,13 @@ def upsert_era(
 ) -> dict[str, Any]:
     path = f"campaigns/{CAMPAIGN_ID}/timelines/{timeline_id}/timeline_eras"
     match = exact_match(client._get_all_pages(path), str(era["name"]), "timeline era")
+    # Kanka's public docs call this input field "era", while the live API
+    # currently validates "name". Send both with the same value so the
+    # publisher remains compatible with both contracts.
+    era_name = str(era["name"])
     payload = {
-        "era": str(era["name"]),
+        "name": era_name,
+        "era": era_name,
         "abbreviation": str(era["abbreviation"]),
         "start_year": era.get("start_year"),
         "end_year": era.get("end_year"),
