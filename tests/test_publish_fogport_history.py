@@ -26,7 +26,7 @@ class FogportHistoryTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.document = json.loads(
-            Path("fogport_history.json").read_text(encoding="utf-8")
+            Path("kanka_librarian/approved/fogport-history.json").read_text(encoding="utf-8")
         )
 
     def test_approval_digest(self):
