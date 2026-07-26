@@ -10,3 +10,4 @@ Triggers a fresh idempotent publication of **One Door Remaining** after:
 
 - accepting Kanka's equivalent HTML entity escaping during exact read-back.
 - sending nested locations with Kanka's documented `parent_id` field and the parent location's generic entity ID.
+- verifying nested location parents through Kanka's generic entity endpoint, because location-detail responses omit `parent_id`.
