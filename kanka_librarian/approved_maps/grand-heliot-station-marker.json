@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "map_name": "Fogport — Post-Catastrophe City Map",
+  "location_name": "Grand Heliot Station",
+  "marker": {
+    "latitude": 755.0,
+    "longitude": 1225.0,
+    "shape_id": 1,
+    "icon": 4,
+    "is_draggable": true,
+    "is_popupless": false,
+    "opacity": 100,
+    "visibility_id": 1,
+    "colour": "#d4af37"
+  },
+  "placement_note": "Approximate center of the glass-roofed HELIOT terminal at Blackwake's waterfront edge, directly behind the Grand Promenade.",
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "source": "Fogport RPG conversation, 2026-07-26"
+  }
+}
