@@ -185,6 +185,18 @@ def resolve_location_parent_entity_id(
     return int(matches[0]["entity_id"])
 
 
+def read_location_parent_entity_id(client: KankaClient, entity_id: int) -> int:
+    """Read hierarchy from Kanka's generic entity endpoint.
+
+    Location resources accept parent_id on write but omit it from their own
+    read response. The generic entity resource is the authoritative read-back.
+    """
+    entity = client._get(
+        f"campaigns/{CAMPAIGN_ID}/entities/{int(entity_id)}"
+    ).get("data", {})
+    return int(entity.get("parent_id") or 0)
+
+
 def render_references(
     entry: str,
     references: list[dict[str, Any]],
@@ -390,11 +402,12 @@ def main() -> None:
             )
         entity_id = int(direct["entity_id"])
         if parent_name:
-            if int(direct.get("parent_id") or 0) != int(payload["parent_id"]):
+            actual_parent_id = read_location_parent_entity_id(client, entity_id)
+            if actual_parent_id != int(payload["parent_id"]):
                 raise EpisodeError(
                     f"Location parent read-back failed for {change['name']!r}: "
                     f"expected parent_id {payload['parent_id']}, "
-                    f"received {direct.get('parent_id')!r}."
+                    f"received {actual_parent_id or None!r}."
                 )
         posts = [
             _upsert_post(client, writer, entity_id, post, registry)
