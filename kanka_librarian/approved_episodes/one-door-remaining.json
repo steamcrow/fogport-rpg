@@ -1,0 +1,831 @@
+{
+  "schema_version": 1,
+  "mode": "compiled-episode",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "episode": "One Door Remaining",
+  "aliases": {
+    "Byl Hasbaine": [
+      "Byl Blacksaft",
+      "Byl Blackroot",
+      "Blacksaft",
+      "Blackroot"
+    ],
+    "Battley": [
+      "Batley"
+    ],
+    "The Twisted Eel Pawnshop": [
+      "Twisted Eel Pawnshop",
+      "Twisted Eel",
+      "the Eel"
+    ],
+    "Mercy Vale": [
+      "Mercy"
+    ],
+    "Grannie Wren": [
+      "Grannie"
+    ]
+  },
+  "changes": [
+    {
+      "section": "characters",
+      "name": "Byl Hasbaine",
+      "append_marker": "<h2>Episode: One Door Remaining</h2>",
+      "append_entry": "<h2>Episode: One Door Remaining</h2>\n<p>During the expedition beneath Saint Orlan’s Tide Chapel, Byl travelled with Lott, Grannie Wren, Battley, and Nettle. He destroyed a bell-dead creature by turning his brass knuckles into remembered sunlight, distracted Gideon Bramble with stagecraft and a paper bird, and stole the impossible sound of Bramble’s Grand Key into the Jack of Bells.</p>\n<p>When the sound threatened to tear the card apart, Byl spread it throughout his deck. Each empowered card can open one Bramble lock and is then spent. Four cards have been used; <strong>48 empowered cards remain</strong>.</p>\n<p>Byl escaped with every member of his company. He currently has <strong>2 Fate points</strong>.</p>\n<h3>Known Surname Aliases</h3>\n<ul><li>Blacksaft</li><li>Blackroot</li></ul>",
+      "references": [
+        {
+          "phrase": "Lott",
+          "name": "Lott",
+          "section": "characters"
+        },
+        {
+          "phrase": "Grannie Wren",
+          "name": "Grannie Wren",
+          "section": "characters"
+        },
+        {
+          "phrase": "Battley",
+          "name": "Battley",
+          "section": "characters"
+        },
+        {
+          "phrase": "Nettle",
+          "name": "Nettle",
+          "section": "characters"
+        },
+        {
+          "phrase": "Saint Orlan’s Tide Chapel",
+          "name": "Saint Orlan’s Tide Chapel",
+          "section": "locations"
+        },
+        {
+          "phrase": "Gideon Bramble",
+          "name": "Gideon Bramble",
+          "section": "characters"
+        },
+        {
+          "phrase": "Grand Key",
+          "name": "The Deck of Little Thieves",
+          "section": "items"
+        }
+      ],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — One Door Remaining",
+          "entry": "<ul><li>The unseen cost of creating sunlight in the crypt has not yet been established.</li><li>The consequences of stealing and dividing the Grand Key have not yet been established.</li><li>Do not decide casually whether the deck is Byl’s eventual signature trick; let repeated play earn that conclusion.</li><li>His real surname is Hasbaine. Blacksaft and Blackroot are aliases, and he is expected to accumulate many more.</li></ul>",
+          "visibility_id": 3
+        }
+      ]
+    },
+    {
+      "section": "characters",
+      "name": "Lott",
+      "append_marker": "<h2>Episode: One Door Remaining</h2>",
+      "append_entry": "<h2>Episode: One Door Remaining</h2>\n<p>Lott accompanied Byl, Grannie Wren, Battley, and Nettle beneath Saint Orlan’s Tide Chapel. He held the collapsing unfinished door closed beside them, fought an undead Thrallo inside a massive iron diving suit, and made certain he and Byl were the last two members of the company to escape.</p>\n<p>Kils was bent badly against the diving suit and straightened against the street. Lott suffered a painful shoulder blow but declared himself “Fine.”</p>",
+      "references": [
+        {
+          "phrase": "Byl",
+          "name": "Byl Hasbaine",
+          "section": "characters"
+        },
+        {
+          "phrase": "Grannie Wren",
+          "name": "Grannie Wren",
+          "section": "characters"
+        },
+        {
+          "phrase": "Battley",
+          "name": "Battley",
+          "section": "characters"
+        },
+        {
+          "phrase": "Nettle",
+          "name": "Nettle",
+          "section": "characters"
+        }
+      ]
+    },
+    {
+      "section": "characters",
+      "name": "Battley",
+      "match_names": [
+        "Batley"
+      ],
+      "text_replacements": {
+        "Batley": "Battley",
+        "BATLEY": "BATTLEY"
+      },
+      "append_marker": "<h2>Episode: One Door Remaining</h2>",
+      "append_entry": "<h2>Episode: One Door Remaining</h2>\n<p>Battley joined Byl, Lott, Grannie Wren, and Nettle beneath Saint Orlan’s Tide Chapel. He helped force the lever that destroyed Gideon Bramble’s unfinished door, escaped over the fallen diving suit, and remained with the company until everyone reached the street.</p>\n<p>He emerged soaked, coughing crypt water, and still concerned with whether he remained employable.</p>",
+      "references": [
+        {
+          "phrase": "Byl",
+          "name": "Byl Hasbaine",
+          "section": "characters"
+        },
+        {
+          "phrase": "Lott",
+          "name": "Lott",
+          "section": "characters"
+        },
+        {
+          "phrase": "Grannie Wren",
+          "name": "Grannie Wren",
+          "section": "characters"
+        },
+        {
+          "phrase": "Nettle",
+          "name": "Nettle",
+          "section": "characters"
+        }
+      ]
+    },
+    {
+      "section": "characters",
+      "name": "Mercy Vale",
+      "text_replacements": {
+        "Batley": "Battley"
+      }
+    },
+    {
+      "section": "creatures",
+      "name": "Grig",
+      "text_replacements": {
+        "Batley": "Battley",
+        "BATLEY": "BATTLEY"
+      }
+    },
+    {
+      "section": "characters",
+      "name": "Grannie Wren",
+      "type": "Determined client with a Bramble key",
+      "is_private": false,
+      "entry": "<p>Grannie Wren hired Byl Hasbaine and Lott for an expedition beneath Saint Orlan’s Tide Chapel. Her single condition proved to contain three conditions, including a prohibition against carrying away treasure found during the expedition.</p>\n<p>She possessed an enormous brass key made by G. Bramble & Sons and knew that the unfinished door in Gideon Bramble’s buried workshop must never be completed. While Byl distracted the locksmith, she removed Geoffrey’s key, helped force the workshop lever, and carried away both the great brass key and the small green lock left when the unfinished door collapsed.</p>\n<p>Grannie escaped with Byl, Lott, Battley, and Nettle. Pale and trembling in the rain, she judged being alive sufficient until she had tea.</p>",
+      "references": [
+        {
+          "phrase": "Byl Hasbaine",
+          "name": "Byl Hasbaine",
+          "section": "characters"
+        },
+        {
+          "phrase": "Lott",
+          "name": "Lott",
+          "section": "characters"
+        },
+        {
+          "phrase": "Saint Orlan’s Tide Chapel",
+          "name": "Saint Orlan’s Tide Chapel",
+          "section": "locations"
+        },
+        {
+          "phrase": "G. Bramble & Sons",
+          "name": "G. Bramble & Sons",
+          "section": "organizations"
+        },
+        {
+          "phrase": "Gideon Bramble",
+          "name": "Gideon Bramble",
+          "section": "characters"
+        },
+        {
+          "phrase": "Geoffrey",
+          "name": "Geoffrey Bramble",
+          "section": "characters"
+        },
+        {
+          "phrase": "great brass key",
+          "name": "The Great Bramble Key",
+          "section": "items"
+        },
+        {
+          "phrase": "small green lock",
+          "name": "The Final Green Lock",
+          "section": "items"
+        }
+      ],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — Grannie Wren",
+          "entry": "<ul><li>Grannie’s full purpose for entering the chapel and her intended use for the Final Green Lock remain unrevealed.</li><li>Her prior knowledge of Gideon, Geoffrey, and the unfinished door remains unrevealed.</li><li>No family connection between Grannie Wren and Percival Wren has been established.</li><li>Do not convert any of these unknowns into canon until play reveals them.</li></ul>",
+          "visibility_id": 3
+        }
+      ]
+    },
+    {
+      "section": "characters",
+      "name": "Nettle",
+      "type": "Feral child of Nine Spoons",
+      "is_private": false,
+      "entry": "<p>Nettle is one of Fogport’s feral children and joined Byl Hasbaine, Lott, Grannie Wren, and Battley beneath Saint Orlan’s Tide Chapel.</p>\n<p>She is small, quick, practical, and unimpressed by adult assurances. During the escape she carried Byl’s ruined pistol, hid beneath Gideon Bramble’s workbenches, and made it safely back to the street with the company.</p>\n<p>Once everyone had escaped, her principal complaint was that Byl had said there would be treasure.</p>",
+      "references": [
+        {
+          "phrase": "Nine Spoons",
+          "name": "Nine Spoons",
+          "section": "locations"
+        },
+        {
+          "phrase": "Byl Hasbaine",
+          "name": "Byl Hasbaine",
+          "section": "characters"
+        },
+        {
+          "phrase": "Lott",
+          "name": "Lott",
+          "section": "characters"
+        },
+        {
+          "phrase": "Grannie Wren",
+          "name": "Grannie Wren",
+          "section": "characters"
+        },
+        {
+          "phrase": "Battley",
+          "name": "Battley",
+          "section": "characters"
+        }
+      ],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — Nettle",
+          "entry": "<p>Nettle’s history, loyalties, and long-term relationship with the company have not yet been established beyond what occurred during the expedition. Preserve her as a person and new companion rather than reducing her to a generic feral-child guide.</p>",
+          "visibility_id": 3
+        }
+      ]
+    },
+    {
+      "section": "characters",
+      "name": "Gideon Bramble",
+      "type": "Last proprietor of G. Bramble & Sons",
+      "is_private": false,
+      "entry": "<p>Gideon Bramble is the ancient master locksmith and last surviving proprietor of G. Bramble & Sons. He was found beneath Saint Orlan’s Tide Chapel in a hidden workshop, wired by his arms, throat, and skull into a huge iron machine. His legs had become part of it.</p>\n<p>Gideon built locks for doors, coffins, cages, mouths, eyes, hearts, and other difficult places. His masterwork was the Grand Key: an impossible sound that opens every lock bearing the Bramble mark.</p>\n<p>His son Geoffrey vanished through an unfinished green-bronze door forty-three years ago. Gideon spent the intervening decades preserving or seeking a final way to reach him. When the door was destroyed, he tore himself from his machine and was left behind as the bell-dead entered the workshop.</p>\n<p>His fate is unknown.</p>",
+      "references": [
+        {
+          "phrase": "G. Bramble & Sons",
+          "name": "G. Bramble & Sons",
+          "section": "organizations"
+        },
+        {
+          "phrase": "Saint Orlan’s Tide Chapel",
+          "name": "Saint Orlan’s Tide Chapel",
+          "section": "locations"
+        },
+        {
+          "phrase": "Grand Key",
+          "name": "The Deck of Little Thieves",
+          "section": "items"
+        },
+        {
+          "phrase": "Geoffrey",
+          "name": "Geoffrey Bramble",
+          "section": "characters"
+        },
+        {
+          "phrase": "bell-dead",
+          "name": "Bell-Dead",
+          "section": "creatures"
+        }
+      ],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — Gideon Bramble",
+          "entry": "<ul><li>Gideon’s survival or death remains unknown.</li><li>What escaped when the locks made for mouths, eyes, and hearts opened remains unknown.</li><li>The nature of the bright child-sized presence behind his left eye remains unknown.</li><li>Do not assume Gideon’s account of Geoffrey is complete or reliable.</li></ul>",
+          "visibility_id": 3
+        }
+      ]
+    },
+    {
+      "section": "characters",
+      "name": "Geoffrey Bramble",
+      "type": "Missing son of Gideon Bramble",
+      "is_private": false,
+      "entry": "<p>Geoffrey Bramble was Gideon Bramble’s son and possessed exceptional hearing. When he was seven, the sound of a dropped tray caused every lock in the east workshop to open at once, inspiring Gideon’s work upon the Grand Key.</p>\n<p>Geoffrey vanished through an unfinished green-bronze door forty-three years ago. When the door was opened again, a pale young hand reached through green fog and something claiming to be Geoffrey begged his father not to close it again.</p>\n<p>The hand carried a memory of a boy beneath a locksmith’s bench, his father calling his name, and forty-three years falling through fog. Grannie Wren insisted that whatever had returned was no longer Gideon’s son.</p>",
+      "references": [
+        {
+          "phrase": "Gideon Bramble",
+          "name": "Gideon Bramble",
+          "section": "characters"
+        },
+        {
+          "phrase": "Grand Key",
+          "name": "The Deck of Little Thieves",
+          "section": "items"
+        },
+        {
+          "phrase": "Grannie Wren",
+          "name": "Grannie Wren",
+          "section": "characters"
+        }
+      ],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — Geoffrey Bramble",
+          "entry": "<ul><li>Whether any part of the being beyond the door was truly Geoffrey remains unresolved.</li><li>What else moved in the green fog was never seen clearly.</li><li>The severed hand’s interest in Byl’s deck remains unexplained.</li><li>Geoffrey’s key was thrown into the shaft before the door collapsed.</li></ul>",
+          "visibility_id": 3
+        }
+      ]
+    },
+    {
+      "section": "organizations",
+      "name": "G. Bramble & Sons",
+      "type": "Locksmiths — doors for difficult places",
+      "is_private": false,
+      "entry": "<p>G. Bramble & Sons was a Fogport locksmithing firm famous for locks, keys, and green-bronze doors made for difficult places. Its maker’s marks include <strong>G. BRAMBLE & SONS — LOCKSMITHS — FOGPORT</strong> and <strong>G. BRAMBLE & SONS — DOORS FOR DIFFICULT PLACES</strong>.</p>\n<p>The firm’s locks were secretly built with concealed metal tongues tuned to answer a single impossible note: Gideon Bramble’s Grand Key. Known works include doors, vaults, coffins, cages, and locks designed for mouths, eyes, hearts, and memories.</p>\n<p>The final unfinished plate read: <strong>G. BRAMBLE & SON — ONE DOOR REMAINING</strong>.</p>",
+      "references": [
+        {
+          "phrase": "Fogport",
+          "name": "Fogport",
+          "section": "locations"
+        },
+        {
+          "phrase": "Gideon Bramble",
+          "name": "Gideon Bramble",
+          "section": "characters"
+        },
+        {
+          "phrase": "Grand Key",
+          "name": "The Deck of Little Thieves",
+          "section": "items"
+        }
+      ],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — G. Bramble & Sons",
+          "entry": "<p>The locations and present condition of other Bramble doors throughout Fogport remain undetermined. The Deck of Little Thieves can potentially open any surviving Bramble lock once per empowered card.</p>",
+          "visibility_id": 3
+        }
+      ]
+    },
+    {
+      "section": "locations",
+      "name": "Saint Orlan’s Tide Chapel",
+      "type": "Old tide chapel",
+      "is_private": false,
+      "parent_name": "Fogport",
+      "entry": "<p>Saint Orlan’s Tide Chapel is an old Fogport chapel built above drowned crypts and forgotten passages. Grannie Wren brought Byl Hasbaine, Lott, Battley, and Nettle here on an expedition governed by three conditions, including that no discovered treasure be carried away.</p>\n<p>The chapel’s lower reaches contained bell-dead corpses and a concealed G. Bramble & Sons door leading into Gideon Bramble’s buried workshop.</p>",
+      "references": [
+        {
+          "phrase": "Fogport",
+          "name": "Fogport",
+          "section": "locations"
+        },
+        {
+          "phrase": "Grannie Wren",
+          "name": "Grannie Wren",
+          "section": "characters"
+        },
+        {
+          "phrase": "Byl Hasbaine",
+          "name": "Byl Hasbaine",
+          "section": "characters"
+        },
+        {
+          "phrase": "Lott",
+          "name": "Lott",
+          "section": "characters"
+        },
+        {
+          "phrase": "Battley",
+          "name": "Battley",
+          "section": "characters"
+        },
+        {
+          "phrase": "Nettle",
+          "name": "Nettle",
+          "section": "characters"
+        },
+        {
+          "phrase": "bell-dead",
+          "name": "Bell-Dead",
+          "section": "creatures"
+        },
+        {
+          "phrase": "G. Bramble & Sons",
+          "name": "G. Bramble & Sons",
+          "section": "organizations"
+        },
+        {
+          "phrase": "Gideon Bramble",
+          "name": "Gideon Bramble",
+          "section": "characters"
+        }
+      ],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — Saint Orlan’s Tide Chapel",
+          "entry": "<p>The chapel’s precise district or subdistrict placement has not been established in the surviving campaign record. It is nested under Fogport rather than assigned to a district by invention. Grannie Wren’s prior history with the chapel remains unknown.</p>",
+          "visibility_id": 3
+        }
+      ]
+    },
+    {
+      "section": "locations",
+      "name": "The Drowned Crypts of Saint Orlan",
+      "type": "Flooded burial crypts",
+      "is_private": false,
+      "parent_name": "Saint Orlan’s Tide Chapel",
+      "entry": "<p>The flooded crypts beneath Saint Orlan’s Tide Chapel contain burial niches, cold seawater, and dead things with little bells inside their mouths. The bell-dead crowded the stairways and pursued Grannie Wren’s company to an ancient green-bronze Bramble door.</p>\n<p>Byl Hasbaine used an impossible burst of remembered sunlight to destroy one corpse and drive the others back long enough for the company to enter Gideon Bramble’s workshop.</p>",
+      "references": [
+        {
+          "phrase": "Saint Orlan’s Tide Chapel",
+          "name": "Saint Orlan’s Tide Chapel",
+          "section": "locations"
+        },
+        {
+          "phrase": "bell-dead",
+          "name": "Bell-Dead",
+          "section": "creatures"
+        },
+        {
+          "phrase": "Grannie Wren",
+          "name": "Grannie Wren",
+          "section": "characters"
+        },
+        {
+          "phrase": "Byl Hasbaine",
+          "name": "Byl Hasbaine",
+          "section": "characters"
+        },
+        {
+          "phrase": "Gideon Bramble’s workshop",
+          "name": "Gideon Bramble’s Workshop",
+          "section": "locations"
+        }
+      ]
+    },
+    {
+      "section": "locations",
+      "name": "Gideon Bramble’s Workshop",
+      "type": "Buried impossible-lock workshop",
+      "is_private": false,
+      "parent_name": "The Drowned Crypts of Saint Orlan",
+      "entry": "<p>A buried locksmith’s workshop hidden beyond a G. Bramble & Sons door in the drowned crypts of Saint Orlan. Its walls are crowded with thousands of keys and locks for doors, coffins, cages, mouths, eyes, hearts, and memories.</p>\n<p>Gideon Bramble sat at its center, wired into an iron machine. An unfinished green-bronze door stood opposite him. The company collapsed that door, escaped through a second Bramble exit, and left Gideon behind as the bell-dead broke in.</p>\n<p>When the Grand Key sounded, thousands of locks in the workshop opened. It is unknown what escaped them.</p>",
+      "references": [
+        {
+          "phrase": "G. Bramble & Sons",
+          "name": "G. Bramble & Sons",
+          "section": "organizations"
+        },
+        {
+          "phrase": "Gideon Bramble",
+          "name": "Gideon Bramble",
+          "section": "characters"
+        },
+        {
+          "phrase": "bell-dead",
+          "name": "Bell-Dead",
+          "section": "creatures"
+        },
+        {
+          "phrase": "Grand Key",
+          "name": "The Deck of Little Thieves",
+          "section": "items"
+        }
+      ],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — Bramble Workshop",
+          "entry": "<ul><li>Gideon’s fate remains unknown.</li><li>The opened mouth, eye, heart, cage, coffin, and memory locks may have released things that have not yet been identified.</li><li>The workshop’s condition after the bell-dead entered remains unknown.</li><li>The outer exit was jammed by the diving suit’s iron hand and fallen chains, but not proven permanently sealed.</li></ul>",
+          "visibility_id": 3
+        }
+      ]
+    },
+    {
+      "section": "locations",
+      "name": "The Forgotten Quay",
+      "type": "Quay beneath Fogport’s old sea wall",
+      "is_private": false,
+      "parent_name": "Fogport",
+      "entry": "<p>A narrow, rain-slick quay beneath Fogport’s old sea wall, reached through a descending Bramble passage from Gideon Bramble’s workshop. Black water churns below it and barnacled stairs climb to the street.</p>\n<p>Byl Hasbaine, Lott, Grannie Wren, Battley, and Nettle emerged here after escaping the undead diving suit. The door behind them closed upon its iron forearm and the fallen chains jammed the passage.</p>",
+      "references": [
+        {
+          "phrase": "Fogport",
+          "name": "Fogport",
+          "section": "locations"
+        },
+        {
+          "phrase": "Gideon Bramble’s workshop",
+          "name": "Gideon Bramble’s Workshop",
+          "section": "locations"
+        },
+        {
+          "phrase": "Byl Hasbaine",
+          "name": "Byl Hasbaine",
+          "section": "characters"
+        },
+        {
+          "phrase": "Lott",
+          "name": "Lott",
+          "section": "characters"
+        },
+        {
+          "phrase": "Grannie Wren",
+          "name": "Grannie Wren",
+          "section": "characters"
+        },
+        {
+          "phrase": "Battley",
+          "name": "Battley",
+          "section": "characters"
+        },
+        {
+          "phrase": "Nettle",
+          "name": "Nettle",
+          "section": "characters"
+        }
+      ]
+    },
+    {
+      "section": "creatures",
+      "name": "Bell-Dead",
+      "type": "Crypt undead",
+      "is_private": false,
+      "entry": "<p>Bell-dead are corpses with small bells inside their mouths. They crowded the drowned crypts beneath Saint Orlan’s Tide Chapel, crawling across walls and hammering against the door of Gideon Bramble’s workshop.</p>\n<p>They recoiled from true sunlight. When Byl Hasbaine turned his brass knuckles into the remembered light of a rare clear Fogport day, one bell-dead burned into black petals and the others fled back up the stair.</p>",
+      "references": [
+        {
+          "phrase": "Saint Orlan’s Tide Chapel",
+          "name": "Saint Orlan’s Tide Chapel",
+          "section": "locations"
+        },
+        {
+          "phrase": "Gideon Bramble’s workshop",
+          "name": "Gideon Bramble’s Workshop",
+          "section": "locations"
+        },
+        {
+          "phrase": "Byl Hasbaine",
+          "name": "Byl Hasbaine",
+          "section": "characters"
+        }
+      ],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — Bell-Dead",
+          "entry": "<p>The origin of the bells, the mechanism by which the dead are controlled or animated, and what they did to Gideon Bramble remain unknown. Sunlight harming them is established through Byl’s successful Operation, though the broader limits of that weakness are not.</p>",
+          "visibility_id": 3
+        }
+      ]
+    },
+    {
+      "section": "creatures",
+      "name": "The Drowned Diving Suit",
+      "type": "Undead Thrallo in chained iron armor",
+      "is_private": false,
+      "entry": "<p>A gigantic corroded iron diving suit containing the drowned face of a dead Thrallo and a pale, many-legged thing living inside the corpse. Green seawater pours through cracks in its helmet.</p>\n<p>The suit had been chained below Gideon Bramble’s escape passage with a Bramble lock. A misthrown third card from Byl Hasbaine’s empowered deck opened the unseen lock and released it. Byl later opened its wrist shackle, tangling its feet in the fallen chain, while Lott damaged its knee with Kils.</p>\n<p>The company escaped. The suit’s iron hand was caught in the closing Bramble door and helped jam the passage.</p>",
+      "references": [
+        {
+          "phrase": "Thrallo",
+          "name": "Thrallo",
+          "section": "creatures"
+        },
+        {
+          "phrase": "Gideon Bramble’s escape passage",
+          "name": "The Forgotten Quay",
+          "section": "locations"
+        },
+        {
+          "phrase": "Byl Hasbaine",
+          "name": "Byl Hasbaine",
+          "section": "characters"
+        },
+        {
+          "phrase": "Lott",
+          "name": "Lott",
+          "section": "characters"
+        }
+      ],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — Drowned Diving Suit",
+          "entry": "<ul><li>The pale many-legged creature controlling or inhabiting the dead Thrallo has not been identified.</li><li>The reason the suit was imprisoned behind a Bramble lock remains unknown.</li><li>The suit was obstructed and trapped, not confirmed destroyed.</li></ul>",
+          "visibility_id": 3
+        }
+      ]
+    },
+    {
+      "section": "items",
+      "name": "The Deck of Little Thieves",
+      "type": "Forty-eight single-use Bramble keys",
+      "is_private": false,
+      "entry": "<p>Byl Hasbaine’s magician’s deck now contains the divided power of Gideon Bramble’s Grand Key: a sound capable of opening every lock made by G. Bramble & Sons.</p>\n<p>Each empowered card bears a tiny brass keyhole somewhere in its illustration. When thrown at or released near a Bramble lock, one card can open that lock once and then becomes blank, ordinary, and cold.</p>\n<p>Four cards have been spent. <strong>48 empowered cards remain.</strong> The Jack of Bells appears aware of Byl and smiles at him.</p>",
+      "references": [
+        {
+          "phrase": "Byl Hasbaine",
+          "name": "Byl Hasbaine",
+          "section": "characters"
+        },
+        {
+          "phrase": "Gideon Bramble",
+          "name": "Gideon Bramble",
+          "section": "characters"
+        },
+        {
+          "phrase": "G. Bramble & Sons",
+          "name": "G. Bramble & Sons",
+          "section": "organizations"
+        }
+      ],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — Deck of Little Thieves",
+          "entry": "<ul><li>Exact current count: 48 empowered cards.</li><li>The four spent cards opened the workshop exit lock, its latch or door mechanism, the diving suit’s unseen prison lock, and its wrist shackle.</li><li>The deck’s unseen magical cost and long-term personality remain unresolved.</li><li>The severed hand of the thing claiming to be Geoffrey deliberately indicated the deck before it released Byl.</li></ul>",
+          "visibility_id": 3
+        }
+      ]
+    },
+    {
+      "section": "items",
+      "name": "The Great Bramble Key",
+      "type": "Enormous brass key",
+      "is_private": false,
+      "entry": "<p>An enormous old brass key marked <strong>G. BRAMBLE & SONS — LOCKSMITHS — FOGPORT</strong>. Grannie Wren carried it into the drowned crypts beneath Saint Orlan’s Tide Chapel and used it to open the concealed door to Gideon Bramble’s workshop.</p>\n<p>The key opens the way into the workshop but did not turn in the separate exit door. Grannie retained it after the company escaped.</p>",
+      "references": [
+        {
+          "phrase": "G. BRAMBLE & SONS",
+          "name": "G. Bramble & Sons",
+          "section": "organizations"
+        },
+        {
+          "phrase": "FOGPORT",
+          "name": "Fogport",
+          "section": "locations"
+        },
+        {
+          "phrase": "Grannie Wren",
+          "name": "Grannie Wren",
+          "section": "characters"
+        },
+        {
+          "phrase": "Saint Orlan’s Tide Chapel",
+          "name": "Saint Orlan’s Tide Chapel",
+          "section": "locations"
+        },
+        {
+          "phrase": "Gideon Bramble’s workshop",
+          "name": "Gideon Bramble’s Workshop",
+          "section": "locations"
+        }
+      ],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — Great Bramble Key",
+          "entry": "<p>The key’s full capabilities, provenance, and the circumstances by which Grannie Wren acquired it remain unknown. It is not currently established as Key 731 or as part of the Seventh Foundation case.</p>",
+          "visibility_id": 3
+        }
+      ]
+    },
+    {
+      "section": "items",
+      "name": "The Final Green Lock",
+      "type": "Collapsed unfinished door",
+      "is_private": false,
+      "entry": "<p>A small warm green lock, no larger than Byl Hasbaine’s palm. It is all that remained after Gideon Bramble’s unfinished green-bronze door folded inward and collapsed.</p>\n<p>The lock twitched faintly when it fell. Grannie Wren took it and carried it out of the workshop.</p>",
+      "references": [
+        {
+          "phrase": "Byl Hasbaine",
+          "name": "Byl Hasbaine",
+          "section": "characters"
+        },
+        {
+          "phrase": "Gideon Bramble",
+          "name": "Gideon Bramble",
+          "section": "characters"
+        },
+        {
+          "phrase": "Grannie Wren",
+          "name": "Grannie Wren",
+          "section": "characters"
+        }
+      ],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — Final Green Lock",
+          "entry": "<ul><li>Whether Geoffrey’s final door was destroyed, transformed into this lock, or displaced remains unresolved.</li><li>Grannie Wren’s intended use for the lock remains unrevealed.</li><li>The lock’s warmth and movement imply continued activity but do not establish sentience.</li></ul>",
+          "visibility_id": 3
+        }
+      ]
+    },
+    {
+      "section": "items",
+      "name": "The Sunlight Brass Knuckles",
+      "type": "Spent focus of remembered sunlight",
+      "is_private": false,
+      "entry": "<p>A pair of brass knuckles carried by Byl Hasbaine. In the drowned crypts, Byl threw them at a bell-dead creature and visualized their brass becoming the true golden sunlight of a rare clear childhood day in Fogport.</p>\n<p>For one instant, the knuckles became that sunlight. The corpse burned, the other dead recoiled, and the knuckles fell blackened and faintly glowing. Byl recovered them immediately. They were spent by the time he met Gideon Bramble.</p>",
+      "references": [
+        {
+          "phrase": "Byl Hasbaine",
+          "name": "Byl Hasbaine",
+          "section": "characters"
+        },
+        {
+          "phrase": "bell-dead",
+          "name": "Bell-Dead",
+          "section": "creatures"
+        },
+        {
+          "phrase": "Fogport",
+          "name": "Fogport",
+          "section": "locations"
+        },
+        {
+          "phrase": "Gideon Bramble",
+          "name": "Gideon Bramble",
+          "section": "characters"
+        }
+      ],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — Sunlight Brass Knuckles",
+          "entry": "<p>The magical consequence of borrowing true sunlight has not yet appeared. The knuckles are presently spent; whether they retain any lasting property must be discovered through play.</p>",
+          "visibility_id": 3
+        }
+      ]
+    },
+    {
+      "section": "events",
+      "name": "One Door Remaining",
+      "type": "Fogport campaign episode",
+      "is_private": false,
+      "entry": "<p>Grannie Wren led Byl Hasbaine, Lott, Battley, and Nettle beneath Saint Orlan’s Tide Chapel, where they fled bell-dead corpses into the hidden workshop of Gideon Bramble, last proprietor of G. Bramble & Sons.</p>\n<p>While Byl distracted the ancient locksmith with flattery, tricks, and a paper bird, Grannie removed Geoffrey Bramble’s key from an unfinished door. Gideon demonstrated the Grand Key, an impossible sound that could open every Bramble lock. Byl stole the sound into the Jack of Bells.</p>\n<p>The company destroyed the unfinished door before the thing claiming to be Geoffrey could force its way through. The door collapsed into the Final Green Lock. Byl divided the Grand Key throughout his deck, creating single-use keys.</p>\n<p>Four cards were spent during the escape, one accidentally freeing an undead Thrallo trapped inside an iron diving suit. The company reached a forgotten quay beneath Fogport’s old sea wall and escaped together. Gideon Bramble was left behind as the bell-dead entered his workshop.</p>\n<p><strong>Everyone in the company made it out. Gideon Bramble’s fate is unknown. Byl has 48 empowered cards and 2 Fate points remaining.</strong></p>",
+      "references": [
+        {
+          "phrase": "Grannie Wren",
+          "name": "Grannie Wren",
+          "section": "characters"
+        },
+        {
+          "phrase": "Byl Hasbaine",
+          "name": "Byl Hasbaine",
+          "section": "characters"
+        },
+        {
+          "phrase": "Lott",
+          "name": "Lott",
+          "section": "characters"
+        },
+        {
+          "phrase": "Battley",
+          "name": "Battley",
+          "section": "characters"
+        },
+        {
+          "phrase": "Nettle",
+          "name": "Nettle",
+          "section": "characters"
+        },
+        {
+          "phrase": "Saint Orlan’s Tide Chapel",
+          "name": "Saint Orlan’s Tide Chapel",
+          "section": "locations"
+        },
+        {
+          "phrase": "bell-dead",
+          "name": "Bell-Dead",
+          "section": "creatures"
+        },
+        {
+          "phrase": "Gideon Bramble",
+          "name": "Gideon Bramble",
+          "section": "characters"
+        },
+        {
+          "phrase": "G. Bramble & Sons",
+          "name": "G. Bramble & Sons",
+          "section": "organizations"
+        },
+        {
+          "phrase": "Geoffrey Bramble",
+          "name": "Geoffrey Bramble",
+          "section": "characters"
+        },
+        {
+          "phrase": "Grand Key",
+          "name": "The Deck of Little Thieves",
+          "section": "items"
+        },
+        {
+          "phrase": "Final Green Lock",
+          "name": "The Final Green Lock",
+          "section": "items"
+        },
+        {
+          "phrase": "Fogport",
+          "name": "Fogport",
+          "section": "locations"
+        }
+      ],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — One Door Remaining",
+          "entry": "<ul><li>Gideon Bramble’s fate is unknown.</li><li>Whether any part of the returning presence was truly Geoffrey is unknown.</li><li>Grannie Wren’s intended use for the Final Green Lock is unrevealed.</li><li>The long-term cost and capabilities of the Deck of Little Thieves remain unresolved.</li><li>The opened locks within the workshop may have released unidentified things.</li><li>The forgotten quay exit was obstructed, not permanently proven sealed.</li></ul>",
+          "visibility_id": 3
+        }
+      ]
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-25T00:00:00-07:00",
+    "document_sha256": "77f29ecd7dce6dfa6d381b1e1756697e90ede8c47573de98568af8cecfcd886e"
+  }
+}
