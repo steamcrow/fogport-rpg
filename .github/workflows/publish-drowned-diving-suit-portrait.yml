@@ -1,0 +1,46 @@
+name: "Kanka Librarian — Fogport: Drowned Diving Suit Portrait"
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/publish-drowned-diving-suit-portrait.yml"
+      - "assets/creatures/drowned-diving-suit-painterly.jpg"
+      - "kanka_librarian/approved_gallery/drowned-diving-suit-portrait.json"
+      - "scripts/publish_creature_portrait.py"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kanka-librarian-fogport
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: "FOGPORT ONLY (410879) — attach and verify creature portrait"
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install --requirement requirements.txt
+      - name: Publish and verify Drowned Diving Suit portrait
+        env:
+          KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+          KANKA_ENABLE_WRITES: FOGPORT_410879
+        run: |
+          python scripts/publish_creature_portrait.py \
+            kanka_librarian/approved_gallery/drowned-diving-suit-portrait.json \
+            --receipt receipts/drowned-diving-suit-portrait.json
+      - name: Preserve verified receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kanka-drowned-diving-suit-portrait-receipt
+          path: receipts/drowned-diving-suit-portrait.json
+          if-no-files-found: warn
+          retention-days: 90

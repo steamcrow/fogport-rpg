@@ -1,0 +1,12 @@
+{
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "creature_name": "The Drowned Diving Suit",
+  "image_path": "assets/creatures/drowned-diving-suit-painterly.jpg",
+  "sha256": "ae1ac10e84ba106144ca4b04d29fb6cd61accd5a4fbe6cbe60a530aad9942281",
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-26T09:00:00-07:00"
+  }
+}
