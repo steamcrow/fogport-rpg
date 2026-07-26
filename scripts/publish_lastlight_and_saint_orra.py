@@ -182,6 +182,24 @@ def main() -> None:
     district, district_created = upsert_location(
         token, locations, document["district"], int(blackwake["id"])
     )
+    # Treat Lastlight's district placement as a first-class publication result.
+    # This explicit read-back repairs an existing record and prevents a later
+    # monument or marker failure from obscuring the required hierarchy.
+    district_parent_id = int(
+        read_location(token, int(district["id"])).get("location_id") or 0
+    )
+    if district_parent_id != int(blackwake["id"]):
+        raise SystemExit("Lastlight is not nested beneath Blackwake.")
+    print(
+        json.dumps(
+            {
+                "lastlight_id": int(district["id"]),
+                "lastlight_parent_blackwake_id": district_parent_id,
+                "lastlight_hierarchy_verified": True,
+            }
+        )
+    )
+
     colossus, colossus_created = upsert_location(
         token, locations, document["location"], int(district["id"])
     )
@@ -285,6 +303,9 @@ def main() -> None:
             "name": district["name"],
             "id": int(district["id"]),
             "entity_id": int(district["entity_id"]),
+            "parent_id": district_parent_id,
+            "parent_name": "Blackwake",
+            "hierarchy_verified": True,
             "created": district_created,
         },
         "location": {
