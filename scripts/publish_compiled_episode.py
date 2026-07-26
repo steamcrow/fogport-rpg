@@ -172,17 +172,17 @@ def _resolve_reference(
     return matches[0] if len(matches) == 1 else None
 
 
-def resolve_location_parent_id(
+def resolve_location_parent_entity_id(
     parent_name: str,
     registry: dict[tuple[str, str], list[dict[str, Any]]],
 ) -> int:
-    """Return the Kanka location resource id, never its generic entity id."""
+    """Return the parent's generic entity id required by Kanka locations."""
     matches = registry.get(("locations", parent_name.strip().casefold()), [])
     if len(matches) != 1:
         raise EpisodeError(
             f"Location parent {parent_name!r} is missing or ambiguous."
         )
-    return int(matches[0]["id"])
+    return int(matches[0]["entity_id"])
 
 
 def render_references(
@@ -363,9 +363,9 @@ def main() -> None:
 
         parent_name = str(change.get("parent_name", "")).strip()
         if parent_name:
-            # Kanka locations use location_id (the parent's location resource
-            # id), not parent_id and not the parent's generic entity_id.
-            payload["location_id"] = resolve_location_parent_id(
+            # Kanka's location endpoint nests locations with parent_id, whose
+            # value is the parent's generic entity_id (not its location id).
+            payload["parent_id"] = resolve_location_parent_entity_id(
                 parent_name, registry
             )
 
@@ -390,11 +390,11 @@ def main() -> None:
             )
         entity_id = int(direct["entity_id"])
         if parent_name:
-            if int(direct.get("location_id") or 0) != int(payload["location_id"]):
+            if int(direct.get("parent_id") or 0) != int(payload["parent_id"]):
                 raise EpisodeError(
                     f"Location parent read-back failed for {change['name']!r}: "
-                    f"expected location_id {payload['location_id']}, "
-                    f"received {direct.get('location_id')!r}."
+                    f"expected parent_id {payload['parent_id']}, "
+                    f"received {direct.get('parent_id')!r}."
                 )
         posts = [
             _upsert_post(client, writer, entity_id, post, registry)
