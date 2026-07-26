@@ -4,8 +4,8 @@
   "campaign_name": "Fogport",
   "map_name": "Fogport — Post-Catastrophe City Map",
   "entry": "<p>The known districts, islands, bridges, quays, and ruins of Fogport after the Catastrophe. This map will be keyed as locations become established in play.</p>",
-  "image_path": "assets/maps/fogport-post-catastrophe-city-map.png",
-  "sha256": "90d402863d94580382c363b4e4749b6fc80c69db8767f69f1c3b214f8d4a455c",
+  "image_path": "assets/maps/fogport-post-catastrophe-city-map.jpg",
+  "sha256": "d2ebd26073e66100dc1116d585e4c93d29eecbe0cd5dcef28696e03b7a542836",
   "width": 1536,
   "height": 1024,
   "approval": {
