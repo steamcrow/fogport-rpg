@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "map_name": "Fogport — Post-Catastrophe City Map",
+  "expected_map_width": 1536,
+  "expected_map_height": 1024,
+  "district": {
+    "name": "Lastlight",
+    "type": "Blackwake Subdistrict",
+    "parent_name": "Blackwake",
+    "is_private": false,
+    "entry": "<p>Lastlight is the great radial junction at the heart of Blackwake, built in rings around the colossal statue of Saint Orra. Tram lines, viaducts, stairs, and covered walks radiate from the plaza like spokes from a wheel; Grand Heliot Station crowds its southern edge beneath soot-darkened glass.</p><p>The district is never truly quiet. Pilgrims leave blue lamps at Orra's feet. Conductors shout destinations. Flower sellers, porters, clerks, pickpockets, and lost visitors circle one another beneath the rails. Addresses are given by <em>ring</em> and <em>spoke</em>, not street. Anyone who admits they are lost will be given six contradictory directions and, usually, a cup of tea.</p><p>At night, Orra's raised lamp is visible above the fog. It has not been officially lit since the Catastrophe. Fogporters nevertheless claim to see it burning whenever someone desperately needs to find the way home.</p>"
+  },
+  "station_name": "Grand Heliot Station",
+  "location": {
+    "name": "Saint Orra's Colossus",
+    "type": "Colossal Sacred Monument",
+    "parent_name": "Lastlight",
+    "is_private": false,
+    "entry": "<p>Saint Orra stands above Lastlight upon a many-sided stone plinth, one hand extended toward the city and the other raising a vast caged lamp. The bronze figure is tall enough to disappear at the shoulders on fog-heavy mornings. Her face is not beautiful in the royal manner: it is broad, exhausted, smoke-blackened, and stubborn.</p><p>The plinth contains a public shrine, the Lamplighters' Guild office, a tea stall, a lost-property counter, and a spiral stair that once climbed into the statue. The Crown sealed that stair after a tourist emerged from Orra's mouth. Pilgrims tie blue thread around the railings and leave keys, tram tickets, sailors' knots, children's shoes, and tiny unlit lamps.</p><p>House Heliot raised the Colossus and built Grand Heliot Station around it, hoping to claim Orra as a royal symbol. The people never allowed it. The oldest inscription on the plinth is repeatedly scrubbed away and repeatedly returns:</p><blockquote><p><strong>ORRA BELONGS TO THOSE STILL OUTSIDE.</strong></p></blockquote>",
+    "gm_post": {
+      "name": "GAMEMASTER SECRETS — Saint Orra's Colossus",
+      "visibility_id": 3,
+      "entry": "<ul><li>The Colossus was incorporated into the Continuance Engine as a directional and sympathetic anchor.</li><li>The sealed stair still exists. Maintenance passages descend from the plinth into Grand Heliot's tram tunnels and continue toward the buried royal complex.</li><li>During the Catastrophe, Orra's lamp burned black for thirteen days. During the event called The Statues Turn Inward, her head bowed toward the Old Palace.</li><li>The lamp sometimes shines for genuinely lost people. Following its light always brings them home, but something elsewhere in Fogport becomes lost instead.</li></ul>"
+    }
+  },
+  "marker": {
+    "latitude": 389,
+    "longitude": 752,
+    "shape_id": 1,
+    "icon": 4,
+    "is_draggable": true,
+    "is_popupless": false,
+    "opacity": 100,
+    "visibility_id": 1,
+    "colour": "#d4af37"
+  },
+  "placement_note": "Center of Saint Orra's figure and plinth in the circular radial plaza north of Grand Heliot Station on the approved 1536×1024 radial map.",
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "source": "Fogport RPG conversation, 2026-07-26"
+  }
+}
