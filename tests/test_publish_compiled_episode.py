@@ -17,7 +17,7 @@ from scripts.publish_compiled_episode import (
     find_match,
     normalize_kanka_html,
     read_back_matches,
-    resolve_location_parent_id,
+    resolve_location_parent_entity_id,
 )
 
 
@@ -90,17 +90,20 @@ class CompiledEpisodeTests(unittest.TestCase):
             )
         )
 
-    def test_location_parent_uses_location_resource_id(self):
+    def test_location_parent_uses_generic_entity_id(self):
         registry = {
             ("locations", "fogport"): [
                 {"id": 41, "entity_id": 941, "name": "Fogport"}
             ]
         }
-        self.assertEqual(resolve_location_parent_id("Fogport", registry), 41)
+        self.assertEqual(
+            resolve_location_parent_entity_id("Fogport", registry),
+            941,
+        )
 
     def test_missing_location_parent_stops(self):
         with self.assertRaises(EpisodeError):
-            resolve_location_parent_id("Fogport", {})
+            resolve_location_parent_entity_id("Fogport", {})
 
 
 if __name__ == "__main__":
