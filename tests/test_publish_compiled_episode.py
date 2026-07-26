@@ -61,6 +61,17 @@ class CompiledEpisodeTests(unittest.TestCase):
         self.assertEqual(normalize_kanka_html(expected), actual)
         self.assertTrue(read_back_matches("entry", expected, actual))
 
+    def test_kanka_html_entities_are_equivalent(self):
+        expected = (
+            "<p>A key made by "
+            "[entity:9618502|G. Bramble & Sons].</p>"
+        )
+        actual = (
+            "<p>A key made by "
+            "[entity:9618502|G. Bramble &amp; Sons].</p>"
+        )
+        self.assertTrue(read_back_matches("entry", expected, actual))
+
     def test_text_whitespace_remains_strict(self):
         self.assertFalse(
             read_back_matches(
