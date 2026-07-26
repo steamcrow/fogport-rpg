@@ -12,7 +12,7 @@
         "key": "before",
         "name": "Before the Catastrophe",
         "abbreviation": "B.Cat.",
-        "start_year": -269,
+        "start_year": null,
         "end_year": 0,
         "visibility": "all"
       },
@@ -326,7 +326,7 @@
   "approval": {
     "status": "approved",
     "approved_by": "Daniel Davis",
-    "approved_at": "2026-07-26T08:00:00-07:00",
-    "document_sha256": "3c9cfd8cce4937713015bdf8772c766aaa07fb8b486a6d748594f174d1642978"
+    "approved_at": "2026-07-26T13:00:00-07:00",
+    "document_sha256": "4852f735a9f416f214fbfcdd10585fbd1aa12f2fa03d4de42feff73b6369a28c"
   }
 }
