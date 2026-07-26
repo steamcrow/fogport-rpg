@@ -166,8 +166,18 @@ def main() -> None:
     blackwake = exact(locations, str(document["district"]["parent_name"]), "Blackwake location")
     if not fogport or not blackwake:
         raise SystemExit("Fogport or Blackwake is missing; refusing to invent a parent.")
-    if int(blackwake.get("location_id") or 0) != int(fogport["id"]):
-        raise SystemExit("Blackwake is not nested directly beneath Fogport.")
+    # Preserve Kanka's established geography. Blackwake may already sit beneath an
+    # intermediate location, so its unique campaign record—not an assumed direct
+    # parent relationship—is authoritative.
+    blackwake_parent_id = int(blackwake.get("location_id") or 0)
+    print(
+        json.dumps(
+            {
+                "using_existing_blackwake_id": int(blackwake["id"]),
+                "existing_blackwake_parent_id": blackwake_parent_id,
+            }
+        )
+    )
 
     district, district_created = upsert_location(
         token, locations, document["district"], int(blackwake["id"])
@@ -283,6 +293,8 @@ def main() -> None:
             "entity_id": int(colossus["entity_id"]),
             "created": colossus_created,
         },
+        "blackwake_id": int(blackwake["id"]),
+        "blackwake_parent_id_preserved": blackwake_parent_id,
         "station_nested_under_lastlight": True,
         "gm_post_id": int(post["id"]),
         "gm_post_created": post_created,
