@@ -30,6 +30,7 @@ ENDPOINTS = {
     "creatures": "creatures",
     "items": "items",
     "events": "events",
+    "journals": "journals",
 }
 
 
@@ -131,6 +132,30 @@ def compose_entry(current: str, change: dict[str, Any]) -> str:
     if addition and marker not in entry:
         entry = f"{entry.rstrip()}\n\n{addition}".strip()
     return entry
+
+
+_BLOCK_TAGS = (
+    r"address|article|aside|blockquote|div|dl|dt|dd|fieldset|figcaption|figure|"
+    r"footer|form|h[1-6]|header|hr|li|main|nav|ol|p|pre|section|table|tbody|"
+    r"td|tfoot|th|thead|tr|ul"
+)
+
+
+def normalize_kanka_html(value: Any) -> str:
+    """Ignore only whitespace Kanka removes between adjacent block tags."""
+    normalized = str(value or "").replace("\r\n", "\n").strip()
+    return re.sub(
+        rf"(</?(?:{_BLOCK_TAGS})\b[^>]*>)\s+(?=</?(?:{_BLOCK_TAGS})\b)",
+        r"\1",
+        normalized,
+        flags=re.IGNORECASE,
+    )
+
+
+def read_back_matches(key: str, expected: Any, actual: Any) -> bool:
+    if key == "entry":
+        return normalize_kanka_html(expected) == normalize_kanka_html(actual)
+    return expected == actual
 
 
 def _resolve_reference(
@@ -250,7 +275,10 @@ def _upsert_post(
         "visibility_id": 3,
     }
     actual = {key: direct.get(key) for key in expected}
-    if actual != expected:
+    if any(
+        not read_back_matches(key, expected[key], actual[key])
+        for key in expected
+    ):
         raise EpisodeError(f"GM post read-back failed for {name!r}.")
     return {"id": post_id, "name": name, "created": created, "visibility_id": 3}
 
@@ -347,12 +375,12 @@ def main() -> None:
             if key in payload
         }
         actual = {key: direct.get(key) for key in expected}
-        if actual != expected:
-            mismatches = {
-                key: {"expected": expected[key], "actual": actual[key]}
-                for key in expected
-                if actual[key] != expected[key]
-            }
+        mismatches = {
+            key: {"expected": expected[key], "actual": actual[key]}
+            for key in expected
+            if not read_back_matches(key, expected[key], actual[key])
+        }
+        if mismatches:
             raise EpisodeError(
                 f"Entity read-back failed for {change['name']!r}: {mismatches!r}."
             )
