@@ -143,6 +143,19 @@ def _resolve_reference(
     return matches[0] if len(matches) == 1 else None
 
 
+def resolve_location_parent_id(
+    parent_name: str,
+    registry: dict[tuple[str, str], list[dict[str, Any]]],
+) -> int:
+    """Return the Kanka location resource id, never its generic entity id."""
+    matches = registry.get(("locations", parent_name.strip().casefold()), [])
+    if len(matches) != 1:
+        raise EpisodeError(
+            f"Location parent {parent_name!r} is missing or ambiguous."
+        )
+    return int(matches[0]["id"])
+
+
 def render_references(
     entry: str,
     references: list[dict[str, Any]],
@@ -295,45 +308,61 @@ def main() -> None:
     for change in changes:
         section = str(change["section"])
         record = records_by_change[str(change["name"])]
-        entry = compose_entry(str(record.get("entry", "")), change)
+        resource_id = int(record["id"])
+
+        # List responses are intentionally compact and may omit entry/type. Read
+        # the resource before composing so an append never erases existing canon.
+        current = client._get(
+            f"campaigns/{CAMPAIGN_ID}/{ENDPOINTS[section]}/{resource_id}"
+        ).get("data", {})
+        entry = compose_entry(str(current.get("entry") or ""), change)
         entry = render_references(entry, change.get("references", []), registry)
         payload = {
             "name": str(change["name"]),
-            "type": str(change.get("type", record.get("type", ""))),
-            "is_private": bool(change.get("is_private", record.get("is_private", False))),
+            "is_private": bool(
+                change.get("is_private", current.get("is_private", False))
+            ),
             "entry": entry,
         }
+        if "type" in change:
+            payload["type"] = str(change.get("type") or "")
+        elif current.get("type") is not None:
+            payload["type"] = str(current.get("type") or "")
+
         parent_name = str(change.get("parent_name", "")).strip()
         if parent_name:
-            parent_matches = registry.get(("locations", parent_name.casefold()), [])
-            if len(parent_matches) != 1:
-                raise EpisodeError(
-                    f"Location parent {parent_name!r} is missing or ambiguous."
-                )
-            payload["parent_id"] = int(parent_matches[0]["entity_id"])
+            # Kanka locations use location_id (the parent's location resource
+            # id), not parent_id and not the parent's generic entity_id.
+            payload["location_id"] = resolve_location_parent_id(
+                parent_name, registry
+            )
 
-        resource_id = int(record["id"])
         writer.update_entity(CAMPAIGN_ID, section, resource_id, payload)
         direct = client._get(
             f"campaigns/{CAMPAIGN_ID}/{ENDPOINTS[section]}/{resource_id}"
         ).get("data", {})
         expected = {
-            "name": payload["name"],
-            "type": payload["type"],
-            "is_private": payload["is_private"],
-            "entry": payload["entry"],
+            key: payload[key]
+            for key in ("name", "type", "is_private", "entry")
+            if key in payload
         }
         actual = {key: direct.get(key) for key in expected}
         if actual != expected:
-            raise EpisodeError(f"Entity read-back failed for {change['name']!r}.")
+            mismatches = {
+                key: {"expected": expected[key], "actual": actual[key]}
+                for key in expected
+                if actual[key] != expected[key]
+            }
+            raise EpisodeError(
+                f"Entity read-back failed for {change['name']!r}: {mismatches!r}."
+            )
         entity_id = int(direct["entity_id"])
         if parent_name:
-            entity_direct = client._get(
-                f"campaigns/{CAMPAIGN_ID}/entities/{entity_id}"
-            ).get("data", {})
-            if int(entity_direct.get("parent_id") or 0) != int(payload["parent_id"]):
+            if int(direct.get("location_id") or 0) != int(payload["location_id"]):
                 raise EpisodeError(
-                    f"Location parent read-back failed for {change['name']!r}."
+                    f"Location parent read-back failed for {change['name']!r}: "
+                    f"expected location_id {payload['location_id']}, "
+                    f"received {direct.get('location_id')!r}."
                 )
         posts = [
             _upsert_post(client, writer, entity_id, post, registry)
