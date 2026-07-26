@@ -2,6 +2,8 @@ name: "Kanka Librarian — Fogport: Publish Gutterkin"
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "2-59/5 * * * *"
   push:
     paths:
       - ".github/workflows/publish-gutterkin.yml"
