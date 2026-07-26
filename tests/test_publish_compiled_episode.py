@@ -19,6 +19,7 @@ from scripts.publish_compiled_episode import (
     read_back_matches,
     read_location_parent_entity_id,
     resolve_location_parent_entity_id,
+    resolve_gallery_image,
 )
 
 
@@ -90,6 +91,42 @@ class CompiledEpisodeTests(unittest.TestCase):
                 "<p><strong>Grand</strong>Key</p>",
             )
         )
+
+    def test_gallery_image_prefers_one_exact_name(self):
+        class FakeClient:
+            def _get(self, path, params=None):
+                self.path = path
+                self.params = params
+                return {
+                    "data": [
+                        {"id": "one", "name": "Gutterkin", "is_folder": False},
+                        {
+                            "id": "two",
+                            "name": "Gutterkin Concepts",
+                            "is_folder": False,
+                        },
+                    ],
+                    "meta": {"last_page": 1},
+                }
+
+        client = FakeClient()
+        image = resolve_gallery_image(client, "gutterkin")
+        self.assertEqual(image["id"], "one")
+        self.assertEqual(client.path, "campaigns/410879/images")
+
+    def test_ambiguous_gallery_image_match_stops(self):
+        class FakeClient:
+            def _get(self, path, params=None):
+                return {
+                    "data": [
+                        {"id": "one", "name": "Gutterkin Pair", "is_folder": False},
+                        {"id": "two", "name": "Gutterkin Group", "is_folder": False},
+                    ],
+                    "meta": {"last_page": 1},
+                }
+
+        with self.assertRaises(EpisodeError):
+            resolve_gallery_image(FakeClient(), "gutterkin")
 
     def test_location_parent_uses_generic_entity_id(self):
         registry = {
