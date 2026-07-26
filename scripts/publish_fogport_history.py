@@ -253,6 +253,64 @@ def main() -> None:
     if str(campaign.get("name", "")).casefold() != CAMPAIGN_NAME.casefold():
         raise HistoryError("Kanka campaign identity lock failed.")
 
+    # Establish the Timeline and its eras before doing any of the slower entity
+    # and post work. This leaves a useful, verified foundation in Kanka even if
+    # a later linked-entry update fails.
+    timeline_data = document["timeline"]
+    timelines = list_all(client, "timelines")
+    timeline = exact_match(timelines, str(timeline_data["name"]), "timeline")
+    timeline_payload = {
+        "name": str(timeline_data["name"]),
+        "entry": str(timeline_data.get("entry", "")),
+        "type": str(timeline_data.get("type", "")),
+        "is_private": bool(timeline_data.get("is_private", False)),
+    }
+    if timeline:
+        timeline_id = int(timeline["id"])
+        writer._send(
+            "PATCH", f"campaigns/{CAMPAIGN_ID}/timelines/{timeline_id}", timeline_payload
+        )
+        timeline_created = False
+    else:
+        timeline = writer._send(
+            "POST", f"campaigns/{CAMPAIGN_ID}/timelines", timeline_payload
+        )
+        timeline_id = int(timeline["id"])
+        timeline_created = True
+    timeline_direct = client._get(
+        f"campaigns/{CAMPAIGN_ID}/timelines/{timeline_id}"
+    ).get("data", {})
+    if str(timeline_direct.get("name")) != timeline_payload["name"]:
+        raise HistoryError("Timeline read-back failed.")
+
+    eras: dict[str, dict[str, Any]] = {}
+    for era in timeline_data["eras"]:
+        eras[str(era["key"])] = upsert_era(client, writer, timeline_id, era)
+    if set(eras) != {"before", "after"}:
+        raise HistoryError("Fogport history requires verified before and after eras.")
+
+    checkpoint = {
+        "published": False,
+        "stage": "timeline_and_eras_verified",
+        "campaign": CAMPAIGN_NAME,
+        "campaign_id": CAMPAIGN_ID,
+        "timeline_id": timeline_id,
+        "timeline_entity_id": int(timeline_direct["entity_id"]),
+        "timeline_created": timeline_created,
+        "eras": {
+            key: {
+                "id": int(value["id"]),
+                "name": str(value["name"]),
+                "start_year": value.get("start_year"),
+                "end_year": value.get("end_year"),
+            }
+            for key, value in eras.items()
+        },
+    }
+    args.receipt.parent.mkdir(parents=True, exist_ok=True)
+    args.receipt.write_text(json.dumps(checkpoint, indent=2), encoding="utf-8")
+    print(json.dumps(checkpoint, indent=2))
+
     needed = set(ENDPOINTS)
     sections = {section: list_all(client, endpoint) for section, endpoint in ENDPOINTS.items()}
     keyed: dict[str, dict[str, Any]] = {}
@@ -313,37 +371,6 @@ def main() -> None:
                 upsert_post(client, writer, int(updated["entity_id"]), post)
             )
 
-    timeline_data = document["timeline"]
-    timelines = list_all(client, "timelines")
-    timeline = exact_match(timelines, str(timeline_data["name"]), "timeline")
-    timeline_payload = {
-        "name": str(timeline_data["name"]),
-        "entry": str(timeline_data.get("entry", "")),
-        "type": str(timeline_data.get("type", "")),
-        "is_private": bool(timeline_data.get("is_private", False)),
-    }
-    if timeline:
-        timeline_id = int(timeline["id"])
-        writer._send(
-            "PATCH", f"campaigns/{CAMPAIGN_ID}/timelines/{timeline_id}", timeline_payload
-        )
-        timeline_created = False
-    else:
-        timeline = writer._send(
-            "POST", f"campaigns/{CAMPAIGN_ID}/timelines", timeline_payload
-        )
-        timeline_id = int(timeline["id"])
-        timeline_created = True
-    timeline_direct = client._get(
-        f"campaigns/{CAMPAIGN_ID}/timelines/{timeline_id}"
-    ).get("data", {})
-    if str(timeline_direct.get("name")) != timeline_payload["name"]:
-        raise HistoryError("Timeline read-back failed.")
-
-    eras: dict[str, dict[str, Any]] = {}
-    for era in timeline_data["eras"]:
-        eras[str(era["key"])] = upsert_era(client, writer, timeline_id, era)
-
     elements: list[dict[str, Any]] = []
     for element in document["elements"]:
         elements.append(
@@ -367,13 +394,13 @@ def main() -> None:
         "entities_created": created_entities,
         "entity_count": len(document["entities"]),
         "gm_posts": posts,
+        "eras": checkpoint["eras"],
         "timeline_elements": elements,
         "overview_url": (
             f"https://app.kanka.io/w/{CAMPAIGN_ID}/entities/"
             f"{int(timeline_direct['entity_id'])}"
         ),
     }
-    args.receipt.parent.mkdir(parents=True, exist_ok=True)
     args.receipt.write_text(json.dumps(receipt, indent=2), encoding="utf-8")
     print(json.dumps(receipt, indent=2))
 
