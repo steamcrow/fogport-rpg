@@ -13,7 +13,7 @@ writer_module.KankaWriter = object
 sys.modules.setdefault("kanka_librarian.client", client_module)
 sys.modules.setdefault("kanka_librarian.writer", writer_module)
 
-from publish_fogport_history import (
+from scripts.publish_fogport_history import (
     HistoryError,
     document_digest,
     exact_match,
