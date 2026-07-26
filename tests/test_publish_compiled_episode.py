@@ -15,6 +15,8 @@ from scripts.publish_compiled_episode import (
     EpisodeError,
     compose_entry,
     find_match,
+    normalize_kanka_html,
+    read_back_matches,
     resolve_location_parent_id,
 )
 
@@ -52,6 +54,30 @@ class CompiledEpisodeTests(unittest.TestCase):
         second = compose_entry(first, change)
         self.assertIn("Byl Hasbaine", second)
         self.assertEqual(second.count("<h2>Episode: One Door Remaining</h2>"), 1)
+
+    def test_kanka_block_tag_whitespace_is_equivalent(self):
+        expected = "<p>First.</p>\n\n<p>Second.</p>"
+        actual = "<p>First.</p><p>Second.</p>"
+        self.assertEqual(normalize_kanka_html(expected), actual)
+        self.assertTrue(read_back_matches("entry", expected, actual))
+
+    def test_text_whitespace_remains_strict(self):
+        self.assertFalse(
+            read_back_matches(
+                "entry",
+                "<p>Grand Key</p>",
+                "<p>Grand  Key</p>",
+            )
+        )
+
+    def test_inline_tag_spacing_remains_strict(self):
+        self.assertFalse(
+            read_back_matches(
+                "entry",
+                "<p><strong>Grand</strong> Key</p>",
+                "<p><strong>Grand</strong>Key</p>",
+            )
+        )
 
     def test_location_parent_uses_location_resource_id(self):
         registry = {
