@@ -15,6 +15,7 @@ from scripts.publish_compiled_episode import (
     EpisodeError,
     compose_entry,
     find_match,
+    resolve_location_parent_id,
 )
 
 
@@ -51,6 +52,18 @@ class CompiledEpisodeTests(unittest.TestCase):
         second = compose_entry(first, change)
         self.assertIn("Byl Hasbaine", second)
         self.assertEqual(second.count("<h2>Episode: One Door Remaining</h2>"), 1)
+
+    def test_location_parent_uses_location_resource_id(self):
+        registry = {
+            ("locations", "fogport"): [
+                {"id": 41, "entity_id": 941, "name": "Fogport"}
+            ]
+        }
+        self.assertEqual(resolve_location_parent_id("Fogport", registry), 41)
+
+    def test_missing_location_parent_stops(self):
+        with self.assertRaises(EpisodeError):
+            resolve_location_parent_id("Fogport", {})
 
 
 if __name__ == "__main__":
