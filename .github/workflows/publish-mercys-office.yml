@@ -45,13 +45,16 @@ jobs:
 
           campaign_id = 410879
           expected_campaign_name = "Fogport"
-          approved_digest = "82b2ee1979d13e69e7a8f608d36cd6eb0b63cac72051c47de6afb7400b4975a2"
+          approved_digest = "8e0be0a17e913b7907f7549f68db71f256a2eb2da09696b02ca5e144285f9cfe"
 
           document = json.loads(
               Path("kanka_librarian/approved/mercys-office.json").read_text(encoding="utf-8")
           )
           validate_approved_proposal(document)
-          assert document["approval"]["proposal_sha256"] == approved_digest
+          if document["approval"]["proposal_sha256"] != approved_digest:
+              raise SystemExit(
+                  "Mercy’s Office approval checksum differs from this workflow’s locked version."
+              )
           assert len(document["proposals"]) == 1
           change = document["proposals"][0]
           assert change["name"] == "Mercy’s Office"
