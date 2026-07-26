@@ -1,0 +1,332 @@
+{
+  "schema_version": 1,
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "timeline": {
+    "name": "A Brief History of Fogport",
+    "type": "Civic History",
+    "is_private": false,
+    "entry": "<p>Fogport dates its recent history from the wound that divided the city into <strong>Before</strong> and <strong>After</strong>. Earlier dates are approximate; the catastrophe destroyed three royal archives and caused a fourth to insist that it had not yet been written.</p>",
+    "eras": [
+      {
+        "key": "before",
+        "name": "Before the Catastrophe",
+        "abbreviation": "B.Cat.",
+        "start_year": -269,
+        "end_year": 0,
+        "visibility": "all"
+      },
+      {
+        "key": "after",
+        "name": "After the Catastrophe",
+        "abbreviation": "A.Cat.",
+        "start_year": 0,
+        "end_year": null,
+        "visibility": "all"
+      }
+    ]
+  },
+  "entities": [
+    {
+      "key": "house-heliot",
+      "section": "families",
+      "name": "House Heliot",
+      "type": "Former Royal Family",
+      "is_private": false,
+      "entry": "<p>House Heliot ruled Fogport from the raising of its first sea wall until the Catastrophe. The dynasty favored magnificent public works, heroic statues, very long building names, and the placement of royal monograms upon objects which plainly did not require them.</p><p>The Old Palace and nearly the entire royal household vanished during the Catastrophe. The Crown has never been legally abolished. It is officially <em>in abeyance for the duration of the emergency</em>, a phrase now forty-three years old.</p>",
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — House Heliot",
+          "entry": "<ul><li>Queen Adelaine IV authorized the Continuance Engine after being convinced that Fogport faced eventual destruction.</li><li>The royal household was inside the Old Palace when the buried civic complex collapsed.</li><li>No complete list of survivors exists. A legitimate claimant may still live, but none has yet been established.</li></ul>",
+          "visibility_id": 3
+        }
+      ]
+    },
+    {
+      "key": "silas-crake",
+      "section": "characters",
+      "name": "Lord Protector Silas Crake",
+      "type": "Custodian of the Empty Throne",
+      "is_private": false,
+      "entry": "<p>Silas Crake has governed Fogport under emergency authority for forty-two years. Each year, at precisely 11:17 on the anniversary of the Catastrophe, he renews the Continuance Emergency for one further year.</p><p>He does not wear a crown. He does not sit upon the Empty Throne. He does not permit anyone to call him king. His narrow, black-clad portrait nevertheless hangs in schools, tram stations, ministry halls, police offices, and every shop licensed to sell more than six eels at once.</p><p>Crake speaks softly, signs everything in green ink, and ends every proclamation with the same promise: <em>Until the City Is Safe.</em> Fogporters commonly say the emergency will end next Thursday. No one specifies which Thursday.</p>",
+      "references": [
+        {
+          "phrase": "Fogport",
+          "name": "Fogport",
+          "section": "locations"
+        },
+        {
+          "phrase": "Catastrophe",
+          "key": "catastrophe"
+        }
+      ],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — Silas Crake",
+          "entry": "<ul><li>Crake was Deputy Comptroller of Royal Works when the Catastrophe occurred. He seized the ration depots, government presses, tram guards, and surviving ministries before anyone else understood that House Heliot was gone.</li><li>He did not design the Continuance Engine, but he helped conceal its purpose and knows that the wards of Fogport paid part of its price.</li><li>He fears a legitimate Heliot claimant more than a popular uprising: a claimant could end his emergency authority with a signature.</li><li>Crake knows the machinery beneath the Old Palace is not entirely dead.</li></ul>",
+          "visibility_id": 3
+        }
+      ]
+    },
+    {
+      "key": "charter",
+      "section": "events",
+      "name": "The First Sea Wall and Royal Charter",
+      "type": "Founding",
+      "date": "269 B.Cat.",
+      "is_private": false,
+      "entry": "<p>House Heliot raised the first stone sea wall around the deep harbor and declared the crowded settlement behind it the Royal City of Fogport. The harbor promptly flooded through an unfinished ceremonial gate, but the charter had already been printed and was therefore considered binding.</p>",
+      "references": [
+        {
+          "phrase": "House Heliot",
+          "key": "house-heliot"
+        },
+        {
+          "phrase": "Fogport",
+          "name": "Fogport",
+          "section": "locations"
+        }
+      ]
+    },
+    {
+      "key": "blackwake-quarter",
+      "section": "events",
+      "name": "The Blackwake Civic Quarter Opens",
+      "type": "Civic Works",
+      "date": "144 B.Cat.",
+      "is_private": false,
+      "entry": "<p>The Crown opened Fogport's first purpose-built ministry quarter at Blackwake: courts, records halls, pumping houses, public baths, and seventeen offices responsible for regulating one another. Citizens were promised that every civic problem would now have a proper window at which to queue.</p>",
+      "references": [
+        {
+          "phrase": "Fogport",
+          "name": "Fogport",
+          "section": "locations"
+        },
+        {
+          "phrase": "Blackwake",
+          "name": "Blackwake",
+          "section": "locations"
+        }
+      ]
+    },
+    {
+      "key": "heliot-station",
+      "section": "events",
+      "name": "Grand Heliot Station Opens",
+      "type": "Civic Works",
+      "date": "66 B.Cat.",
+      "is_private": false,
+      "entry": "<p>Grand Heliot Station opened beneath a glass-and-iron roof, binding Fogport's districts to its docks and to the cities beyond the Sayir Sea. The first royal tram arrived eleven minutes late, carrying two conductors, a brass band, and one passenger whom nobody remembered inviting.</p>",
+      "references": [
+        {
+          "phrase": "Grand Heliot Station",
+          "name": "Grand Heliot Station",
+          "section": "locations"
+        },
+        {
+          "phrase": "Fogport",
+          "name": "Fogport",
+          "section": "locations"
+        },
+        {
+          "phrase": "Sayir Sea",
+          "name": "Sayir Sea",
+          "section": "locations"
+        }
+      ]
+    },
+    {
+      "key": "continuance-announced",
+      "section": "events",
+      "name": "The Great Continuance Works Announced",
+      "type": "Royal Project",
+      "date": "19 B.Cat.",
+      "is_private": false,
+      "entry": "<p>Queen Adelaine IV announced the Great Continuance Works, a generation-long program of reinforced bridges, modern pumping stations, expanded tramways, new monuments, and improvements beneath the Old Palace. Its slogan appeared on banners, bonds, school copybooks, and commemorative spoons:</p><blockquote><p><strong>FOGPORT SHALL ENDURE.</strong></p></blockquote>",
+      "references": [
+        {
+          "phrase": "Fogport",
+          "name": "Fogport",
+          "section": "locations"
+        }
+      ],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — The Great Continuance Works",
+          "entry": "<p>The visible public works secretly connected tram rails, bridges, waterways, monuments, ministries, and the Old Palace into one city-sized magical Operation: the Continuance Engine.</p>",
+          "visibility_id": 3
+        }
+      ]
+    },
+    {
+      "key": "catastrophe",
+      "section": "events",
+      "name": "The Catastrophe",
+      "type": "Civic Disaster",
+      "date": "0 A.Cat. — 43 years ago",
+      "is_private": false,
+      "entry": "<p>At 11:17 in the morning, every bell in Fogport rang once. No hand touched a rope.</p><p>Tram rails flashed white. The harbor climbed the sea walls. The Old Palace sank with most of House Heliot, and whole districts folded, slid, or simply ceased to continue. Streets ended in open air. Houses stood sliced through, their rooms exposed to the rain. Thousands vanished without leaving bodies.</p><p>The children registered in the royal orphanages survived. They came out changed: black-eyed, clawed, terribly strong—and no longer capable of growing older. Fogport would come to call them the Gutterkin.</p><p>The official inquiry blamed an unforeseeable failure within the Great Continuance Works. Its findings filled twelve locked volumes. Forty-three years later, the repairs continue, the emergency remains in force, and many public clocks omit the minute 11:17 entirely.</p><p>Fogport endured.</p>",
+      "references": [
+        {
+          "phrase": "Fogport",
+          "name": "Fogport",
+          "section": "locations"
+        },
+        {
+          "phrase": "House Heliot",
+          "key": "house-heliot"
+        },
+        {
+          "phrase": "Gutterkin",
+          "name": "Gutterkin",
+          "section": "creatures"
+        },
+        {
+          "phrase": "Great Continuance Works",
+          "key": "continuance-announced"
+        }
+      ],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — The Catastrophe",
+          "entry": "<p>Beneath the Old Palace, royal magicians, civic engineers, and industrial contractors built the Continuance Engine. Fogport's tram rails, bridges, monuments, waterways, and public buildings formed one city-sized magical Operation with a single command: <strong>Fogport shall endure.</strong></p><p>The Operation succeeded. Magic could not preserve the city without taking continuance from somewhere else, so the Engine stole futures from Fogport's people, buildings, streets, and districts. Some places collapsed. Others were displaced. Thousands had every unwritten tomorrow taken from them at once.</p><p>The royal orphans were legally registered as wards of Fogport. In the merciless grammar of the Operation, they belonged to the city more completely than anyone else. Their futures were taken first. They cannot age. Their missing adulthood remains compressed inside their small bodies, giving them monstrous strength; the blackening at their hands and feet marks the edge of that theft.</p><p>The Engine is ruined, buried, and not entirely inactive. Its vast civic complex beneath the former palace is Fogport's great dungeon and the deepest surviving wound of the Catastrophe.</p>",
+          "visibility_id": 3
+        }
+      ]
+    },
+    {
+      "key": "protectorate",
+      "section": "events",
+      "name": "The Emergency Protectorate Is Declared",
+      "type": "Change of Government",
+      "date": "1 A.Cat.",
+      "is_private": false,
+      "entry": "<p>With the Crown missing, ministries quarreling, and portions of Fogport still burning underwater, Deputy Comptroller Silas Crake assumed emergency control of the ration depots, tram guards, and government presses. Parliament granted him the title Lord Protector for ninety days.</p><p>The ninety days have so far lasted forty-two years.</p>",
+      "references": [
+        {
+          "phrase": "Fogport",
+          "name": "Fogport",
+          "section": "locations"
+        },
+        {
+          "phrase": "Silas Crake",
+          "key": "silas-crake"
+        }
+      ]
+    },
+    {
+      "key": "gutterkin",
+      "section": "creatures",
+      "name": "Gutterkin",
+      "type": "Ageless feral children",
+      "is_private": false,
+      "entry": "<p>Every city has abandoned children. Fogport has children who abandoned civilization.</p><p>The Gutterkin look, at first, like ordinary children: small bodies, young faces, and tangled, wind-wild hair. A closer look reveals their shark-black eyes, sharp teeth, and clawed hands and feet. Their skin darkens along the fingers and toes until the tips are pure black. They sometimes steal clothing, but what they wear is usually ragged, mismatched, and scavenged from people who no longer need it.</p><p>They may look like children, but they are far stronger than grown adults. Even the strongest sailor would be wise not to grapple with one. Monsters and men alike fear them—and both have reason.</p><p>Gutterkin live in rooftops, sewers, abandoned factories, collapsed districts, and other spaces the city believes empty. They know Fogport's forgotten ways better than almost anyone. They can appear without a sound and vanish just as quickly.</p><p>Not all Gutterkin are alike. Some are playful, mischievous, or merely hungry. Many steal. Some beg. A few will guide travellers for food, treasure, or a favor. Others hunt in packs, kill without hesitation, and eat human flesh.</p><p>They were ordinary children once: wards of Fogport's royal orphanages who survived the Catastrophe changed. Forty-three years later, they still have not grown a day older. Certain tunnels beneath Nine Spoons now belong to them so completely that even the Feratu will not enter.</p><p>Never underestimate the children of Fogport. Especially when there are too many of them. Especially when they are smiling.</p>",
+      "references": [
+        {
+          "phrase": "Fogport",
+          "name": "Fogport",
+          "section": "locations"
+        },
+        {
+          "phrase": "Catastrophe",
+          "key": "catastrophe"
+        },
+        {
+          "phrase": "Nine Spoons",
+          "name": "Nine Spoons",
+          "section": "locations"
+        },
+        {
+          "phrase": "Feratu",
+          "name": "Feratu",
+          "section": "creatures"
+        }
+      ],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — Gutterkin",
+          "entry": "<ul><li>The Gutterkin were ordinary children registered as wards of Fogport when the Continuance Engine took their futures.</li><li>They are truly ageless. Their missing adulthood is compressed inside their small bodies and expresses itself as monstrous strength.</li><li>The blackening of their fingers and toes is the visible boundary of the theft.</li><li>Different Gutterkin bands may be playful, transactional, protective, predatory, or cannibalistic. They do not share one temperament or allegiance.</li><li>Nettle is Gutterkin, but her history, loyalties, and relationship to any particular band remain unresolved.</li></ul>",
+          "visibility_id": 3
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "name": "The First Sea Wall and Royal Charter",
+      "entity_key": "charter",
+      "era_key": "before",
+      "date": "269 B.Cat.",
+      "entry": "Fogport receives its royal charter.",
+      "colour": "blue",
+      "position": 1,
+      "visibility_id": 1
+    },
+    {
+      "name": "The Blackwake Civic Quarter Opens",
+      "entity_key": "blackwake-quarter",
+      "era_key": "before",
+      "date": "144 B.Cat.",
+      "entry": "The Crown gives bureaucracy a permanent home.",
+      "colour": "blue",
+      "position": 2,
+      "visibility_id": 1
+    },
+    {
+      "name": "Grand Heliot Station Opens",
+      "entity_key": "heliot-station",
+      "era_key": "before",
+      "date": "66 B.Cat.",
+      "entry": "Rail and tram lines bind the city to its harbor and neighbors.",
+      "colour": "green",
+      "position": 3,
+      "visibility_id": 1
+    },
+    {
+      "name": "The Great Continuance Works Announced",
+      "entity_key": "continuance-announced",
+      "era_key": "before",
+      "date": "19 B.Cat.",
+      "entry": "Queen Adelaine IV promises that Fogport shall endure.",
+      "colour": "yellow",
+      "position": 4,
+      "visibility_id": 1
+    },
+    {
+      "name": "The Catastrophe",
+      "entity_key": "catastrophe",
+      "era_key": "after",
+      "date": "0 A.Cat. — 43 years ago",
+      "entry": "At 11:17, every bell in Fogport rings once.",
+      "colour": "red",
+      "position": 1,
+      "visibility_id": 1
+    },
+    {
+      "name": "The Emergency Protectorate Is Declared",
+      "entity_key": "protectorate",
+      "era_key": "after",
+      "date": "1 A.Cat.",
+      "entry": "Silas Crake receives emergency power for ninety days.",
+      "colour": "purple",
+      "position": 2,
+      "visibility_id": 1
+    },
+    {
+      "name": "The Forty-Third Continuance",
+      "entity_key": "silas-crake",
+      "era_key": "after",
+      "date": "43 A.Cat. — Present Day",
+      "entry": "The Lord Protector renews the emergency for one further year.",
+      "colour": "purple",
+      "position": 3,
+      "visibility_id": 1
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-26T08:00:00-07:00",
+    "document_sha256": "3c9cfd8cce4937713015bdf8772c766aaa07fb8b486a6d748594f174d1642978"
+  }
+}
