@@ -3,8 +3,6 @@
   "campaign_id": 410879,
   "campaign_name": "Fogport",
   "map_name": "Fogport — Post-Catastrophe City Map",
-  "expected_map_width": 1536,
-  "expected_map_height": 1024,
   "district": {
     "name": "Lastlight",
     "type": "Blackwake Subdistrict",
@@ -36,10 +34,16 @@
     "visibility_id": 1,
     "colour": "#d4af37"
   },
-  "placement_note": "Center of Saint Orra's figure and plinth in the circular radial plaza north of Grand Heliot Station on the approved 1536×1024 radial map.",
+  "placement_note": "Center of Saint Orra's figure and plinth on the original 1536×1024 radial map. The publisher scales this point to the live upscaled Kanka image.",
   "approval": {
     "status": "approved",
     "approved_by": "Daniel Davis",
     "source": "Fogport RPG conversation, 2026-07-26"
+  },
+  "coordinate_space": {
+    "source_width": 1536,
+    "source_height": 1024,
+    "source_image": "Fogport’s Radial Rails in Teal Fog.png",
+    "scaling": "Scale proportionally to Kanka's live processed map dimensions."
   }
 }
