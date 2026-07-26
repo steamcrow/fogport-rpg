@@ -104,14 +104,20 @@ jobs:
               token=os.environ["KANKA_API_TOKEN"],
               expected_campaign_id=campaign_id,
           )
+          def read_parent_id(entity_id):
+              response = client._get(f"campaigns/{campaign_id}/entities/{entity_id}")
+              entity = response.get("data", {})
+              return int(entity.get("parent_id") or 0)
+
           already_published = False
           if matches:
               location_id = int(matches[0]["id"])
+              entity_id = int(matches[0]["entity_id"])
               direct = client._get(f"campaigns/{campaign_id}/locations/{location_id}")
               current = direct.get("data", {})
               already_published = (
                   str(current.get("name", "")) == change["name"]
-                  and current.get("parent_id") == parent_entity_id
+                  and read_parent_id(entity_id) == parent_entity_id
                   and str(current.get("entry", "")) == entry
                   and bool(current.get("is_private")) == bool(change["is_private"])
               )
@@ -119,23 +125,27 @@ jobs:
           else:
               result = writer.create_entity(campaign_id, "locations", payload)
               location_id = int(result["id"])
+              entity_id = int(result["entity_id"])
               item = result
 
           if not already_published:
               for attempt in range(3):
                   item = writer.update_entity(campaign_id, "locations", location_id, payload)
-                  if item.get("parent_id") == parent_entity_id:
+                  if read_parent_id(entity_id) == parent_entity_id:
                       break
                   time.sleep(3)
                   direct = client._get(f"campaigns/{campaign_id}/locations/{location_id}")
                   item = direct.get("data", {})
-                  if item.get("parent_id") == parent_entity_id:
+                  if read_parent_id(entity_id) == parent_entity_id:
                       break
 
           if not isinstance(item, dict):
               raise SystemExit("Kanka did not return the Mercy’s Office record.")
-          if item.get("parent_id") != parent_entity_id:
-              raise SystemExit(f"Mercy’s Office has unexpected parent_id {item.get('parent_id')!r}.")
+          actual_parent_id = read_parent_id(entity_id)
+          if actual_parent_id != parent_entity_id:
+              raise SystemExit(
+                  f"Mercy’s Office has unexpected parent_id {actual_parent_id or None!r}."
+              )
           if str(item.get("name", "")) != change["name"]:
               raise SystemExit("Published name does not match the approved title.")
 
@@ -149,7 +159,6 @@ jobs:
               if phrase not in published_entry:
                   raise SystemExit(f"Published entry is missing {phrase}.")
 
-          entity_id = int(item["entity_id"])
           overview_url = f"https://app.kanka.io/w/{campaign_id}/entities/{entity_id}"
           receipt = {
               "published": True,
