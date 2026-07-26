@@ -3,9 +3,11 @@ name: "Kanka Librarian — Fogport World Map"
 on:
   workflow_dispatch:
   push:
+    branches:
+      - main
     paths:
       - ".github/workflows/publish-fogport-world-map.yml"
-      - "assets/maps/fogport-post-catastrophe-city-map.png.b64.part-*"
+      - "assets/maps/fogport-post-catastrophe-city-map.jpg.b64.part-*"
       - "kanka_librarian/approved_maps/fogport-post-catastrophe-map.json"
       - "scripts/publish_fogport_world_map.py"
 
@@ -28,13 +30,14 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: python -m pip install --requirement requirements.txt
-      - name: Restore approved full-resolution map bytes
+      - name: Restore approved Kanka-compatible map bytes
         run: |
-          cat assets/maps/fogport-post-catastrophe-city-map.png.b64.part-* \
+          cat assets/maps/fogport-post-catastrophe-city-map.jpg.b64.part-* \
             | base64 --decode \
-            > assets/maps/fogport-post-catastrophe-city-map.png
-          echo "90d402863d94580382c363b4e4749b6fc80c69db8767f69f1c3b214f8d4a455c  assets/maps/fogport-post-catastrophe-city-map.png" \
+            > assets/maps/fogport-post-catastrophe-city-map.jpg
+          echo "d2ebd26073e66100dc1116d585e4c93d29eecbe0cd5dcef28696e03b7a542836  assets/maps/fogport-post-catastrophe-city-map.jpg" \
             | sha256sum --check
+          test "$(stat -c %s assets/maps/fogport-post-catastrophe-city-map.jpg)" -le 3145728
       - name: Publish and verify Fogport world map
         env:
           KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
