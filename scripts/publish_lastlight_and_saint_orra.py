@@ -210,18 +210,30 @@ def main() -> None:
     ).get("data", {})
     if not map_direct.get("image_full"):
         raise SystemExit("Fogport map has no processed image.")
-    if (
-        int(map_direct.get("width") or 0) != int(document["expected_map_width"])
-        or int(map_direct.get("height") or 0) != int(document["expected_map_height"])
-    ):
-        raise SystemExit("Fogport map dimensions do not match the approved radial map.")
+    live_width = int(map_direct.get("width") or 0)
+    live_height = int(map_direct.get("height") or 0)
+    if live_width <= 0 or live_height <= 0:
+        raise SystemExit("Kanka did not report usable processed map dimensions.")
+
+    coordinate_space = document["coordinate_space"]
+    source_width = int(coordinate_space["source_width"])
+    source_height = int(coordinate_space["source_height"])
+    source_ratio = source_width / source_height
+    live_ratio = live_width / live_height
+    if abs(source_ratio - live_ratio) / source_ratio > 0.005:
+        raise SystemExit(
+            "Live Kanka map is cropped or has a different aspect ratio; "
+            "refusing to scale the approved marker blindly."
+        )
 
     approved = document["marker"]
+    scaled_latitude = round(float(approved["latitude"]) * live_height / source_height, 3)
+    scaled_longitude = round(float(approved["longitude"]) * live_width / source_width, 3)
     marker_payload = {
         "entity_id": int(colossus["entity_id"]),
         "map_id": map_id,
-        "latitude": float(approved["latitude"]),
-        "longitude": float(approved["longitude"]),
+        "latitude": scaled_latitude,
+        "longitude": scaled_longitude,
         "shape_id": int(approved["shape_id"]),
         "icon": int(approved["icon"]),
         "is_draggable": bool(approved.get("is_draggable", True)),
@@ -275,6 +287,10 @@ def main() -> None:
         "gm_post_id": int(post["id"]),
         "gm_post_created": post_created,
         "map_id": map_id,
+        "map_width": live_width,
+        "map_height": live_height,
+        "source_latitude": float(approved["latitude"]),
+        "source_longitude": float(approved["longitude"]),
         "marker_id": marker_id,
         "marker_created": marker_created,
         "latitude": marker_payload["latitude"],
