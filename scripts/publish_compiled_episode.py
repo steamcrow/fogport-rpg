@@ -98,6 +98,63 @@ def _list_section(client: KankaClient, section: str) -> list[dict[str, Any]]:
         page += 1
 
 
+def _referenced_sections(changes: list[dict[str, Any]]) -> set[str]:
+    """Return entity sections needed to resolve entry and GM-post links."""
+    sections: set[str] = set()
+    for change in changes:
+        for reference in change.get("references", []):
+            section = str(reference.get("section", ""))
+            if section in ENDPOINTS:
+                sections.add(section)
+        for post in change.get("posts", []):
+            for reference in post.get("references", []):
+                section = str(reference.get("section", ""))
+                if section in ENDPOINTS:
+                    sections.add(section)
+    return sections
+
+
+def resolve_gallery_image(
+    client: KankaClient,
+    match_text: str,
+) -> dict[str, Any]:
+    """Resolve one existing, non-folder Kanka gallery image by name."""
+    needle = match_text.strip().casefold()
+    if not needle:
+        raise EpisodeError("Gallery image match text cannot be blank.")
+    page = 1
+    images: list[dict[str, Any]] = []
+    while True:
+        response = client._get(
+            f"campaigns/{CAMPAIGN_ID}/images",
+            params={"page": page, "limit": 100},
+        )
+        images.extend(
+            item for item in response.get("data", [])
+            if not bool(item.get("is_folder"))
+        )
+        meta = response.get("meta", {})
+        if page >= int(meta.get("last_page", page)):
+            break
+        page += 1
+
+    exact = [
+        item for item in images
+        if str(item.get("name", "")).strip().casefold() == needle
+    ]
+    candidates = exact or [
+        item for item in images
+        if needle in str(item.get("name", "")).strip().casefold()
+    ]
+    if len(candidates) != 1:
+        names = ", ".join(str(item.get("name")) for item in candidates[:10])
+        raise EpisodeError(
+            f"Expected exactly one gallery image matching {match_text!r}; "
+            f"found {len(candidates)}: {names or 'none'}."
+        )
+    return candidates[0]
+
+
 def _approved_names(change: dict[str, Any]) -> set[str]:
     values = [change["name"], *change.get("match_names", [])]
     return {str(value).strip().casefold() for value in values if str(value).strip()}
@@ -317,7 +374,10 @@ def main() -> None:
     if str(campaign.get("name", "")).casefold() != CAMPAIGN_NAME.casefold():
         raise EpisodeError("Kanka campaign identity lock failed.")
 
-    needed_sections = sorted({str(change["section"]) for change in changes})
+    needed_sections = sorted(
+        {str(change["section"]) for change in changes}
+        | _referenced_sections(changes)
+    )
     sections = {section: _list_section(client, section) for section in needed_sections}
     records_by_change: dict[str, dict[str, Any]] = {}
     created_names: set[str] = set()
@@ -373,6 +433,12 @@ def main() -> None:
         elif current.get("type") is not None:
             payload["type"] = str(current.get("type") or "")
 
+        gallery_image = None
+        gallery_match = str(change.get("gallery_image_match", "")).strip()
+        if gallery_match:
+            gallery_image = resolve_gallery_image(client, gallery_match)
+            payload["entity_image_uuid"] = str(gallery_image["id"])
+
         parent_name = str(change.get("parent_name", "")).strip()
         if parent_name:
             # Kanka's location endpoint nests locations with parent_id, whose
@@ -400,6 +466,10 @@ def main() -> None:
             raise EpisodeError(
                 f"Entity read-back failed for {change['name']!r}: {mismatches!r}."
             )
+        if gallery_image and not bool(direct.get("has_custom_image")):
+            raise EpisodeError(
+                f"Gallery image did not attach to {change['name']!r}."
+            )
         entity_id = int(direct["entity_id"])
         if parent_name:
             actual_parent_id = read_location_parent_entity_id(client, entity_id)
@@ -424,6 +494,14 @@ def main() -> None:
                     f"https://app.kanka.io/w/{CAMPAIGN_ID}/entities/{entity_id}"
                 ),
                 "private_posts_verified": posts,
+                "gallery_image": (
+                    {
+                        "id": str(gallery_image["id"]),
+                        "name": str(gallery_image.get("name", "")),
+                    }
+                    if gallery_image
+                    else None
+                ),
             }
         )
 
