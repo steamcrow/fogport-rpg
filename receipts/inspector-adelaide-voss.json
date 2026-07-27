@@ -1,0 +1,21 @@
+{
+  "published": true,
+  "campaign": "Fogport",
+  "campaign_id": 410879,
+  "character": "Inspector Adelaide Voss",
+  "character_id": 2490593,
+  "entity_id": 9624587,
+  "created": true,
+  "entry_verified": true,
+  "links_verified": true,
+  "organization": "The Civic Vigilance",
+  "organization_id": 472190,
+  "membership_id": 990432,
+  "membership_verified": true,
+  "gm_post_id": 1413440,
+  "gm_post_visibility_id": 3,
+  "source_sha256": "a2a975c60a28247db8e575f4d36180363cd84e22f0d9207a97760d8ac8d46a2c",
+  "image_uuid": "019fa137-ab3d-71ce-8dcf-0c89cffc411a",
+  "image_verified": true,
+  "overview_url": "https://app.kanka.io/w/410879/entities/9624587"
+}
