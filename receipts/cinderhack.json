@@ -1,0 +1,23 @@
+{
+  "published": true,
+  "campaign": "Fogport",
+  "campaign_id": 410879,
+  "item": "Cinderhack",
+  "item_id": 621685,
+  "entity_id": 9622383,
+  "created": true,
+  "type": "Vehicle",
+  "is_private": false,
+  "entry_verified": true,
+  "link_status": {
+    "Fogport": true,
+    "the Shambles": true,
+    "Catastrophe": true,
+    "Thrallo": false,
+    "Horsemen": false
+  },
+  "source_sha256": "0d76846fabc12331ed6b109efc7b9ea673cf268f040bddc3b99c24fb895bcd6a",
+  "image_uuid": "019fa106-a73d-7307-8aa9-38c2d226f621",
+  "image_verified": true,
+  "overview_url": "https://app.kanka.io/w/410879/entities/9622383"
+}
