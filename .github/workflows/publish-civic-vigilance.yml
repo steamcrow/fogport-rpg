@@ -10,7 +10,7 @@ on:
       - "assets/organizations/blackcoat-patrol.png.b64.part-*"
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: kanka-librarian-fogport
@@ -50,3 +50,15 @@ jobs:
           path: receipts/civic-vigilance.json
           if-no-files-found: warn
           retention-days: 90
+      - name: Commit successful Kanka read-back receipt
+        if: success()
+        run: |
+          git config user.name "Kanka Librarian"
+          git config user.email "actions@users.noreply.github.com"
+          git add receipts/civic-vigilance.json
+          if git diff --cached --quiet; then
+            echo "Verified receipt is already current."
+          else
+            git commit -m "Verify Civic Vigilance in Kanka"
+            git push
+          fi
