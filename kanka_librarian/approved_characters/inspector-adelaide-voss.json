@@ -1,0 +1,34 @@
+{
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "base64_path": "assets/characters/adelaide-voss.jpg.b64",
+  "filename": "adelaide-voss.jpg",
+  "sha256": "a2a975c60a28247db8e575f4d36180363cd84e22f0d9207a97760d8ac8d46a2c",
+  "character": {
+    "name": "Inspector Adelaide Voss",
+    "title": "Inspector of Irregular Activities",
+    "age": "Mid-thirties",
+    "sex": "Female",
+    "pronouns": "she/her",
+    "type": "Blackcoat Inspector",
+    "is_private": false,
+    "entry": "<p><strong>Inspector Adelaide Voss</strong> serves in the {{CIVIC_VIGILANCE_LINK}}’s <strong>Office of Irregular Activities</strong>. She investigates crimes for which the ordinary categories have failed: unlicensed sorcery, impossible witnesses, cult phenomena, Catastrophe disturbances, unnatural creatures, and events that may not have been crimes until someone attempted to explain them.</p><p>Voss is lean, dark-haired, and hard-faced, with watchful grey eyes and the stillness of someone who would rather let another person fill a silence. She wears the full Blackcoat uniform: a tar-black greatcoat and rain cape over chain and blackened plate, a steel gorget, reinforced bracers, heavy gloves, hobnailed boots, and the domed helmet of the Vigilance. Her service pistol remains holstered unless she has already decided to fire.</p><h2>Irregular Activities</h2><p>An activity is declared <em>irregular</em> when its cause, perpetrator, evidence, or consequences cannot be addressed through ordinary law. This gives Voss extraordinary latitude. She may close streets, seize occult objects, compel licensed magicians to assist an inquiry, and detain suspects whose precise offense has not yet been identified.</p><p>Voss is patient, exacting, and nearly impossible to distract. She studies what has been moved, what has been omitted, and which frightened witness is using words too carefully. She rarely raises her voice. When angered, she becomes more polite.</p><p>She is usually attached to the Black Hall, but her inquiries take her throughout {{FOGPORT_LINK}}. She has particular reason to visit {{NINE_SPOONS_LINK}}, where official cooperation is scarce, illegal magic is common, and witnesses have learned to disappear before a Blackcoat begins asking questions.</p><h2>Byl Hasbaine</h2><p>{{BYL_LINK}} is not Voss’s assistant, informant, or amusing nuisance. He is a suspect.</p><p>His name—or a description involving an albino man in an absurd hat—has appeared beside too many thefts, magical disturbances, unlawful entries, and impossible events. Voss believes Byl either causes irregular incidents, profits from them, or possesses knowledge that he deliberately conceals from the Vigilance. She intends to discover which.</p><p>Byl worries whenever he sees her helmet through the fog. Voss cannot yet prove that he is an illegal Wild Operator, but she is building the case carefully. His occasional acts of courage complicate her opinion without clearing his record. He may someday earn her grudging respect; he will not earn it merely by being useful.</p><h2>Reputation</h2><p>Blackcoats call her <strong>the Patient Hound</strong>, though never where she can hear them. Criminals say she remembers every face. Her superiors value her results and dislike the questions that accompany them.</p><p>Voss is stern, suspicious, relentless, and difficult to corrupt. When she enters a story, she brings warrants, sealed streets, confiscated evidence, and the growing danger that Byl’s strange career may finally be given an official name.</p>"
+  },
+  "membership": {
+    "organization_name": "The Civic Vigilance",
+    "role": "Inspector of Irregular Activities, Black Hall",
+    "is_private": false,
+    "pin_id": 3,
+    "status_id": 0
+  },
+  "gm_post": {
+    "name": "Inspector Voss — Confidential",
+    "visibility_id": 3,
+    "entry": "<h2>The Case Against Byl</h2><p>Voss strongly suspects that {{BYL_LINK}} is a Wild Operator: an illegal magician who works without a licensed tradition, focus, or formal training. Proving it would permit the Civic Vigilance to imprison him, compel registration, or transfer him to a specialist authority. She lacks proof that would survive review at the Black Hall, but she is actively seeking it.</p><p>Her private Byl file contains dates, witness statements, several inaccurate sketches, a list of missing objects, and one page on {{LOTT_LINK}} consisting almost entirely of the words <em>Do not underestimate him.</em> Voss believes Lott is dangerous but comprehensible. Byl troubles her because he is neither.</p><p>Voss does not manufacture evidence and cannot be bought off. This makes her more dangerous than a corrupt constable. She can be delayed, misdirected, or occasionally forced to recognize a greater threat, but she returns to the investigation afterward.</p><h2>The Sealed Cases</h2><p>Voss has encountered a small number of irregular investigations that were removed from the ordinary Vigilance archive and reclassified under old Catastrophe restrictions. In each case, evidence was seized by authority from above the Black Hall. She has begun keeping duplicate notes elsewhere.</p><p>She does not know the truth of the Continuance Engine. She does know that the city government is afraid of certain patterns: children who do not age, streets absent from official maps, municipal brass bearing erased royal marks, and witnesses who remember buildings that never existed.</p><h2>Using Voss</h2><ul><li><strong>Recurring Foe:</strong> Voss follows the evidence toward Byl, shuts down his escape routes, questions his allies, and makes his illegal magic dangerous to use openly.</li><li><strong>Competing Investigator:</strong> She and Byl pursue the same mystery for opposing reasons. Voss wants evidence and containment; Byl wants survival, profit, or the truth.</li><li><strong>Temporary Truce:</strong> An irregular threat may force cooperation, but the truce ends when the threat does.</li><li><strong>Moral Pressure:</strong> Voss may respect Byl’s courage without excusing his thefts, lies, or dangerous magic.</li></ul><p>If Byl eventually changes her opinion, it should require repeated proof that he protects people when escape or profit would be easier. Even then, Voss is more likely to become an honorable rival than a comfortable friend.</p>"
+  },
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-26T18:30:00-07:00"
+  }
+}
