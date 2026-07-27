@@ -1,0 +1,58 @@
+name: "Kanka Librarian — Fogport: Inspector Adelaide Voss"
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/publish-inspector-adelaide-voss.yml"
+      - "scripts/publish_inspector_adelaide_voss.py"
+      - "kanka_librarian/approved_characters/inspector-adelaide-voss.json"
+      - "assets/characters/adelaide-voss.jpg.b64"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kanka-librarian-fogport
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: "FOGPORT ONLY (410879) — publish and verify Inspector Adelaide Voss"
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install --requirement requirements.txt
+      - name: Publish and verify Inspector Adelaide Voss
+        env:
+          KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+          KANKA_ENABLE_WRITES: FOGPORT_410879
+        run: |
+          python scripts/publish_inspector_adelaide_voss.py \
+            kanka_librarian/approved_characters/inspector-adelaide-voss.json \
+            --receipt receipts/inspector-adelaide-voss.json
+      - name: Preserve verified receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kanka-inspector-adelaide-voss-receipt
+          path: receipts/inspector-adelaide-voss.json
+          if-no-files-found: warn
+          retention-days: 90
+      - name: Commit successful Kanka read-back receipt
+        if: success()
+        run: |
+          git config user.name "Kanka Librarian"
+          git config user.email "actions@users.noreply.github.com"
+          git add receipts/inspector-adelaide-voss.json
+          if git diff --cached --quiet; then
+            echo "Verified receipt is already current."
+          else
+            git commit -m "Verify Inspector Adelaide Voss in Kanka"
+            git push
+          fi
