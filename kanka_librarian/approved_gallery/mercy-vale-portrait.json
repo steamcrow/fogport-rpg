@@ -1,0 +1,17 @@
+{
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "accepted_character_names": [
+    "Mercy",
+    "Mercy Vale",
+    "Mrs. Mercy Vale"
+  ],
+  "base64_path": "assets/characters/mercy-vale-portrait.jpg.b64",
+  "filename": "mercy-vale-portrait.jpg",
+  "sha256": "2d9682201bd598550c9e61b05a1a72b6c39fbe318d06950202661c2dde9060f2",
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-26T17:00:00-07:00"
+  }
+}
