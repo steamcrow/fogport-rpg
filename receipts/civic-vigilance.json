@@ -1,0 +1,17 @@
+{
+  "published": true,
+  "campaign": "Fogport",
+  "campaign_id": 410879,
+  "organization": "The Civic Vigilance",
+  "organization_id": 472190,
+  "entity_id": 9622254,
+  "created": false,
+  "type": "Constabulary",
+  "is_private": false,
+  "entry_verified": true,
+  "fogport_link_verified": true,
+  "source_sha256": "d6a0fad43be31bc5902c087ed877bd8a5b560424f2b6cd30806d24041858d400",
+  "image_uuid": "019fa0ee-42a8-7275-9b6e-7352443e3a1a",
+  "image_verified": true,
+  "overview_url": "https://app.kanka.io/w/410879/entities/9622254"
+}
