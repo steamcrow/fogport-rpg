@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "map_name": "Fogport — Post-Catastrophe City Map",
+  "scope": "Every established location whose immediate parent is Fogport.",
+  "immediate_children": [
+    {
+      "name": "The Shambles",
+      "missing_marker": {
+        "latitude": 800,
+        "longitude": 1265,
+        "shape_id": 1,
+        "icon": 4,
+        "is_draggable": true,
+        "is_popupless": false,
+        "opacity": 100,
+        "visibility_id": 1,
+        "colour": "#d4af37"
+      },
+      "placement_note": "The ramshackle southeastern sprawl beyond the principal city fabric."
+    },
+    {
+      "name": "Blackwake",
+      "missing_marker": {
+        "latitude": 455,
+        "longitude": 900,
+        "shape_id": 1,
+        "icon": 4,
+        "is_draggable": true,
+        "is_popupless": false,
+        "opacity": 100,
+        "visibility_id": 1,
+        "colour": "#d4af37"
+      },
+      "placement_note": "The railway and commercial fabric behind the radial junction and station."
+    },
+    {
+      "name": "The Grand Promenade",
+      "missing_marker": {
+        "latitude": 690,
+        "longitude": 665,
+        "shape_id": 1,
+        "icon": 4,
+        "is_draggable": true,
+        "is_popupless": false,
+        "opacity": 100,
+        "visibility_id": 1,
+        "colour": "#d4af37"
+      },
+      "placement_note": "The broad arrival-dock wedge extending into the harbor below Grand Heliot Station."
+    }
+  ],
+  "coordinate_space": {
+    "source_width": 1536,
+    "source_height": 1024,
+    "source_image": "Fogport’s Radial Rails in Teal Fog.png",
+    "scaling": "Scale only newly created markers to Kanka's live processed map dimensions."
+  },
+  "preservation_rule": "If a linked marker already exists, preserve its current position and settings.",
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "source": "Fogport RPG conversation, 2026-07-26"
+  }
+}
