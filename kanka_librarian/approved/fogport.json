@@ -15,7 +15,7 @@
       "name": "Fogport",
       "type": "City",
       "is_private": false,
-      "entry": "Fogport is an ancient, fog-soaked port city on the Sayir Sea, where strange people live among strange things. Ghosts, magic, monsters, and impossibilities are real here, yet everyday life continues around them.\n\nThe city is crowded, damp, dangerous, melancholy, whimsical, hungry, and beautiful. Buildings lean, bridges groan, pipes whistle, iron rusts, and brick crumbles. Everything has been repaired many times; nothing feels new. Every district has its own personality, every neighborhood its own unwritten rules, and every street another story.\n\nFogport survived the Catastrophe, though many of its people did not. Permanent scars remain: damaged districts, streets that simply stop, abandoned buildings, leaking ancient magic, and monsters born—or newly settled—in the aftermath. The old wound is never entirely closed.\n\nStill, the city lives. Bakers open in the morning. Fish markets shout. Children invent games. Couples fall in love. Artists paint. Ships unload. Fogport survives not because it is safe, but because its people refuse to surrender it.",
+      "entry": "Fogport is an ancient, fog-soaked island port on the Sayir Sea, where strange people live among strange things. Ghosts, magic, monsters, and impossibilities are real here, yet everyday life continues around them.\n\nLong before the Catastrophe, Fogport stood at the center of trade routes linking many cities and nations. It remains neutral during the War of 100 Kingdoms, even as wars continue around it. Rival embassies, agents, factions, refugees, merchants, sailors, and ships all pass through the same crowded harbor. Neutrality does not make Fogport peaceful; it makes the city necessary, contested, and full of people who cannot safely meet anywhere else.\n\nThe city is crowded, damp, dangerous, melancholy, whimsical, hungry, and beautiful. Buildings lean, bridges groan, pipes whistle, iron rusts, and brick crumbles. Everything has been repaired many times; nothing feels new. Every district has its own personality, every neighborhood its own unwritten rules, and every street another story.\n\nFogport survived the Catastrophe, though many of its people did not. Permanent scars remain: damaged districts, streets that simply stop, abandoned buildings, leaking ancient magic, and monsters born—or newly settled—in the aftermath. The old wound is never entirely closed.\n\nStill, the city lives. Bakers open in the morning. Fish markets shout. Children invent games. Couples fall in love. Artists paint. Ships unload. These are small lights within a wounded city, not proof that it is safe. Fogport survives because its people refuse to surrender it.",
       "fields": {
         "parent_id": 9614795
       },
@@ -36,7 +36,7 @@
   "approval": {
     "status": "approved",
     "approved_by": "Daniel Davis",
-    "approved_at": "2026-07-24T17:00:00-07:00",
-    "proposal_sha256": "a52a12067718501672b33c7af230870078fb9d78b9c45bce4bf401234f905412"
+    "approved_at": "2026-07-28T12:00:00-07:00",
+    "proposal_sha256": "92d147191afcaedcba8845f98612bb42c8a211e0b251a6f2b6a87afcb8d57467"
   }
 }
