@@ -2,6 +2,10 @@ name: "Fogport Librarian — GM Operating Manual"
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - "kanka_librarian/approved_episodes/gm-operating-manual.json"
+      - ".github/workflows/publish-gm-operating-manual.yml"
 
 permissions:
   contents: read
