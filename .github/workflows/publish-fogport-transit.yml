@@ -1,6 +1,9 @@
 name: Publish Fogport Transit Entries
 
 on:
+  push:
+    paths:
+      - ".github/workflows/publish-fogport-transit.yml"
   workflow_dispatch:
 
 permissions:
