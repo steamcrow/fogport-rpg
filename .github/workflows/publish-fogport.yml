@@ -133,7 +133,10 @@ jobs:
               raise SystemExit("Fogport exists but its neutral wartime role was not present.")
           if "[entity:9614795|Sayir Sea]" not in entry:
               raise SystemExit("Fogport exists but its Sayir Sea inline link was not present.")
-          parent_id = item.get("parent_id")
+          entity = KankaClient(os.environ["KANKA_API_TOKEN"])._get(
+              f"campaigns/410879/entities/{item.get('entity_id')}"
+          ).get("data", {})
+          parent_id = entity.get("parent_id")
           if parent_id != 9614795:
               raise SystemExit(f"Fogport has unexpected parent_id {parent_id!r}.")
           result = {
@@ -163,5 +166,3 @@ jobs:
           git add kanka_librarian/published/fogport.json
           git commit -m "Record published Fogport Kanka IDs"
           git push
-
-# Publication trigger: 2026-07-28 AI GM guidance update
