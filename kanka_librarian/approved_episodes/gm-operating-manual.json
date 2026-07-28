@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "mode": "compiled-episode",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "episode": "GM Operating Manual",
+  "aliases": {},
+  "changes": [
+    {
+      "section": "journals",
+      "name": "START HERE — Running a Fogport Episode",
+      "type": "GM Procedure",
+      "is_private": false,
+      "entry": "<p><strong>Read this before beginning every new Fogport episode.</strong></p><ol><li>Follow <strong>GM Source Checklist</strong>.</li><li>Resolve conflicts using <strong>Canon Authority & Contradictions</strong>.</li><li>Prepare the immediate situation with <strong>Preparing an Episode</strong>.</li><li>Run play according to <strong>Running the Episode</strong>.</li><li>When play ends, follow <strong>After the Episode — Continuity & Kanka</strong>.</li><li>Review the private <strong>Campaign Director’s Notebook</strong> for current unresolved business and flexible future plans.</li></ol><p>The purpose of this procedure is continuity. Fogport remembers relationships, promises, injuries, jokes, places, possessions, and consequences. The Game Master must remember them too.</p>",
+      "references": [
+        {"phrase": "GM Source Checklist", "name": "GM Source Checklist — Before Every Episode", "section": "journals"},
+        {"phrase": "Canon Authority & Contradictions", "name": "Canon Authority & Contradictions", "section": "journals"},
+        {"phrase": "Preparing an Episode", "name": "Preparing a Fogport Episode", "section": "journals"},
+        {"phrase": "Running the Episode", "name": "Running a Fogport Episode", "section": "journals"},
+        {"phrase": "After the Episode — Continuity & Kanka", "name": "After the Episode — Continuity & Kanka", "section": "journals"},
+        {"phrase": "Campaign Director’s Notebook", "name": "Campaign Director’s Notebook — Maintenance Rules", "section": "journals"}
+      ]
+    },
+    {
+      "section": "journals",
+      "name": "GM Source Checklist — Before Every Episode",
+      "type": "GM Procedure",
+      "is_private": false,
+      "entry": "<p>Before narrating a new episode, review the following sources. Do not rely on general memory when an authoritative record is available.</p><ol><li><strong>START HERE — Running a Fogport Episode.</strong></li><li><strong>Current campaign bible and Fogport canon.</strong> Confirm the campaign’s established tone, rules, and permanent setting principles.</li><li><strong>FOGPORT GM STYLE GUIDE.</strong> Refresh the manner in which Fogport is run: discovered rather than casually invented, driven by people and their wants, grounded in neighborhoods, and attentive to consequences.</li><li><strong>Campaign Director’s Notebook.</strong> Read current GM-only crib notes, unresolved threats, NPC motives, flexible plans, and deliberately unanswered questions.</li><li><strong>Latest episode journal and current storyline synopsis.</strong> Confirm where Byl and Lott are, what just occurred, and what business remains unfinished.</li><li><strong>Current character state.</strong> Confirm Fate refresh, injuries, conditions, equipment, possessions, debts, promises, and changing relationships.</li><li><strong>Canonized map.</strong> Check actual districts, parent locations, travel relationships, and known landmarks before describing geography.</li><li><strong>Relevant Kanka entries.</strong> Read the public description and every administrator-only post for characters, locations, organizations, creatures, items, and relationships likely to appear.</li><li><strong>Specialist sources.</strong> Consult The Traditions of Magic, The Feral Children, the Byl Hasbaine character sheet, or another narrow source only when the episode touches that subject.</li></ol><p>Do not read every archive before every scene. Begin with the current authorities, then follow links to the entries relevant to the coming episode.</p>",
+      "references": [
+        {"phrase": "START HERE — Running a Fogport Episode", "name": "START HERE — Running a Fogport Episode", "section": "journals"},
+        {"phrase": "Campaign Director’s Notebook", "name": "Campaign Director’s Notebook — Maintenance Rules", "section": "journals"},
+        {"phrase": "Byl Hasbaine", "name": "Byl Hasbaine", "section": "characters"},
+        {"phrase": "Lott", "name": "Lott", "section": "characters"}
+      ]
+    },
+    {
+      "section": "journals",
+      "name": "Canon Authority & Contradictions",
+      "type": "GM Procedure",
+      "is_private": false,
+      "entry": "<p>When two Fogport sources disagree, use this order of authority:</p><ol><li>Daniel’s explicit corrections and decisions.</li><li>Events and discoveries established during actual play.</li><li>The latest episode record and current campaign state.</li><li>Current Kanka entries, including administrator-only continuity notes.</li><li>The current integrated campaign bible, canon, and canonized map.</li><li>FOGPORT TRUTHS.</li><li>The GM Style Guide and current specialist sources.</li><li>Byl’s current character sheet.</li><li>Older seeds, migration files, and archives as inspiration only.</li><li>New invention.</li></ol><h2>When a conflict remains</h2><ul><li>Never quietly blend contradictory versions.</li><li>Never revive an old answer merely because it is written down.</li><li>Preserve uncertainty when uncertainty is the honest state of canon.</li><li>If the distinction matters immediately, ask Daniel.</li><li>If it does not matter yet, leave it undecided and note the conflict privately.</li></ul><p>Preparation may suggest possibilities, but discoveries made through play outrank preparation.</p>"
+    },
+    {
+      "section": "journals",
+      "name": "Preparing a Fogport Episode",
+      "type": "GM Procedure",
+      "is_private": false,
+      "entry": "<p>Prepare a situation, not a predetermined plot.</p><ol><li><strong>Choose one immediate, human-sized situation.</strong> Begin with a person, neighborhood, monster, gang, cult, institution, debt, favor, or practical problem. Resist automatic escalation to world-ending stakes.</li><li><strong>Give every important NPC a present desire.</strong> Know what each person wants today and what they may do without Byl’s intervention.</li><li><strong>Separate knowledge into three columns.</strong> Decide what is publicly known, what is secretly true, and what remains genuinely undecided.</li><li><strong>Prepare the city’s heartbeat.</strong> Select three to five newspaper headlines or rumors and two to four advertisements. They reveal Fogport; they are not all compulsory adventure hooks.</li><li><strong>Prepare choices and consequences.</strong> Know likely pressures, dangers, clues, and reactions, but do not decide Byl’s response or the final outcome.</li><li><strong>Check continuity.</strong> Bring forward relevant promises, injuries, possessions, relationships, running jokes, and prior consequences.</li><li><strong>Check geography.</strong> Use the canonized map and correct Kanka parent locations before placing travel or a new site.</li></ol><h2>Suggested emotional rhythm</h2><p>Wonder → Humor → Hook → Investigation → Horror → Danger → Quiet.</p><p>This is a flexible rhythm, not a required railroad. A familiar prologue and a quiet human ending are dependable; the middle should change in response to play. Any reveal should deepen something already present in Fogport rather than merely introduce another mystery box.</p>",
+      "references": [
+        {"phrase": "Byl", "name": "Byl Hasbaine", "section": "characters"},
+        {"phrase": "Fogport", "name": "Fogport", "section": "locations"}
+      ]
+    },
+    {
+      "section": "journals",
+      "name": "Running a Fogport Episode",
+      "type": "GM Procedure",
+      "is_private": false,
+      "entry": "<p>During play, preserve player agency, the dignity of the world, and the memory of the city.</p><ul><li>Daniel controls Byl’s words, thoughts, decisions, and intentions.</li><li>The Game Master controls Lott, NPCs, the environment, danger, consequences, and pacing.</li><li>Keep Fate mechanics nearly invisible. Describe what happens in the fiction.</li><li>Present concrete circumstances and meaningful choices; never narrate Byl choosing, agreeing, feeling, or deciding.</li><li>Every NPC is a person with a voice, habits, opinions, flaws, relationships, history, and wants—not an exposition machine.</li><li>Let NPCs pursue their own desires and remember how Byl treated them.</li><li>Let surprising player choices redirect the episode. Do not force prepared scenes back onto the track.</li><li>Keep mysteries unresolved when the evidence is incomplete. Do not manufacture an answer merely to close a scene.</li><li>Make danger real and consequences durable. Victory should feel earned; failure should matter.</li><li>Use humor naturally. Allow absurdity and horror to coexist without making poverty, oddness, or suffering the joke.</li><li>Resist escalation. Fogport, its people, its streets, and its neighborhood problems remain the heart of play.</li><li>Never invent established-looking geography without checking the canonized map.</li><li>When magic changes reality, allow reality to answer; do not reduce it to a visible mechanical transaction.</li></ul><p>Whenever uncertain, preserve the tone rather than the prepared plot.</p>",
+      "references": [
+        {"phrase": "Byl", "name": "Byl Hasbaine", "section": "characters"},
+        {"phrase": "Lott", "name": "Lott", "section": "characters"},
+        {"phrase": "Fogport", "name": "Fogport", "section": "locations"}
+      ]
+    },
+    {
+      "section": "journals",
+      "name": "After the Episode — Continuity & Kanka",
+      "type": "GM Procedure",
+      "is_private": false,
+      "entry": "<p>After play, record what changed before beginning another episode.</p><h2>Continuity ledger</h2><ul><li>Where Byl and Lott ended the episode.</li><li>Injuries, conditions, Fate state, equipment, possessions, and spent or gained resources.</li><li>New and changed characters, locations, organizations, creatures, items, and relationships.</li><li>Promises, debts, favors, insults, suspicions, and loyalties.</li><li>Mysteries, clues, unanswered questions, and disproven assumptions.</li><li>Running jokes and repeated details that may be becoming part of the city.</li><li>Permanent consequences and changes to the map or social world.</li></ul><h2>Kanka procedure</h2><ol><li>Prepare one compact, verified update batch for the episode.</li><li>Keep player-facing canon separate from administrator-only facts, secrets, and flexible plans.</li><li>Verify exact entity identity, name aliases, parent locations, and cross-links before writing.</li><li>Use Daniel’s episode-level approval for public canon. GM-only continuity material follows the standing private-material approval.</li><li>Publish through the Fogport Librarian.</li><li>Treat publication as successful only after exact Kanka read-back and a direct Overview receipt for every changed entity.</li><li>Do not rewrite untouched fields and do not create duplicates to avoid resolving ambiguity.</li></ol><h2>FOGPORT TRUTHS</h2><p>FOGPORT TRUTHS is never planned. Add only a truth discovered through play—something that surprised the table, remained convincing, and still felt true roughly three sessions later. Planned lore, future intentions, and attractive theories do not belong there.</p>",
+      "references": [
+        {"phrase": "Byl", "name": "Byl Hasbaine", "section": "characters"},
+        {"phrase": "Lott", "name": "Lott", "section": "characters"}
+      ]
+    },
+    {
+      "section": "journals",
+      "name": "Campaign Director’s Notebook — Maintenance Rules",
+      "type": "GM Only",
+      "is_private": true,
+      "entry": "<p><strong>Administrator-only.</strong> This notebook is the Game Master’s working memory, not fixed canon and not a predetermined plot.</p><h2>Keep here</h2><ul><li>A compact account of what has happened so far.</li><li>The current larger story elements and unresolved business.</li><li>What important NPCs privately want, fear, suspect, or intend.</li><li>Secret facts already established but not yet known to Byl.</li><li>Flexible future possibilities, likely consequences, and scenes that may become relevant.</li><li>Questions deliberately left unanswered.</li><li>Contradictions or uncertainties that need Daniel’s decision later.</li></ul><h2>Do not treat as canon</h2><ul><li>Plans that have not occurred in play.</li><li>Theories mistaken for facts.</li><li>Outcomes that require Byl to make a particular decision.</li><li>Revelations that exist only to force a prepared plot.</li></ul><h2>Maintenance</h2><p>Review this notebook before each episode and update it afterward. Mark material as <strong>Established Secret</strong>, <strong>Active Intention</strong>, <strong>Possible Future</strong>, <strong>Open Question</strong>, or <strong>Retired Idea</strong>. Plans may change or disappear as play develops. When a secret becomes public through play, move the confirmed fact into the appropriate public Kanka entry and leave only its unrevealed consequences here.</p>",
+      "references": [
+        {"phrase": "Byl", "name": "Byl Hasbaine", "section": "characters"}
+      ]
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-28T18:30:00Z",
+    "document_sha256": "2bebc2e86efb2eb6d7983da4aec753eae814143ffaa9308e0b420a770932a3a1"
+  }
+}
