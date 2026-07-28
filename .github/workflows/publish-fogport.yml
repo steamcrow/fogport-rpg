@@ -36,7 +36,7 @@ jobs:
           from kanka_librarian.publisher import validate_approved_proposal
           document = json.loads(Path("kanka_librarian/approved/fogport.json").read_text(encoding="utf-8"))
           validate_approved_proposal(document)
-          assert document["approval"]["proposal_sha256"] == "a52a12067718501672b33c7af230870078fb9d78b9c45bce4bf401234f905412"
+          assert document["approval"]["proposal_sha256"] == "92d147191afcaedcba8845f98612bb42c8a211e0b251a6f2b6a87afcb8d57467"
           assert len(document["proposals"]) == 1
           proposal = document["proposals"][0]
           assert proposal["name"] == "Fogport"
@@ -127,8 +127,10 @@ jobs:
               raise SystemExit(f"Expected exactly one Fogport after publishing; found {len(matches)}.")
           item = matches[0]
           entry = str(item.get("entry", ""))
-          if "Fogport is an ancient, fog-soaked port city" not in entry:
+          if "Fogport is an ancient, fog-soaked island port" not in entry:
               raise SystemExit("Fogport exists but its approved description was not present.")
+          if "War of 100 Kingdoms" not in entry:
+              raise SystemExit("Fogport exists but its neutral wartime role was not present.")
           if "[entity:9614795|Sayir Sea]" not in entry:
               raise SystemExit("Fogport exists but its Sayir Sea inline link was not present.")
           parent_id = item.get("parent_id")
