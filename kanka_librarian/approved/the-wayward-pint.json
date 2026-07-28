@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": [
+    "the-wayward-pint"
+  ],
+  "approval_questions": [],
+  "proposals": [
+    {
+      "temp_id": "the-wayward-pint",
+      "action": "create",
+      "section": "locations",
+      "name": "The Wayward Pint",
+      "type": "Roaming Tavern Tram",
+      "is_private": false,
+      "entry": "<p><strong>The Wayward Pint</strong> is a complete public house built upon a broad tram carriage: dark carved wood, brass fittings, leaded-glass windows, a compact kitchen, and a bright electric-bulb sign that can be seen through Fogport rain from half a district away.</p>\n\n<p>It has no permanent address. The Pint travels Fogport’s tramways and takes temporary berths on licensed sidings near factories, markets, docks, stations, and night-work districts. Its posted route is only loosely predictive. Regulars learn where it has stopped through gossip, chalk marks, and the particular whistle sounded when the taps open.</p>\n\n<p>Inside, the narrow taproom is warmer and more crowded than seems physically reasonable. Patrons squeeze into fixed booths while the barkeep serves through an exterior hatch to those drinking on the platform. A small galley produces pies, sausages, onions, and whatever stew can survive a sudden coupling.</p>\n\n<p>The Wayward Pint is famous as neutral ground of the most practical sort. Dockhands, tram crews, foreign sailors, blackcoat constables, minor criminals, and exhausted clerks may all drink beneath the same roof so long as nobody draws steel before the tram moves again. Arguments left unsettled at departure have an inconvenient way of resuming when the Pint appears in another district.</p>\n\n<p>Because it is parented to Fogport rather than any one district, the tavern may appear wherever the rails and the story require. If it later acquires a regular berth, its location can be narrowed without changing the establishment itself.</p>",
+      "fields": {},
+      "resolved_references": [],
+      "posts": [],
+      "attributes": [],
+      "relationships": [],
+      "artwork": {
+        "main_image_path": "assets/locations/the-wayward-pint.png",
+        "sha256": "ff36618a043a5fc2273b06dc14aa61196178016484d01cb1c85ffb27933a40ea"
+      },
+      "publication": {
+        "parent_name": "Fogport",
+        "parent_link_phrase": "Fogport"
+      },
+      "blocked": false
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-28T13:30:00-07:00",
+    "proposal_sha256": "dc26cb28f5c6d74be4d7079d7ba8b84b0d8d0bde208c15041c9c8a41e25e1b04"
+  }
+}
