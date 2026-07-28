@@ -163,3 +163,5 @@ jobs:
           git add kanka_librarian/published/fogport.json
           git commit -m "Record published Fogport Kanka IDs"
           git push
+
+# Publication trigger: 2026-07-28 AI GM guidance update
