@@ -1,0 +1,47 @@
+{
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "items": [
+    {
+      "name": "Fogport Tramway System",
+      "entity_id": 9635987,
+      "image_path": "assets/items/transit/fogport-steam-trams-four-services.jpeg",
+      "sha256": "516f7bc0402fa9ab1d3986d6aae44fce2ed6bf16f53e0adcdf0d55f4be14871f"
+    },
+    {
+      "name": "Standard Passenger Tram",
+      "entity_id": 9635988,
+      "image_path": "assets/items/transit/fogport-steam-trams-three-services.jpeg",
+      "sha256": "f2acf73e2a23dd55966b291ff802a9d2865a2dc9a3868623cdf154e05f4469e8"
+    },
+    {
+      "name": "Industrial Freight Tram",
+      "entity_id": 9635989,
+      "image_path": "assets/items/transit/fogport-steam-trams-three-services.jpeg",
+      "sha256": "f2acf73e2a23dd55966b291ff802a9d2865a2dc9a3868623cdf154e05f4469e8"
+    },
+    {
+      "name": "Fogport Fire Brigade Tram",
+      "entity_id": 9635990,
+      "image_path": "assets/items/transit/fogport-steam-trams-four-services.jpeg",
+      "sha256": "516f7bc0402fa9ab1d3986d6aae44fce2ed6bf16f53e0adcdf0d55f4be14871f"
+    },
+    {
+      "name": "Civic Police Tram",
+      "entity_id": 9635991,
+      "image_path": "assets/items/transit/fogport-steam-trams-four-services.jpeg",
+      "sha256": "516f7bc0402fa9ab1d3986d6aae44fce2ed6bf16f53e0adcdf0d55f4be14871f"
+    },
+    {
+      "name": "Standard Transit Crate",
+      "entity_id": 9635992,
+      "image_path": "assets/items/transit/standard-transit-crate-technical.jpeg",
+      "sha256": "753831158c7cb0c8a218e3ef950573e7d40f0ef7f8e45e32f697bb0e86ecc98c"
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-28T13:00:00-07:00"
+  }
+}
