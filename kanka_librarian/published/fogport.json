@@ -1,0 +1,14 @@
+{
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "location_id": 2166165,
+  "entity_id": 9614806,
+  "parent_location_id": 2166159,
+  "parent_entity_id": 9614795,
+  "name": "Fogport",
+  "type": "City",
+  "is_private": false,
+  "published_description_verified": true,
+  "inline_link_verified": true,
+  "kanka_url": "https://app.kanka.io/w/410879/entities/9614806"
+}
