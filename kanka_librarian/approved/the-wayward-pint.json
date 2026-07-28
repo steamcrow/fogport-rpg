@@ -22,8 +22,8 @@
       "attributes": [],
       "relationships": [],
       "artwork": {
-        "main_image_path": "assets/locations/the-wayward-pint.png",
-        "sha256": "ff36618a043a5fc2273b06dc14aa61196178016484d01cb1c85ffb27933a40ea"
+        "main_image_path": "assets/locations/the-wayward-pint.jpg",
+        "sha256": "901ea6c107972345438645568d816d2c65a832f05082252fb6fa396d869779ac"
       },
       "publication": {
         "parent_name": "Fogport",
@@ -36,6 +36,6 @@
     "status": "approved",
     "approved_by": "Daniel Davis",
     "approved_at": "2026-07-28T13:30:00-07:00",
-    "proposal_sha256": "dc26cb28f5c6d74be4d7079d7ba8b84b0d8d0bde208c15041c9c8a41e25e1b04"
+    "proposal_sha256": "0610290f2531de721cefffb76b85ebd7b25212b3f6228d841801c1e043ff76d6"
   }
 }
