@@ -1,0 +1,104 @@
+{
+  "published": true,
+  "campaign": "Fogport",
+  "campaign_id": 410879,
+  "batch_sha256": "7d31bc60f34c983e7fb1833d7e378a19f9d140a7462a9c4120e46b44b30a5708",
+  "items": [
+    {
+      "name": "Fogport Tramway System",
+      "item_id": 622124,
+      "entity_id": 9635987,
+      "created": true,
+      "entry_verified": true,
+      "link_status": {
+        "Grand Heliot Station": true,
+        "Blackwake": true,
+        "Catastrophe": true,
+        "War of 100 Kingdoms": false,
+        "Standard Transit Crate": true,
+        "Industrial Freight Tram": true
+      },
+      "overview_url": "https://app.kanka.io/w/410879/entities/9635987"
+    },
+    {
+      "name": "Standard Passenger Tram",
+      "item_id": 622125,
+      "entity_id": 9635988,
+      "created": true,
+      "entry_verified": true,
+      "link_status": {
+        "Grand Heliot Station": true,
+        "Blackwake": true,
+        "Catastrophe": true,
+        "War of 100 Kingdoms": false,
+        "Standard Transit Crate": true,
+        "Industrial Freight Tram": true
+      },
+      "overview_url": "https://app.kanka.io/w/410879/entities/9635988"
+    },
+    {
+      "name": "Industrial Freight Tram",
+      "item_id": 622126,
+      "entity_id": 9635989,
+      "created": true,
+      "entry_verified": true,
+      "link_status": {
+        "Grand Heliot Station": true,
+        "Blackwake": true,
+        "Catastrophe": true,
+        "War of 100 Kingdoms": false,
+        "Standard Transit Crate": true,
+        "Industrial Freight Tram": true
+      },
+      "overview_url": "https://app.kanka.io/w/410879/entities/9635989"
+    },
+    {
+      "name": "Fogport Fire Brigade Tram",
+      "item_id": 622127,
+      "entity_id": 9635990,
+      "created": true,
+      "entry_verified": true,
+      "link_status": {
+        "Grand Heliot Station": true,
+        "Blackwake": true,
+        "Catastrophe": true,
+        "War of 100 Kingdoms": false,
+        "Standard Transit Crate": true,
+        "Industrial Freight Tram": true
+      },
+      "overview_url": "https://app.kanka.io/w/410879/entities/9635990"
+    },
+    {
+      "name": "Civic Police Tram",
+      "item_id": 622128,
+      "entity_id": 9635991,
+      "created": true,
+      "entry_verified": true,
+      "link_status": {
+        "Grand Heliot Station": true,
+        "Blackwake": true,
+        "Catastrophe": true,
+        "War of 100 Kingdoms": false,
+        "Standard Transit Crate": true,
+        "Industrial Freight Tram": true
+      },
+      "overview_url": "https://app.kanka.io/w/410879/entities/9635991"
+    },
+    {
+      "name": "Standard Transit Crate",
+      "item_id": 622129,
+      "entity_id": 9635992,
+      "created": true,
+      "entry_verified": true,
+      "link_status": {
+        "Grand Heliot Station": true,
+        "Blackwake": true,
+        "Catastrophe": true,
+        "War of 100 Kingdoms": false,
+        "Standard Transit Crate": true,
+        "Industrial Freight Tram": true
+      },
+      "overview_url": "https://app.kanka.io/w/410879/entities/9635992"
+    }
+  ]
+}
