@@ -45,3 +45,5 @@ jobs:
           path: receipts/gm-operating-manual.json
           if-no-files-found: warn
           retention-days: 90
+
+# Publication trigger: 2026-07-28 AI GM guidance update
