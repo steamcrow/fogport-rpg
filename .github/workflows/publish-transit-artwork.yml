@@ -1,0 +1,61 @@
+name: "Kanka Librarian — Publish Transit Artwork"
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/publish-transit-artwork.yml"
+      - "assets/items/transit/**"
+      - "kanka_librarian/approved_gallery/transit-artwork.json"
+      - "kanka_librarian/approved_items/transit-artwork.json"
+      - "scripts/publish_item_artwork.py"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kanka-librarian-fogport
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: "FOGPORT ONLY (410879) — transit artwork"
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install --requirement requirements.txt
+      - name: Validate repository tests
+        run: python -m unittest discover -s tests
+      - name: Remove the approved accidental duplicate, if it remains
+        env:
+          KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+          KANKA_ENABLE_WRITES: FOGPORT_410879
+        run: python scripts/cleanup_duplicate_tramway.py
+      - name: Upload and verify campaign gallery
+        env:
+          KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+        run: |
+          python scripts/publish_approved_gallery.py \
+            kanka_librarian/approved_gallery/transit-artwork.json \
+            --receipt receipts/transit-artwork-gallery.json
+      - name: Attach and verify Item artwork
+        env:
+          KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+          KANKA_ENABLE_WRITES: FOGPORT_410879
+        run: |
+          python scripts/publish_item_artwork.py \
+            kanka_librarian/approved_items/transit-artwork.json \
+            --receipt receipts/transit-item-artwork.json
+      - name: Preserve verified receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kanka-transit-artwork-receipts
+          path: receipts/transit-*-artwork.json
+          if-no-files-found: warn
+          retention-days: 90

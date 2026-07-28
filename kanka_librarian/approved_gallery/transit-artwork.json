@@ -1,0 +1,31 @@
+{
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "images": [
+    {
+      "path": "assets/items/transit/fogport-steam-trams-four-services.jpeg",
+      "sha256": "516f7bc0402fa9ab1d3986d6aae44fce2ed6bf16f53e0adcdf0d55f4be14871f",
+      "visibility_id": 1
+    },
+    {
+      "path": "assets/items/transit/fogport-steam-trams-three-services.jpeg",
+      "sha256": "f2acf73e2a23dd55966b291ff802a9d2865a2dc9a3868623cdf154e05f4469e8",
+      "visibility_id": 1
+    },
+    {
+      "path": "assets/items/transit/standard-transit-crate-technical.jpeg",
+      "sha256": "753831158c7cb0c8a218e3ef950573e7d40f0ef7f8e45e32f697bb0e86ecc98c",
+      "visibility_id": 1
+    },
+    {
+      "path": "assets/items/transit/standard-transit-crates-dockside.jpeg",
+      "sha256": "3566c048d0124e10bdb332afb1bf89ea1deb09052c5d7c9ec5f63a1a10c9f3ef",
+      "visibility_id": 1
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-28T13:00:00-07:00"
+  }
+}
