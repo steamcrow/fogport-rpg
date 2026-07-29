@@ -1,12 +1,12 @@
-name: "Kanka Librarian — Publish approved Fogport character"
+name: "Kanka Librarian — Advanced character publisher"
 
 on:
   workflow_dispatch:
     inputs:
       proposal:
-        description: "Approved character proposal filename"
+        description: "Advanced: exact approved character filename (no default)"
         required: true
-        default: "batley.json"
+        type: string
 
 permissions:
   contents: read
@@ -17,28 +17,25 @@ concurrency:
 
 jobs:
   publish:
-    name: "FOGPORT 410879 — publish character and verify"
+    name: "FOGPORT 410879 — publish selected character and verify"
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
       - run: python -m pip install --requirement requirements.txt
+      - name: Run Librarian safety tests
+        run: python -m unittest discover -s tests
       - name: Select approved proposal
         id: proposal
         shell: bash
         run: |
-          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
-            file="kanka_librarian/approved_characters/${{ inputs.proposal }}"
-          else
-            file="$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" -- 'kanka_librarian/approved_characters/*.json' | head -n 1)"
-          fi
-          test -n "$file"
+          filename="${{ inputs.proposal }}"
+          [[ "$filename" =~ ^[A-Za-z0-9._-]+\.json$ ]]
+          file="kanka_librarian/approved_characters/$filename"
           test -f "$file"
           echo "file=$file" >> "$GITHUB_OUTPUT"
       - name: Publish and exact-read-back
