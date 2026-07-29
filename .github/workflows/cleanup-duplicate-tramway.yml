@@ -1,4 +1,4 @@
-name: Audit Fogport Transit Duplicates
+name: Delete Audited Fogport Transit Duplicates
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ permissions:
   contents: read
 
 jobs:
-  audit:
+  cleanup:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -17,15 +17,16 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: python -m pip install --requirement requirements.txt
-      - name: Scan every Kanka Item page (read only)
+      - name: Delete only the three approved duplicate Items
         env:
           KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
-          REPORT_PATH: receipts/transit-duplicate-audit.json
+          KANKA_ENABLE_WRITES: FOGPORT_410879
+          REPORT_PATH: receipts/transit-duplicate-cleanup.json
         run: python scripts/cleanup_duplicate_tramway.py
-      - name: Preserve the complete inventory
+      - name: Preserve cleanup receipt
         uses: actions/upload-artifact@v4
         with:
-          name: fogport-transit-duplicate-audit
-          path: receipts/transit-duplicate-audit.json
+          name: fogport-transit-duplicate-cleanup
+          path: receipts/transit-duplicate-cleanup.json
           if-no-files-found: error
           retention-days: 90
