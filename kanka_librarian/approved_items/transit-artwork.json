@@ -3,33 +3,15 @@
   "campaign_name": "Fogport",
   "items": [
     {
-      "name": "Standard Passenger Tram",
-      "entity_id": 9635988,
-      "image_path": "assets/items/transit/passenger-tram.jpg",
-      "sha256": "f6d37e4b8412097344f6aa4446f94b9a3fbddf060f3be40f089cc7c2a0effa9a"
-    },
-    {
-      "name": "Industrial Freight Tram",
-      "entity_id": 9635989,
-      "image_path": "assets/items/transit/freight-tram.jpg",
-      "sha256": "c24c1e4bfb0f4cb398af01c0187da9d2b70ae577ded81994f515e4e7054554cb"
-    },
-    {
-      "name": "Fogport Fire Brigade Tram",
-      "entity_id": 9635990,
-      "image_path": "assets/items/transit/fire-brigade-tram.jpg",
-      "sha256": "ed85eac787a80fce305bb7cf263413999a796f1a2b05aca52fbe0230c37c8e92"
-    },
-    {
-      "name": "Civic Police Tram",
-      "entity_id": 9635991,
-      "image_path": "assets/items/transit/civic-police-tram.jpg",
-      "sha256": "23ce33de5d73ead057c882638cd641904d0f0a29116ca8e3987f387ad06a1e2f"
+      "name": "Standard Transit Crate",
+      "entity_id": 9635992,
+      "image_path": "assets/items/transit/standard-transit-crates-dockside-approved.jpg",
+      "sha256": "ff70f32b50ee6352e284588eb436af5e261e67ad0be8828e0f87f7c7ff35e0f0"
     }
   ],
   "approval": {
     "status": "approved",
     "approved_by": "Daniel Davis",
-    "approved_at": "2026-07-28T13:00:00-07:00"
+    "approved_at": "2026-07-29T02:10:00-07:00"
   }
 }
