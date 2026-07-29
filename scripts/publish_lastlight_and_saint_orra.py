@@ -222,41 +222,20 @@ def main() -> None:
         raise SystemExit("Kanka campaign identity lock failed.")
 
     locations = all_pages(token, f"campaigns/{CAMPAIGN_ID}/locations")
-    fogport = exact(locations, "Fogport", "Fogport location")
-    blackwake = exact(locations, str(document["district"]["parent_name"]), "Blackwake location")
-    if not fogport or not blackwake:
-        raise SystemExit("Fogport or Blackwake is missing; refusing to invent a parent.")
-    # Kanka's Locations API defines parent_id as the parent location's entity ID.
-    # Preserve Blackwake's established parent while keeping location and entity IDs distinct.
-    blackwake_direct = read_location(token, int(blackwake["id"]))
-    blackwake_parent_entity_id = int(blackwake_direct.get("parent_id") or 0)
+    # Lastlight is established canon. Resolve it exactly and do not rewrite its
+    # description or hierarchy as a side effect of publishing the Colossus.
+    district = exact(locations, str(document["district"]["name"]), "Lastlight location")
+    if not district:
+        raise SystemExit("Lastlight is missing; refusing to invent its parent hierarchy.")
+    district = read_location(token, int(district["id"]))
+    district_created = False
+    district_parent_entity_id = int(district.get("parent_id") or 0)
     print(
         json.dumps(
             {
-                "using_existing_blackwake_id": int(blackwake["id"]),
-                "existing_blackwake_parent_entity_id": blackwake_parent_entity_id,
-            }
-        )
-    )
-
-    district, district_created = upsert_location(
-        token, locations, document["district"], blackwake
-    )
-    # Verify hierarchy using the entity ID returned in Kanka's parent_id field.
-    district_parent_entity_id = int(
-        read_location(token, int(district["id"])).get("parent_id") or 0
-    )
-    if district_parent_entity_id not in {
-        int(blackwake["entity_id"]),
-        int(blackwake["id"]),
-    }:
-        raise SystemExit("Lastlight is not nested beneath Blackwake.")
-    print(
-        json.dumps(
-            {
-                "lastlight_id": int(district["id"]),
-                "lastlight_parent_blackwake_entity_id": district_parent_entity_id,
-                "lastlight_hierarchy_verified": True,
+                "using_existing_lastlight_id": int(district["id"]),
+                "lastlight_entity_id": int(district["entity_id"]),
+                "lastlight_parent_id_preserved": district_parent_entity_id,
             }
         )
     )
@@ -282,27 +261,6 @@ def main() -> None:
         or not image_readback.get("thumbnail")
     ):
         raise SystemExit("Saint Orra image read-back failed.")
-
-    station = exact(locations, str(document["station_name"]), "Grand Heliot Station")
-    if not station:
-        raise SystemExit("Grand Heliot Station is missing.")
-    station_id = int(station["id"])
-    station_direct = read_location(token, station_id)
-    station_payload = {
-        "name": str(station_direct["name"]),
-        "type": str(station_direct.get("type") or ""),
-        "entry": str(station_direct.get("entry") or ""),
-        "is_private": bool(station_direct.get("is_private", False)),
-        "parent_id": int(district["entity_id"]),
-    }
-    request(
-        token, "PATCH", f"campaigns/{CAMPAIGN_ID}/locations/{station_id}",
-        payload=station_payload,
-    )
-    station_final = read_location(token, station_id)
-    station_parent_id = int(station_final.get("parent_id") or 0)
-    if station_parent_id not in {int(district["entity_id"]), int(district["id"])}:
-        raise SystemExit("Grand Heliot Station nesting read-back failed.")
 
     post, post_created = upsert_post(
         token, int(colossus["entity_id"]), document["location"]["gm_post"]
@@ -384,8 +342,7 @@ def main() -> None:
             "id": int(district["id"]),
             "entity_id": int(district["entity_id"]),
             "parent_entity_id": district_parent_entity_id,
-            "parent_name": "Blackwake",
-            "hierarchy_verified": True,
+            "parent_id_preserved": district_parent_entity_id,
             "created": district_created,
         },
         "location": {
@@ -397,9 +354,6 @@ def main() -> None:
             "image_uuid": image_readback["uuid"],
             "image_verified": True,
         },
-        "blackwake_id": int(blackwake["id"]),
-        "blackwake_parent_entity_id_preserved": blackwake_parent_entity_id,
-        "station_nested_under_lastlight": True,
         "gm_post_id": int(post["id"]),
         "gm_post_created": post_created,
         "map_id": map_id,
