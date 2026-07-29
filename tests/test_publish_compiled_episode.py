@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 import unittest
+from unittest.mock import patch
 
 from scripts.publish_compiled_episode import (
     EpisodeError,
@@ -27,9 +28,19 @@ from scripts.publish_fogport_calendar import (
     validate_observance_entity,
     validate_calendar_document,
 )
+from kanka_librarian.writer import KankaWriter
 
 
 class CompiledEpisodeTests(unittest.TestCase):
+    def test_reminder_writer_uses_kanka_reminders_routes(self):
+        writer = KankaWriter(token="test-token", expected_campaign_id=410879)
+        with patch.object(writer, "_send", return_value={"id": 7}) as send:
+            writer.create_entity_reminder(410879, 1234, {"name": "The First Fog"})
+            writer.update_entity_reminder(410879, 1234, 7, {"name": "The First Fog"})
+
+        self.assertEqual(send.call_args_list[0].args[:2], ("POST", "campaigns/410879/entities/1234/reminders"))
+        self.assertEqual(send.call_args_list[1].args[:2], ("PATCH", "campaigns/410879/entities/1234/reminders/7"))
+
     def test_explicit_alias_matches_existing_record(self):
         records = [
             {"id": 1, "entity_id": 11, "name": "Byl Blacksaft"},
