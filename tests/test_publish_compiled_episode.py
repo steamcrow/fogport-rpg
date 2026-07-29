@@ -24,6 +24,7 @@ from scripts.publish_fogport_calendar import (
     parse_date,
     reminder_matches,
     reminder_payload,
+    validate_observance_entity,
     validate_calendar_document,
 )
 
@@ -230,6 +231,28 @@ class CompiledEpisodeTests(unittest.TestCase):
         self.assertTrue(reminder_matches(actual, expected, 99))
         actual["recurring_periodicity"] = "monthly"
         self.assertFalse(reminder_matches(actual, expected, 99))
+
+    def test_observance_entity_validation_requires_exact_generic_id(self):
+        class Client:
+            def __init__(self, response):
+                self.response = response
+                self.paths = []
+
+            def _get(self, path):
+                self.paths.append(path)
+                return self.response
+
+        client = Client({"data": {"id": 1234, "name": "The First Fog"}})
+        self.assertEqual(
+            validate_observance_entity(client, name="The First Fog", entity_id=1234)["id"],
+            1234,
+        )
+        self.assertEqual(client.paths, ["campaigns/410879/entities/1234"])
+
+        with self.assertRaises(ValueError):
+            validate_observance_entity(
+                Client({"data": {"id": 99}}), name="The First Fog", entity_id=1234
+            )
 
 if __name__ == "__main__":
     unittest.main()

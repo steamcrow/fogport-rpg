@@ -230,6 +230,37 @@ def reminder_matches(actual: dict[str, Any], expected: dict[str, Any], entity_id
     )
 
 
+def validate_observance_entity(
+    client: KankaClient, *, name: str, entity_id: int,
+) -> dict[str, Any]:
+    """Confirm an event's generic entity id before any reminder write.
+
+    Kanka event records expose both the event-table ``id`` and the generic
+    entity ``entity_id``. Reminder routes use the latter. A stale or
+    accidentally substituted event id produces an opaque 404 on POST, so
+    resolve the generic entity first and require an exact identity match.
+    """
+    path = f"campaigns/{CAMPAIGN_ID}/entities/{int(entity_id)}"
+    response = client._get(path)
+    entity = response.get("data", {})
+    if not isinstance(entity, dict):
+        raise CalendarError(
+            f"Observance {name!r} returned no generic entity for {path}; "
+            "no reminder writes were attempted."
+        )
+    returned_id = entity.get("id", entity.get("entity_id"))
+    try:
+        returned_id = int(returned_id)
+    except (TypeError, ValueError):
+        returned_id = None
+    if returned_id != int(entity_id):
+        raise CalendarError(
+            f"Observance {name!r} entity validation failed for {path}; "
+            f"Kanka returned id {returned_id!r}. No reminder writes were attempted."
+        )
+    return entity
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("document", type=Path)
@@ -273,6 +304,7 @@ def main() -> None:
         if event is None or not event.get("entity_id"):
             raise CalendarError(f"Existing annual observance event {name!r} is missing.")
         entity_id = int(event["entity_id"])
+        validate_observance_entity(client, name=name, entity_id=entity_id)
         month, day = parse_date(str(change["date"]))
         expected = reminder_payload(calendar_id, month, day, name)
         candidates = [
@@ -283,10 +315,16 @@ def main() -> None:
         if len(candidates) > 1:
             raise CalendarError(f"Multiple Fogport Calendar reminders found for {name!r}.")
         created = not candidates
-        if candidates:
-            reminder = writer.update_entity_reminder(CAMPAIGN_ID, entity_id, int(candidates[0]["id"]), expected)
-        else:
-            reminder = writer.create_entity_reminder(CAMPAIGN_ID, entity_id, expected)
+        try:
+            if candidates:
+                reminder = writer.update_entity_reminder(CAMPAIGN_ID, entity_id, int(candidates[0]["id"]), expected)
+            else:
+                reminder = writer.create_entity_reminder(CAMPAIGN_ID, entity_id, expected)
+        except Exception as exc:
+            raise CalendarError(
+                f"Reminder write failed for {name!r} at "
+                f"campaigns/{CAMPAIGN_ID}/entities/{entity_id}/entity_events: {exc}"
+            ) from exc
         direct = client._get(
             f"campaigns/{CAMPAIGN_ID}/entities/{entity_id}/entity_events/{int(reminder['id'])}"
         ).get("data", {})
