@@ -42,8 +42,8 @@
         ]
       },
       "artwork": {
-        "main_image_path": "assets/characters/vauntin-quell-original.png",
-        "sha256": "06f9d3284e691033da7053eca2894cab23105ebcd09ab3abaa7aba8e2b8014dc"
+        "main_image_path": "assets/characters/vauntin-quell-original-approved.jpg",
+        "sha256": "c249fcef85c82d0d5d6e7128f17081e32c312785d82e119c04bea7f46cc75d78"
       },
       "blocked": false
     }
@@ -52,6 +52,6 @@
     "status": "approved",
     "approved_by": "Daniel Davis",
     "approved_at": "2026-07-29T18:00:00-07:00",
-    "proposal_sha256": "c48b853956a4270f9472b435b3e79c8f5b333b5e86475c4d29c5cc7fb878598e"
+    "proposal_sha256": "6f70308b62c9688e5a6e4989b42cb3405c8cb2fb8ee3ce135c962ae3a71a8eca"
   }
 }
