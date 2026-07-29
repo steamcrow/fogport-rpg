@@ -1,13 +1,10 @@
 name: Publish Fogport to Kanka
 
 on:
-  push:
-    paths:
-      - ".github/workflows/publish-fogport.yml"
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   publish:
@@ -159,10 +156,7 @@ jobs:
           )
           PY
 
-      - name: Commit publication receipt
+      - name: Report receipt
         run: |
-          git config user.name "Kanka Librarian"
-          git config user.email "actions@users.noreply.github.com"
-          git add kanka_librarian/published/fogport.json
-          git commit -m "Record published Fogport Kanka IDs"
-          git push
+          test -f kanka_librarian/published/fogport.json
+          cat kanka_librarian/published/fogport.json
