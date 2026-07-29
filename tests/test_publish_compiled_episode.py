@@ -202,6 +202,22 @@ class CompiledEpisodeTests(unittest.TestCase):
         actual["month_length"] = actual["month_length"][:-1]
         self.assertFalse(calendar_matches(actual, payload))
 
+    def test_calendar_readback_accepts_mixed_kanka_serialization(self):
+        document = json.loads(Path("kanka_librarian/approved/fogport-calendar.json").read_text())
+        payload = calendar_payload(document)
+        actual = {
+            "name": "Fogport Calendar",
+            "date": {"year": "43", "month": 1, "day": 1},
+            "months": [
+                {"month_name": name, "month_length": str(length), "month_type": "standard"}
+                for name, length in zip(payload["month_name"], payload["month_length"])
+            ],
+            "weekday": {str(index): name for index, name in enumerate(payload["weekday"])},
+            "date_format": payload["format"],
+            "skip_year_zero": 1,
+        }
+        self.assertTrue(calendar_matches(actual, payload))
+
     def test_observance_dates_and_reminders_are_yearly(self):
         self.assertEqual(parse_date("October 31"), (10, 31))
         with self.assertRaises(CalendarError):
