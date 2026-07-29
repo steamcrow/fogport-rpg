@@ -130,7 +130,7 @@ class KankaWriter(KankaClient):
     ) -> dict[str, Any]:
         self._assert_campaign(campaign_id)
         return self._send(
-            "POST", f"campaigns/{campaign_id}/entities/{int(entity_id)}/entity_events", payload
+            "POST", f"campaigns/{campaign_id}/entities/{int(entity_id)}/reminders", payload
         )
 
     def update_entity_reminder(
@@ -143,6 +143,6 @@ class KankaWriter(KankaClient):
         self._assert_campaign(campaign_id)
         return self._send(
             "PATCH",
-            f"campaigns/{campaign_id}/entities/{int(entity_id)}/entity_events/{int(reminder_id)}",
+            f"campaigns/{campaign_id}/entities/{int(entity_id)}/reminders/{int(reminder_id)}",
             payload,
         )
