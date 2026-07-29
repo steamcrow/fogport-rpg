@@ -2,14 +2,6 @@ name: "Kanka Librarian — Publish Transit Artwork"
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - ".github/workflows/publish-transit-artwork.yml"
-      - "assets/items/transit/**"
-      - "kanka_librarian/approved_gallery/transit-artwork.json"
-      - "kanka_librarian/approved_items/transit-artwork.json"
-      - "scripts/publish_item_artwork.py"
-
 permissions:
   contents: read
 

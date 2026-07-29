@@ -1,10 +1,6 @@
 name: "Kanka Librarian — Publish approved Fogport character"
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "kanka_librarian/approved_characters/*.json"
   workflow_dispatch:
     inputs:
       proposal:

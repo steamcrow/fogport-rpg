@@ -2,13 +2,6 @@ name: "Kanka Librarian — Fogport: Drowned Diving Suit Portrait"
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - ".github/workflows/publish-drowned-diving-suit-portrait.yml"
-      - "assets/creatures/drowned-diving-suit-painterly.jpg"
-      - "kanka_librarian/approved_gallery/drowned-diving-suit-portrait.json"
-      - "scripts/publish_creature_portrait.py"
-
 permissions:
   contents: read
 

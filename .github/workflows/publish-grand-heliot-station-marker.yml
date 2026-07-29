@@ -2,12 +2,6 @@ name: "Kanka Librarian — Grand Heliot Station Map Pin"
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - ".github/workflows/publish-grand-heliot-station-marker.yml"
-      - "kanka_librarian/approved_maps/grand-heliot-station-marker.json"
-      - "scripts/publish_fogport_map_marker.py"
-
 permissions:
   contents: read
 

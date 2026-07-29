@@ -2,12 +2,6 @@ name: "Kanka Librarian — Fogport Child Map Coverage"
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - ".github/workflows/ensure-fogport-child-map-markers.yml"
-      - "kanka_librarian/approved_maps/fogport-immediate-child-markers.json"
-      - "scripts/ensure_fogport_child_map_markers.py"
-
 permissions:
   contents: read
 
