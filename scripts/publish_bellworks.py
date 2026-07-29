@@ -52,7 +52,10 @@ def link(token: str, module: str, record: dict[str, Any], targets: list[dict[str
     call(token, "PATCH", f"{module}/{record_id}", {"entry": entry})
     final = call(token, "GET", f"{module}/{record_id}").get("data", {})
     urls = [f"{APP}/{int(target['entity_id'])}" for target in targets]
-    if str(final.get("entry") or "") != entry or entry.count('data-fogport-crosslinks="bellworks"') != 1 or any(url not in entry for url in urls):
+    # Kanka normalizes HTML on read-back. Verify the published links, not
+    # byte-for-byte markup that Kanka is free to rewrite.
+    read_back = str(final.get("entry") or "")
+    if any(read_back.count(url) != 1 for url in urls):
         raise SystemExit(f"Cross-link read-back failed for {record['name']!r}.")
     return final
 
