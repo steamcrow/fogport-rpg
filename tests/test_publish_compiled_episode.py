@@ -15,6 +15,16 @@ from scripts.publish_compiled_episode import (
     resolve_gallery_image,
     validate_document,
 )
+from scripts.publish_fogport_calendar import (
+    CalendarError,
+    calendar_matches,
+    calendar_payload,
+    document_digest as calendar_document_digest,
+    parse_date,
+    reminder_matches,
+    reminder_payload,
+    validate_calendar_document,
+)
 
 
 class CompiledEpisodeTests(unittest.TestCase):
@@ -140,6 +150,50 @@ class CompiledEpisodeTests(unittest.TestCase):
         self.assertEqual(len(changes), 20)
         self.assertTrue(all(change["section"] == "events" for change in changes))
         self.assertTrue(all(change.get("date") for change in changes))
+
+    def test_fogport_calendar_document_is_approved_and_provisional(self):
+        document = json.loads(
+            Path("kanka_librarian/approved/fogport-calendar.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        validate_calendar_document(document)
+        self.assertEqual(document["approval"]["document_sha256"], calendar_document_digest(document))
+        payload = calendar_payload(document)
+        self.assertEqual(payload["month_name"][0], "January")
+        self.assertEqual(payload["month_name"][-1], "December")
+        self.assertEqual(payload["weekday"], ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"])
+
+    def test_calendar_readback_requires_the_full_provisional_shape(self):
+        document = json.loads(Path("kanka_librarian/approved/fogport-calendar.json").read_text())
+        payload = calendar_payload(document)
+        actual = {
+            "name": "Fogport Calendar",
+            "date": "43-1-1",
+            "months": [
+                {"name": name, "length": length, "type": "standard"}
+                for name, length in zip(payload["month_name"], payload["month_length"])
+            ],
+            "weekdays": payload["weekday"],
+            "format": payload["format"],
+            "skip_year_zero": True,
+        }
+        self.assertTrue(calendar_matches(actual, payload))
+        actual["months"] = actual["months"][:-1]
+        self.assertFalse(calendar_matches(actual, payload))
+
+    def test_observance_dates_and_reminders_are_yearly(self):
+        self.assertEqual(parse_date("October 31"), (10, 31))
+        with self.assertRaises(CalendarError):
+            parse_date("Fogmonth 1")
+        expected = reminder_payload(17, 10, 31, "Long Night of Lanterns")
+        actual = {
+            "calendar_id": 17, "year": 43, "month": 10, "day": 31,
+            "length": 1, "recurring_periodicity": "yearly", "entity_id": 99,
+        }
+        self.assertTrue(reminder_matches(actual, expected, 99))
+        actual["recurring_periodicity"] = "monthly"
+        self.assertFalse(reminder_matches(actual, expected, 99))
 
 if __name__ == "__main__":
     unittest.main()
