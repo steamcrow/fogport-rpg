@@ -2,16 +2,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-import sys
-from types import ModuleType
 import unittest
-
-client_module = ModuleType("kanka_librarian.client")
-client_module.KankaClient = object
-writer_module = ModuleType("kanka_librarian.writer")
-writer_module.KankaWriter = object
-sys.modules.setdefault("kanka_librarian.client", client_module)
-sys.modules.setdefault("kanka_librarian.writer", writer_module)
 
 from scripts.publish_fogport_history import (
     HistoryError,
