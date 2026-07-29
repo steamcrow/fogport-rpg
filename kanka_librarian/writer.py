@@ -112,3 +112,37 @@ class KankaWriter(KankaClient):
     def create_relation(self, campaign_id: int, entity_id: int, payload: dict[str, Any]) -> dict[str, Any]:
         self._assert_campaign(campaign_id)
         return self._send("POST", f"campaigns/{campaign_id}/entities/{int(entity_id)}/relations", payload)
+
+    def create_calendar(self, campaign_id: int, payload: dict[str, Any]) -> dict[str, Any]:
+        self._assert_campaign(campaign_id)
+        return self._send("POST", f"campaigns/{campaign_id}/calendars", payload)
+
+    def update_calendar(
+        self, campaign_id: int, calendar_id: int, payload: dict[str, Any],
+    ) -> dict[str, Any]:
+        self._assert_campaign(campaign_id)
+        return self._send(
+            "PATCH", f"campaigns/{campaign_id}/calendars/{int(calendar_id)}", payload
+        )
+
+    def create_entity_reminder(
+        self, campaign_id: int, entity_id: int, payload: dict[str, Any],
+    ) -> dict[str, Any]:
+        self._assert_campaign(campaign_id)
+        return self._send(
+            "POST", f"campaigns/{campaign_id}/entities/{int(entity_id)}/entity_events", payload
+        )
+
+    def update_entity_reminder(
+        self,
+        campaign_id: int,
+        entity_id: int,
+        reminder_id: int,
+        payload: dict[str, Any],
+    ) -> dict[str, Any]:
+        self._assert_campaign(campaign_id)
+        return self._send(
+            "PATCH",
+            f"campaigns/{campaign_id}/entities/{int(entity_id)}/entity_events/{int(reminder_id)}",
+            payload,
+        )
