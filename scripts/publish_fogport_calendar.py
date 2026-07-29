@@ -323,10 +323,10 @@ def main() -> None:
         except Exception as exc:
             raise CalendarError(
                 f"Reminder write failed for {name!r} at "
-                f"campaigns/{CAMPAIGN_ID}/entities/{entity_id}/entity_events: {exc}"
+                f"campaigns/{CAMPAIGN_ID}/entities/{entity_id}/reminders: {exc}"
             ) from exc
         direct = client._get(
-            f"campaigns/{CAMPAIGN_ID}/entities/{entity_id}/entity_events/{int(reminder['id'])}"
+            f"campaigns/{CAMPAIGN_ID}/entities/{entity_id}/reminders/{int(reminder['id'])}"
         ).get("data", {})
         if not reminder_matches(direct, expected, entity_id):
             raise CalendarError(f"Reminder read-back failed for {name!r}.")
