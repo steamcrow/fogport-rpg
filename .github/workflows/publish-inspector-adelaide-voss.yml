@@ -35,17 +35,5 @@ jobs:
         with:
           name: kanka-inspector-adelaide-voss-receipt
           path: receipts/inspector-adelaide-voss.json
-          if-no-files-found: warn
+          if-no-files-found: error
           retention-days: 90
-      - name: Commit successful Kanka read-back receipt
-        if: success()
-        run: |
-          git config user.name "Kanka Librarian"
-          git config user.email "actions@users.noreply.github.com"
-          git add receipts/inspector-adelaide-voss.json
-          if git diff --cached --quiet; then
-            echo "Verified receipt is already current."
-          else
-            git commit -m "Verify Inspector Adelaide Voss in Kanka"
-            git push
-          fi

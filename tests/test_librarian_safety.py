@@ -12,8 +12,12 @@ permissions:
   contents: read
 jobs:
   publish:
-    env:
-      KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+    steps:
+      - run: python -m pip install --requirement requirements.txt
+      - env:
+          KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+          KANKA_ENABLE_WRITES: FOGPORT_410879
+        run: python scripts/publish.py
 """
 
 
@@ -39,6 +43,20 @@ class LibrarianSafetyTests(unittest.TestCase):
     def test_repository_write_permission_is_rejected(self):
         errors = self.audit(SAFE.replace("contents: read", "contents: write"))
         self.assertTrue(any("must not have repository write" in error for error in errors))
+
+    def test_librarian_package_install_is_required(self):
+        errors = self.audit(
+            SAFE.replace("      - run: python -m pip install --requirement requirements.txt\n", "")
+        )
+        self.assertTrue(any("must install the Librarian package" in error for error in errors))
+
+    def test_workflow_cannot_push_receipts(self):
+        errors = self.audit(SAFE + "\n      - run: git push\n")
+        self.assertTrue(any("must not push receipts" in error for error in errors))
+
+    def test_explicit_fogport_write_enable_is_required(self):
+        errors = self.audit(SAFE.replace("          KANKA_ENABLE_WRITES: FOGPORT_410879\n", ""))
+        self.assertTrue(any("must explicitly enable FOGPORT_410879" in error for error in errors))
 
 
 if __name__ == "__main__":

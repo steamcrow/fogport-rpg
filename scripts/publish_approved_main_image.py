@@ -113,6 +113,9 @@ def main() -> None:
     parser.add_argument("--receipt", type=Path, required=True)
     args = parser.parse_args()
 
+    if os.environ.get("KANKA_ENABLE_WRITES") != "FOGPORT_410879":
+        raise SystemExit("KANKA_ENABLE_WRITES must explicitly select FOGPORT_410879.")
+
     document, image_bytes, image_name = load_approval(args.approval)
     campaign_id = int(document["campaign_id"])
     entity_id = int(document["entity_id"])

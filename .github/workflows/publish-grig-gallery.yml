@@ -27,6 +27,7 @@ jobs:
       - name: Publish and verify approved gallery
         env:
           KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+          KANKA_ENABLE_WRITES: FOGPORT_410879
         run: |
           python scripts/publish_approved_gallery.py \
             kanka_librarian/approved_gallery/grig-servants-and-battley.json \

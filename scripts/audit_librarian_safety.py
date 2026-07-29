@@ -1,4 +1,4 @@
-"""Fail CI when a Fogport workflow can write to Kanka without manual dispatch."""
+"""Fail CI when a Fogport workflow bypasses the proven Librarian contract."""
 
 from __future__ import annotations
 
@@ -8,6 +8,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 WORKFLOWS = ROOT / ".github" / "workflows"
+READ_ONLY_PREFIXES = ("inspect-", "test-")
 
 
 def audit_workflows(workflows: Path) -> list[str]:
@@ -22,6 +23,17 @@ def audit_workflows(workflows: Path) -> list[str]:
             errors.append(f"{workflow.name}: Kanka writer must not run on push, schedule, or pull_request.")
         if "contents: write" in text:
             errors.append(f"{workflow.name}: Kanka writer must not have repository write permission.")
+        if "python -m pip install --requirement requirements.txt" not in text:
+            errors.append(f"{workflow.name}: Kanka workflow must install the Librarian package.")
+        if "git push" in text:
+            errors.append(f"{workflow.name}: Kanka workflow must not push receipts into the repository.")
+        if (
+            not workflow.name.startswith(READ_ONLY_PREFIXES)
+            and "KANKA_ENABLE_WRITES: FOGPORT_410879" not in text
+        ):
+            errors.append(
+                f"{workflow.name}: Kanka writer must explicitly enable FOGPORT_410879 writes."
+            )
     return errors
 
 
