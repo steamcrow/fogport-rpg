@@ -26,7 +26,7 @@ jobs:
           cat assets/maps/fogport-post-catastrophe-city-map.png.b64.part-* \
             | base64 --decode \
             > assets/maps/fogport-post-catastrophe-city-map.png
-          echo "90d402863d94580382c363b4e4749b6fc80c69db8767f69f1c3b214f8d4a455c  assets/maps/fogport-post-catastrophe-city-map.png" \
+          echo "6a95059902a43fde069db5f7f6ae92d41e3442716745a785743f3ecf663d2f31  assets/maps/fogport-post-catastrophe-city-map.png" \
             | sha256sum --check
       - name: Publish and verify Fogport world map
         env:
@@ -42,5 +42,5 @@ jobs:
         with:
           name: kanka-fogport-world-map-receipt
           path: receipts/fogport-world-map.json
-          if-no-files-found: warn
+          if-no-files-found: error
           retention-days: 90
