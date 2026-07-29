@@ -1,12 +1,12 @@
-name: "Kanka Librarian — Publish approved Fogport location"
+name: "Kanka Librarian — Advanced location publisher"
 
 on:
   workflow_dispatch:
     inputs:
       proposal:
-        description: "Approved proposal filename"
+        description: "Advanced: exact approved location filename (no default)"
         required: true
-        default: "mercys-office.json"
+        type: string
 
 permissions:
   contents: read
@@ -17,28 +17,25 @@ concurrency:
 
 jobs:
   publish:
-    name: "FOGPORT 410879 — publish and verify"
+    name: "FOGPORT 410879 — publish selected location and verify"
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
       - run: python -m pip install --requirement requirements.txt
+      - name: Run Librarian safety tests
+        run: python -m unittest discover -s tests
       - name: Select approved proposal
         id: proposal
         shell: bash
         run: |
-          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
-            file="kanka_librarian/approved/${{ inputs.proposal }}"
-          else
-            file="$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" -- 'kanka_librarian/approved/*.json' | head -n 1)"
-          fi
-          test -n "$file"
+          filename="${{ inputs.proposal }}"
+          [[ "$filename" =~ ^[A-Za-z0-9._-]+\.json$ ]]
+          file="kanka_librarian/approved/$filename"
           test -f "$file"
           echo "file=$file" >> "$GITHUB_OUTPUT"
       - name: Publish and exact-read-back
@@ -53,7 +50,7 @@ jobs:
       - name: Preserve verified receipt
         uses: actions/upload-artifact@v4
         with:
-          name: kanka-publication-receipt
+          name: kanka-location-publication-receipt
           path: receipts/*.json
           if-no-files-found: error
           retention-days: 90
