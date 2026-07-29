@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "mode": "fogport-calendar",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "calendar_name": "Fogport Calendar",
+  "current_date": {"year": 43, "month": 1, "day": 1},
+  "months": [
+    ["January", 31], ["February", 28], ["March", 31], ["April", 30],
+    ["May", 31], ["June", 30], ["July", 31], ["August", 31],
+    ["September", 30], ["October", 31], ["November", 30], ["December", 31]
+  ],
+  "weekdays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+  "format": "d M, y s",
+  "skip_year_zero": true,
+  "annual_observances_document": "kanka_librarian/approved/fogport-annual-observances.json",
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-29T15:15:00-07:00",
+    "document_sha256": "dbbbceaa949f933da54c51ec76672ffb218dd029d8ebf9e84ad83810172a271b"
+  }
+}
