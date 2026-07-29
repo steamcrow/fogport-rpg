@@ -3,7 +3,10 @@
 from __future__ import annotations
 
 import argparse
+import base64
+import hashlib
 import json
+import mimetypes
 import os
 from pathlib import Path
 from typing import Any
@@ -12,6 +15,7 @@ import requests
 
 CAMPAIGN_ID = 410879
 CAMPAIGN_NAME = "Fogport"
+REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 
 
 def headers(token: str) -> dict[str, str]:
@@ -76,6 +80,55 @@ def read_location(token: str, location_id: int) -> dict[str, Any]:
     return request(
         token, "GET", f"campaigns/{CAMPAIGN_ID}/locations/{location_id}"
     ).get("data", {})
+
+
+def approved_image(document: dict[str, Any]) -> tuple[bytes, str, str]:
+    image = document.get("location", {}).get("image", {})
+    relative_path = str(image.get("base64_path", ""))
+    expected_sha = str(image.get("sha256", ""))
+    filename = str(image.get("filename", "saint-orra-colossus.jpg"))
+    if not relative_path or not expected_sha:
+        raise SystemExit("Saint Orra's approved image lock is incomplete.")
+    encoded_path = (REPOSITORY_ROOT / relative_path).resolve()
+    try:
+        encoded_path.relative_to(REPOSITORY_ROOT)
+    except ValueError as exc:
+        raise SystemExit("Saint Orra image path escapes the repository.") from exc
+    if not encoded_path.is_file():
+        raise SystemExit("Saint Orra's approved image is missing.")
+    try:
+        image_bytes = base64.b64decode(encoded_path.read_bytes(), validate=True)
+    except ValueError as exc:
+        raise SystemExit("Saint Orra's approved image is not valid base64.") from exc
+    actual_sha = hashlib.sha256(image_bytes).hexdigest()
+    if actual_sha != expected_sha:
+        raise SystemExit("Saint Orra's approved image changed after approval.")
+    return image_bytes, actual_sha, filename
+
+
+def upload_image(
+    token: str, entity_id: int, image_bytes: bytes, filename: str
+) -> dict[str, Any]:
+    mime_type = mimetypes.guess_type(filename)[0] or "application/octet-stream"
+    response = requests.post(
+        f"https://api.kanka.io/1.0/campaigns/{CAMPAIGN_ID}/entities/{entity_id}/image",
+        headers={
+            "Authorization": f"Bearer {token}",
+            "Accept": "application/json",
+            "User-Agent": "Kanka-Librarian/0.8",
+        },
+        files={"file": (filename, image_bytes, mime_type)},
+        timeout=120,
+    )
+    if not response.ok:
+        raise SystemExit(
+            f"Kanka image upload returned HTTP {response.status_code}: "
+            f"{response.text[:500]}"
+        )
+    image = response.json().get("data", {}).get("image", {})
+    if not isinstance(image, dict) or not image.get("uuid"):
+        raise SystemExit("Kanka did not return Saint Orra image metadata.")
+    return image
 
 
 def upsert_location(
@@ -155,6 +208,7 @@ def main() -> None:
     approval = document.get("approval", {})
     if approval.get("status") != "approved" or approval.get("approved_by") != "Daniel Davis":
         raise SystemExit("Daniel Davis approval is required.")
+    image_bytes, image_sha, image_filename = approved_image(document)
 
     token = os.environ["KANKA_API_TOKEN"]
     campaign = request(token, "GET", f"campaigns/{CAMPAIGN_ID}").get("data", {})
@@ -204,6 +258,24 @@ def main() -> None:
     colossus, colossus_created = upsert_location(
         token, locations, document["location"], int(district["entity_id"])
     )
+    uploaded_image = upload_image(
+        token,
+        int(colossus["entity_id"]),
+        image_bytes,
+        image_filename,
+    )
+    image_readback = request(
+        token,
+        "GET",
+        f"campaigns/{CAMPAIGN_ID}/entities/{int(colossus['entity_id'])}/image",
+    ).get("data", {}).get("image", {})
+    if (
+        not isinstance(image_readback, dict)
+        or image_readback.get("uuid") != uploaded_image.get("uuid")
+        or not image_readback.get("full")
+        or not image_readback.get("thumbnail")
+    ):
+        raise SystemExit("Saint Orra image read-back failed.")
 
     station = exact(locations, str(document["station_name"]), "Grand Heliot Station")
     if not station:
@@ -314,6 +386,9 @@ def main() -> None:
             "id": int(colossus["id"]),
             "entity_id": int(colossus["entity_id"]),
             "created": colossus_created,
+            "source_sha256": image_sha,
+            "image_uuid": image_readback["uuid"],
+            "image_verified": True,
         },
         "blackwake_id": int(blackwake["id"]),
         "blackwake_parent_entity_id_preserved": blackwake_parent_entity_id,
