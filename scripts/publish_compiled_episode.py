@@ -393,6 +393,8 @@ def main() -> None:
                 "is_private": bool(change.get("is_private", False)),
                 "entry": "",
             }
+            if section == "events" and change.get("date"):
+                shell["date"] = str(change["date"])
             match = writer.create_entity(CAMPAIGN_ID, section, shell)
             created_names.add(str(change["name"]))
             sections[section].append(match)
@@ -432,6 +434,8 @@ def main() -> None:
             payload["type"] = str(change.get("type") or "")
         elif current.get("type") is not None:
             payload["type"] = str(current.get("type") or "")
+        if section == "events" and change.get("date"):
+            payload["date"] = str(change["date"])
 
         gallery_image = None
         gallery_match = str(change.get("gallery_image_match", "")).strip()
@@ -453,7 +457,7 @@ def main() -> None:
         ).get("data", {})
         expected = {
             key: payload[key]
-            for key in ("name", "type", "is_private", "entry")
+            for key in ("name", "type", "is_private", "entry", "date")
             if key in payload
         }
         actual = {key: direct.get(key) for key in expected}
