@@ -90,6 +90,16 @@ def find_exact(records: list[dict[str, Any]], name: str, *, kind: str) -> dict[s
 
 
 def calendar_matches(actual: dict[str, Any], payload: dict[str, Any]) -> bool:
+    """Compare Kanka's calendar read-back with our approved shape.
+
+    The calendar collection/read endpoints expose the same values using the
+    API payload names (``current_year``, ``month_name``, ``weekday``, etc.),
+    while older test fixtures and some related endpoints use a normalized
+    shape (``date``, ``months``, ``weekdays``).  Normalize both forms here so
+    verification remains strict about every approved value without assuming
+    that Kanka's response serializer matches our internal fixture.
+    """
+    actual = normalize_calendar_readback(actual)
     expected_months = [
         {"name": name, "length": length, "type": "standard"}
         for name, length in zip(payload["month_name"], payload["month_length"], strict=True)
@@ -102,6 +112,36 @@ def calendar_matches(actual: dict[str, Any], payload: dict[str, Any]) -> bool:
         and actual.get("format") == payload["format"]
         and bool(actual.get("skip_year_zero")) is True
     )
+
+
+def normalize_calendar_readback(actual: dict[str, Any]) -> dict[str, Any]:
+    """Return the canonical calendar shape from either Kanka response form."""
+    if "months" in actual or "weekdays" in actual or "date" in actual:
+        return actual
+
+    month_names = actual.get("month_name")
+    month_lengths = actual.get("month_length")
+    month_types = actual.get("month_type")
+    weekdays = actual.get("weekday")
+    if not all(isinstance(value, list) for value in (month_names, month_lengths, month_types, weekdays)):
+        return actual
+    if not (len(month_names) == len(month_lengths) == len(month_types)):
+        return actual
+
+    return {
+        "name": actual.get("name", ""),
+        "date": "-".join(
+            str(actual.get(field, ""))
+            for field in ("current_year", "current_month", "current_day")
+        ),
+        "months": [
+            {"name": str(name), "length": int(length), "type": str(month_type)}
+            for name, length, month_type in zip(month_names, month_lengths, month_types, strict=True)
+        ],
+        "weekdays": weekdays,
+        "format": actual.get("format", actual.get("date_format")),
+        "skip_year_zero": bool(actual.get("skip_year_zero")),
+    }
 
 
 def parse_date(value: str) -> tuple[int, int]:
@@ -198,28 +238,3 @@ def main() -> None:
             raise CalendarError(f"Multiple Fogport Calendar reminders found for {name!r}.")
         created = not candidates
         if candidates:
-            reminder = writer.update_entity_reminder(CAMPAIGN_ID, entity_id, int(candidates[0]["id"]), expected)
-        else:
-            reminder = writer.create_entity_reminder(CAMPAIGN_ID, entity_id, expected)
-        direct = client._get(
-            f"campaigns/{CAMPAIGN_ID}/entities/{entity_id}/entity_events/{int(reminder['id'])}"
-        ).get("data", {})
-        if not reminder_matches(direct, expected, entity_id):
-            raise CalendarError(f"Reminder read-back failed for {name!r}.")
-        receipts.append({"name": name, "entity_id": entity_id, "reminder_id": int(reminder["id"]), "created": created, "date": f"{month}-{day}", "recurring": "yearly"})
-
-    receipt = {
-        "published": True,
-        "campaign": CAMPAIGN_NAME,
-        "campaign_id": CAMPAIGN_ID,
-        "calendar": {"id": calendar_id, "name": CALENDAR_NAME, "created": created_calendar, "date": "43-1-1"},
-        "reminders_verified": len(receipts),
-        "reminders": receipts,
-    }
-    args.receipt.parent.mkdir(parents=True, exist_ok=True)
-    args.receipt.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps(receipt, indent=2))
-
-
-if __name__ == "__main__":
-    main()
