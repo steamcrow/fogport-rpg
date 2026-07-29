@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "entity_id": 9637931,
+  "entity_name": "The Bellworks",
+  "repository_path": "assets/locations/bellworks-fog-factories-approved.jpg.b64",
+  "sha256": "d4f6dc19c023b620d0e5d3b256ab2de65cbe14a26769c06a231758a2ef011c22",
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-28T18:00:00-07:00"
+  }
+}
