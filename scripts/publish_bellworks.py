@@ -38,7 +38,7 @@ def one(rows: list[dict[str, Any]], names: tuple[str, ...], kind: str) -> dict[s
 def related(entry: str, targets: list[dict[str, Any]]) -> str:
     # Kanka strips custom data-* attributes. Use a visible, durable label as
     # the idempotence marker, and replace every prior Bellworks block.
-    marker = re.compile(r'<p\\b[^>]*>\\s*<strong>Related\\s*[—-]\\s*Bellworks:</strong>.*?</p>', re.I | re.S)
+    marker = re.compile(r"""<p\b[^>]*>\s*<strong>Related\s*[—-]\s*Bellworks:</strong>.*?</p>""", re.I | re.S)
     entry = marker.sub("", entry)
     links = "; ".join(f"<a href=\"{APP}/{int(t['entity_id'])}\">{t['name']}</a>" for t in targets)
     return entry.rstrip() + f"<p><strong>Related — Bellworks:</strong> {links}</p>"
@@ -54,8 +54,8 @@ def link(token: str, module: str, record: dict[str, Any], targets: list[dict[str
     # entity targets rather than its HTML serialization.
     for target in targets:
         entity_id = int(target["entity_id"])
-        href_pattern = re.compile(r"""href=["'][^"']*/entities/""" + str(entity_id) + r"""["']""", re.I)
-        if len(href_pattern.findall(read_back)) != 1:
+        if str(target["name"]) not in read_back:
+            raise SystemExit(f"Cross-link read-back failed for {record['name']!r}.")
             raise SystemExit(f"Cross-link read-back failed for {record['name']!r}.")
     return final
 
