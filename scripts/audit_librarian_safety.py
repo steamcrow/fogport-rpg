@@ -10,9 +10,9 @@ ROOT = Path(__file__).resolve().parents[1]
 WORKFLOWS = ROOT / ".github" / "workflows"
 
 
-def main() -> int:
+def audit_workflows(workflows: Path) -> list[str]:
     errors: list[str] = []
-    for workflow in sorted(WORKFLOWS.glob("*.yml")):
+    for workflow in sorted(workflows.glob("*.yml")):
         text = workflow.read_text(encoding="utf-8")
         if "KANKA_API_TOKEN" not in text:
             continue
@@ -22,6 +22,11 @@ def main() -> int:
             errors.append(f"{workflow.name}: Kanka writer must not run on push, schedule, or pull_request.")
         if "contents: write" in text:
             errors.append(f"{workflow.name}: Kanka writer must not have repository write permission.")
+    return errors
+
+
+def main() -> int:
+    errors = audit_workflows(WORKFLOWS)
     if errors:
         print("Unsafe Kanka workflow configuration:", file=sys.stderr)
         print("\n".join(f"- {error}" for error in errors), file=sys.stderr)

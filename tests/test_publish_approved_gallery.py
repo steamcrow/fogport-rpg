@@ -1,10 +1,7 @@
 from __future__ import annotations
 
 import unittest
-from unittest.mock import MagicMock
-import sys
 
-sys.modules.setdefault("requests", MagicMock())
 from scripts import publish_approved_gallery as gallery
 
 
@@ -14,7 +11,7 @@ class GalleryVerificationTests(unittest.TestCase):
         self.assertTrue(gallery._same_name({"name": "kitchen-maid"}, "kitchen-maid.jpg"))
         self.assertFalse(gallery._same_name({"name": "kitchen-porter"}, "kitchen-maid.jpg"))
 
-    def test_processed_size_is_not_part_of_remote_identity(self):
+    def test_same_name_ignores_remote_processing_metadata(self):
         remote = {
             "id": "gallery-image-1",
             "name": "kitchen-maid",
@@ -23,9 +20,7 @@ class GalleryVerificationTests(unittest.TestCase):
         }
         expected_filename = "kitchen-maid.jpg"
 
-        self.assertEqual(remote["id"], "gallery-image-1")
         self.assertTrue(gallery._same_name(remote, expected_filename))
-        self.assertTrue(remote["path"])
 
 
 if __name__ == "__main__":

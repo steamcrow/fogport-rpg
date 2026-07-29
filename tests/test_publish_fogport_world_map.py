@@ -1,11 +1,8 @@
 import importlib.util
-import sys
-import types
 import unittest
 from pathlib import Path
 
 
-sys.modules.setdefault("requests", types.SimpleNamespace())
 SCRIPT = Path(__file__).resolve().parents[1] / "scripts" / "publish_fogport_world_map.py"
 SPEC = importlib.util.spec_from_file_location("publish_fogport_world_map", SCRIPT)
 MODULE = importlib.util.module_from_spec(SPEC)

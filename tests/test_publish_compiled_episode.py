@@ -1,15 +1,6 @@
 from __future__ import annotations
 
-import sys
-from types import ModuleType
 import unittest
-
-client_module = ModuleType("kanka_librarian.client")
-client_module.KankaClient = object
-writer_module = ModuleType("kanka_librarian.writer")
-writer_module.KankaWriter = object
-sys.modules.setdefault("kanka_librarian.client", client_module)
-sys.modules.setdefault("kanka_librarian.writer", writer_module)
 
 from scripts.publish_compiled_episode import (
     EpisodeError,
@@ -57,42 +48,22 @@ class CompiledEpisodeTests(unittest.TestCase):
         self.assertIn("Byl Hasbaine", second)
         self.assertEqual(second.count("<h2>Episode: One Door Remaining</h2>"), 1)
 
-    def test_kanka_block_tag_whitespace_is_equivalent(self):
-        expected = "<p>First.</p>\n\n<p>Second.</p>"
-        actual = "<p>First.</p><p>Second.</p>"
-        self.assertEqual(normalize_kanka_html(expected), actual)
-        self.assertTrue(read_back_matches("entry", expected, actual))
-
-    def test_kanka_html_entities_are_equivalent(self):
-        expected = (
-            "<p>A key made by "
-            "[entity:9618502|G. Bramble & Sons].</p>"
-        )
-        actual = (
-            "<p>A key made by "
-            "[entity:9618502|G. Bramble &amp; Sons].</p>"
-        )
-        self.assertTrue(read_back_matches("entry", expected, actual))
-
-    def test_text_whitespace_remains_strict(self):
-        self.assertFalse(
-            read_back_matches(
-                "entry",
-                "<p>Grand Key</p>",
-                "<p>Grand  Key</p>",
-            )
+    def test_read_back_normalizes_only_kanka_formatting(self):
+        cases = [
+            ("block whitespace", "<p>First.</p>\n\n<p>Second.</p>", "<p>First.</p><p>Second.</p>", True),
+            ("HTML entities", "<p>G. Bramble & Sons</p>", "<p>G. Bramble &amp; Sons</p>", True),
+            ("text whitespace", "<p>Grand Key</p>", "<p>Grand  Key</p>", False),
+            ("inline spacing", "<p><strong>Grand</strong> Key</p>", "<p><strong>Grand</strong>Key</p>", False),
+        ]
+        for label, expected, actual, matches in cases:
+            with self.subTest(label):
+                self.assertEqual(read_back_matches("entry", expected, actual), matches)
+        self.assertEqual(
+            normalize_kanka_html("<p>First.</p>\n\n<p>Second.</p>"),
+            "<p>First.</p><p>Second.</p>",
         )
 
-    def test_inline_tag_spacing_remains_strict(self):
-        self.assertFalse(
-            read_back_matches(
-                "entry",
-                "<p><strong>Grand</strong> Key</p>",
-                "<p><strong>Grand</strong>Key</p>",
-            )
-        )
-
-    def test_gallery_image_prefers_one_exact_name(self):
+    def test_gallery_image_resolution_requires_one_exact_name(self):
         class FakeClient:
             def _get(self, path, params=None):
                 self.path = path
@@ -113,9 +84,7 @@ class CompiledEpisodeTests(unittest.TestCase):
         image = resolve_gallery_image(client, "gutterkin")
         self.assertEqual(image["id"], "one")
         self.assertEqual(client.path, "campaigns/410879/images")
-
-    def test_ambiguous_gallery_image_match_stops(self):
-        class FakeClient:
+        class AmbiguousClient:
             def _get(self, path, params=None):
                 return {
                     "data": [
@@ -126,9 +95,9 @@ class CompiledEpisodeTests(unittest.TestCase):
                 }
 
         with self.assertRaises(EpisodeError):
-            resolve_gallery_image(FakeClient(), "gutterkin")
+            resolve_gallery_image(AmbiguousClient(), "gutterkin")
 
-    def test_location_parent_uses_generic_entity_id(self):
+    def test_location_parent_resolution_uses_generic_entity_id_and_rejects_missing(self):
         registry = {
             ("locations", "fogport"): [
                 {"id": 41, "entity_id": 941, "name": "Fogport"}
@@ -138,8 +107,6 @@ class CompiledEpisodeTests(unittest.TestCase):
             resolve_location_parent_entity_id("Fogport", registry),
             941,
         )
-
-    def test_missing_location_parent_stops(self):
         with self.assertRaises(EpisodeError):
             resolve_location_parent_entity_id("Fogport", {})
 
