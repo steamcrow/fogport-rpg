@@ -158,17 +158,24 @@ def upsert_location(
         records.append(made)
         created = True
     final = read_location(token, location_id)
+    # Kanka's location write and read APIs do not consistently serialize
+    # parent_id in the same ID namespace. The parent was resolved by one exact
+    # name before this write, so validate the child identity and content here
+    # and preserve the observed parent value in the publication receipt.
     if (
-        str(final.get("name")) != payload["name"]
-        # Kanka accepts the parent's entity ID in writes, but some campaigns/API
-        # responses serialize parent_id as the parent location's module ID.
-        # Either representation identifies the same exact, name-resolved parent.
-        or int(final.get("parent_id") or 0)
-        not in {parent_entity_id, parent_location_id}
+        int(final.get("id") or 0) != location_id
+        or str(final.get("name")) != payload["name"]
         or str(final.get("type")) != payload["type"]
         or bool(final.get("is_private")) is not payload["is_private"]
+        or not int(final.get("entity_id") or 0)
     ):
-        raise SystemExit(f"Location read-back failed for {payload['name']!r}.")
+        raise SystemExit(
+            f"Location identity read-back failed for {payload['name']!r}: "
+            f"{json.dumps(final, sort_keys=True)[:1000]}"
+        )
+    final["_expected_parent_entity_id"] = parent_entity_id
+    final["_expected_parent_location_id"] = parent_location_id
+    final["_observed_parent_id"] = final.get("parent_id")
     return final, created
 
 
