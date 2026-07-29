@@ -238,3 +238,28 @@ def main() -> None:
             raise CalendarError(f"Multiple Fogport Calendar reminders found for {name!r}.")
         created = not candidates
         if candidates:
+            reminder = writer.update_entity_reminder(CAMPAIGN_ID, entity_id, int(candidates[0]["id"]), expected)
+        else:
+            reminder = writer.create_entity_reminder(CAMPAIGN_ID, entity_id, expected)
+        direct = client._get(
+            f"campaigns/{CAMPAIGN_ID}/entities/{entity_id}/entity_events/{int(reminder['id'])}"
+        ).get("data", {})
+        if not reminder_matches(direct, expected, entity_id):
+            raise CalendarError(f"Reminder read-back failed for {name!r}.")
+        receipts.append({"name": name, "entity_id": entity_id, "reminder_id": int(reminder["id"]), "created": created, "date": f"{month}-{day}", "recurring": "yearly"})
+
+    receipt = {
+        "published": True,
+        "campaign": CAMPAIGN_NAME,
+        "campaign_id": CAMPAIGN_ID,
+        "calendar": {"id": calendar_id, "name": CALENDAR_NAME, "created": created_calendar, "date": "43-1-1"},
+        "reminders_verified": len(receipts),
+        "reminders": receipts,
+    }
+    args.receipt.parent.mkdir(parents=True, exist_ok=True)
+    args.receipt.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
+    print(json.dumps(receipt, indent=2))
+
+
+if __name__ == "__main__":
+    main()
