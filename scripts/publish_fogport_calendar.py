@@ -115,29 +115,75 @@ def calendar_matches(actual: dict[str, Any], payload: dict[str, Any]) -> bool:
 
 
 def normalize_calendar_readback(actual: dict[str, Any]) -> dict[str, Any]:
-    """Return the canonical calendar shape from either Kanka response form."""
-    if "months" in actual or "weekdays" in actual or "date" in actual:
-        return actual
+    """Return one strict shape from Kanka's several calendar serializers.
 
-    month_names = actual.get("month_name")
-    month_lengths = actual.get("month_length")
-    month_types = actual.get("month_type")
-    weekdays = actual.get("weekday")
-    if not all(isinstance(value, list) for value in (month_names, month_lengths, month_types, weekdays)):
-        return actual
-    if not (len(month_names) == len(month_lengths) == len(month_types)):
-        return actual
+    Kanka has returned combinations of API field names (``month_name``),
+    normalized fixture names (``months``), and nested date objects over time.
+    Normalize each field independently instead of selecting one whole shape;
+    that keeps verification strict while tolerating harmless serialization
+    differences.
+    """
+    if not isinstance(actual, dict):
+        return {}
+    if isinstance(actual.get("calendar"), dict):
+        actual = actual["calendar"]
+
+    def number(value: Any) -> int | None:
+        try:
+            return int(value)
+        except (TypeError, ValueError):
+            return None
+
+    date_value = actual.get("date", actual.get("current_date"))
+    if isinstance(date_value, dict):
+        year = date_value.get("year", date_value.get("current_year"))
+        month = date_value.get("month", date_value.get("current_month"))
+        day = date_value.get("day", date_value.get("current_day"))
+    else:
+        year = actual.get("current_year")
+        month = actual.get("current_month")
+        day = actual.get("current_day")
+        if isinstance(date_value, str):
+            parts = date_value.replace("/", "-").split("-")
+            if len(parts) == 3:
+                year, month, day = parts
+    date = None
+    if all(value is not None for value in (number(year), number(month), number(day))):
+        date = f"{number(year)}-{number(month)}-{number(day)}"
+
+    months = actual.get("months")
+    if not isinstance(months, list):
+        names = actual.get("month_name")
+        lengths = actual.get("month_length")
+        types = actual.get("month_type")
+        if all(isinstance(value, list) for value in (names, lengths, types)):
+            months = [
+                {"name": name, "length": length, "type": month_type}
+                for name, length, month_type in zip(names, lengths, types)
+            ]
+    if isinstance(months, list):
+        normalized_months = []
+        for item in months:
+            if not isinstance(item, dict):
+                normalized_months = []
+                break
+            normalized_months.append(
+                {
+                    "name": str(item.get("name", item.get("month_name", ""))),
+                    "length": number(item.get("length", item.get("month_length"))),
+                    "type": str(item.get("type", item.get("month_type", ""))),
+                }
+            )
+        months = normalized_months
+
+    weekdays = actual.get("weekdays", actual.get("weekday"))
+    if isinstance(weekdays, dict):
+        weekdays = list(weekdays.values())
 
     return {
         "name": actual.get("name", ""),
-        "date": "-".join(
-            str(actual.get(field, ""))
-            for field in ("current_year", "current_month", "current_day")
-        ),
-        "months": [
-            {"name": str(name), "length": int(length), "type": str(month_type)}
-            for name, length, month_type in zip(month_names, month_lengths, month_types, strict=True)
-        ],
+        "date": date,
+        "months": months,
         "weekdays": weekdays,
         "format": actual.get("format", actual.get("date_format")),
         "skip_year_zero": bool(actual.get("skip_year_zero")),
