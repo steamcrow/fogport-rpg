@@ -2,15 +2,8 @@ name: "Kanka Librarian — Fogport: Cinderhack"
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - ".github/workflows/publish-cinderhack.yml"
-      - "scripts/publish_cinderhack.py"
-      - "kanka_librarian/approved_items/cinderhack.json"
-      - "assets/items/cinderhack.png.b64.part-*"
-
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: kanka-librarian-fogport

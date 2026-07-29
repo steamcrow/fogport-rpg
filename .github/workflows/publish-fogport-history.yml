@@ -2,13 +2,6 @@ name: "Kanka Librarian — Fogport Civic History"
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - ".github/workflows/publish-fogport-history.yml"
-      - "kanka_librarian/approved/fogport-history.json"
-      - "scripts/publish_fogport_history.py"
-      - "tests/test_publish_fogport_history.py"
-
 permissions:
   contents: read
 

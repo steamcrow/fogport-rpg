@@ -1,13 +1,10 @@
 name: Publish Sayir Sea to Fogport
 
 on:
-  push:
-    paths:
-      - ".github/workflows/publish-sayir-sea.yml"
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   publish:

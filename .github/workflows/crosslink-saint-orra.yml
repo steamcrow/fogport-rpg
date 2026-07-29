@@ -2,11 +2,6 @@ name: "Kanka Librarian — Cross-link Saint Orra"
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - ".github/workflows/crosslink-saint-orra.yml"
-      - "scripts/crosslink_saint_orra_colossus.py"
-
 permissions:
   contents: read
 

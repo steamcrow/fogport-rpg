@@ -2,10 +2,6 @@ name: "Fogport Librarian — Episode 5: One Door Remaining"
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - "kanka_librarian/repairs/**"
-
 permissions:
   contents: read
 

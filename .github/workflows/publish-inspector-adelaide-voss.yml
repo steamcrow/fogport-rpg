@@ -2,15 +2,8 @@ name: "Kanka Librarian — Fogport: Inspector Adelaide Voss"
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - ".github/workflows/publish-inspector-adelaide-voss.yml"
-      - "scripts/publish_inspector_adelaide_voss.py"
-      - "kanka_librarian/approved_characters/inspector-adelaide-voss.json"
-      - "assets/characters/adelaide-voss.jpg.b64"
-
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: kanka-librarian-fogport

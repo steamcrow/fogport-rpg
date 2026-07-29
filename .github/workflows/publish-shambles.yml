@@ -1,9 +1,6 @@
 name: Publish the Shambles to Kanka
 
 on:
-  push:
-    paths:
-      - ".github/workflows/publish-shambles.yml"
   workflow_dispatch:
 
 permissions:

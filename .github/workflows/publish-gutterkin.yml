@@ -2,13 +2,6 @@ name: "Kanka Librarian — Fogport: Publish Gutterkin"
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - ".github/workflows/publish-gutterkin.yml"
-      - "kanka_librarian/approved/gutterkin.json"
-      - "scripts/publish_compiled_episode.py"
-      - "tests/test_publish_compiled_episode.py"
-
 permissions:
   contents: read
 

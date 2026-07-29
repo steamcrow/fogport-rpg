@@ -1,11 +1,6 @@
 name: "Kanka Librarian — Publish The Bellworks"
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - ".github/workflows/publish-bellworks.yml"
-      - "kanka_librarian/approved_locations/bellworks.json"
-      - "scripts/publish_bellworks.py"
 permissions:
   contents: read
 concurrency:

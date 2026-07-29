@@ -1,12 +1,6 @@
 name: "Kanka Librarian — Publish approved Fogport location"
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "kanka_librarian/approved/*.json"
-      - "assets/locations/**"
-      - "scripts/publish_approved_location.py"
   workflow_dispatch:
     inputs:
       proposal:

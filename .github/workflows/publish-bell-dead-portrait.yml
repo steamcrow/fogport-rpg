@@ -2,13 +2,6 @@ name: "Kanka Librarian — Fogport: Bell-Dead Portrait"
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - ".github/workflows/publish-bell-dead-portrait.yml"
-      - "assets/creatures/bell-dead.jpg.b64"
-      - "kanka_librarian/approved_gallery/bell-dead-portrait.json"
-      - "scripts/publish_creature_portrait.py"
-
 permissions:
   contents: read
 

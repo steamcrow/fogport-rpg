@@ -2,13 +2,6 @@ name: "Kanka Librarian — Fogport World Map"
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - ".github/workflows/publish-fogport-world-map.yml"
-      - "assets/maps/fogport-post-catastrophe-city-map.png.b64.part-*"
-      - "kanka_librarian/approved_maps/fogport-post-catastrophe-map.json"
-      - "scripts/publish_fogport_world_map.py"
-
 permissions:
   contents: read
 

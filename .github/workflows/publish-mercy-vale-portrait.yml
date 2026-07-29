@@ -2,13 +2,6 @@ name: "Kanka Librarian — Fogport: Mercy Vale Portrait"
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - ".github/workflows/publish-mercy-vale-portrait.yml"
-      - "assets/characters/mercy-vale-portrait.jpg.b64"
-      - "kanka_librarian/approved_gallery/mercy-vale-portrait.json"
-      - "scripts/publish_character_portrait.py"
-
 permissions:
   contents: read
 
