@@ -20,6 +20,7 @@ from scripts.publish_fogport_calendar import (
     calendar_matches,
     calendar_payload,
     document_digest as calendar_document_digest,
+    normalize_calendar_readback,
     parse_date,
     reminder_matches,
     reminder_payload,
@@ -180,6 +181,25 @@ class CompiledEpisodeTests(unittest.TestCase):
         }
         self.assertTrue(calendar_matches(actual, payload))
         actual["months"] = actual["months"][:-1]
+        self.assertFalse(calendar_matches(actual, payload))
+
+    def test_calendar_readback_accepts_kanka_api_field_names(self):
+        document = json.loads(Path("kanka_librarian/approved/fogport-calendar.json").read_text())
+        payload = calendar_payload(document)
+        actual = {
+            "name": "Fogport Calendar",
+            "current_year": 43,
+            "current_month": 1,
+            "current_day": 1,
+            "month_name": payload["month_name"],
+            "month_length": payload["month_length"],
+            "month_type": payload["month_type"],
+            "weekday": payload["weekday"],
+            "format": payload["format"],
+            "skip_year_zero": 1,
+        }
+        self.assertTrue(calendar_matches(actual, payload))
+        actual["month_length"] = actual["month_length"][:-1]
         self.assertFalse(calendar_matches(actual, payload))
 
     def test_observance_dates_and_reminders_are_yearly(self):
