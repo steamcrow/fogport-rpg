@@ -54,7 +54,7 @@ def link(token: str, module: str, record: dict[str, Any], targets: list[dict[str
     # entity targets rather than its HTML serialization.
     for target in targets:
         entity_id = int(target["entity_id"])
-        href_pattern = re.compile(r'href=["\\'][^"\\']*/entities/' + str(entity_id) + r'["\\']', re.I)
+        href_pattern = re.compile(r"""href=["'][^"']*/entities/""" + str(entity_id) + r"""["']""", re.I)
         if len(href_pattern.findall(read_back)) != 1:
             raise SystemExit(f"Cross-link read-back failed for {record['name']!r}.")
     return final
