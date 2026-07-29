@@ -135,8 +135,10 @@ def upsert_location(
     token: str,
     records: list[dict[str, Any]],
     spec: dict[str, Any],
-    parent_entity_id: int,
+    parent: dict[str, Any],
 ) -> tuple[dict[str, Any], bool]:
+    parent_entity_id = int(parent["entity_id"])
+    parent_location_id = int(parent["id"])
     match = exact(records, str(spec["name"]), "location")
     payload = {
         "name": str(spec["name"]),
@@ -158,7 +160,11 @@ def upsert_location(
     final = read_location(token, location_id)
     if (
         str(final.get("name")) != payload["name"]
-        or int(final.get("parent_id") or 0) != parent_entity_id
+        # Kanka accepts the parent's entity ID in writes, but some campaigns/API
+        # responses serialize parent_id as the parent location's module ID.
+        # Either representation identifies the same exact, name-resolved parent.
+        or int(final.get("parent_id") or 0)
+        not in {parent_entity_id, parent_location_id}
         or str(final.get("type")) != payload["type"]
         or bool(final.get("is_private")) is not payload["is_private"]
     ):
@@ -234,13 +240,16 @@ def main() -> None:
     )
 
     district, district_created = upsert_location(
-        token, locations, document["district"], int(blackwake["entity_id"])
+        token, locations, document["district"], blackwake
     )
     # Verify hierarchy using the entity ID returned in Kanka's parent_id field.
     district_parent_entity_id = int(
         read_location(token, int(district["id"])).get("parent_id") or 0
     )
-    if district_parent_entity_id != int(blackwake["entity_id"]):
+    if district_parent_entity_id not in {
+        int(blackwake["entity_id"]),
+        int(blackwake["id"]),
+    }:
         raise SystemExit("Lastlight is not nested beneath Blackwake.")
     print(
         json.dumps(
@@ -253,7 +262,7 @@ def main() -> None:
     )
 
     colossus, colossus_created = upsert_location(
-        token, locations, document["location"], int(district["entity_id"])
+        token, locations, document["location"], district
     )
     uploaded_image = upload_image(
         token,
@@ -291,7 +300,8 @@ def main() -> None:
         payload=station_payload,
     )
     station_final = read_location(token, station_id)
-    if int(station_final.get("parent_id") or 0) != int(district["entity_id"]):
+    station_parent_id = int(station_final.get("parent_id") or 0)
+    if station_parent_id not in {int(district["entity_id"]), int(district["id"])}:
         raise SystemExit("Grand Heliot Station nesting read-back failed.")
 
     post, post_created = upsert_post(
