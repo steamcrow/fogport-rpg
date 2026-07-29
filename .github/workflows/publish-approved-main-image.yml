@@ -34,6 +34,7 @@ jobs:
       - name: Publish approved main image and exact-read-back
         env:
           KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+          KANKA_ENABLE_WRITES: FOGPORT_410879
         run: |
           approval="kanka_librarian/approved_images/${{ inputs.approval }}"
           test -f "$approval"

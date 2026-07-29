@@ -128,6 +128,9 @@ def main() -> None:
     parser.add_argument("--receipt", type=Path, required=True)
     args = parser.parse_args()
 
+    if os.environ.get("KANKA_ENABLE_WRITES") != "FOGPORT_410879":
+        raise SystemExit("KANKA_ENABLE_WRITES must explicitly select FOGPORT_410879.")
+
     document = json.loads(args.manifest.read_text(encoding="utf-8"))
     approved = _validated_images(document)
     token = os.environ["KANKA_API_TOKEN"]

@@ -36,10 +36,11 @@ jobs:
           python scripts/publish_approved_item_batch.py \
             kanka_librarian/approved_items/fogport-transit-system.json \
             --receipt receipts/fogport-transit-system.json
-      - name: Commit exact publication receipt
-        run: |
-          git config user.name "Kanka Librarian"
-          git config user.email "actions@users.noreply.github.com"
-          git add receipts/fogport-transit-system.json
-          git commit -m "Record Fogport transit publication receipt"
-          git push
+      - name: Preserve verified receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kanka-fogport-transit-receipt
+          path: receipts/fogport-transit-system.json
+          if-no-files-found: error
+          retention-days: 90
