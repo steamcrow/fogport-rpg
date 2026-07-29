@@ -3,12 +3,6 @@
   "campaign_name": "Fogport",
   "items": [
     {
-      "name": "Fogport Tramway System",
-      "entity_id": 9635987,
-      "image_path": "assets/items/transit/fogport-steam-trams-four-services.jpeg",
-      "sha256": "516f7bc0402fa9ab1d3986d6aae44fce2ed6bf16f53e0adcdf0d55f4be14871f"
-    },
-    {
       "name": "Standard Passenger Tram",
       "entity_id": 9635988,
       "image_path": "assets/items/transit/passenger-tram.jpg",
@@ -31,12 +25,6 @@
       "entity_id": 9635991,
       "image_path": "assets/items/transit/civic-police-tram.jpg",
       "sha256": "23ce33de5d73ead057c882638cd641904d0f0a29116ca8e3987f387ad06a1e2f"
-    },
-    {
-      "name": "Standard Transit Crate",
-      "entity_id": 9635992,
-      "image_path": "assets/items/transit/standard-transit-crate-technical.jpeg",
-      "sha256": "753831158c7cb0c8a218e3ef950573e7d40f0ef7f8e45e32f697bb0e86ecc98c"
     }
   ],
   "approval": {
