@@ -1,6 +1,6 @@
 """Publish The Bellworks and its direct Fogport relationships."""
 from __future__ import annotations
-import argparse, json, os
+import argparse, json, os, re
 from pathlib import Path
 from typing import Any
 import requests
@@ -36,14 +36,12 @@ def one(rows: list[dict[str, Any]], names: tuple[str, ...], kind: str) -> dict[s
     return found[0]
 
 def related(entry: str, targets: list[dict[str, Any]]) -> str:
-    marker = '<p data-fogport-crosslinks="bellworks">'
-    start = entry.find(marker)
-    if start >= 0:
-        end = entry.find("</p>", start)
-        if end < 0: raise SystemExit("Malformed existing Bellworks Related block.")
-        entry = entry[:start] + entry[end + 4:]
+    # Kanka strips custom data-* attributes. Use a visible, durable label as
+    # the idempotence marker, and replace every prior Bellworks block.
+    marker = re.compile(r'<p\\b[^>]*>\\s*<strong>Related\\s*[—-]\\s*Bellworks:</strong>.*?</p>', re.I | re.S)
+    entry = marker.sub("", entry)
     links = "; ".join(f'<a href="{APP}/{int(t["entity_id"])}">{t["name"]}</a>' for t in targets)
-    return entry.rstrip() + marker + f"<strong>Related:</strong> {links}</p>"
+    return entry.rstrip() + f"<p><strong>Related — Bellworks:</strong> {links}</p>"
 
 def link(token: str, module: str, record: dict[str, Any], targets: list[dict[str, Any]]) -> dict[str, Any]:
     record_id = int(record["id"])
@@ -51,12 +49,14 @@ def link(token: str, module: str, record: dict[str, Any], targets: list[dict[str
     entry = related(str(direct.get("entry") or ""), targets)
     call(token, "PATCH", f"{module}/{record_id}", {"entry": entry})
     final = call(token, "GET", f"{module}/{record_id}").get("data", {})
-    urls = [f"{APP}/{int(target['entity_id'])}" for target in targets]
-    # Kanka normalizes HTML on read-back. Verify the published links, not
-    # byte-for-byte markup that Kanka is free to rewrite.
     read_back = str(final.get("entry") or "")
-    if any(read_back.count(url) != 1 for url in urls):
-        raise SystemExit(f"Cross-link read-back failed for {record['name']!r}.")
+    # Kanka can convert absolute URLs to relative paths, so validate exact
+    # entity targets rather than its HTML serialization.
+    for target in targets:
+        entity_id = int(target["entity_id"])
+        href_pattern = re.compile(r'href=["\\'][^"\\']*/entities/' + str(entity_id) + r'["\\']', re.I)
+        if len(href_pattern.findall(read_back)) != 1:
+            raise SystemExit(f"Cross-link read-back failed for {record['name']!r}.")
     return final
 
 def main() -> None:
