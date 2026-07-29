@@ -1,6 +1,8 @@
 import hashlib
 import importlib.util
 import json
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -14,6 +16,22 @@ SPEC.loader.exec_module(MODULE)
 
 
 class ApprovedMainImageTests(unittest.TestCase):
+    def test_publisher_starts_with_workflow_command(self):
+        root = Path(__file__).resolve().parents[1]
+        completed = subprocess.run(
+            [sys.executable, "scripts/publish_approved_main_image.py", "--help"],
+            cwd=root,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(
+            completed.returncode,
+            0,
+            msg=f"stdout:\n{completed.stdout}\nstderr:\n{completed.stderr}",
+        )
+        self.assertIn("--receipt", completed.stdout)
+
     def test_bellworks_manifest_is_locked_to_existing_entity_and_artwork(self):
         root = Path(__file__).resolve().parents[1]
         manifest_path = root / "kanka_librarian/approved_images/bellworks.json"
