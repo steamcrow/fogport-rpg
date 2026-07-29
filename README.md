@@ -8,12 +8,15 @@ Gamemaster posts, and process a whole approved episode as one batch.
 
 ## Normal Fogport workflow
 
-1. Play an episode.
+1. Play an episode or approve an individual entry.
 2. Review one compact public-canon change set.
 3. Say **Publish** once.
-4. Run the prepared episode workflow once.
-5. Treat the run as successful only when every item has an exact Kanka
-   read-back receipt and direct Overview URL.
+4. The Librarian prepares a dedicated, one-purpose workflow with the approved
+   proposal already selected.
+5. Daniel opens the supplied link and presses **Run workflow**. There should be
+   no filename to edit and no code to enter.
+6. Treat the run as successful only when the Kanka exact-read-back receipt
+   names the intended entity and provides its direct Overview URL.
 
 The GitHub repository is plumbing, not the approval interface. Daniel's
 approval in the Fogport conversation is the content approval. The manual
@@ -22,23 +25,31 @@ not trigger another Actions workflow.
 
 ## Production workflows
 
-- `publish-approved-batch.yml`: preferred episode workflow; publishes an
-  ordered mixture of approved characters, creatures, and locations.
-- `publish-approved-character.yml`: single-character fallback.
-- `publish-approved-creature.yml`: single-creature fallback.
-- `publish-approved-location.yml`: single-location fallback.
-- `crosslink-fogport.yml`: rebuilds the live entity registry and applies one
-  approval-locked, link-only cleanup to existing entries and posts.
-- `ci.yml`: runs the safety tests on supported Python versions.
+Dedicated one-button workflows are the normal publishing interface. Their
+names follow `publish-<approved-subject>.yml`; each hardwires exactly one
+approved manifest and emits a subject-specific receipt. For example,
+`publish-vauntin-quell.yml` can publish only Vauntin Quell.
+
+The following generic workflows are advanced maintenance fallbacks. They have
+no default filename, are labeled **Advanced** in GitHub Actions, and require an
+operator to deliberately enter an exact approved filename:
+
+- `publish-approved-batch.yml`
+- `publish-approved-character.yml`
+- `publish-approved-creature.yml`
+- `publish-approved-location.yml`
+- `crosslink-fogport.yml`
+
+`ci.yml` runs the safety tests on supported Python versions.
 
 Batch runs are sequential and safe to rerun. Each item uses exact-name
 duplicate detection, updates an existing matching record in place, verifies
 the public entity through Kanka, verifies every GM post as administrator-only,
 and emits both an individual and combined receipt.
 
-Every publisher now rebuilds a campaign-wide registry from Kanka before
-rendering new text. The registry records both the resource ID used for updates
-and the global entity ID used in `[entity:ID|text]` links. Canonical names are
+Every publisher rebuilds a campaign-wide registry from Kanka before rendering
+new text. The registry records both the resource ID used for updates and the
+global entity ID used in `[entity:ID|text]` links. Canonical names are
 automatic; human-approved aliases live in
 `kanka_librarian/crosslink_aliases.json`.
 
@@ -48,12 +59,28 @@ ambiguous aliases, avoids self-links, and never links a private target from
 public text. The rebuilt registry and exact read-back receipt are retained as
 workflow artifacts rather than becoming a hand-maintained ID database.
 
+## Lessons from the Vauntin publication
+
+- Never prefill a generic publisher with an unrelated entity. A green run can
+  faithfully republish the default while leaving the intended entity untouched.
+- Prefer a dedicated one-button workflow whenever Daniel is asked to publish.
+  The subject and manifest must be visible in the workflow and job names.
+- Never replace approved artwork in place without updating and reapproving its
+  checksum-locked manifest. A checksum mismatch is a correct stop, not an error
+  to bypass.
+- A workflow completing is not publication proof. The receipt must confirm the
+  intended name, campaign, entity ID, image read-back, private posts, and direct
+  Kanka Overview URL.
+- Run the Librarian safety tests immediately before every production write.
+- Preserve the concurrency lock so two Fogport writes cannot overlap.
+
 ## Safety rules
 
 - Never commit a Kanka API token.
 - Lock every production write to Fogport campaign `410879` and verify the
   campaign name before writing.
 - Require an approval digest; reject any proposal or batch edited afterward.
+- Require content-locked artwork checksums and stop if the bytes changed.
 - Never expose delete operations through the publishing workflows.
 - Refuse ambiguous duplicate names instead of guessing.
 - Preserve nested locations and Kanka entity links.
@@ -61,8 +88,8 @@ workflow artifacts rather than becoming a hand-maintained ID database.
   nested links.
 - Store hidden material in separately labeled `GAMEMASTER SECRETS` posts with
   administrator-only visibility.
-- A workflow trigger, queue entry, or API write is not success. Only exact
-  Kanka read-back plus a receipt is success.
+- A workflow trigger, queue entry, API write, or green check is not success.
+  Only exact Kanka read-back plus the correct receipt is success.
 
 ## Episode batch format
 
