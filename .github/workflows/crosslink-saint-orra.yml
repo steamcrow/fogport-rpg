@@ -1,0 +1,43 @@
+name: "Kanka Librarian — Cross-link Saint Orra"
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/crosslink-saint-orra.yml"
+      - "scripts/crosslink_saint_orra_colossus.py"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kanka-librarian-fogport
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: "FOGPORT ONLY (410879) — cross-link Saint Orra"
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install --requirement requirements.txt
+      - name: Add and verify Saint Orra cross-links
+        env:
+          KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+          KANKA_ENABLE_WRITES: FOGPORT_410879
+        run: |
+          python scripts/crosslink_saint_orra_colossus.py \
+            --receipt receipts/saint-orra-crosslinks.json
+      - name: Preserve verified receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kanka-saint-orra-crosslinks-receipt
+          path: receipts/saint-orra-crosslinks.json
+          if-no-files-found: warn
+          retention-days: 90
