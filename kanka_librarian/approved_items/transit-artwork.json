@@ -3,15 +3,15 @@
   "campaign_name": "Fogport",
   "items": [
     {
-      "name": "Standard Transit Crate",
-      "entity_id": 9635992,
-      "image_path": "assets/items/transit/standard-transit-crates-dockside-approved.jpg",
-      "sha256": "ff70f32b50ee6352e284588eb436af5e261e67ad0be8828e0f87f7c7ff35e0f0"
+      "name": "Fogport Tramway System",
+      "entity_id": 9635987,
+      "image_path": "assets/items/transit/fogport-tramway-lastlight-junction-approved.jpg",
+      "sha256": "931fb6b67360e587b7326159d62d824d28467281ce212fd258dc361c38c0e272"
     }
   ],
   "approval": {
     "status": "approved",
     "approved_by": "Daniel Davis",
-    "approved_at": "2026-07-29T02:10:00-07:00"
+    "approved_at": "2026-07-28T17:00:00-07:00"
   }
 }
