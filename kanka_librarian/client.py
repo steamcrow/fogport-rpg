@@ -225,6 +225,26 @@ class KankaClient:
             params={"related": 1} if related else None,
         )
 
+    def list_calendars(self, campaign_id: int) -> list[dict[str, Any]]:
+        """Return every calendar in one campaign without changing anything."""
+        return self._get_all_pages(f"campaigns/{campaign_id}/calendars")
+
+    def list_calendar_reminders(
+        self, campaign_id: int, calendar_id: int,
+    ) -> list[dict[str, Any]]:
+        """Return every reminder displayed on one calendar."""
+        return self._get_all_pages(
+            f"campaigns/{campaign_id}/calendars/{int(calendar_id)}/reminders"
+        )
+
+    def list_entity_reminders(
+        self, campaign_id: int, entity_id: int,
+    ) -> list[dict[str, Any]]:
+        """Return every calendar reminder attached to one entity."""
+        return self._get_all_pages(
+            f"campaigns/{campaign_id}/entities/{int(entity_id)}/reminders"
+        )
+
     def list_items(
         self, campaign_id: int, *, related: bool = False,
     ) -> list[dict[str, Any]]:
