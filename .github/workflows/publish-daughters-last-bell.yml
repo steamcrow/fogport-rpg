@@ -1,0 +1,47 @@
+name: "Kanka Librarian — Fogport: Daughters of the Last Bell"
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kanka-librarian-fogport
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: "FOGPORT ONLY (410879) — publish and verify Daughters of the Last Bell"
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install --requirement requirements.txt
+      - name: Restore and verify approved Daughters image
+        run: |
+          python scripts/restore_base64_chunks.py \
+            assets/organizations/daughters-last-bell.png.b64.part-* \
+            --output assets/organizations/daughters-last-bell.png \
+            --expected-sha256 REPLACE_WITH_APPROVED_IMAGE_SHA256
+          echo "REPLACE_WITH_APPROVED_IMAGE_SHA256  assets/organizations/daughters-last-bell.png" | sha256sum --check
+      - name: Run Librarian safety tests
+        run: python -m unittest discover -s tests
+      - name: Publish and verify Daughters of the Last Bell
+        env:
+          KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+          KANKA_ENABLE_WRITES: FOGPORT_410879
+        run: |
+          python scripts/publish_daughters_last_bell.py kanka_librarian/approved_organizations/daughters-last-bell.json --receipt receipts/daughters-last-bell.json
+      - name: Preserve verified receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kanka-daughters-last-bell-receipt
+          path: receipts/daughters-last-bell.json
+          if-no-files-found: warn
+          retention-days: 90
