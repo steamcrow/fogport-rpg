@@ -1,7 +1,7 @@
 """Finish the Fogport Calendar and attach approved annual observances.
 
 The publisher is deliberately narrow: it may only touch the Fogport campaign,
-one exact calendar name, and the twenty already-approved observance entities.
+one exact calendar name, and the approved annual observance entities.
 Every calendar field and reminder is read back before the receipt is written.
 """
 
@@ -296,8 +296,8 @@ def main() -> None:
     observances_path = args.document.parent.parent.parent / document["annual_observances_document"]
     observances = json.loads(observances_path.read_text(encoding="utf-8"))
     changes = observances.get("changes", [])
-    if len(changes) != 20 or any(change.get("section") != "events" for change in changes):
-        raise CalendarError("The approved annual-observances batch must contain exactly twenty events.")
+    if len(changes) != 50 or any(change.get("section") != "events" for change in changes):
+        raise CalendarError("The approved annual-observances batch must contain exactly fifty events.")
     events = client.list_events(CAMPAIGN_ID)
     reminders = client.list_calendar_reminders(CAMPAIGN_ID, calendar_id)
     receipts: list[dict[str, Any]] = []
