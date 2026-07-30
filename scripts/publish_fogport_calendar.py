@@ -22,6 +22,9 @@ from kanka_librarian.writer import KankaWriter
 CAMPAIGN_ID = 410879
 CAMPAIGN_NAME = "Fogport"
 CALENDAR_NAME = "Fogport Calendar"
+# Kanka validates this as a short periodicity token; "yearly" is rejected
+# because it is six characters. The API's annual recurrence token is "year".
+RECURRENCE_PERIODICITY = "year"
 
 
 class CalendarError(ValueError):
@@ -209,7 +212,7 @@ def reminder_payload(calendar_id: int, month: int, day: int, name: str) -> dict[
         "month": month,
         "day": day,
         "length": 1,
-        "recurring_periodicity": "yearly",
+        "recurring_periodicity": RECURRENCE_PERIODICITY,
         "recurring_until": None,
         "comment": "Fogport annual observance",
         "colour": "#9a7b3f",
@@ -225,7 +228,7 @@ def reminder_matches(actual: dict[str, Any], expected: dict[str, Any], entity_id
         and int(actual.get("month", 0)) == int(expected["month"])
         and int(actual.get("day", 0)) == int(expected["day"])
         and int(actual.get("length", 0)) == 1
-        and actual.get("recurring_periodicity") == "yearly"
+        and actual.get("recurring_periodicity") == RECURRENCE_PERIODICITY
         and int(actual.get("entity_id", actual.get("remindable_id", 0)) or 0) == entity_id
     )
 
@@ -330,7 +333,7 @@ def main() -> None:
         ).get("data", {})
         if not reminder_matches(direct, expected, entity_id):
             raise CalendarError(f"Reminder read-back failed for {name!r}.")
-        receipts.append({"name": name, "entity_id": entity_id, "reminder_id": int(reminder["id"]), "created": created, "date": f"{month}-{day}", "recurring": "yearly"})
+        receipts.append({"name": name, "entity_id": entity_id, "reminder_id": int(reminder["id"]), "created": created, "date": f"{month}-{day}", "recurring": RECURRENCE_PERIODICITY})
 
     receipt = {
         "published": True,
