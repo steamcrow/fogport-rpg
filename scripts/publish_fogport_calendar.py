@@ -264,6 +264,36 @@ def validate_observance_entity(
     return entity
 
 
+def prepare_observances(
+    client: KankaClient,
+    changes: list[dict[str, Any]],
+    events: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Validate every observance before the first calendar write.
+
+    A missing event, ambiguous name, stale generic entity id, or invalid date
+    must stop the run before the calendar is created or updated. This turns a
+    common partial-publication failure into a safe, read-only failure.
+    """
+    prepared: list[dict[str, Any]] = []
+    for change in changes:
+        name = str(change["name"])
+        event = find_exact(events, name, kind="event")
+        if event is None or not event.get("entity_id"):
+            raise CalendarError(f"Existing annual observance event {name!r} is missing.")
+        entity_id = int(event["entity_id"])
+        validate_observance_entity(client, name=name, entity_id=entity_id)
+        month, day = parse_date(str(change["date"]))
+        prepared.append({
+            "change": change,
+            "name": name,
+            "entity_id": entity_id,
+            "month": month,
+            "day": day,
+        })
+    return prepared
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("document", type=Path)
@@ -281,34 +311,41 @@ def main() -> None:
     if str(campaign.get("name", "")).casefold() != CAMPAIGN_NAME.casefold():
         raise CalendarError("Kanka campaign identity lock failed.")
 
-    payload = calendar_payload(document)
-    calendar = find_exact(client.list_calendars(CAMPAIGN_ID), CALENDAR_NAME, kind="calendar")
-    created_calendar = calendar is None
-    if calendar is None:
-        calendar = writer.create_calendar(CAMPAIGN_ID, payload)
-    else:
-        calendar = writer.update_calendar(CAMPAIGN_ID, int(calendar["id"]), payload)
-    calendar_id = int(calendar["id"])
-    direct_calendar = client._get(f"campaigns/{CAMPAIGN_ID}/calendars/{calendar_id}").get("data", {})
-    if not calendar_matches(direct_calendar, payload):
-        raise CalendarError("Fogport Calendar read-back failed; no reminder writes were attempted.")
-
     observances_path = args.document.parent.parent.parent / document["annual_observances_document"]
     observances = json.loads(observances_path.read_text(encoding="utf-8"))
     changes = observances.get("changes", [])
     if len(changes) != 50 or any(change.get("section") != "events" for change in changes):
         raise CalendarError("The approved annual-observances batch must contain exactly fifty events.")
     events = client.list_events(CAMPAIGN_ID)
+    # Complete read-only preflight before creating or updating the calendar.
+    prepared = prepare_observances(client, changes, events)
+
+    payload = calendar_payload(document)
+    calendar = find_exact(client.list_calendars(CAMPAIGN_ID), CALENDAR_NAME, kind="calendar")
+    created_calendar = calendar is None
+    if calendar is None:
+        calendar = writer.create_calendar(CAMPAIGN_ID, payload)
+    else:
+        calendar_id_candidate = int(calendar["id"])
+        existing_calendar = client._get(
+            f"campaigns/{CAMPAIGN_ID}/calendars/{calendar_id_candidate}"
+        ).get("data", {})
+        # Avoid a needless write on every rerun and reduce recovery risk.
+        if calendar_matches(existing_calendar, payload):
+            calendar = existing_calendar
+        else:
+            calendar = writer.update_calendar(CAMPAIGN_ID, calendar_id_candidate, payload)
+    calendar_id = int(calendar["id"])
+    direct_calendar = client._get(f"campaigns/{CAMPAIGN_ID}/calendars/{calendar_id}").get("data", {})
+    if not calendar_matches(direct_calendar, payload):
+        raise CalendarError("Fogport Calendar read-back failed; no reminder writes were attempted.")
+
     reminders = client.list_calendar_reminders(CAMPAIGN_ID, calendar_id)
     receipts: list[dict[str, Any]] = []
-    for change in changes:
-        name = str(change["name"])
-        event = find_exact(events, name, kind="event")
-        if event is None or not event.get("entity_id"):
-            raise CalendarError(f"Existing annual observance event {name!r} is missing.")
-        entity_id = int(event["entity_id"])
-        validate_observance_entity(client, name=name, entity_id=entity_id)
-        month, day = parse_date(str(change["date"]))
+    for item in prepared:
+        name = item["name"]
+        entity_id = item["entity_id"]
+        month, day = item["month"], item["day"]
         expected = reminder_payload(calendar_id, month, day, name)
         candidates = [
             item for item in reminders
@@ -337,8 +374,12 @@ def main() -> None:
 
     receipt = {
         "published": True,
+        "phase": "calendar-and-reminders",
         "campaign": CAMPAIGN_NAME,
         "campaign_id": CAMPAIGN_ID,
+        "observances_document": str(document["annual_observances_document"]),
+        "observances_document_sha256": document_digest(observances),
+        "preflight_observances_verified": len(prepared),
         "calendar": {"id": calendar_id, "name": CALENDAR_NAME, "created": created_calendar, "date": "43-1-1"},
         "reminders_verified": len(receipts),
         "reminders": receipts,
@@ -346,6 +387,13 @@ def main() -> None:
     args.receipt.parent.mkdir(parents=True, exist_ok=True)
     args.receipt.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(receipt, indent=2))
+    summary = os.environ.get("GITHUB_STEP_SUMMARY")
+    if summary:
+        with open(summary, "a", encoding="utf-8") as stream:
+            stream.write("# Fogport calendar verified\n\n")
+            stream.write(f"- Calendar: **{CALENDAR_NAME}** ({calendar_id})\n")
+            stream.write(f"- Observances preflight verified: **{len(prepared)}**\n")
+            stream.write(f"- Calendar reminders verified: **{len(receipts)}**\n")
 
 
 if __name__ == "__main__":
