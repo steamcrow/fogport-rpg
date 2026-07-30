@@ -33,11 +33,28 @@ jobs:
           python scripts/publish_compiled_episode.py \
             kanka_librarian/approved/fogport-annual-observances.json \
             --receipt receipts/fogport-annual-observances.json
+      - name: Finish Fogport Calendar and attach observances
+        env:
+          KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+          KANKA_ENABLE_WRITES: FOGPORT_410879
+          PYTHONPATH: ${{ github.workspace }}
+        run: |
+          python scripts/publish_fogport_calendar.py \
+            kanka_librarian/approved/fogport-calendar.json \
+            --receipt receipts/fogport-calendar.json
       - name: Preserve verified receipt
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: kanka-fogport-annual-observances-receipt
           path: receipts/fogport-annual-observances.json
+          if-no-files-found: warn
+          retention-days: 90
+      - name: Preserve verified calendar receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kanka-fogport-calendar-receipt
+          path: receipts/fogport-calendar.json
           if-no-files-found: warn
           retention-days: 90
