@@ -511,8 +511,10 @@ def main() -> None:
 
     receipt = {
         "published": True,
+        "phase": "entities",
         "campaign": CAMPAIGN_NAME,
         "campaign_id": CAMPAIGN_ID,
+        "document_sha256": document_digest(document),
         "episode": document.get("episode"),
         "entities_verified": len(receipts),
         "entities": receipts,
