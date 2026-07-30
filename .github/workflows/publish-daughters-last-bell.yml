@@ -27,8 +27,8 @@ jobs:
           python scripts/restore_base64_chunks.py \
             assets/organizations/daughters-last-bell.png.b64.part-* \
             --output assets/organizations/daughters-last-bell.png \
-            --expected-sha256 REPLACE_WITH_APPROVED_IMAGE_SHA256
-          echo "REPLACE_WITH_APPROVED_IMAGE_SHA256  assets/organizations/daughters-last-bell.png" | sha256sum --check
+            --expected-sha256 8acfc92202a456e57ac08ebcf97f98b9751549ea19d01edf240431d3e6612ef5
+          echo "8acfc92202a456e57ac08ebcf97f98b9751549ea19d01edf240431d3e6612ef5  assets/organizations/daughters-last-bell.png" | sha256sum --check
       - name: Run Librarian safety tests
         run: python -m unittest discover -s tests
       - name: Publish and verify Daughters of the Last Bell
