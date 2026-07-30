@@ -1,0 +1,22 @@
+{
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "image_path": "assets/organizations/order-last-landing.png",
+  "sha256": "aea7ef545f4464ebd5e928bd000f660a78cdb2b3755607d1db745caa019116c8",
+  "organization": {
+    "name": "The Order of the Last Landing",
+    "type": "Underground Cult",
+    "is_private": false,
+    "entry": "<p><strong>The Order of the Last Landing</strong> is a hidden cult beneath {{FOGPORT_LINK}}, operating through drowned customs tunnels, sealed cisterns, abandoned tram passages, and rooms beneath waterfront warehouses. Its members surface only during heavy fog, wearing rotted sailor’s clothing, sealed masks, and barnacle-covered coats.</p><p>The Order believes every person who enters Fogport belongs to the city before they belong to themselves. It calls ordinary citizens <strong>the Dry-Living</strong> and those it abducts or claims <strong>the Unfinished</strong>.</p><h2>The Public Face</h2><p>To desperate newcomers, the Order offers shelter, names for unidentified dead, escape from the Civic Vigilance, and passage through the fog. These mercies are bait. Every person accepted into one of its shelters becomes indebted to the Order, and the debt is eventually collected.</p><h2>The Sealed Masks</h2><p>Their masks have no eye, nose, or mouth holes. Members claim the fog can recognize a person through face, breath, and voice. The practical reason is simpler: no witness can describe them. Senior members communicate through bells, hand signs, and small pennant flags.</p><h2>What They Do</h2><ul><li>Kidnap vulnerable newcomers, refugees, and fugitives.</li><li>Smuggle people through submerged tunnels—for a price.</li><li>Recover bodies before authorities can identify them.</li><li>Sell information about ships, disappearances, and Catastrophe ruins.</li><li>Perform assassinations disguised as drownings.</li><li>Replace dead or missing people with prepared impostors.</li><li>Recruit abandoned children as tunnel-runners and spies.</li></ul><h2>The Ferrymaster</h2><p>The unseen leader is known as <strong>the Ferrymaster</strong>. Nobody has seen the Ferrymaster’s face. Different cells report to different masked figures, each claiming to receive orders from the same person.</p><h2>The Second Landing</h2><p>The Order’s central rite places a victim in a flooded stone chamber and asks: <em>What were you called before Fogport? Who is waiting for you? What did the fog take from you?</em> Convincing answers may earn recruitment. Lies invite disappearance. Those who claim nobody is waiting for them are considered especially valuable. Those who mention the Catastrophe are taken deeper underground.</p><p>The Order should remain a street-level horror: organized, intelligent, criminal, and embedded in Fogport’s vulnerable population. Its supernatural beliefs may be partly true, but its kidnappings, murders, and exploitation are entirely real.</p>"
+  },
+  "gm_post": {
+    "name": "GAMEMASTER SECRETS — The Order of the Last Landing",
+    "visibility_id": 3,
+    "entry": "<h2>Why They Matter to Byl</h2><p>The Order knows that Byl is an unregistered Wild Operator. Its members believe his accidental magic may allow him to open doors that should remain sealed beneath Fogport. They do not necessarily want him dead; they may want to perform the Second Landing on him.</p><p>Their records may reveal that Byl has already been listed in the Ledger of the Unfinished under a date before he was born. The Order’s interest in him should be personal, coercive, and dangerous rather than cosmic.</p><h2>Story Opportunities</h2><ul><li>A rescued refugee begs Byl not to return her to the Order, while the Order insists she is a murderer.</li><li>A Pennant-Bearer leaves a black flag outside the Twisted Eel.</li><li>A missing child returns wearing a sealed mask and refusing to remove it.</li><li>The Order offers Mercy protection from the Civic Vigilance, demanding the Eel’s cellar in return.</li><li>A body recovered from the harbor is wearing Lott’s clothes.</li><li>Someone begins replacing Nine Spoons residents with nearly perfect copies.</li><li>A cult tunnel collapses, revealing a forgotten Seventh Foundation door.</li><li>Little Flag returns with a pennant stitched with names of people who will disappear next.</li><li>The Ferrymaster offers Byl safe passage in exchange for opening one impossible door.</li></ul>"
+  },
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-29T17:00:00-07:00"
+  }
+}
