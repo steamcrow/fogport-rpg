@@ -23,6 +23,7 @@ from scripts.publish_fogport_calendar import (
     document_digest as calendar_document_digest,
     normalize_calendar_readback,
     parse_date,
+    prepare_observances,
     RECURRENCE_PERIODICITY,
     reminder_matches,
     reminder_payload,
@@ -267,6 +268,35 @@ class CompiledEpisodeTests(unittest.TestCase):
             validate_observance_entity(
                 Client({"data": {"id": 99}}), name="The First Fog", entity_id=1234
             )
+
+    def test_calendar_preflight_validates_all_observances_before_writes(self):
+        class Client:
+            def __init__(self):
+                self.paths = []
+
+            def _get(self, path):
+                self.paths.append(path)
+                if path.endswith("/1234"):
+                    return {"data": {"id": 1234}}
+                return {"data": {"id": 9999}}
+
+        changes = [
+            {"name": "The First Fog", "date": "January 7"},
+            {"name": "Missing Holiday", "date": "February 2"},
+        ]
+        events = [{"name": "The First Fog", "entity_id": 1234}]
+        with self.assertRaisesRegex(CalendarError, "Missing Holiday"):
+            prepare_observances(Client(), changes, events)
+
+    def test_calendar_preflight_rejects_invalid_date_before_any_calendar_write(self):
+        class Client:
+            def _get(self, path):
+                return {"data": {"id": 1234}}
+
+        changes = [{"name": "The First Fog", "date": "Fogmonth 1"}]
+        events = [{"name": "The First Fog", "entity_id": 1234}]
+        with self.assertRaisesRegex(CalendarError, "Unsupported observance month"):
+            prepare_observances(Client(), changes, events)
 
 if __name__ == "__main__":
     unittest.main()
