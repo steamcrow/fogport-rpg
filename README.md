@@ -13,10 +13,12 @@ Gamemaster posts, and process a whole approved episode as one batch.
 3. Say **Publish** once.
 4. The Librarian prepares a dedicated, one-purpose workflow with the approved
    proposal already selected.
-5. Daniel opens the supplied link and presses **Run workflow**. There should be
-   no filename to edit and no code to enter.
-6. Treat the run as successful only when the Kanka exact-read-back receipt
-   names the intended entity and provides its direct Overview URL.
+5. Daniel opens the supplied link and presses **Run workflow** once. There
+   should be no filename to edit and no code to enter. For annual observances,
+   that single run publishes the event records and then attaches and verifies
+   their calendar reminders in sequence.
+6. Treat the run as successful only when the Kanka exact-read-back receipts
+   confirm every requested phase. A green GitHub check alone is not proof.
 
 The GitHub repository is plumbing, not the approval interface. Daniel's
 approval in the Fogport conversation is the content approval. The manual
@@ -28,7 +30,10 @@ not trigger another Actions workflow.
 Dedicated one-button workflows are the normal publishing interface. Their
 names follow `publish-<approved-subject>.yml`; each hardwires exactly one
 approved manifest and emits a subject-specific receipt. For example,
-`publish-vauntin-quell.yml` can publish only Vauntin Quell.
+`publish-vauntin-quell.yml` can publish only Vauntin Quell. The annual-
+observances workflow is a complete two-phase operation behind one button;
+`finish-fogport-calendar.yml` remains available as a recovery workflow when
+the event batch already exists.
 
 The following generic workflows are advanced maintenance fallbacks. They have
 no default filename, are labeled **Advanced** in GitHub Actions, and require an
