@@ -1,0 +1,22 @@
+{
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "image_path": "assets/organizations/daughters-last-bell.png",
+  "sha256": "REPLACE_WITH_APPROVED_IMAGE_SHA256",
+  "organization": {
+    "name": "The Daughters of the Last Bell",
+    "type": "All-Women Battle Cult",
+    "is_private": false,
+    "entry": "<p><strong>The Daughters of the Last Bell</strong> are an all-women battle cult who believe Fogport’s Catastrophe ended only because a final bell was rung beneath the city.</p><p>They patrol the fog in cone-shaped <strong>bell helms</strong>, chainmail veils, and rusted ceremonial armor. Each woman carries a bell tuned to a different warning: death, treachery, monsters, magic, or approaching fog.</p><h2>Their Mission</h2><p>They believe every unnatural thing in Fogport is an unfinished consequence of the Catastrophe. Their mission is to find those things and <em>ring them complete</em>.</p><p>In practice, they are monster hunters, assassins, and enforcers. They protect women and girls threatened by gangs, officials, or monsters, but are ruthless toward anyone they believe has been claimed by the Catastrophe.</p><h2>Their Enemy</h2><p>Their chief enemy is the Order of the Last Landing. The Order believes the fog is still receiving the lost; the Daughters believe the fog is a wound that must be cauterized.</p><h2>The First Bell</h2><p>Their hidden leader is known as <strong>the First Bell</strong>. No one has seen her face. Members speak of her as if she died years ago, yet her orders continue arriving inside sealed bells.</p><p><em>“When the last bell rings, the city will know what it has become.”</em></p>"
+  },
+  "gm_post": {
+    "name": "GAMEMASTER SECRETS — The Daughters of the Last Bell",
+    "visibility_id": 3,
+    "entry": "<h2>Story Opportunities</h2><ul><li>The Daughters save Byl and Lott from a monster, then try to execute someone they care about.</li><li>A sealed bell arrives at the Twisted Eel containing an order from the supposedly dead First Bell.</li><li>The Daughters demand Mercy surrender a woman they claim has been claimed by the Catastrophe.</li><li>A bell rings beneath Fogport, and every member hears a different command.</li><li>The Order of the Last Landing asks Byl to stop the Daughters before they cauterize something that is keeping the city alive.</li></ul>"
+  },
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-30T16:00:00-07:00"
+  }
+}
