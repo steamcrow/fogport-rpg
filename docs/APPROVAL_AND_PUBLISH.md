@@ -3,7 +3,9 @@
 The Librarian turns reviewed findings into a `proposal-only` JSON document. Publishing is a
 separate operation and is disabled unless all of these conditions are true:
 
-1. The campaign is MAELSTROS (`29474`). Fogport (`410879`) remains protected.
+1. The proposal must name the intended protected campaign. Production Fogport
+   publishers are locked to Fogport (`410879`); MAELSTROS (`29474`) is only
+   supported by the generic proposal test/fallback path.
 2. Every ambiguity and unresolved reference has been cleared.
 3. Daniel explicitly approves the complete batch.
 4. The approval envelope contains a SHA-256 digest of that exact batch.
