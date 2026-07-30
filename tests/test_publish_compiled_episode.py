@@ -23,6 +23,7 @@ from scripts.publish_fogport_calendar import (
     document_digest as calendar_document_digest,
     normalize_calendar_readback,
     parse_date,
+    RECURRENCE_PERIODICITY,
     reminder_matches,
     reminder_payload,
     validate_observance_entity,
@@ -231,13 +232,15 @@ class CompiledEpisodeTests(unittest.TestCase):
         self.assertTrue(calendar_matches(actual, payload))
 
     def test_observance_dates_and_reminders_are_yearly(self):
+        self.assertEqual(RECURRENCE_PERIODICITY, "year")
+        self.assertLessEqual(len(RECURRENCE_PERIODICITY), 5)
         self.assertEqual(parse_date("October 31"), (10, 31))
         with self.assertRaises(CalendarError):
             parse_date("Fogmonth 1")
         expected = reminder_payload(17, 10, 31, "Long Night of Lanterns")
         actual = {
             "calendar_id": 17, "year": 43, "month": 10, "day": 31,
-            "length": 1, "recurring_periodicity": "yearly", "entity_id": 99,
+            "length": 1, "recurring_periodicity": "year", "entity_id": 99,
         }
         self.assertTrue(reminder_matches(actual, expected, 99))
         actual["recurring_periodicity"] = "monthly"
