@@ -30,7 +30,21 @@ jobs:
       - run: python -m pip install --requirement requirements.txt
       - name: Restore and verify approved Order of the Last Landing image
         run: |
-          cat assets/organizations/order-last-landing.png.b64.part-* | base64 --decode > assets/organizations/order-last-landing.png
+          python - <<'PY'
+          from pathlib import Path
+          import base64
+
+          part_dir = Path("assets/organizations")
+          parts = sorted(part_dir.glob("order-last-landing.png.b64.part-*"))
+          if not parts:
+              raise SystemExit("No approved image chunks found.")
+          image = b"".join(
+              base64.b64decode(part.read_bytes(), validate=True)
+              for part in parts
+          )
+          (part_dir / "order-last-landing.png").write_bytes(image)
+          print(f"Restored {len(parts)} approved image chunks ({len(image)} bytes).")
+          PY
           echo "aea7ef545f4464ebd5e928bd000f660a78cdb2b3755607d1db745caa019116c8  assets/organizations/order-last-landing.png" | sha256sum --check
       - name: Run Librarian safety tests
         run: python -m unittest discover -s tests
