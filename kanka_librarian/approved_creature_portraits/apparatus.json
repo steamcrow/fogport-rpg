@@ -1,0 +1,12 @@
+{
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "creature_name": "Apparatus",
+  "image_path": "assets/creatures/apparatus-antique.png",
+  "sha256": "038f69909ba2114070e0ad3bd8ea75e1ee091373a9988e3953792c77bc8be247",
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-31T12:00:00-07:00"
+  }
+}

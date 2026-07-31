@@ -103,6 +103,7 @@ def main() -> None:
         )
         portrait_script = REPOSITORY_ROOT / "scripts" / "publish_creature_portrait.py"
         if portrait_manifest.is_file():
+            restore_image_if_chunked(portrait_manifest)
             portrait_receipt = REPOSITORY_ROOT / "receipts" / f"{manifest.stem}-portrait.json"
             print(f"Publishing approved portrait for {entry['label']!r}")
             portrait_run = subprocess.run(
