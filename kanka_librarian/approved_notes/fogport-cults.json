@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "mode": "compiled-note",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "episode": "Fogport Cults",
+  "aliases": {},
+  "changes": [
+    {
+      "section": "notes",
+      "name": "Fogport Cults",
+      "type": "Note",
+      "is_private": false,
+      "entry": "<p>Fogport has churches, clubs, lodges, unions, societies, supper rooms, neighborhood watches, philosophical drinking circles, and organizations that insist they are not cults because they keep minutes.</p><p>The following groups are useful as rumors, suspects, enemies, patrons, mistaken accusations, or street-level trouble. Some are magical. Some are criminal. Some are simply what happens when desperate people discover that ritual can make a bad situation worse in a more interesting direction.</p><h2>Cults and Trouble Societies</h2><h3>The Candle-Eaten</h3><p><strong>Description:</strong> Poor families who believe candles can consume grief, guilt, and memory.</p><p><strong>Activity:</strong> Burn written confessions inside fat candles made with hair, blood, or stolen funeral wax.</p><p><strong>Where:</strong> Cellars beneath cheap chapels in Nine Spoons.</p><h3>The Choir of Locked Teeth</h3><p><strong>Description:</strong> A polite singing cult obsessed with silencing unworthy mouths.</p><p><strong>Activity:</strong> Kidnap loudmouths, gossips, informants, and inconvenient witnesses for muting rituals.</p><p><strong>Where:</strong> An abandoned dental surgery near Blackwake.</p><h3>The Fog-Bride Society</h3><p><strong>Description:</strong> Widows, jilted lovers, and lonely clerks ceremonially married to the fog.</p><p><strong>Activity:</strong> Drown symbolic spouses, sometimes using real substitutes when the rite grows hungry.</p><p><strong>Where:</strong> Tide stairs at dawn, especially in Lastlight.</p><h3>The Sons of the Ninth Spoon</h3><p><strong>Description:</strong> Local toughs who claim Nine Spoons was chosen by hidden saints.</p><p><strong>Activity:</strong> Extortion disguised as neighborhood protection and holy tax collection.</p><p><strong>Where:</strong> The back room of a soup house with nine nailed spoons over the door.</p><h3>The Bell Gutters</h3><p><strong>Description:</strong> Bellworks laborers who worship the sound inside broken machinery.</p><p><strong>Activity:</strong> Feed teeth, coins, fingers, and secrets into dead condensers to wake them.</p><p><strong>Where:</strong> Inside disused fog-factory intake pipes.</p><h3>The Velvet Guillotine</h3><p><strong>Description:</strong> Former aristocrats who romanticize the executions after the Catastrophe.</p><p><strong>Activity:</strong> Hold masked trials against modern officials and arrange theatrical murders.</p><p><strong>Where:</strong> Private supper rooms near the Grand Promenade.</p><h3>The Little Drowned School</h3><p><strong>Description:</strong> A child-led cult imitating lessons from dead teachers heard in rain barrels.</p><p><strong>Activity:</strong> Steal books, chalk, bones, and occasionally teachers.</p><p><strong>Where:</strong> A flooded schoolhouse in the Shambles.</p><h3>The Salt Petitioners</h3><p><strong>Description:</strong> Desperate sailors who believe the sea can be sued in ritual court.</p><p><strong>Activity:</strong> Stage legal hearings against storms, ships, drowned captains, and unpaid debts.</p><p><strong>Where:</strong> Courthouse steps during fog-heavy nights.</p><h3>The Order of the Kind Knife</h3><p><strong>Description:</strong> Surgical mystics who believe pain can be removed by giving it to someone else.</p><p><strong>Activity:</strong> Perform illegal operations and pain-transference sacrifices.</p><p><strong>Where:</strong> The rear room of a charity clinic.</p><h3>The Ashen Bridesmen</h3><p><strong>Description:</strong> Men who dress as mourners for disasters that have not happened yet.</p><p><strong>Activity:</strong> Sabotage weddings, launches, openings, and speeches to fulfill proper grief.</p><p><strong>Where:</strong> A burned ballroom in Lastlight.</p><h3>The Saints of Missing Doors</h3><p><strong>Description:</strong> Door-worshippers who believe every vanished doorway leads to a better Fogport.</p><p><strong>Activity:</strong> Steal doors from homes, prisons, temples, and offices for alignment rituals.</p><p><strong>Where:</strong> A lumber warehouse near Heliot Station.</p><h3>The Crab Parliament</h3><p><strong>Description:</strong> Dockside eccentrics who interpret crab movement as civic law.</p><p><strong>Activity:</strong> Release marked crabs into meetings, trials, gang disputes, and marriages.</p><p><strong>Where:</strong> An under-pier market beside Blackwake.</p><h3>The Red Thread Mercy</h3><p><strong>Description:</strong> Midwives and matchmakers who bind fate through blood-red thread.</p><p><strong>Activity:</strong> Arrange marriages, pregnancies, betrayals, and accidental inheritances.</p><p><strong>Where:</strong> Laundry yards, birthing rooms, and backstairs kitchens.</p><h3>The Iron Nursery</h3><p><strong>Description:</strong> Thrallo sympathizers, labor organizers, and extremists obsessed with collars.</p><p><strong>Activity:</strong> Steal collar fragments for rituals meant to birth giants of justice.</p><p><strong>Where:</strong> Chain sheds near the harbor cranes.</p><h3>The Smoke Accountants</h3><p><strong>Description:</strong> Bureaucrats who believe every sin must be entered into a divine ledger.</p><p><strong>Activity:</strong> Blackmail citizens using ritual audits, impossible paperwork, and corrected lives.</p><p><strong>Where:</strong> A basement archive beneath a tax office.</p><h3>The Blind Lamplighters</h3><p><strong>Description:</strong> People who put out lamps so truer lights can be seen.</p><p><strong>Activity:</strong> Extinguish whole streets before robberies, sacrifices, or disappearances.</p><p><strong>Where:</strong> Lamp depots and dark tram stops.</p><h3>The Feast Beneath</h3><p><strong>Description:</strong> Cannibal gourmands who claim eating the wicked improves public morals.</p><p><strong>Activity:</strong> Host banquets where criminals, rivals, and informants become courses.</p><p><strong>Where:</strong> A collapsed restaurant below the Grand Promenade.</p><h3>The Moth Court</h3><p><strong>Description:</strong> Fashionable occultists who worship flame, beauty, and ruin.</p><p><strong>Activity:</strong> Lure ambitious youths into glamour rituals that burn away identity.</p><p><strong>Where:</strong> Costume salons and illegal theaters.</p><h3>The Eel-Tongued</h3><p><strong>Description:</strong> Smugglers who believe eels carry messages from drowned gods.</p><p><strong>Activity:</strong> Use eel guts for divination before crimes, betrayals, and harbor deals.</p><p><strong>Where:</strong> Fish cellars beneath taverns.</p><h3>The Society of the Second Face</h3><p><strong>Description:</strong> Mask-wearers who believe true personality lives beneath the skin.</p><p><strong>Activity:</strong> Steal faces symbolically, socially, and sometimes literally.</p><p><strong>Where:</strong> Grig mask workshops after closing.</p><h3>The Clockless Minute</h3><p><strong>Description:</strong> Time fanatics who worship the instant the Catastrophe began.</p><p><strong>Activity:</strong> Stop clocks, freeze victims in ritual poses, and repeat one minute endlessly.</p><p><strong>Where:</strong> Clocktower maintenance rooms.</p><h3>The Harbor Saints Militant</h3><p><strong>Description:</strong> Violent dock preachers who protect laborers and punish exploiters.</p><p><strong>Activity:</strong> Beat foremen, rescue debtors, and demand blood offerings from bosses.</p><p><strong>Where:</strong> Cargo chapels made from stacked transit crates.</p><h3>The Pale Arithmetic</h3><p><strong>Description:</strong> Mathematicians and gamblers who think probability is a god with debts.</p><p><strong>Activity:</strong> Sacrifice luck from one person to bless another.</p><p><strong>Where:</strong> Illegal counting houses near Blackwake.</p><h3>The Hushed Menagerie</h3><p><strong>Description:</strong> Wealthy monster collectors who want to restore the lost royal zoo.</p><p><strong>Activity:</strong> Buy, breed, and release creatures to recreate proper wonder.</p><p><strong>Where:</strong> Private gardens behind walled estates.</p><h3>The Tomorrowless</h3><p><strong>Description:</strong> Catastrophe survivors who believe the future is vulgar and should be prevented.</p><p><strong>Activity:</strong> Ruin apprenticeships, births, inventions, promotions, and fresh starts.</p><p><strong>Where:</strong> A ruined nursery near the old palace sinkhole.</p>",
+      "references": [
+        {
+          "phrase": "Fogport",
+          "name": "Fogport",
+          "section": "locations"
+        },
+        {
+          "phrase": "Nine Spoons",
+          "name": "Nine Spoons",
+          "section": "locations"
+        },
+        {
+          "phrase": "Blackwake",
+          "name": "Blackwake",
+          "section": "locations"
+        },
+        {
+          "phrase": "Lastlight",
+          "name": "Lastlight",
+          "section": "locations"
+        },
+        {
+          "phrase": "Bellworks",
+          "name": "Bellworks",
+          "section": "locations"
+        },
+        {
+          "phrase": "Grand Promenade",
+          "name": "Grand Promenade",
+          "section": "locations"
+        },
+        {
+          "phrase": "Shambles",
+          "name": "Shambles",
+          "section": "locations"
+        },
+        {
+          "phrase": "Thrallo",
+          "name": "Thrallo",
+          "section": "creatures"
+        },
+        {
+          "phrase": "Grig",
+          "name": "Grig",
+          "section": "creatures"
+        }
+      ]
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-31T16:20:00-07:00",
+    "document_sha256": "b55f7d7ab89062253aa2bbc0d48cbc2d717c2a04541814d2501a528390f52fb9"
+  }
+}
