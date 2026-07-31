@@ -12,70 +12,16 @@ from typing import Any
 
 import requests
 
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
+from kanka_librarian.pacing import install_api_pacing
+from kanka_librarian.api import headers, request, all_pages, exact
+install_api_pacing()
+
 CAMPAIGN_ID = 410879
 CAMPAIGN_NAME = "Fogport"
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
-
-
-def headers(token: str) -> dict[str, str]:
-    return {
-        "Authorization": f"Bearer {token}",
-        "Accept": "application/json",
-        "User-Agent": "Kanka-Librarian/0.9",
-    }
-
-
-def request(
-    token: str,
-    method: str,
-    path: str,
-    *,
-    payload: dict[str, Any] | None = None,
-    params: dict[str, Any] | None = None,
-) -> dict[str, Any]:
-    response = requests.request(
-        method,
-        f"https://api.kanka.io/1.0/{path}",
-        headers={**headers(token), "Content-Type": "application/json"},
-        json=payload,
-        params=params,
-        timeout=60,
-    )
-    if not response.ok:
-        raise SystemExit(
-            f"Kanka {method} {path} returned HTTP {response.status_code}: "
-            f"{response.text[:500]}"
-        )
-    body = response.json()
-    if not isinstance(body, dict):
-        raise SystemExit(f"Kanka {method} {path} returned invalid JSON.")
-    return body
-
-
-def all_pages(token: str, path: str) -> list[dict[str, Any]]:
-    records: list[dict[str, Any]] = []
-    page = 1
-    while True:
-        body = request(token, "GET", path, params={"page": page, "limit": 100})
-        records.extend(x for x in body.get("data", []) if isinstance(x, dict))
-        meta = body.get("meta", {})
-        if page >= int(meta.get("last_page", page)):
-            return records
-        page += 1
-
-
-def exact(
-    records: list[dict[str, Any]], name: str, kind: str
-) -> dict[str, Any] | None:
-    matches = [
-        record
-        for record in records
-        if str(record.get("name", "")).strip().casefold()
-        == name.strip().casefold()
-    ]
-    if len(matches) > 1:
-        raise SystemExit(f"Multiple {kind} records named {name!r}; refusing to guess.")
-    return matches[0] if matches else None
 
 
 def validate_manifest(document: dict[str, Any]) -> tuple[Path, str]:

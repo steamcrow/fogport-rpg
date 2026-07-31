@@ -13,17 +13,16 @@ from typing import Any
 
 import requests
 
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
+from kanka_librarian.pacing import install_api_pacing
+from kanka_librarian.api import headers as _headers
+install_api_pacing()
+
 CAMPAIGN_ID = 410879
 CAMPAIGN_NAME = "Fogport"
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
-
-
-def _headers(token: str) -> dict[str, str]:
-    return {
-        "Authorization": f"Bearer {token}",
-        "Accept": "application/json",
-        "User-Agent": "Kanka-Librarian/0.7",
-    }
 
 
 def _get(

@@ -10,59 +10,17 @@ from typing import Any
 
 import requests
 
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
+from kanka_librarian.pacing import install_api_pacing
+from kanka_librarian.api import headers, request, all_pages, exact_one as exact
+install_api_pacing()
+
 CAMPAIGN_ID = 410879
 CAMPAIGN_NAME = "Fogport"
 BASE = f"https://api.kanka.io/1.0/campaigns/{CAMPAIGN_ID}"
 APP_BASE = f"https://app.kanka.io/w/{CAMPAIGN_ID}/entities"
-
-
-def headers(token: str) -> dict[str, str]:
-    return {
-        "Authorization": f"Bearer {token}",
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-        "User-Agent": "Kanka-Librarian/0.8",
-    }
-
-
-def request(token: str, method: str, path: str, *, payload: dict[str, Any] | None = None,
-            params: dict[str, Any] | None = None) -> dict[str, Any]:
-    response = requests.request(
-        method, f"{BASE}/{path}", headers=headers(token), json=payload,
-        params=params, timeout=60,
-    )
-    if not response.ok:
-        raise SystemExit(
-            f"Kanka {method} {path} returned HTTP {response.status_code}: "
-            f"{response.text[:500]}"
-        )
-    body = response.json()
-    if not isinstance(body, dict):
-        raise SystemExit(f"Kanka {method} {path} returned invalid JSON.")
-    return body
-
-
-def all_pages(token: str, module: str) -> list[dict[str, Any]]:
-    records: list[dict[str, Any]] = []
-    page = 1
-    while True:
-        body = request(token, "GET", module, params={"page": page, "limit": 100})
-        records.extend(x for x in body.get("data", []) if isinstance(x, dict))
-        meta = body.get("meta", {})
-        if page >= int(meta.get("last_page", page)):
-            return records
-        page += 1
-
-
-def exact(records: list[dict[str, Any]], names: tuple[str, ...], kind: str) -> dict[str, Any]:
-    folded = {name.casefold() for name in names}
-    matches = [x for x in records if str(x.get("name", "")).strip().casefold() in folded]
-    if len(matches) != 1:
-        found = [str(x.get("name")) for x in matches]
-        raise SystemExit(
-            f"Expected exactly one {kind} named one of {names!r}; found {found!r}."
-        )
-    return matches[0]
 
 
 def link(entity: dict[str, Any], label: str | None = None) -> str:

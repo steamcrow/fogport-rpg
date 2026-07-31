@@ -18,7 +18,8 @@ class KankaClient:
     token: str
     base_url: str = "https://api.kanka.io/1.0"
     timeout_seconds: int = 20
-    minimum_request_interval_seconds: float = 2.1
+    # Wyvern-subscriber pace: 90 requests/minute allowed, one per 0.7s used.
+    minimum_request_interval_seconds: float = 0.7
     max_rate_limit_retries: int = 8
     _last_request_at: float = field(default=0.0, init=False, repr=False)
 
@@ -119,6 +120,9 @@ class KankaClient:
         while True:
             page_params = dict(params or {})
             page_params["page"] = page
+            # Ask for Kanka's maximum page size so big campaigns need
+            # far fewer requests (and therefore far less waiting).
+            page_params.setdefault("limit", 100)
             payload = self._get(path, params=page_params)
             data = payload.get("data", [])
             if not isinstance(data, list):

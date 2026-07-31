@@ -13,6 +13,12 @@ from typing import Any
 
 import requests
 
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
+from kanka_librarian.pacing import install_api_pacing
+install_api_pacing()
+
 from kanka_librarian.client import KankaClient
 
 
