@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "mode": "compiled-episode",
+  "mode": "compiled-note",
   "campaign_id": 410879,
   "campaign_name": "Fogport",
   "episode": "Fogport Famous",
   "aliases": {},
   "changes": [
     {
-      "section": "journals",
+      "section": "notes",
       "name": "Fogport Famous",
       "type": "Note",
       "is_private": false,
@@ -75,6 +75,6 @@
     "status": "approved",
     "approved_by": "Daniel Davis",
     "approved_at": "2026-07-31T11:00:00-07:00",
-    "document_sha256": "3bcbccd6b96c6968f99bbdc86a2a2e7a92d36cfd8781c2679377e461dea95f64"
+    "document_sha256": "643e2f8fd2d39a30c9cae203887ae88b3fdd6552c5e9d91da80c8935900402b7"
   }
 }

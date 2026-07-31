@@ -1,9 +1,9 @@
-"""Publish one compiled Fogport episode with exact, idempotent Kanka read-back.
+"""Publish one compiled Fogport episode or Note with idempotent Kanka read-back.
 
 This publisher deliberately supports the entity kinds produced by an episode:
-characters, locations, organisations, creatures, items, and events. Existing
-records are matched only by approved exact names (including explicit former
-names); ambiguous matches stop the run.
+characters, locations, organisations, creatures, items, events, and Notes.
+Existing records are matched only by approved exact names (including explicit
+former names); ambiguous matches stop the run.
 """
 
 from __future__ import annotations
@@ -32,6 +32,7 @@ ENDPOINTS = {
     "items": "items",
     "events": "events",
     "journals": "journals",
+    "notes": "notes",
 }
 
 
@@ -52,8 +53,13 @@ def document_digest(document: dict[str, Any]) -> str:
 
 
 def validate_document(document: dict[str, Any]) -> list[dict[str, Any]]:
-    if document.get("schema_version") != 1 or document.get("mode") != "compiled-episode":
-        raise EpisodeError("Expected schema_version 1 and mode compiled-episode.")
+    if document.get("schema_version") != 1 or document.get("mode") not in {
+        "compiled-episode",
+        "compiled-note",
+    }:
+        raise EpisodeError(
+            "Expected schema_version 1 and mode compiled-episode or compiled-note."
+        )
     if int(document.get("campaign_id", 0)) != CAMPAIGN_ID:
         raise EpisodeError(f"Publisher is locked to Fogport campaign {CAMPAIGN_ID}.")
     if str(document.get("campaign_name", "")).casefold() != CAMPAIGN_NAME.casefold():
@@ -67,12 +73,17 @@ def validate_document(document: dict[str, Any]) -> list[dict[str, Any]]:
     if not isinstance(changes, list) or not changes:
         raise EpisodeError("The compiled episode has no changes.")
 
+    mode = str(document.get("mode"))
     seen: set[tuple[str, str]] = set()
     for change in changes:
         section = str(change.get("section", ""))
         name = str(change.get("name", "")).strip()
         if section not in ENDPOINTS or not name:
             raise EpisodeError(f"Unsupported or unnamed change: {change!r}")
+        if mode == "compiled-note" and section != "notes":
+            raise EpisodeError("Compiled-note documents must write to Kanka notes.")
+        if mode == "compiled-episode" and section == "notes":
+            raise EpisodeError("Notes must use mode compiled-note.")
         key = (section, name.casefold())
         if key in seen:
             raise EpisodeError(f"Duplicate compiled change: {section}/{name}.")

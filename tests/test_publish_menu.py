@@ -55,6 +55,14 @@ class MenuTests(unittest.TestCase):
             "scripts/publish_compiled_episode.py",
         )
 
+    def test_compiled_notes_are_labeled_notes(self) -> None:
+        routes = {e["label"]: e["script"] for e in publish_menu.build_menu()}
+        self.assertEqual(
+            routes.get("note: fogport-cults"),
+            "scripts/publish_compiled_episode.py",
+        )
+        self.assertNotIn("episode: fogport-cults", routes)
+
     def test_sentinel_and_unknown_labels_are_refused(self) -> None:
         with self.assertRaises(SystemExit):
             publish_menu.resolve(publish_menu.SENTINEL)

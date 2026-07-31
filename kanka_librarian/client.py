@@ -220,6 +220,16 @@ class KankaClient:
         params = {"related": 1} if related else None
         return self._get_all_pages(f"campaigns/{campaign_id}/journals", params=params)
 
+    def list_notes(
+        self,
+        campaign_id: int,
+        *,
+        related: bool = False,
+    ) -> list[dict[str, Any]]:
+        """Return every note in one campaign without changing anything."""
+        params = {"related": 1} if related else None
+        return self._get_all_pages(f"campaigns/{campaign_id}/notes", params=params)
+
     def list_events(
         self, campaign_id: int, *, related: bool = False,
     ) -> list[dict[str, Any]]:

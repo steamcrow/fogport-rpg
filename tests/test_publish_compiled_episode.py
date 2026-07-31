@@ -8,6 +8,7 @@ from unittest.mock import patch
 from scripts.publish_compiled_episode import (
     EpisodeError,
     compose_entry,
+    document_digest,
     find_match,
     normalize_kanka_html,
     read_back_matches,
@@ -165,6 +166,26 @@ class CompiledEpisodeTests(unittest.TestCase):
         self.assertEqual(len(changes), 50)
         self.assertTrue(all(change["section"] == "events" for change in changes))
         self.assertTrue(all(change.get("date") for change in changes))
+
+    def test_compiled_notes_use_kanka_notes_endpoint(self):
+        document = json.loads(
+            Path("kanka_librarian/approved_notes/fogport-cults.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        changes = validate_document(document)
+        self.assertEqual([change["section"] for change in changes], ["notes"])
+
+    def test_compiled_note_rejects_journal_section(self):
+        document = json.loads(
+            Path("kanka_librarian/approved_notes/fogport-cults.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        document["changes"][0]["section"] = "journals"
+        document["approval"]["document_sha256"] = document_digest(document)
+        with self.assertRaises(EpisodeError):
+            validate_document(document)
 
     def test_fogport_calendar_document_is_approved_and_provisional(self):
         document = json.loads(
