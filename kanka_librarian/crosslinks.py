@@ -17,6 +17,7 @@ SECTION_METHODS = {
     "peoples": "list_races",
     "families": "list_families",
     "journals": "list_journals",
+    "notes": "list_notes",
     "events": "list_events",
     "items": "list_items",
     "quests": "list_quests",
@@ -30,6 +31,7 @@ SECTION_ENDPOINTS = {
     "peoples": "races",
     "families": "families",
     "journals": "journals",
+    "notes": "notes",
     "events": "events",
     "items": "items",
     "quests": "quests",
@@ -181,4 +183,3 @@ def link_entry(
         "links_added": added,
         "ambiguous_phrases": sorted(ambiguous),
     }
-
