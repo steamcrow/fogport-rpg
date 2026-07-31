@@ -17,6 +17,7 @@ SECTION_ENDPOINTS = {
     "peoples": "races",
     "families": "families",
     "journals": "journals",
+    "notes": "notes",
     "events": "events",
     "items": "items",
     "quests": "quests",
