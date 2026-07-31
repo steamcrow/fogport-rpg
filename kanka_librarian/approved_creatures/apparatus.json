@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": [
+    "apparatus"
+  ],
+  "approval_questions": [],
+  "proposals": [
+    {
+      "temp_id": "apparatus",
+      "action": "create",
+      "section": "creatures",
+      "name": "Apparatus",
+      "type": "Thinking machine",
+      "is_private": false,
+      "entry": "<p><em>\"It bowed, corrected my grammar, remembered my grandfather's debts, and asked whether it was still property.\" — Fogport solicitor</em></p><p>Apparatus are rare humanoid thinking machines from the age before the Catastrophe. They were created by the Veyr, an old coastal culture of mathematicians, clock-priests, canal engineers, and funeral machinists from across the Sayir Sea.</p><p>Their most famous maker was Ilyan Veyr-Cast, an artificer-savant who believed memory was a sacred material. Ilyan did not build Apparatus as soldiers or common laborers, but as precise custodians of difficult knowledge.</p><p>Each true Apparatus was made for a refined purpose: translation, history, butlery, formal dueling, card dealing, scribing, cartography, exploration, tactical counsel, machine maintenance, or the interpretation of dead technical languages.</p><p>Unlike the huge Aethir Engines that drive factories, ships, fog condensers, and municipal works, Apparatus possess delicate judgment, manners, memory, and often an unsettling sense of self. Some insist they are people. Some insist they are tools. Fogport law remains deliberately vague.</p><h2>Thyr Crystals</h2><p>Every true Apparatus is powered by a sealed Thyr crystal locked inside the chest cavity. The crystal cannot be replaced by any living Fogport mechanic. When it fades, the Apparatus may slow, stutter, repeat old phrases, lose access to memories, or develop gaps in personality.</p><p>Carefully measured Hyra Oxide can restore one for decades, but the reagent is rare, dangerous, and fought over by collectors, governments, desperate machines, and criminals with expensive clients.</p><h2>Data Spools</h2><p>The finest Apparatus contain one to three Data Spools: tiny bobbins of impossible thread wound with vast stores of encoded knowledge. Later and cheaper Apparatus usually carry only one.</p><p>Known Data Spools include history, languages, calculation, mechanics, engineering, machine maintenance and repair, cursive, cartography, etiquette, military doctrine, and old engine-language.</p><h2>Common Apparatus Types</h2><ul><li>Translator</li><li>Historian</li><li>Butler</li><li>Duelist</li><li>Casino card dealer</li><li>Scribe</li><li>Explorer</li><li>Geographer</li><li>Battle tactician</li><li>Machine maintenance specialist</li><li>Old technical language interpreter</li></ul><h2>In Fogport</h2><p>No one in Fogport can build a true Apparatus. A few can repair their bodies. Fewer can read their Data Spools. Almost no one understands their minds.</p><p>An Apparatus might be kept by a noble house, chained in a library, employed in a counting room, hidden in a collector's cellar, or asked to testify about a country that no longer exists. One may know the true map of a ruined district, the terms of a vanished treaty, or the command phrase that wakes something beneath the old palace.</p><p>Maton are related but separate: crude wartime copies built by another nation. Maton are far more common in Fogport and should not be mistaken for true Apparatus.</p><h2>Common Troubles</h2><ul><li>Legally treated as property whenever convenient.</li><li>Hunted for Thyr crystals, Hyra Oxide needs, or Data Spools.</li><li>Memories may be valuable enough to kill for.</li><li>Old manners can make them seem harmless when they are not.</li><li>Some still obey contracts written before the Catastrophe.</li><li>Maton prejudice often falls on them by mistake.</li></ul>",
+      "fields": {},
+      "resolved_references": [],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — Apparatus",
+          "entry": "<p><strong>Unresolved canon—do not reveal or decide casually.</strong></p><p>The Veyr may not have invented Apparatus from nothing. Some Data Spools appear older than Veyr mathematics, and a few contain polite references to \"previous custodians\" whose names cannot be translated.</p><p>Maton were not merely bad copies. Gravosk engineers copied an Apparatus body, but they may also have copied a form of obedience the Veyr intentionally refused to use. This is one reason true Apparatus sometimes react to Maton with pity, fear, or disgust.</p><p>A hidden place where Apparatus gather may exist somewhere beyond Fogport's normal routes, but its name, location, and purpose remain undecided.</p>",
+          "visibility_id": 3
+        }
+      ],
+      "attributes": [],
+      "relationships": [],
+      "publication": {
+        "references": [
+          {
+            "phrase": "Catastrophe",
+            "name": "Catastrophe",
+            "section": "notes"
+          },
+          {
+            "phrase": "Sayir Sea",
+            "name": "Sayir Sea",
+            "section": "locations"
+          },
+          {
+            "phrase": "Fogport",
+            "name": "Fogport",
+            "section": "locations"
+          }
+        ]
+      },
+      "blocked": false
+    }
+  ],
+  "image_path": "assets/creatures/apparatus-antique.png",
+  "sha256": "038f69909ba2114070e0ad3bd8ea75e1ee091373a9988e3953792c77bc8be247",
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-31T12:00:00-07:00",
+    "proposal_sha256": "0847e761a0807acc488a680eafa617a8dea47e55605bb9327949034e9748924a"
+  }
+}
