@@ -11,6 +11,13 @@ from urllib.parse import urljoin
 
 import requests
 
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
+from kanka_librarian.pacing import install_api_pacing
+from kanka_librarian.api import headers
+install_api_pacing()
+
 CAMPAIGN_ID = 410879
 CANONICAL = {
     "Fogport Tramway System": (622124, 9635987),
@@ -25,15 +32,6 @@ DUPLICATES = {
     "Civic Police Tram": (622131, 9635994),
     "Standard Transit Crate": (622132, 9635995),
 }
-
-
-def headers(token):
-    return {
-        "Authorization": f"Bearer {token}",
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-        "User-Agent": "Kanka-Librarian/1.0",
-    }
 
 
 def fetch_all_items(token):

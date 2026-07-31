@@ -5,13 +5,17 @@ from pathlib import Path
 from typing import Any
 import requests
 
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
+from kanka_librarian.pacing import install_api_pacing
+from kanka_librarian.api import headers
+install_api_pacing()
+
 CAMPAIGN_ID = 410879
 CAMPAIGN_NAME = "Fogport"
 BASE = f"https://api.kanka.io/1.0/campaigns/{CAMPAIGN_ID}"
 APP = f"https://app.kanka.io/w/{CAMPAIGN_ID}/entities"
-
-def headers(token: str) -> dict[str, str]:
-    return {"Authorization": f"Bearer {token}", "Accept": "application/json", "Content-Type": "application/json", "User-Agent": "Kanka-Librarian/1.0"}
 
 def call(token: str, method: str, path: str, payload: dict[str, Any] | None = None, params: dict[str, Any] | None = None) -> dict[str, Any]:
     response = requests.request(method, f"{BASE}/{path}", headers=headers(token), json=payload, params=params, timeout=90)
