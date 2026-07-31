@@ -1,0 +1,12 @@
+{
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "creature_name": "Thrallo",
+  "image_path": "assets/creatures/thrallo-dock-hauler.png",
+  "sha256": "242c47225f31b7893ed8849d55c5de9c1e09a46f6e101e4a36547bd2d4e646ec",
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-31T11:00:00-07:00"
+  }
+}
