@@ -19,6 +19,7 @@ on:
           - "character: mercy-vale"
           - "character: vauntin-quell"
           - "creature: grig"
+          - "creature: thrallo"
           - "episode-batch: blackwake-heliot-promenade"
           - "episode: gm-operating-manual"
           - "episode: gutterkin"

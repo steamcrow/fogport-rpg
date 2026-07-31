@@ -88,7 +88,34 @@ def main() -> None:
         [sys.executable, str(script), str(manifest), "--receipt", str(receipt)],
         cwd=REPOSITORY_ROOT,
     )
-    raise SystemExit(completed.returncode)
+    if completed.returncode != 0:
+        raise SystemExit(completed.returncode)
+
+    # Creature portraits are a second, checksum-locked publication phase.
+    # Keeping it here makes a creature with an approved portrait one safe,
+    # one-button operation while leaving creatures without portraits unchanged.
+    if entry["label"].startswith("creature: "):
+        portrait_manifest = (
+            REPOSITORY_ROOT
+            / "kanka_librarian"
+            / "approved_creature_portraits"
+            / f"{manifest.stem}.json"
+        )
+        portrait_script = REPOSITORY_ROOT / "scripts" / "publish_creature_portrait.py"
+        if portrait_manifest.is_file():
+            portrait_receipt = REPOSITORY_ROOT / "receipts" / f"{manifest.stem}-portrait.json"
+            print(f"Publishing approved portrait for {entry['label']!r}")
+            portrait_run = subprocess.run(
+                [
+                    sys.executable,
+                    str(portrait_script),
+                    str(portrait_manifest),
+                    "--receipt",
+                    str(portrait_receipt),
+                ],
+                cwd=REPOSITORY_ROOT,
+            )
+            raise SystemExit(portrait_run.returncode)
 
 
 if __name__ == "__main__":
