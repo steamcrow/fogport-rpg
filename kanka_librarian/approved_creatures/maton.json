@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": [
+    "maton"
+  ],
+  "approval_questions": [],
+  "proposals": [
+    {
+      "temp_id": "maton",
+      "action": "create",
+      "section": "creatures",
+      "name": "Maton",
+      "type": "Wartime machine",
+      "is_private": false,
+      "entry": "<p><em>\"It waited forty years for the drummer to beat retreat. No one told it the drummer was buried.\" — tram-yard foreman</em></p><p>Maton are crude humanoid war-machines descended from the idea of the true Apparatus, but not from its spirit. They were made by the foundries of Gravosk, a hard northern nation that wanted thinking soldiers and lacked the Veyr art to make them properly.</p><p>During the War of 100 Kingdoms, Gravosk engineers dismantled captured Apparatus, copied what they could, misunderstood what they could not, and built the Maton: obedient metal soldiers made for endurance, drill, and violence.</p><p>Maton are far more common in Fogport than true Apparatus. Most citizens have never knowingly met an Apparatus, but nearly everyone has seen a Maton hauling cargo, guarding a warehouse, standing behind a gang boss, serving as rented muscle, or rusting beside an old tram depot.</p><h2>Stamped Soldiers</h2><p>A Maton does not wear a uniform in the ordinary sense. Its body was stamped, pressed, and riveted to resemble a seventeenth-century soldier's coat, sash, gorget, cuffs, buttons, boots, and broad hat. On a new Maton, those markings were painted in national colors. On an old Fogport Maton, the paint is usually flaked down to dull iron, rain marks, and rust streaks.</p><p>This stamped clothing is one reason Maton unsettle people. They look dressed for rank, duty, and obedience, but the uniform is part of the body. A Maton cannot take it off, even after the nation that ordered it has vanished.</p><h2>Data Spools</h2><p>Each Maton carries a single permanent Data Spool, far simpler than those found in true Apparatus. The spool is usually devoted to one form of warcraft or military labor.</p><p>Known Maton spools include bayonet drill, artillery loading, siege labor, street suppression, bodyguard duty, battlefield surgery, command relay, trench clearing, prison control, powder handling, sentry rotation, and marching discipline.</p><p>A Maton can become oddly gentle when its spool gives it nothing to do. Some sweep floors, carry crates, mend fences, or hold umbrellas with grave concentration. But a Maton built around commands is never harmless. A wrong whistle, banner, password, drumbeat, or officer's phrase can wake the soldier inside it.</p><h2>In Fogport</h2><p>Fogport has no shortage of surplus Maton. Some arrived as battlefield salvage. Some were sold through naval auctions. Some marched into the city under foreign flags and never left. Some were found sealed in warehouses, standing in rented rooms, or buried upright beneath collapsed tramlines.</p><p>Dock bosses prize them because they do not tire. Gangs prize them because they frighten sensible people. The Civic Vigilance studies them because a machine that obeys without complaint is a dangerous civic temptation. Laborers hate them when they replace paid hands, but a broken Maton may still be the only thing strong enough to hold a wall, lift a boiler, or carry the wounded through gunfire.</p><h2>Common Troubles</h2><ul><li>Still obeys dead officers, flags, codes, or battlefield sounds.</li><li>Legally treated as property unless the case becomes inconvenient.</li><li>Can be rented, repainted, modified, or enslaved.</li><li>Often blamed for crimes committed by whoever gave the order.</li><li>May contain a damaged combat spool that loops old war behavior.</li><li>Frequently mistaken for true Apparatus by the ignorant or frightened.</li></ul><p>An Apparatus is a rare person with a machine body. A Maton is a war order that learned to walk.</p>",
+      "fields": {},
+      "resolved_references": [],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — Maton",
+          "entry": "<p><strong>Unresolved canon—do not reveal or decide casually.</strong></p><p>Maton were not merely bad copies of Apparatus. Gravosk copied the body plan and spool housing, but also copied a method of obedience the Veyr may have discovered and rejected. True Apparatus sometimes react to Maton with pity, fear, or disgust because they recognize that missing ethical restraint.</p><p>A few Maton in Fogport may still belong to forgotten military chains of command. If the right banner, drum pattern, command phrase, or officer's seal returns, they could become a hidden army without needing to be repaired first.</p><p>Some damaged Maton do develop selfhood, but slowly and awkwardly. The most dangerous ones are not the obedient machines. The most dangerous ones are the Maton that have begun to ask whether the last order was lawful.</p>",
+          "visibility_id": 3
+        }
+      ],
+      "attributes": [],
+      "relationships": [],
+      "publication": {
+        "references": [
+          {
+            "phrase": "Apparatus",
+            "name": "Apparatus",
+            "section": "creatures"
+          },
+          {
+            "phrase": "Fogport",
+            "name": "Fogport",
+            "section": "locations"
+          }
+        ]
+      },
+      "blocked": false
+    }
+  ],
+  "image_path": "assets/creatures/maton-war-machine.png",
+  "sha256": "afe5bb33a045f602402949416fb6bf7159f1b7baa19d36ff8a90d4cad157de83",
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-31T12:20:00-07:00",
+    "proposal_sha256": "a565b13a15cf2bbe9e3548cbe54365eb78ecf22db39578df76a5f765b71d1a29"
+  }
+}

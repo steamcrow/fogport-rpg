@@ -20,6 +20,7 @@ on:
           - "character: vauntin-quell"
           - "creature: apparatus"
           - "creature: grig"
+          - "creature: maton"
           - "creature: thrallo"
           - "episode-batch: blackwake-heliot-promenade"
           - "episode: gm-operating-manual"

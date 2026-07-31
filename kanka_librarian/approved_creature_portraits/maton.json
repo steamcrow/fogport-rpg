@@ -1,0 +1,12 @@
+{
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "creature_name": "Maton",
+  "image_path": "assets/creatures/maton-war-machine.png",
+  "sha256": "afe5bb33a045f602402949416fb6bf7159f1b7baa19d36ff8a90d4cad157de83",
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-31T12:20:00-07:00"
+  }
+}
