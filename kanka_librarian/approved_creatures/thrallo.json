@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": [
+    "thrallo"
+  ],
+  "approval_questions": [],
+  "proposals": [
+    {
+      "temp_id": "thrallo",
+      "action": "create",
+      "section": "creatures",
+      "name": "Thrallo",
+      "type": "Sapient people",
+      "is_private": false,
+      "entry": "<p><em>\"The crate doesn't complain. Neither does the Thrallo carrying it.\" — Dock saying</em></p><p>The Thrallo are the largest people in Fogport, towering between eight and ten feet tall and broad enough to block a doorway. Their immense strength built much of the modern city after the Catastrophe, yet few citizens would willingly share a table with one.</p><p>No one agrees where the Thrallo came from. Some insist they are descendants of condemned criminals altered during the Catastrophe. Others claim they are simply another race whose history has been deliberately erased. The Thrallo themselves rarely discuss their past.</p><p>Nearly every Thrallo wears a heavy iron collar. Whether it is tradition, punishment, protection, or something stranger, none seem willing—or perhaps able—to remove it.</p><p>Though often slow to speak, they possess long memories and fierce loyalty. Once a Thrallo gives their word, few things can make them break it.</p><p>Most earn their living hauling transit crates, dredging canals, driving pile foundations, loading ships, or working wherever impossible strength is needed.</p><h2>Aspects</h2><ul><li>Strong Enough to Lift Tomorrow</li><li>Built Like the Harbor Wall</li><li>More Nose Than Eyes</li><li>Patient Until Provoked</li><li>A Belly That Accepts Almost Anything</li></ul><h2>Troubles</h2><p>These are common among Thrallo, not universal.</p><ul><li>Regarded as dangerous before they're known.</li><li>Frequently exploited for hard labor and poor wages.</li><li>Their immense appetites make poverty especially cruel.</li><li>Heavy drinkers; cheap rotgut claims many lives.</li><li>Large size makes normal housing, furniture, and transport difficult.</li><li>The iron collar draws suspicion wherever they go.</li></ul><h2>Common Occupations</h2><ul><li>Dock laborer</li><li>Transit crate hauler</li><li>Canal dredger</li><li>Rammer operator</li><li>Foundry worker</li><li>Bodyguard</li><li>Wrecker</li><li>Salvager</li><li>Bouncer</li><li>Harbor crane rigger</li></ul><h2>Common Traits</h2><ul><li>Remarkably difficult to kill.</li><li>Excellent sense of smell.</li><li>Poor long-distance vision.</li><li>Surprisingly gentle with small children and animals.</li><li>Sleep deeply whenever they find warmth and safety.</li><li>Can survive on food that would make most people violently ill.</li></ul><h2>Slurs</h2><p>Mule · Gutt · Collarback · Bellringer · Crate-Brute</p>",
+      "fields": {},
+      "resolved_references": [],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — Thrallo",
+          "entry": "<p><strong>Unresolved canon—do not reveal or decide casually.</strong></p><p>Many scholars incorrectly assume the iron collar was placed upon the Thrallo.</p><p>No living Thrallo has ever admitted who forged the first collar—or why every newborn Thrallo eventually receives one. Some ancient dock ledgers suggest the collars are older than Fogport itself, and a handful of cracked collars recovered from forgotten ruins bear the same impossible metalwork as relics dating to before the Catastrophe.</p><p>Whether the collars imprison the Thrallo—or protect everyone else—remains one of Fogport's oldest unanswered questions.</p>",
+          "visibility_id": 3
+        }
+      ],
+      "attributes": [],
+      "relationships": [],
+      "publication": {
+        "references": [
+          {
+            "phrase": "Fogport",
+            "name": "Fogport",
+            "section": "locations"
+          }
+        ]
+      },
+      "blocked": false
+    }
+  ],
+  "image_path": "assets/creatures/thrallo-dock-hauler.png",
+  "sha256": "242c47225f31b7893ed8849d55c5de9c1e09a46f6e101e4a36547bd2d4e646ec",
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-31T11:00:00-07:00",
+    "proposal_sha256": "c638b14f6a30c7b0e63b511588fdc8977b8599c55b9653b2e234460828153769"
+  }
+}
