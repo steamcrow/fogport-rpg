@@ -21,6 +21,7 @@ on:
           - "creature: grig"
           - "creature: thrallo"
           - "episode-batch: blackwake-heliot-promenade"
+          - "episode: fogport-famous"
           - "episode: gm-operating-manual"
           - "episode: gutterkin"
           - "episode: one-door-remaining"
