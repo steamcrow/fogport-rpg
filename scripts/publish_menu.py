@@ -39,6 +39,7 @@ FOLDER_ROUTES = {
     "approved_creatures": ("creature", "scripts/publish_approved_creature.py"),
     "approved_batches": ("episode-batch", "scripts/publish_approved_batch.py"),
     "approved_episodes": ("episode", "scripts/publish_compiled_episode.py"),
+    "approved_notes": ("note", "scripts/publish_compiled_episode.py"),
     "approved_items": ("item", None),           # bespoke; see OVERRIDES
     "approved_organizations": ("organization", None),  # bespoke; see OVERRIDES
 }
@@ -59,6 +60,7 @@ MODE_ROUTES = {
     "approved-item-batch": ("item-batch", "scripts/publish_approved_item_batch.py"),
     "approved-batch": ("episode-batch", "scripts/publish_approved_batch.py"),
     "compiled-episode": ("episode", "scripts/publish_compiled_episode.py"),
+    "compiled-note": ("note", "scripts/publish_compiled_episode.py"),
 }
 
 # Multi-phase subjects that keep their own dedicated workflows.
