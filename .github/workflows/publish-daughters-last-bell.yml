@@ -25,7 +25,7 @@ jobs:
       - name: Restore and verify approved Daughters image
         run: |
           python scripts/restore_base64_chunks.py \
-            assets/organizations/daughters-last-bell.png.b64.part-{000..024} \
+            assets/organizations/daughters-last-bell.png.b64.part-{000..037} \
             --output assets/organizations/daughters-last-bell.png \
             --expected-sha256 8acfc92202a456e57ac08ebcf97f98b9751549ea19d01edf240431d3e6612ef5
           echo "8acfc92202a456e57ac08ebcf97f98b9751549ea19d01edf240431d3e6612ef5  assets/organizations/daughters-last-bell.png" | sha256sum --check
