@@ -23,6 +23,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+from datetime import datetime
 import json
 import subprocess
 import sys
@@ -73,13 +74,20 @@ EXCLUDED = {
 
 
 def manifest_recency(manifest: Path) -> int:
-    """Return the last Git commit timestamp for an approved manifest.
+    """Return the manifest's explicit approval timestamp when available.
 
     The workflow menu is generated and committed, so this is evaluated when
-    the menu is refreshed—not while someone is trying to publish.  Git
-    history gives us a reliable "newest approved" order across checkouts;
-    filesystem timestamps do not.
+    the menu is refreshed—not while someone is trying to publish.  Approval
+    time is stable across ordinary branches and GitHub's temporary PR merge
+    commits; Git history is only a legacy fallback for older manifests.
     """
+    try:
+        document = json.loads(manifest.read_text())
+        approved_at = str(document.get("approval", {}).get("approved_at", ""))
+        if approved_at:
+            return int(datetime.fromisoformat(approved_at.replace("Z", "+00:00")).timestamp())
+    except (OSError, ValueError, TypeError, AttributeError):
+        pass
     try:
         result = subprocess.run(
             ["git", "log", "-1", "--format=%ct", "--", str(manifest)],

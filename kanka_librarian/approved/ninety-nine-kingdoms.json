@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": ["ninety-nine-kingdoms"],
+  "approval_questions": [],
+  "proposals": [
+    {
+      "temp_id": "ninety-nine-kingdoms",
+      "action": "create",
+      "section": "locations",
+      "name": "99 Kingdoms",
+      "type": "War-torn nations of the Sayir Sea",
+      "is_private": false,
+      "entry": "<p>The 99 Kingdoms are the named nations, city-states, and sea-powers now caught in the long war that surrounds Fogport. Their borders, alliances, and declared causes change more quickly than their diplomats can print new maps; Fogport remains neutral because every side still needs its harbor, markets, messengers, and somewhere unsafe to meet.</p>\n\n<p>Only a fraction of the ninety-nine are presently known in detail. The following twelve are the first countries firmly connected to Fogport’s people, trade, machines, ships, and stories.</p>\n\n<ul>\n<li><strong>Veyr:</strong> An old sea-facing republic of canal cities, clock-priests, mathematicians, and funeral machinists, famed for preserving difficult knowledge inside elegant devices. It protects trade routes and ancient archives while trying to keep true Apparatus out of military hands.</li>\n<li><strong>Gravosk:</strong> A hard northern industrial kingdom of foundries, compulsory service, black coal smoke, and officers who value obedience over beauty. Its armies field cheap Maton war-machines reverse-engineered from captured Veyr Apparatus.</li>\n<li><strong>Serevane:</strong> A crowded river kingdom expert at surviving blockades, rationing, and quietly moving necessities through enemy lines. Its relief houses, laundries, and medical caravans also form one of the war’s most capable spy-and-smuggler networks.</li>\n<li><strong>Odrava:</strong> An ingenious manufacturing state where workshops compete to build engines smaller, stranger, and more capable than any sensible person needs. It sells machinery to nearly every side, claiming neutrality while its devices develop unnerving habits and perhaps memories of former owners.</li>\n<li><strong>Ulmar:</strong> A cold maritime kingdom of storm-watchers, whale oil, sea-law, and cliffside harbors whose pilots believe the Sayir Sea has moods and grudges. Its fleet defends fisheries and shipping lanes, while its navigators issue troubling predictions about Fogport.</li>\n<li><strong>Keth:</strong> A theatrical monarchy where public ceremony, legal testimony, mourning, diplomacy, and espionage all blur into performance. It sends actors, illusionists, and impeccably rehearsed envoys into the war, making its true loyalties famously hard to read.</li>\n<li><strong>Hask:</strong> A harsh coast of wreckers, salvagers, and tide-fortresses, where a dead ship is treated as public salvage provided no one asks too much about its crew. It fights to keep foreign fleets from claiming its waters while private captains grow rich from every wreck the war creates.</li>\n<li><strong>Bellor:</strong> A devotional kingdom of roadside shrines, saint-bearers, traveling healers, and old faiths requiring keys, relics, and strict hospitality. Its armies march with portable sanctuaries and sanctioned miracle-workers, though holy missions often conceal smuggling, relic theft, or prisoner extraction.</li>\n<li><strong>Orsava:</strong> A proud urban kingdom where contracts are sacred, swordsmanship is fashionable, and even insults may require witnesses and paperwork. It contributes disciplined professionals and legalistic mercenary companies, ensuring every sacrifice becomes somebody else’s debt.</li>\n<li><strong>Ravel:</strong> A patchwork nation of old roads, floodplains, messenger monasteries, and stubborn towns connected by the finest courier service in the known world. It tries to remain neutral, but every belligerent covets—or fears—a neighbor that knows what moves between fronts.</li>\n<li><strong>Merroway:</strong> A misty coastal kingdom with elaborate rites for accidental death, believing an unmourned surprise death leaves a dangerous hole in the world. Its soldiers travel with singers and memorial clerks so the battlefield dead are named, mourned, and prevented from returning wrong.</li>\n<li><strong>Drom:</strong> A mercantile city-kingdom built on land speculation, civic engineering, and a talent for spotting value just before everyone else does. It treats the war as catastrophe and investment, buying ruined ports, condemned districts, debt-ridden fortresses, and future favors wherever fighting leaves a crack.</li>\n</ul>",
+      "fields": {},
+      "resolved_references": [],
+      "posts": [],
+      "attributes": [],
+      "relationships": [],
+      "publication": {
+        "parent_name": "Sayir Sea",
+        "parent_link_phrase": "Sayir Sea"
+      },
+      "blocked": false
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-07-31T20:00:00-07:00",
+    "proposal_sha256": "9aaaeaa06b3dcfa341efb8d7e0227744c091d3245a3ba53bfdb1fc9d60e8a7eb"
+  }
+}

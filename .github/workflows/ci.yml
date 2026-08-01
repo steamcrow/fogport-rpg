@@ -30,6 +30,10 @@ jobs:
         python-version: ["3.11", "3.12", "3.13"]
     steps:
       - uses: actions/checkout@v4
+        with:
+          # The compact publisher menu is ordered from Git history.
+          # Tests must have that history when validating its generated options.
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
