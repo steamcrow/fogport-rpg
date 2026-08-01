@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import subprocess
 import sys
 from pathlib import Path
 
@@ -31,6 +32,7 @@ REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 LIBRARIAN = REPOSITORY_ROOT / "kanka_librarian"
 
 SENTINEL = "-- choose a subject --"
+RECENT_LIMIT = 15
 
 # Folder -> (kind label, default publisher script)
 FOLDER_ROUTES = {
@@ -70,6 +72,27 @@ EXCLUDED = {
 }
 
 
+def manifest_recency(manifest: Path) -> int:
+    """Return the last Git commit timestamp for an approved manifest.
+
+    The workflow menu is generated and committed, so this is evaluated when
+    the menu is refreshed—not while someone is trying to publish.  Git
+    history gives us a reliable "newest approved" order across checkouts;
+    filesystem timestamps do not.
+    """
+    try:
+        result = subprocess.run(
+            ["git", "log", "-1", "--format=%ct", "--", str(manifest)],
+            cwd=REPOSITORY_ROOT,
+            capture_output=True,
+            check=True,
+            text=True,
+        )
+        return int(result.stdout.strip())
+    except (OSError, subprocess.CalledProcessError, ValueError):
+        return int(manifest.stat().st_mtime)
+
+
 def build_menu() -> list[dict[str, str]]:
     entries: list[dict[str, str]] = []
     for folder, (kind, default_script) in FOLDER_ROUTES.items():
@@ -100,9 +123,10 @@ def build_menu() -> list[dict[str, str]]:
                     "manifest": f"kanka_librarian/{relative}",
                     "script": script,
                     "receipt": f"receipts/{manifest.stem}.json",
+                    "recency": str(manifest_recency(manifest)),
                 }
             )
-    entries.sort(key=lambda e: e["label"])
+    entries.sort(key=lambda e: (-int(e["recency"]), e["label"]))
     return entries
 
 
