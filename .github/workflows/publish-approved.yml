@@ -1,52 +1,37 @@
 name: "Kanka Librarian — Publish approved subject"
 
-run-name: "Publish: ${{ inputs.subject }}"
+run-name: "Publish: ${{ inputs.older_subject || inputs.subject }}"
 
 on:
   workflow_dispatch:
     inputs:
       subject:
-        description: "Choose the approved subject to publish"
+        description: "Choose a recent approved subject to publish"
         required: true
         type: choice
         options:
           # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)
           - "-- choose a subject --"
+          - "creature: maton"
+          - "creature: apparatus"
+          - "note: fogport-cults"
+          - "note: fogport-famous"
+          - "creature: thrallo"
+          - "organization: daughters-last-bell"
+          - "organization: order-last-landing"
           - "character: batley"
           - "character: byl-hasbaine"
           - "character: inspector-adelaide-voss"
           - "character: lott"
           - "character: mercy-vale"
           - "character: vauntin-quell"
-          - "creature: apparatus"
           - "creature: grig"
-          - "creature: maton"
-          - "creature: thrallo"
           - "episode-batch: blackwake-heliot-promenade"
-          - "episode: gm-operating-manual"
-          - "episode: gutterkin"
-          - "episode: one-door-remaining"
-          - "item-batch: fogport-transit-system"
-          - "item: cinderhack"
-          - "location: blackwake"
-          - "location: blackwake-refresh"
-          - "location: fogport"
-          - "location: fogport-history"
-          - "location: grand-heliot-station"
-          - "location: grand-promenade"
-          - "location: grand-promenade-refresh"
-          - "location: mercys-office"
-          - "location: nine-spoons"
-          - "location: sayir-sea"
-          - "location: shambles"
-          - "location: the-wayward-pint"
-          - "location: twisted-eel-pawnshop"
-          - "note: fogport-cults"
-          - "note: fogport-famous"
-          - "organization: civic-vigilance"
-          - "organization: daughters-last-bell"
-          - "organization: order-last-landing"
           # END AUTO-MENU
+      older_subject:
+        description: "Optional: exact label for an older subject, e.g. character: mercy-vale"
+        required: false
+        type: string
 
 permissions:
   contents: read
@@ -57,7 +42,7 @@ concurrency:
 
 jobs:
   publish:
-    name: "FOGPORT ONLY (410879) — publish and verify ${{ inputs.subject }}"
+    name: "FOGPORT ONLY (410879) — publish and verify ${{ inputs.older_subject || inputs.subject }}"
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -74,8 +59,9 @@ jobs:
           KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
           KANKA_ENABLE_WRITES: FOGPORT_410879
           PYTHONPATH: ${{ github.workspace }}
+          PUBLISH_SUBJECT: ${{ inputs.older_subject || inputs.subject }}
         run: |
-          python scripts/publish_selected.py --subject "${{ inputs.subject }}"
+          python scripts/publish_selected.py --subject "$PUBLISH_SUBJECT"
       - name: Preserve verified receipts
         if: always()
         uses: actions/upload-artifact@v4

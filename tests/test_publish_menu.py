@@ -75,13 +75,25 @@ class MenuTests(unittest.TestCase):
         workflow = (
             REPOSITORY_ROOT / ".github" / "workflows" / "publish-approved.yml"
         ).read_text()
-        for entry in publish_menu.build_menu():
+        for entry in publish_menu.build_menu()[: publish_menu.RECENT_LIMIT]:
             self.assertIn(
                 f'- "{entry["label"]}"',
                 workflow,
                 f"menu is stale; run scripts/refresh_publish_menu.py "
                 f"(missing {entry['label']!r})",
             )
+
+    def test_workflow_shows_only_the_recent_subjects(self) -> None:
+        workflow = (
+            REPOSITORY_ROOT / ".github" / "workflows" / "publish-approved.yml"
+        ).read_text()
+        recent = publish_menu.build_menu()[: publish_menu.RECENT_LIMIT]
+        older = publish_menu.build_menu()[publish_menu.RECENT_LIMIT :]
+        for entry in recent:
+            self.assertIn(f'- "{entry["label"]}"', workflow)
+        for entry in older:
+            self.assertNotIn(f'- "{entry["label"]}"', workflow)
+        self.assertIn("older_subject:", workflow)
 
 
 if __name__ == "__main__":
