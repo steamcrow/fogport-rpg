@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": ["unhorse"],
+  "approval_questions": [],
+  "proposals": [
+    {
+      "temp_id": "unhorse",
+      "action": "create",
+      "section": "creatures",
+      "name": "Unhorse",
+      "type": "Catastrophe predator",
+      "is_private": false,
+      "entry": "<p><em>\"There are no horses in Fogport. There are only the things that remember being horses.\"</em></p><p>All horses in Fogport were changed during the Catastrophe. Some died instantly. Others became the Unhorses: towering, malformed predators with elongated limbs, hunched backs, ragged manes, and horse skulls stretched into something almost human.</p><p>An Unhorse is long-limbed and disturbingly thin, though powerful beneath its hide. Its shoulders are too high, its forelegs too long, and its hindquarters bend like a crouching man’s. Its mouth contains enormous yellowed horse teeth: broad incisors, grinding molars, and a few long teeth that should not exist. They do not bite like wolves. They clamp down like a horse tearing through a wooden stall door.</p><h2>Diet</h2><p>Unhorses eat people. They prefer warm flesh and show a particular appetite for the chest and abdomen. A victim may be killed with a bite to the throat, but an Unhorse often feeds slowly, opening the rib cage with its teeth as though searching for something inside. They also consume dogs, Grigs, livestock, and occasionally one another.</p><p>They cannot digest ordinary grain, though they compulsively chew hay, straw, leather tack, wooden rails, and rope. Cinderhack engines fascinate them; an unattended machine may be found torn apart, its leather seats and harnesses chewed through.</p><h2>Where They Hide</h2><p>Unhorses avoid busy streets during daylight. They favor ruined coach houses, collapsed carriage depots beneath the Grand Promenade, tram sheds near Heliot Station, flooded dock warehouses, old basements with iron rings in their walls, and the lower streets of the Shambles. A single Unhorse may occupy a building for years, arranging bones, harnesses, broken furniture, and sleeping victims into stalls or careful rows.</p><h2>Hunting and Desire</h2><p>They understand doors, alleys, traffic, and fear. An Unhorse hunts by driving prey rather than chasing it: one blocks the obvious escape while another circles through adjoining streets. In fog, they stand still enough to be mistaken for ruined statuary or an overturned Cinderhack.</p><p>They want warm flesh, shelter, and a herd. They collect living people in their lairs, keeping them chained, penned, or trapped behind furniture. Some are eaten immediately; others are made to obey a grotesque stable routine. An Unhorse seems to believe people are badly behaved animals. A person who runs becomes prey.</p><h2>Weakness: Bell-Metal</h2><p>Unhorses cannot tolerate the sound of old stable bells. A small iron or brass bell causes pain and confusion; a tram bell can drive one from a street. The ringing triggers the memory of harness, command, and control, leaving the creature briefly unable to hunt or coordinate. A clever hunter carries a bell. A clever Unhorse learns to break it first.</p><h2>Encounter Signs</h2><ul><li>Fresh bite marks on wooden doors.</li><li>Leather harnesses dragged into an alley.</li><li>Hoofprints that become long, clawed handprints.</li><li>A distant sound of hooves moving through the fog.</li><li>Someone calling from inside an abandoned coach house.</li></ul><p><em>Fogport saying: Never follow hooves into the fog. If they sound like they are going away, they are already behind you.</em></p>",
+      "fields": {},
+      "resolved_references": [],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — Unhorse",
+          "entry": "<p><strong>Do not reveal this as certain canon.</strong></p><p>The Unhorses may not merely remember being horses. Some keep a particular person alive for weeks, rearrange a room into a stable, or stop at an old carriage route as if awaiting an absent driver. A few have been heard making a sound almost like a human name through their enormous teeth.</p><p>No one knows whether bell-metal truly hurts them, or whether it offers them a moment of remembered obedience. Either way, an Unhorse that has heard a bell may remember the person who rang it for years.</p>",
+          "visibility_id": 3
+        }
+      ],
+      "attributes": [],
+      "relationships": [],
+      "publication": {
+        "references": [
+          {"phrase": "Fogport", "name": "Fogport", "section": "locations"},
+          {"phrase": "Grand Promenade", "name": "Grand Promenade", "section": "locations"},
+          {"phrase": "Heliot Station", "name": "Grand Heliot Station", "section": "locations"},
+          {"phrase": "Shambles", "name": "Shambles", "section": "locations"},
+          {"phrase": "Grigs", "name": "Grig", "section": "creatures"}
+        ]
+      },
+      "blocked": false
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-08-01T14:00:00-07:00",
+    "proposal_sha256": "7cde4fbc416ebd2b84178be902523078c5cf18ee107fd3d8b87bd0ee937c6c03"
+  }
+}

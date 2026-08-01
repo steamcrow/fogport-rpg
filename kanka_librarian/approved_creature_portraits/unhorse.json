@@ -1,0 +1,12 @@
+{
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "creature_name": "Unhorse",
+  "image_path": "assets/creatures/unhorse-fogport.webp",
+  "sha256": "41c492786e55503784f2a7af0f572d5bfc81f5ef00bb67c51056d65a33cd4d9d",
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-08-01T14:00:00-07:00"
+  }
+}
