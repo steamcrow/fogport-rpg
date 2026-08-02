@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "organization_name": "Brawla",
+  "repository_path": "assets/organizations/brawla/brawla-thief.png",
+  "sha256": "7a4811e16a866afd47cea0c0580ee821bb5a7e2903d066bb86aa7abae74c0a62",
+  "approval": {"status": "approved", "approved_by": "Daniel Davis", "approved_at": "2026-08-01T23:25:00-07:00"}
+}
