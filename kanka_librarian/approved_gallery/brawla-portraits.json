@@ -3,9 +3,9 @@
   "campaign_name": "Fogport",
   "collection": "Brawla supporting portraits",
   "images": [
-    {"path": "assets/organizations/brawla/brawla-bruiser.png", "sha256": "fc2b233839a61e296e7ec9abb6b0aee5fc4a030406683f474f506c89ad1651f3", "visibility_id": 1},
-    {"path": "assets/organizations/brawla/brawla-cutler.png", "sha256": "8da57194a5212889ef71a50890289670c6e048315017e6537879b3c3d4fd9f49", "visibility_id": 1},
-    {"path": "assets/organizations/brawla/brawla-soaker.png", "sha256": "f3516d68e4baa53370c104e20dae62d7d7f2c9d34bdee9bec520958c7d238126", "visibility_id": 1}
+    {"path": "assets/organizations/brawla/brawla-bruiser.webp", "sha256": "e1beaf86874794eb905edab0f157f9aa965ec7d4c9b86a8d96c8a2e0ae59a1c2", "visibility_id": 1},
+    {"path": "assets/organizations/brawla/brawla-cutler.webp", "sha256": "25768c2dc5fd0b7a7513207242971d9abe84aa4325c0581e0c71eaacefd8ec2a", "visibility_id": 1},
+    {"path": "assets/organizations/brawla/brawla-soaker.webp", "sha256": "73950eef54bc114363dfd7fd60f7a14506c005962af92721d16e87d88ab1ec53", "visibility_id": 1}
   ],
   "approval": {"status": "approved", "approved_by": "Daniel Davis", "approved_at": "2026-08-01T23:25:00-07:00"}
 }
