@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "location_name": "Grand Heliot Station",
+  "repository_path": "assets/locations/grand-heliot-station-stairway.webp",
+  "sha256": "d9ce078d4a3393670c96475d04ce305479af802d78fde4f39f79d005fbbfadfe",
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-08-01T18:00:00-07:00"
+  }
+}

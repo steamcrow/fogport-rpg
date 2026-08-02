@@ -1,0 +1,42 @@
+name: "Kanka Librarian — Fogport: Grand Heliot Station Image"
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kanka-librarian-fogport
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: "FOGPORT ONLY (410879) — attach and verify station image"
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install --requirement requirements.txt
+      - name: Run Librarian safety tests
+        run: python -m unittest discover -s tests
+      - name: Attach and exact-read-back Grand Heliot Station image
+        env:
+          KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+          KANKA_ENABLE_WRITES: FOGPORT_410879
+        run: |
+          python scripts/publish_location_main_image.py \
+            kanka_librarian/approved_images/grand-heliot-station-stairway.json \
+            --receipt receipts/grand-heliot-station-stairway-image.json
+      - name: Preserve verified receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kanka-grand-heliot-station-image-receipt
+          path: receipts/grand-heliot-station-stairway-image.json
+          if-no-files-found: error
+          retention-days: 90
