@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "mode": "compiled-note",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "episode": "Brawls",
+  "aliases": {},
+  "changes": [
+    {
+      "section": "notes",
+      "name": "Brawls",
+      "type": "Note",
+      "is_private": false,
+      "entry": "<p>Violence is common throughout Fogport, but <strong>Brawls</strong> are something different. They are organized, wagered contests fought for money, reputation, or the settling of debts. While technically illegal, the Civic Vigilance rarely interferes unless the fighting spills into the streets or threatens respectable districts.</p><p>Brawls are almost exclusively a tradition of the Shambles, where hard labor, poverty, and local pride have turned fighting into a profession.</p><h2>No Permanent Arena</h2><p>A Brawl may be held in the corner of a crowded tavern after the tables are pushed aside, inside an abandoned warehouse, atop rusting harbor trusses, beneath loading cranes, or even across lashed-together barges. The venue changes constantly to frustrate the authorities and to keep the crowds guessing.</p><p>Rather than formal arenas, the venues become known simply by their nicknames—Old Truss, Widow’s Roof, The Boiler, Crane Eight, The Hold, or the Dock. A seasoned Brawla needs only hear the location to know what sort of fight awaits.</p><p>Neighborhood rivalries are fierce, and crowds often cheer for districts rather than individuals.</p><p><strong>“Nine Spoons!”<br>“Blackwake!”<br>“Bellworks!”</strong></p><p>A victory belongs as much to a neighborhood as it does to the fighter.</p><p>For many laborers, Brawling is simply another dangerous trade, no different from unloading ships, dredging the harbor, or diving beneath the docks. A successful career often leads to work as a dock foreman, tavern bouncer, gang enforcer, ship’s bosun, or bodyguard.</p><p>There are no leagues, championships, or official rankings. Reputation is earned one Brawl at a time and spreads by rumor through the taverns of the Shambles.</p><p><strong>See Also:</strong> Brawla</p>",
+      "references": [
+        {"phrase": "Fogport", "name": "Fogport", "section": "locations"},
+        {"phrase": "Civic Vigilance", "name": "The Civic Vigilance", "section": "organizations"},
+        {"phrase": "Shambles", "name": "Shambles", "section": "locations"},
+        {"phrase": "Nine Spoons", "name": "Nine Spoons", "section": "locations"},
+        {"phrase": "Blackwake", "name": "Blackwake", "section": "locations"},
+        {"phrase": "Bellworks", "name": "Bellworks", "section": "locations"},
+        {"phrase": "Brawla", "name": "Brawla", "section": "organizations"}
+      ]
+    }
+  ],
+  "approval": {"status": "approved", "approved_by": "Daniel Davis", "approved_at": "2026-08-01T23:00:00-07:00", "document_sha256": "d94c32e77721d7c5d7df00325ba97d5b7c8389d7d04a74a40626d843682974b5"}
+}

@@ -12,6 +12,8 @@ on:
         options:
           # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)
           - "-- choose a subject --"
+          - "episode: brawla"
+          - "note: brawls"
           - "note: fogport-weather"
           - "item: cinderwheel"
           - "creature: unhorse"
@@ -25,8 +27,6 @@ on:
           - "character: vauntin-quell"
           - "organization: order-last-landing"
           - "location: the-wayward-pint"
-          - "item-batch: fogport-transit-system"
-          - "episode: gm-operating-manual"
           # END AUTO-MENU
       older_subject:
         description: "Optional: exact label for an older subject, e.g. character: mercy-vale"

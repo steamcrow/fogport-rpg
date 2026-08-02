@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "mode": "compiled-episode",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "episode": "Brawla",
+  "aliases": {},
+  "changes": [
+    {
+      "section": "organizations",
+      "name": "Brawla",
+      "type": "Underground fighting fraternity",
+      "is_private": false,
+      "entry": "<p>The <strong>Brawla</strong> are Fogport’s professional underground fighters.</p><p>Calling them an organization is generous. There is no headquarters, charter, dues, uniforms, or leader. Instead, the Brawla are a loose fraternity of hard men and women who earn coin with their fists, elbows, knees, and whatever else the night’s rules permit.</p><p>Most Brawlas begin as laborers—dockhands, sailors, stevedores, fishmongers, or warehouse workers. Fighting is rarely their only profession, but for the talented few it becomes their primary livelihood.</p><p>Newcomers are introduced through existing Brawlas, tavern owners, gambling houses, or local fixers. A person’s reputation is worth far more than any written contract.</p><p>Among themselves, Brawlas generally settle disputes with a Brawl rather than knives, though this custom is honored more in spirit than in practice.</p><h2>Neighborhood Styles</h2><p>Different neighborhoods produce different styles of fighter. Nine Spoons is known for dirty, relentless street fighters. Dock Brawlas favor wrestling and crushing holds learned from hauling cargo. Others develop reputations for endurance, speed, or brutality depending on where they learned their trade.</p><p>Experienced Brawlas often retire into related work, becoming tavern bouncers, gang lieutenants, ship’s bosuns, bodyguards, or trainers. A fortunate few survive long enough to become local legends.</p><p>Although the Civic Vigilance officially condemns organized fighting, many constables quietly know the names of the better Brawlas. After all, today’s prize fighter often becomes tomorrow’s hired muscle—or tomorrow’s witness.</p><p><strong>Related Note:</strong> Brawls</p>",
+      "references": [
+        {"phrase": "Fogport", "name": "Fogport", "section": "locations"},
+        {"phrase": "Nine Spoons", "name": "Nine Spoons", "section": "locations"},
+        {"phrase": "Civic Vigilance", "name": "The Civic Vigilance", "section": "organizations"},
+        {"phrase": "Brawls", "name": "Brawls", "section": "notes"}
+      ]
+    }
+  ],
+  "approval": {"status": "approved", "approved_by": "Daniel Davis", "approved_at": "2026-08-01T23:00:00-07:00", "document_sha256": "4e44f06bf3c2485733958fcedd45a0a100ca022f5aeffff76d1a13dd44d0cbd4"}
+}
