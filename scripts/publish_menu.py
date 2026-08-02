@@ -71,6 +71,7 @@ MODE_ROUTES = {
 EXCLUDED = {
     "approved/fogport-annual-observances.json",
     "approved/fogport-calendar.json",
+    "approved_episodes/brawla.json",
 }
 
 
