@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "note_name": "Fogport Weather",
+  "repository_path": "assets/notes/fogport-weather-yellowgasp.webp",
+  "sha256": "c58ffaacef8ef38729178c9c4005c5b364833e37a534dfc3498a084882b37dbc",
+  "approval": {"status": "approved", "approved_by": "Daniel Davis", "approved_at": "2026-08-01T18:30:00-07:00"}
+}

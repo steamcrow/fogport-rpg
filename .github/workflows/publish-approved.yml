@@ -12,6 +12,7 @@ on:
         options:
           # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)
           - "-- choose a subject --"
+          - "note: fogport-weather"
           - "item: cinderwheel"
           - "creature: unhorse"
           - "location: ninety-nine-kingdoms"
@@ -26,7 +27,6 @@ on:
           - "location: the-wayward-pint"
           - "item-batch: fogport-transit-system"
           - "episode: gm-operating-manual"
-          - "location: fogport"
           # END AUTO-MENU
       older_subject:
         description: "Optional: exact label for an older subject, e.g. character: mercy-vale"
