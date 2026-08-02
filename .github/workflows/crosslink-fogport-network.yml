@@ -1,0 +1,45 @@
+name: "Kanka Librarian — Fogport: Cross-link Network"
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kanka-librarian-fogport
+  cancel-in-progress: false
+
+jobs:
+  crosslink:
+    name: "FOGPORT ONLY (410879) — evaluate, cross-link, and verify"
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install --requirement requirements.txt
+      - name: Run Librarian safety tests
+        run: python -m unittest discover -s tests
+      - name: Evaluate live Fogport links, apply safe additions, and verify
+        env:
+          KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+          KANKA_ENABLE_WRITES: FOGPORT_410879
+          PYTHONPATH: ${{ github.workspace }}
+        run: |
+          python scripts/crosslink_cleanup.py \
+            kanka_librarian/approved_crosslinks/fogport-network-cleanup.json \
+            --apply \
+            --registry receipts/fogport-network-registry.json \
+            --receipt receipts/fogport-network-cleanup-receipt.json
+      - name: Preserve network evaluation and verification receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fogport-network-crosslink-receipt
+          path: receipts/fogport-network-*.json
+          if-no-files-found: error
+          retention-days: 90

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "mode": "approved-crosslink-cleanup",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "sections": [
+    "locations",
+    "characters",
+    "organizations",
+    "creatures",
+    "peoples",
+    "families",
+    "journals",
+    "events",
+    "items",
+    "quests"
+  ],
+  "include_posts": true,
+  "aliases": "kanka_librarian/crosslink_aliases.json",
+  "link_policy": "first-meaningful-occurrence",
+  "preserve_prose": true,
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-08-01T17:30:00-07:00",
+    "cleanup_sha256": "0197ed36740c8af760732f7d792cb6bc1b3974a7cb3babc2451dfd4d3b8252d9"
+  }
+}
