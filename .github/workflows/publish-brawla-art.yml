@@ -24,6 +24,24 @@ jobs:
       - run: python -m pip install --requirement requirements.txt
       - name: Run Librarian safety tests
         run: python -m unittest discover -s tests
+      - name: Ensure Brawla organization exists
+        env:
+          KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+          KANKA_ENABLE_WRITES: FOGPORT_410879
+          PYTHONPATH: ${{ github.workspace }}
+        run: python scripts/publish_compiled_episode.py kanka_librarian/approved_episodes/brawla.json --receipt receipts/brawla-before-art.json
+      - name: Ensure linked Brawls note exists
+        env:
+          KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+          KANKA_ENABLE_WRITES: FOGPORT_410879
+          PYTHONPATH: ${{ github.workspace }}
+        run: python scripts/publish_compiled_episode.py kanka_librarian/approved_notes/brawls.json --receipt receipts/brawls-before-art.json
+      - name: Verify reciprocal Brawls link on Brawla
+        env:
+          KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+          KANKA_ENABLE_WRITES: FOGPORT_410879
+          PYTHONPATH: ${{ github.workspace }}
+        run: python scripts/publish_compiled_episode.py kanka_librarian/approved_episodes/brawla.json --receipt receipts/brawla-linked-before-art.json
       - name: Set the Thief as Brawla main image
         env:
           KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
@@ -48,6 +66,9 @@ jobs:
         with:
           name: kanka-brawla-art-receipts
           path: |
+            receipts/brawla-before-art.json
+            receipts/brawls-before-art.json
+            receipts/brawla-linked-before-art.json
             receipts/brawla-main-image.json
             receipts/brawla-gallery.json
             receipts/brawla-gallery-embed.json
