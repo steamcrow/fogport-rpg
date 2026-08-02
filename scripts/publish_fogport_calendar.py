@@ -314,8 +314,8 @@ def main() -> None:
     observances_path = args.document.parent.parent.parent / document["annual_observances_document"]
     observances = json.loads(observances_path.read_text(encoding="utf-8"))
     changes = observances.get("changes", [])
-    if len(changes) != 50 or any(change.get("section") != "events" for change in changes):
-        raise CalendarError("The approved annual-observances batch must contain exactly fifty events.")
+    if not changes or any(change.get("section") != "events" for change in changes):
+        raise CalendarError("The approved annual-observances batch must contain one or more events.")
     events = client.list_events(CAMPAIGN_ID)
     # Complete read-only preflight before creating or updating the calendar.
     prepared = prepare_observances(client, changes, events)
