@@ -1,0 +1,17 @@
+{
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "image_path": "assets/items/cinderwheel-rally-champions.webp",
+  "sha256": "fbd3c4068330095538f26189936e9434359d6e4f0c679b7dcab088412ea8a70a",
+  "item": {
+    "name": "Cinderwheel",
+    "type": "Racing Vehicle",
+    "is_private": false,
+    "entry": "<p>The <strong>Cinderwheel</strong> is Fogport’s dangerous one-wheeled racing machine: a massive iron-rimmed wheel surrounding a compact steam engine, boiler, fuel tank, and exposed drive machinery.</p><p>Unlike a Cinderhack, which is built to carry passengers, a Cinderwheel is built to go fast, turn sharply, and survive impacts that would destroy an ordinary vehicle. Its driver sits forward of the central hub while a second rider, the stoker, stands on a reinforced rear platform to feed the boiler, make repairs, and defend the machine from competitors.</p><p>Cinderwheels are loud, unstable, soot-blackened, and difficult to control. Their narrow profile can cut through gaps no Cinderhack could enter, but a bad turn may send the entire machine rolling across the track. Most carry steering bars, pressure gauges, emergency tools, armored boiler plates, a forward ram, and enough handholds to keep a stoker from meeting the turning wheel too personally.</p><h2>Racing Machines</h2><p>Cinderwheels are primarily associated with the Cinderwheel Rally, Fogport’s annual endurance race around Saint Orra’s Colossus in Lastlight. The finest machines are named, numbered, and repeatedly rebuilt; a champion Cinderwheel may be more famous than its riders. A failed racer is stripped for parts, sold to an enthusiast, or rebuilt into next year’s trouble.</p><p>Most Fogporters consider Cinderwheels ridiculous, dangerous, and impossible to resist watching.</p>"
+  },
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-08-01T16:30:00-07:00"
+  }
+}
