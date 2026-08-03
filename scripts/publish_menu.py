@@ -35,6 +35,7 @@ LIBRARIAN = REPOSITORY_ROOT / "kanka_librarian"
 SENTINEL = "-- choose a subject --"
 RECENT_LIMIT = 15
 
+# These older subjects remain in the compact menu because they are useful\n# recurring Fogport foundations, rather than merely historical entries.\nPINNED_LABELS = (\n    "location: the-wayward-pint",\n    "item-batch: fogport-transit-system",\n)\n
 # Folder -> (kind label, default publisher script)
 FOLDER_ROUTES = {
     "approved": ("location", "scripts/publish_approved_location.py"),
@@ -138,6 +139,18 @@ def build_menu() -> list[dict[str, str]]:
             )
     entries.sort(key=lambda e: (-int(e["recency"]), e["label"]))
     return entries
+
+
+def visible_menu() -> list[dict[str, str]]:
+    """Return the compact menu: newest approved subjects plus kept-visible pins."""
+    entries = build_menu()
+    recent = entries[:RECENT_LIMIT]
+    recent_labels = {entry["label"] for entry in recent}
+    pinned = [
+        entry for entry in entries
+        if entry["label"] in PINNED_LABELS and entry["label"] not in recent_labels
+    ]
+    return recent + pinned
 
 
 def resolve(label: str) -> dict[str, str]:
