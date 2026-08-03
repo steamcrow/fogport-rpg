@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "mode": "compiled-episode",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "episode": "The Salt-Stained Case",
+  "aliases": {
+    "Byl Hasbaine": ["Byl Blacksaft", "Byl Blackroot", "Blacksaft", "Blackroot"],
+    "Mercy Vale": ["Mercy"],
+    "The Twisted Eel Pawnshop": ["Twisted Eel", "the Eel"]
+  },
+  "changes": [
+    {
+      "section": "journals",
+      "name": "Episode 6 — The Salt-Stained Case",
+      "type": "Byl Hasbaine’s account",
+      "is_private": false,
+      "entry": "<h2>The Salt-Stained Case</h2>\n<p>After the Bellman attack upon the Twisted Eel, a courier brought Byl Hasbaine a salt-stained wooden case addressed only to “the alba.” The courier claimed to know something of Byl’s father, then vanished, leaving behind a dull silver coin and his cloak.</p>\n<p>Byl and Lott took the case into the Eel’s storeroom. There Byl pushed back the listening fog and examined its contents: a note, a leather journal, and a heavy brass key shaped like a star with spiral teeth.</p>\n<p>The journal bore a seven-pointed-circle symbol and contained warnings, titles, a portrait, and the name <strong>Aldren Hasbaine</strong>—Byl’s father. It also gave Byl reason to fear the Seventh Foundation.</p>\n<p>Before Byl could decide what the package meant, a stranger arrived outside the storeroom and politely asked after both the courier and Byl’s father. Byl placed the real journal in his satchel, pocketed the brass key, and weighted the wooden case with a heavy bottle to make a convincing decoy. With the false case in hand and Lott ready beside him, he prepared to step out and meet the stranger.</p>\n<p><strong>The meeting has not yet happened.</strong></p>",
+      "references": [
+        {"phrase": "Byl Hasbaine", "name": "Byl Hasbaine", "section": "characters"},
+        {"phrase": "Lott", "name": "Lott", "section": "characters"},
+        {"phrase": "Twisted Eel", "name": "The Twisted Eel Pawnshop", "section": "locations"},
+        {"phrase": "Mercy", "name": "Mercy Vale", "section": "characters"}
+      ],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — The Salt-Stained Case",
+          "entry": "<ul><li>The courier’s identity, motive, and means of disappearance are unknown.</li><li>The dull silver coin and abandoned cloak may be evidence, bait, or both.</li><li>Aldren Hasbaine’s titles, his connection to the seven-pointed-circle symbol, and the true purpose of the spiral-toothed brass key remain unrevealed.</li><li>The stranger outside knows enough to ask about both the courier and Byl’s father; their allegiance and intention are unknown.</li><li>Do not decide what the journal means until play draws a conclusion from the investigation.</li></ul>",
+          "visibility_id": 3
+        }
+      ]
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-08-03T15:30:00-07:00",
+    "document_sha256": "5c8e1801a3600507cf902105c6addb9703d93f89d66ee4fb82502e352cfdf239"
+  }
+}
