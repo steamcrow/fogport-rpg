@@ -18,7 +18,7 @@ from pathlib import Path
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPOSITORY_ROOT / "scripts"))
 
-from publish_menu import RECENT_LIMIT, SENTINEL, build_menu  # noqa: E402
+from publish_menu import SENTINEL, build_menu, visible_menu  # noqa: E402
 
 WORKFLOW = REPOSITORY_ROOT / ".github" / "workflows" / "publish-approved.yml"
 BEGIN = "          # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)\n"
@@ -26,7 +26,7 @@ END = "          # END AUTO-MENU\n"
 
 
 def main() -> None:
-    labels = [SENTINEL] + [entry["label"] for entry in build_menu()[:RECENT_LIMIT]]
+    labels = [SENTINEL] + [entry["label"] for entry in visible_menu()]
     options = "".join(f'          - "{label}"\n' for label in labels)
 
     text = WORKFLOW.read_text()
@@ -34,8 +34,8 @@ def main() -> None:
     end = text.index(END)
     WORKFLOW.write_text(text[:start] + options + text[end:])
     print(
-        f"Menu refreshed with {len(labels) - 1} recent subjects "
-        f"(of {len(build_menu())}) in {WORKFLOW.name}."
+        f"Menu refreshed with {len(labels) - 1} visible subjects "
+        f"(newest plus pinned, of {len(build_menu())}) in {WORKFLOW.name}."
     )
 
 
