@@ -12,6 +12,7 @@ on:
         options:
           # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)
           - "-- choose a subject --"
+          - "episode: gamemaster-npc-troubles-by-character"
           - "character: constable-korch"
           - "note: gamemaster-npc-troubles"
           - "note: brawls"
@@ -26,7 +27,6 @@ on:
           - "note: fogport-famous"
           - "organization: daughters-last-bell"
           - "character: vauntin-quell"
-          - "organization: order-last-landing"
           - "location: the-wayward-pint"
           - "item-batch: fogport-transit-system"
           # END AUTO-MENU
