@@ -75,7 +75,7 @@ class MenuTests(unittest.TestCase):
         workflow = (
             REPOSITORY_ROOT / ".github" / "workflows" / "publish-approved.yml"
         ).read_text()
-        for entry in publish_menu.build_menu()[: publish_menu.RECENT_LIMIT]:
+        for entry in publish_menu.visible_menu():
             self.assertIn(
                 f'- "{entry["label"]}"',
                 workflow,
@@ -83,16 +83,17 @@ class MenuTests(unittest.TestCase):
                 f"(missing {entry['label']!r})",
             )
 
-    def test_workflow_shows_only_the_recent_subjects(self) -> None:
+    def test_workflow_shows_newest_subjects_and_intentional_pins(self) -> None:
         workflow = (
             REPOSITORY_ROOT / ".github" / "workflows" / "publish-approved.yml"
         ).read_text()
-        recent = publish_menu.build_menu()[: publish_menu.RECENT_LIMIT]
-        older = publish_menu.build_menu()[publish_menu.RECENT_LIMIT :]
-        for entry in recent:
+        visible = publish_menu.visible_menu()
+        visible_labels = {entry["label"] for entry in visible}
+        for entry in visible:
             self.assertIn(f'- "{entry["label"]}"', workflow)
-        for entry in older:
-            self.assertNotIn(f'- "{entry["label"]}"', workflow)
+        for entry in publish_menu.build_menu():
+            if entry["label"] not in visible_labels:
+                self.assertNotIn(f'- "{entry["label"]}"', workflow)
         self.assertIn("older_subject:", workflow)
 
 
