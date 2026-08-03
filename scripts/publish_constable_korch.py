@@ -88,8 +88,15 @@ def main() -> None:
         request(token, "PATCH", f"{members_path}/{member_id}", payload=member_payload)
     else:
         member_id = int(request(token, "POST", members_path, payload=member_payload)["data"]["id"])
-    verified = [m for m in all_pages(token, members_path) if int(m.get("character_id", 0)) == character_id]
-    if len(verified) != 1 or str(verified[0].get("role") or "") != membership["role"]:
+    # Kanka's full organisation-members collection can lag behind a successful
+    # create/update. Verify the exact membership record returned by the write
+    # instead of treating that eventually consistent collection as authoritative.
+    verified = request(token, "GET", f"{members_path}/{member_id}").get("data", {})
+    if (
+        int(verified.get("character_id", 0)) != character_id
+        or int(verified.get("organisation_id", 0)) != int(vigilance["id"])
+        or str(verified.get("role") or "") != membership["role"]
+    ):
         raise SystemExit("Korch Civic Vigilance membership read-back failed.")
 
     response = requests.post(f"https://api.kanka.io/1.0/campaigns/{CAMPAIGN_ID}/entities/{int(final['entity_id'])}/image", headers=headers(token), files={"file": (spec["filename"], image, mimetypes.guess_type(spec["filename"])[0] or "image/jpeg")}, timeout=120)
