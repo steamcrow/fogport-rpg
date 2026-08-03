@@ -12,6 +12,7 @@ on:
         options:
           # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)
           - "-- choose a subject --"
+          - "episode: the-salt-stained-case"
           - "episode: gamemaster-npc-troubles-by-character"
           - "character: constable-korch"
           - "note: gamemaster-npc-troubles"
