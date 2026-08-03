@@ -85,15 +85,17 @@ def main() -> None:
     member_payload = {"organisation_id": int(vigilance["id"]), "character_id": character_id, **membership}
     if current:
         member_id = int(current[0]["id"])
-        request(token, "PATCH", f"{members_path}/{member_id}", payload=member_payload)
+        membership_response = request(token, "PATCH", f"{members_path}/{member_id}", payload=member_payload)
     else:
-        member_id = int(request(token, "POST", members_path, payload=member_payload)["data"]["id"])
-    # Kanka's full organisation-members collection can lag behind a successful
-    # create/update. Verify the exact membership record returned by the write
-    # instead of treating that eventually consistent collection as authoritative.
-    verified = request(token, "GET", f"{members_path}/{member_id}").get("data", {})
+        membership_response = request(token, "POST", members_path, payload=member_payload)
+        member_id = int(membership_response["data"]["id"])
+    # The organisation-members endpoint does not support fetching one record by
+    # ID, and its full collection is eventually consistent. Kanka's successful
+    # POST/PATCH response is the authoritative immediate confirmation.
+    verified = membership_response.get("data", {})
     if (
-        int(verified.get("character_id", 0)) != character_id
+        int(verified.get("id", 0)) != member_id
+        or int(verified.get("character_id", 0)) != character_id
         or int(verified.get("organisation_id", 0)) != int(vigilance["id"])
         or str(verified.get("role") or "") != membership["role"]
     ):
