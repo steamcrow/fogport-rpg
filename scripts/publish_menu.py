@@ -35,7 +35,14 @@ LIBRARIAN = REPOSITORY_ROOT / "kanka_librarian"
 SENTINEL = "-- choose a subject --"
 RECENT_LIMIT = 15
 
-# These older subjects remain in the compact menu because they are useful\n# recurring Fogport foundations, rather than merely historical entries.\nPINNED_LABELS = (\n    "location: the-wayward-pint",\n    "item-batch: fogport-transit-system",\n)\n
+# These older subjects remain in the compact menu because they are useful
+# recurring Fogport foundations, rather than merely historical entries.
+PINNED_LABELS = (
+    "location: the-wayward-pint",
+    "item-batch: fogport-transit-system",
+)
+
+
 # Folder -> (kind label, default publisher script)
 FOLDER_ROUTES = {
     "approved": ("location", "scripts/publish_approved_location.py"),
