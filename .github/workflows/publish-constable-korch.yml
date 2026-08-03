@@ -2,6 +2,13 @@ name: "Kanka Librarian — Fogport: Constable Korch"
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "assets/characters/constable-korch.jpg.b64"
+      - "kanka_librarian/approved_characters/constable-korch.json"
+      - "scripts/publish_constable_korch.py"
+      - ".github/workflows/publish-constable-korch.yml"
 
 permissions:
   contents: read
