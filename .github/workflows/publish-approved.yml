@@ -12,6 +12,8 @@ on:
         options:
           # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)
           - "-- choose a subject --"
+          - "character: constable-korch"
+          - "note: gamemaster-npc-troubles"
           - "note: brawls"
           - "note: fogport-weather"
           - "item: cinderwheel"

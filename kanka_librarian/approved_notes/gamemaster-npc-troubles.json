@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "mode": "compiled-note",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "episode": "GAMEMASTER — NPC Troubles",
+  "aliases": {},
+  "changes": [
+    {
+      "section": "notes",
+      "name": "GAMEMASTER — NPC Troubles",
+      "type": "GM Only",
+      "is_private": true,
+      "entry": "<p><strong>Administrator-only Fate material.</strong> Each Trouble is a pressure point, not a fixed outcome. Compel it when it creates a real choice, a complication, or a costly opportunity; never use it to make decisions for Byl.</p><p>These apply to the established, playable NPCs. Byl and Lott retain the Troubles on their player-facing sheets. Historical figures receive one only when they become active characters in play.</p><h2>Mercy Vale</h2><p><strong>Trouble: I Protect My Own—Even When They Are Wrong.</strong></p><p>Mercy will endanger a profitable arrangement, provoke the Vigilance, or ask Byl for an ugly favor rather than abandon someone under her protection. Her definition of <em>own</em> includes the children of Nine Spoons, the Eel’s people, and occasionally a fool who has earned her regard.</p><h2>Batley</h2><p><strong>Trouble: I Must Prove I Belong Here.</strong></p><p>Batley overcommits, takes a dangerous errand, or insists he can be useful when he believes he is being dismissed as a little Grig servant. Praise and reassurance help, but only until the next chance to demonstrate his worth.</p><h2>Grannie Wren</h2><p><strong>Trouble: One More Secret Must Stay Buried.</strong></p><p>Grannie keeps dangerous knowledge from people who might misuse it—even allies who could genuinely help. When pressed, she bargains in conditions, omissions, and careful half-truths rather than surrendering the whole truth.</p><h2>Nettle</h2><p><strong>Trouble: Hunger Makes Its Own Rules.</strong></p><p>Nettle will take food, follow a smell, distrust a promise of later, or make a blunt survival choice at exactly the wrong social moment. Her hunger is physical, but it is also the learned certainty that adults do not feed children unless someone makes them.</p><h2>Gideon Bramble</h2><p><strong>Trouble: I Cannot Leave My Son Lost.</strong></p><p>Gideon will risk himself, others, and whatever remains locked away for one more chance to reach Geoffrey. Evidence that Geoffrey is changed, dangerous, or beyond saving makes him more desperate, not less.</p><h2>Geoffrey Bramble</h2><p><strong>Trouble: I Cannot Tell What Came Back With Me.</strong></p><p>Geoffrey’s need to be recognized as himself can make him conceal frightening changes, cling to the wrong memories, or reach toward people he loves when he should keep his distance. Whether that fear is justified remains unresolved.</p><h2>Vauntin Quell</h2><p><strong>Trouble: No One May See Me Afraid.</strong></p><p>Quell cannot tolerate public uncertainty, mockery, or any sign that his emergency rule is temporary. A threat to his image may make him grandiose, cruel, and theatrically decisive when caution would better serve him.</p><h2>Inspector Adelaide Voss</h2><p><strong>Trouble: The Truth Does Not Care Whom It Damns.</strong></p><p>Voss follows evidence past convenience, rank, sympathy, and political safety. She can become a danger to Byl, to an innocent who is hiding something for a good reason, and to herself when the case points inside the Civic Vigilance.</p><h2>Constable Korch</h2><p><strong>Trouble: I Took an Oath; I Will Not Bend It.</strong></p><p>Korch will not abandon a civilian, falsify what he witnessed, or let Voss walk alone into danger simply because an order makes the easier path official. His oath is to Fogport’s peace, not to every use Quell makes of its uniform.</p><h2>Using the List</h2><ul><li>Start with the Trouble when an NPC’s present desire clashes with safety, loyalty, law, or pride.</li><li>Let a compel change what the NPC does, not erase their dignity or competence.</li><li>When play fundamentally resolves or transforms a Trouble, revise this note after the episode rather than preserving an obsolete pressure point.</li></ul>",
+      "references": [
+        {"phrase": "Mercy Vale", "name": "Mercy Vale", "section": "characters"},
+        {"phrase": "Batley", "name": "Batley", "section": "characters"},
+        {"phrase": "Grannie Wren", "name": "Grannie Wren", "section": "characters"},
+        {"phrase": "Nettle", "name": "Nettle", "section": "characters"},
+        {"phrase": "Gideon Bramble", "name": "Gideon Bramble", "section": "characters"},
+        {"phrase": "Geoffrey Bramble", "name": "Geoffrey Bramble", "section": "characters"},
+        {"phrase": "Vauntin Quell", "name": "Vauntin Quell", "section": "characters"},
+        {"phrase": "Inspector Adelaide Voss", "name": "Inspector Adelaide Voss", "section": "characters"},
+        {"phrase": "Constable Korch", "name": "Constable Korch", "section": "characters"},
+        {"phrase": "Byl", "name": "Byl Hasbaine", "section": "characters"},
+        {"phrase": "Lott", "name": "Lott", "section": "characters"},
+        {"phrase": "Civic Vigilance", "name": "The Civic Vigilance", "section": "organizations"}
+      ]
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-08-02T20:00:00-07:00",
+    "document_sha256": "570c0ee340d7111527a2488e93c7a0276f3972ee285fbdef4b204d00e161928e"
+  }
+}
