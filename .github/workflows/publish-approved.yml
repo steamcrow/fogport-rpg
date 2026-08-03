@@ -27,7 +27,6 @@ on:
           - "creature: thrallo"
           - "note: fogport-famous"
           - "organization: daughters-last-bell"
-          - "character: vauntin-quell"
           - "location: the-wayward-pint"
           - "item-batch: fogport-transit-system"
           # END AUTO-MENU
