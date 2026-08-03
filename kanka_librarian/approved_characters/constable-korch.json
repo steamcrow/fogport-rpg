@@ -1,0 +1,28 @@
+{
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "base64_path": "assets/characters/constable-korch.jpg.b64",
+  "filename": "constable-korch.jpg",
+  "sha256": "18277202e59537357be7e1751a9df4e65e46cd0056725692c7eb9d95ec24bd2e",
+  "character": {
+    "name": "Constable Korch",
+    "title": "Blackcoat Constable",
+    "age": "Late forties",
+    "sex": "Male",
+    "pronouns": "he/him",
+    "type": "Blackcoat Constable",
+    "is_private": false,
+    "entry": "<p><strong>Constable Korch</strong> is Inspector Adelaide Voss’s heavy backup: a towering, battle-scarred Blackcoat with the patience of a locked door. Where Voss finds the contradiction, Korch makes certain it cannot escape.</p><p>He wears the {{CIVIC_VIGILANCE_LINK}} uniform in its plainest, hardest form: a charcoal greatcoat beneath a broad rain cape, reinforced chest and forearm plates, a blackened helmet bearing the Eye of Vigilance, and heavy boots worn smooth by Fogport rain. His only conspicuous weapon is an enormous crowbill truncheon, useful for breaking doors, armor, and the resolve of anyone who thought a barricade was sufficient.</p><p>Korch speaks rarely and never raises his voice. People mistake this for slowness until they realize he has silently noted every exit, every weapon, and who in the room is most afraid. He follows Voss’s orders with professional precision, but he is not her brute; he is her shield, witness, and final warning.</p><h2>Irregular Work</h2><p>When Inspector Voss investigates irregular activity, Korch is the constable sent in case the irregular activity answers back. His scars come from dock riots, cult raids, and an ill-fated attempt to clear a Gutterkin nest beneath the Shambles. He does not romanticize any of it.</p><h2>Byl and Lott</h2><p>Korch knows Byl Hasbaine by sight and regards him as a probable source of trouble rather than its clever solution. He and Lott have not yet fought, but each immediately recognizes the other as a man capable of doing terrible damage in a small room. Their first real confrontation should make everyone nearby step back from the furniture.</p>"
+  },
+  "membership": {
+    "role": "Blackcoat Constable; Inspector Voss’s field backup",
+    "is_private": false,
+    "pin_id": 3,
+    "status_id": 0
+  },
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-08-02T20:30:00-07:00"
+  }
+}
