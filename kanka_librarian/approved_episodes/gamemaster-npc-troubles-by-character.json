@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "mode": "compiled-episode",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "episode": "GAMEMASTER — NPC Troubles by Character",
+  "aliases": {},
+  "changes": [
+    {
+      "section": "characters",
+      "name": "Mercy Vale",
+      "posts": [{
+        "name": "GAMEMASTER SECRETS — Mercy Vale",
+        "visibility_id": 3,
+        "entry": "<p><strong>Do not reveal directly to the player.</strong></p><p>Mercy never truly retired from crime. The Twisted Eel remains a fencing operation, an intelligence exchange, and a protected meeting ground for work that cannot pass through respectable channels.</p><p>Her affection for Nine Spoons’ feral children is genuine. She uses them as lookouts, messengers, and information gatherers, but considers them under her protection rather than disposable assets. Anyone who exploits or seriously harms one of them becomes Mercy’s personal concern.</p><p>Mercy’s good heart is real, though she expresses it through control, leverage, and carefully chosen crimes. She believes the law abandoned Nine Spoons long before she did, and she judges an act by whom it protects rather than whether it is legal.</p><p>She is testing Byl and Lott as independent agents who can handle dangerous matters without drawing the Watch directly to the Eel. She sees promise in Byl’s magic and loyalty in Lott, but worries that Byl’s growing power will attract attention from officials, licensed magicians, or cults.</p><h2>Fate Trouble</h2><p><strong>I Protect My Own—Even When They Are Wrong.</strong></p><p>Mercy will endanger a profitable arrangement, provoke the Vigilance, or ask Byl for an ugly favor rather than abandon someone under her protection. Her definition of <em>own</em> includes the children of Nine Spoons, the Eel’s people, and occasionally a fool who has earned her regard.</p>"
+      }]
+    },
+    {
+      "section": "characters",
+      "name": "Batley",
+      "posts": [{
+        "name": "GAMEMASTER SECRETS — Batley",
+        "visibility_id": 3,
+        "entry": "<p><strong>Do not reveal directly to the player.</strong></p><p>Batley currently has no established hidden agenda or secret history. His loyalty to Mercy and his earnest behavior are genuine as far as present canon establishes.</p><p>Do not decide yet whether his habit of shouting “BATLEY!” was confusion, Grig etiquette, or something peculiar to Batley. Preserve that ambiguity until play gives us a better answer.</p><h2>Fate Trouble</h2><p><strong>I Must Prove I Belong Here.</strong></p><p>Batley overcommits, takes a dangerous errand, or insists he can be useful when he believes he is being dismissed as a little Grig servant. Praise and reassurance help, but only until the next chance to demonstrate his worth.</p>"
+      }]
+    },
+    {
+      "section": "characters",
+      "name": "Grannie Wren",
+      "posts": [{
+        "name": "GAMEMASTER SECRETS — Grannie Wren",
+        "visibility_id": 3,
+        "entry": "<ul><li>Grannie’s full purpose for entering the chapel and her intended use for the Final Green Lock remain unrevealed.</li><li>Her prior knowledge of Gideon, Geoffrey, and the unfinished door remains unrevealed.</li><li>No family connection between Grannie Wren and Percival Wren has been established.</li><li>Do not convert any of these unknowns into canon until play reveals them.</li></ul><h2>Fate Trouble</h2><p><strong>One More Secret Must Stay Buried.</strong></p><p>Grannie keeps dangerous knowledge from people who might misuse it—even allies who could genuinely help. When pressed, she bargains in conditions, omissions, and careful half-truths rather than surrendering the whole truth.</p>"
+      }]
+    },
+    {
+      "section": "characters",
+      "name": "Nettle",
+      "posts": [{
+        "name": "GAMEMASTER SECRETS — Nettle",
+        "visibility_id": 3,
+        "entry": "<p>Nettle’s history, loyalties, and long-term relationship with the company have not yet been established beyond what occurred during the expedition. Preserve her as a person and new companion rather than reducing her to a generic feral-child guide.</p><h2>Fate Trouble</h2><p><strong>Hunger Makes Its Own Rules.</strong></p><p>Nettle will take food, follow a smell, distrust a promise of later, or make a blunt survival choice at exactly the wrong social moment. Her hunger is physical, but it is also the learned certainty that adults do not feed children unless someone makes them.</p>"
+      }]
+    },
+    {
+      "section": "characters",
+      "name": "Gideon Bramble",
+      "posts": [{
+        "name": "GAMEMASTER SECRETS — Gideon Bramble",
+        "visibility_id": 3,
+        "entry": "<ul><li>Gideon’s survival or death remains unknown.</li><li>What escaped when the locks made for mouths, eyes, and hearts opened remains unknown.</li><li>The nature of the bright child-sized presence behind his left eye remains unknown.</li><li>Do not assume Gideon’s account of Geoffrey is complete or reliable.</li></ul><h2>Fate Trouble</h2><p><strong>I Cannot Leave My Son Lost.</strong></p><p>Gideon will risk himself, others, and whatever remains locked away for one more chance to reach Geoffrey. Evidence that Geoffrey is changed, dangerous, or beyond saving makes him more desperate, not less.</p>"
+      }]
+    },
+    {
+      "section": "characters",
+      "name": "Geoffrey Bramble",
+      "posts": [{
+        "name": "GAMEMASTER SECRETS — Geoffrey Bramble",
+        "visibility_id": 3,
+        "entry": "<ul><li>Whether any part of the being beyond the door was truly Geoffrey remains unresolved.</li><li>What else moved in the green fog was never seen clearly.</li><li>The severed hand’s interest in Byl’s deck remains unexplained.</li><li>Geoffrey’s key was thrown into the shaft before the door collapsed.</li></ul><h2>Fate Trouble</h2><p><strong>I Cannot Tell What Came Back With Me.</strong></p><p>Geoffrey’s need to be recognized as himself can make him conceal frightening changes, cling to the wrong memories, or reach toward people he loves when he should keep his distance. Whether that fear is justified remains unresolved.</p>"
+      }]
+    },
+    {
+      "section": "characters",
+      "name": "Vauntin Quell",
+      "posts": [{
+        "name": "GAMEMASTER SECRETS — Vauntin Quell",
+        "visibility_id": 3,
+        "entry": "<p><strong>Do not establish the truth of these rumors until play reveals it.</strong></p><p>Quell exploited the Catastrophe and may have helped cause or worsen the royal family’s destruction. His obsession with images may be more than vanity: he may believe that a sufficiently widespread and consistent public likeness preserves his identity against age, magic, or replacement.</p><p>Contradictory portraits genuinely distress him. The seasonal companions may be victims, experiments, doubles, or part of the same mechanism sustaining him. The fate of the royal family remains the most dangerous unanswered question of his reign.</p><p>Quell should remain intelligent, capable, peculiar, and occasionally correct. Fogport is more interesting if removing him could create consequences nearly as terrible as leaving him in power.</p><h2>Fate Trouble</h2><p><strong>No One May See Me Afraid.</strong></p><p>Quell cannot tolerate public uncertainty, mockery, or any sign that his emergency rule is temporary. A threat to his image may make him grandiose, cruel, and theatrically decisive when caution would better serve him.</p>"
+      }]
+    },
+    {
+      "section": "characters",
+      "name": "Inspector Adelaide Voss",
+      "posts": [{
+        "name": "GAMEMASTER SECRETS — Inspector Adelaide Voss",
+        "visibility_id": 3,
+        "entry": "<h2>Fate Trouble</h2><p><strong>The Truth Does Not Care Whom It Damns.</strong></p><p>Voss follows evidence past convenience, rank, sympathy, and political safety. She can become a danger to Byl, to an innocent who is hiding something for a good reason, and to herself when the case points inside the Civic Vigilance.</p>"
+      }]
+    },
+    {
+      "section": "characters",
+      "name": "Constable Korch",
+      "posts": [{
+        "name": "GAMEMASTER SECRETS — Constable Korch",
+        "visibility_id": 3,
+        "entry": "<h2>Fate Trouble</h2><p><strong>I Took an Oath; I Will Not Bend It.</strong></p><p>Korch will not abandon a civilian, falsify what he witnessed, or let Voss walk alone into danger simply because an order makes the easier path official. His oath is to Fogport’s peace, not to every use Quell makes of its uniform.</p>"
+      }]
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-08-02T20:45:00-07:00",
+    "document_sha256": "8507ca1277a2a064b53708b9d389f8936e6f8d2c7e953a61ae5411b1b9012fe4"
+  }
+}
