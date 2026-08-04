@@ -1,4 +1,4 @@
-name: "Kanka Librarian — Fogport: Publish Nine Spoons"
+name: "Kanka Librarian — Publish Nine Spoons"
 
 on:
   workflow_dispatch:
@@ -6,143 +6,37 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: kanka-librarian-fogport
+  cancel-in-progress: false
+
 jobs:
   publish:
-    name: "FOGPORT 410879 — Publish approved Nine Spoons"
+    name: "FOGPORT 410879 — publish Nine Spoons and verify"
     runs-on: ubuntu-latest
     timeout-minutes: 10
-
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
-
-      - name: Install dependencies
-        run: python -m pip install --requirement requirements.txt
-
-      - name: Verify Fogport and publish exact approved entry
+      - run: python -m pip install --requirement requirements.txt
+      - name: Run Librarian safety tests
+        run: python -m unittest discover -s tests
+      - name: Publish Nine Spoons and exact-read-back
         env:
           KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
           KANKA_ENABLE_WRITES: FOGPORT_410879
           PYTHONPATH: ${{ github.workspace }}
         run: |
-          python - <<'PY'
-          import json
-          import os
-          import time
-          from pathlib import Path
-
-          from kanka_librarian.client import KankaClient
-          from kanka_librarian.publisher import validate_approved_proposal
-          from kanka_librarian.writer import KankaWriter
-
-          campaign_id = 410879
-          expected_campaign_name = "Fogport"
-
-          document = json.loads(
-              Path("kanka_librarian/approved/nine-spoons.json").read_text(encoding="utf-8")
-          )
-          validate_approved_proposal(document)
-          assert document["approval"]["proposal_sha256"] == "43716b9f11c6861679418b4807c5ef8297af4e9f5eb7c15fa98d55077264753c"
-          assert len(document["proposals"]) == 1
-          change = document["proposals"][0]
-          assert change["name"] == "Nine Spoons"
-
-          client = KankaClient(os.environ["KANKA_API_TOKEN"])
-          campaign = client.get_campaign(campaign_id)
-          actual_campaign_name = str(campaign.get("name", "")).strip()
-          if actual_campaign_name.casefold() != expected_campaign_name.casefold():
-              raise SystemExit(
-                  f"Campaign lock failed: ID {campaign_id} is {actual_campaign_name!r}, "
-                  f"not {expected_campaign_name!r}."
-              )
-
-          locations = client.list_locations(campaign_id)
-          shambles = [
-              item for item in locations
-              if str(item.get("name", "")).casefold() == "the shambles"
-          ]
-          matches = [
-              item for item in locations
-              if str(item.get("name", "")).casefold() == "nine spoons"
-          ]
-          if len(shambles) != 1:
-              raise SystemExit(f"Expected exactly one Shambles in Fogport; found {len(shambles)}.")
-          if len(matches) > 1:
-              raise SystemExit("More than one exact Nine Spoons location exists; refusing to guess.")
-
-          parent_entity_id = int(shambles[0]["entity_id"])
-          entry = change["entry"].replace(
-              "the Shambles", f"[entity:{parent_entity_id}|the Shambles]", 1
-          )
-          payload = {
-              "name": change["name"],
-              "type": change["type"],
-              "is_private": change["is_private"],
-              "entry": entry,
-              "parent_id": parent_entity_id,
-          }
-          writer = KankaWriter(
-              token=os.environ["KANKA_API_TOKEN"],
-              expected_campaign_id=campaign_id,
-          )
-          if matches:
-              location_id = int(matches[0]["id"])
-          else:
-              result = writer.create_entity(campaign_id, "locations", payload)
-              location_id = int(result["id"])
-
-          item = None
-          for attempt in range(3):
-              item = writer.update_entity(campaign_id, "locations", location_id, payload)
-              if item.get("parent_id") == parent_entity_id:
-                  break
-              time.sleep(3)
-              direct = client._get(f"campaigns/{campaign_id}/locations/{location_id}")
-              item = direct.get("data", {})
-              if item.get("parent_id") == parent_entity_id:
-                  break
-
-          if not isinstance(item, dict):
-              raise SystemExit("Kanka did not return the Nine Spoons location record.")
-          if item.get("parent_id") != parent_entity_id:
-              raise SystemExit(f"Nine Spoons has unexpected parent_id {item.get('parent_id')!r}.")
-
-          published_entry = str(item.get("entry", ""))
-          required = (
-              "Rusted Saint", "Gutterkin", "Feratu", "Twisted Eel",
-              "Mercy", "Byl Hasbaine", "Lott", "Nine Spoons teaches survival"
-          )
-          for phrase in required:
-              if phrase not in published_entry:
-                  raise SystemExit(f"Published entry is missing {phrase}.")
-          if f"[entity:{parent_entity_id}|the Shambles]" not in published_entry:
-              raise SystemExit("Published entry is missing its Shambles inline link.")
-
-          entity_id = int(item["entity_id"])
-          overview_url = f"https://app.kanka.io/w/{campaign_id}/entities/{entity_id}"
-          receipt = {
-              "published": True,
-              "campaign": actual_campaign_name,
-              "campaign_id": campaign_id,
-              "location_id": location_id,
-              "entity_id": entity_id,
-              "parent_entity_id": parent_entity_id,
-              "name": item.get("name"),
-              "overview_url": overview_url,
-          }
-          print(json.dumps(receipt, indent=2))
-
-          summary_path = os.environ.get("GITHUB_STEP_SUMMARY")
-          if summary_path:
-              with open(summary_path, "a", encoding="utf-8") as summary:
-                  summary.write("# Fogport publication verified\n\n")
-                  summary.write(f"- Campaign: **{actual_campaign_name}** ({campaign_id})\n")
-                  summary.write("- Entity: **Nine Spoons**\n")
-                  summary.write(f"- [Open Nine Spoons Overview]({overview_url})\n")
-          PY
+          python scripts/publish_approved_location.py \
+            kanka_librarian/approved/nine-spoons.json \
+            --receipt receipts/nine-spoons.json
+      - name: Preserve verified Nine Spoons receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: kanka-nine-spoons-publication-receipt
+          path: receipts/nine-spoons.json
+          if-no-files-found: error
+          retention-days: 90
