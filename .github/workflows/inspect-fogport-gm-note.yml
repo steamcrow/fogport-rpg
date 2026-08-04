@@ -1,0 +1,38 @@
+name: Inspect Exact Fogport Gamemaster Note — Read Only
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kanka-librarian-fogport-read-only
+  cancel-in-progress: false
+
+jobs:
+  inspect:
+    name: "READ ONLY — inspect Fogport Note entity 9626686"
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install --requirement requirements.txt
+      - name: Run Librarian safety tests
+        run: python -m unittest discover -s tests
+      - name: Read exact Note and its posts without writing
+        env:
+          KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+          REPORT_PATH: receipts/fogport-gm-note-inspection.json
+        run: python scripts/inspect_fogport_gm_note.py
+      - name: Preserve exact read-only inspection
+        uses: actions/upload-artifact@v4
+        with:
+          name: fogport-gm-note-inspection
+          path: receipts/fogport-gm-note-inspection.json
+          if-no-files-found: error
+          retention-days: 30
