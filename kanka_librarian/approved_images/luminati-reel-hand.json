@@ -4,7 +4,7 @@
   "campaign_name": "Fogport",
   "entity_id": 9663318,
   "entity_name": "The Luminati",
-  "repository_path": "assets/organizations/luminati-reel-hand.png",
+  "repository_path": "assets/organizations/luminati-reel-hand.png.b64.part-000",
   "sha256": "3b3471f2bd308cbed0774d99d77ba7f88d72f59c0546291657d49890a271d69d",
   "approval": {
     "status": "approved",
