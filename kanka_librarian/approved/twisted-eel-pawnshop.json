@@ -21,13 +21,17 @@
       "posts": [],
       "attributes": [],
       "relationships": [],
-      "blocked": false
+      "blocked": false,
+      "publication": {
+        "parent_name": "Nine Spoons",
+        "parent_link_phrase": "Nine Spoons"
+      }
     }
   ],
   "approval": {
     "status": "approved",
     "approved_by": "Daniel Davis",
-    "approved_at": "2026-07-24T17:00:00-07:00",
-    "proposal_sha256": "51e61689202ac1acd6687f6e1cba65f6ec5cd1ff831214847e8e09680eff49a9"
+    "approved_at": "2026-08-04T21:56:06.298126Z",
+    "proposal_sha256": "58324f8430776b71a64815715354beb4a092bfbf4ec4a77de14a8daac27d4e6b"
   }
 }

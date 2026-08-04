@@ -1,14 +1,21 @@
-"""Small read-only client for the Kanka API."""
+"""Small read-only client for the Kanka API.
+
+Pacing and 429 retries are centralized in the shared pacing module.
+Keeping that logic in one place prevents each request from being delayed and
+retried twice when a publishing script also installs the shared pacing layer.
+"""
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Any
-import time
 from urllib.parse import urlparse
 
 import requests
 
+from .pacing import install_api_pacing
+
+install_api_pacing()
 
 class KankaError(RuntimeError):
     """Raised when Kanka cannot complete a request."""
@@ -19,23 +26,11 @@ class KankaClient:
     token: str
     base_url: str = "https://api.kanka.io/1.0"
     timeout_seconds: int = 20
-    # Wyvern-subscriber pace: 90 requests/minute allowed, one per 0.7s used.
-    minimum_request_interval_seconds: float = 0.7
-    max_rate_limit_retries: int = 8
-    _last_request_at: float = field(default=0.0, init=False, repr=False)
-
     def __post_init__(self) -> None:
         self.token = self.token.strip()
         self.base_url = self.base_url.rstrip("/")
         if not self.token or self.token == "replace_with_your_kanka_token":
             raise KankaError("KANKA_API_TOKEN is missing or still contains the placeholder.")
-
-    def _wait_for_rate_limit(self) -> None:
-        """Keep requests below Kanka's standard 30-request-per-minute limit."""
-        elapsed = time.monotonic() - self._last_request_at
-        remaining = self.minimum_request_interval_seconds - elapsed
-        if remaining > 0:
-            time.sleep(remaining)
 
     def _get(self, path: str, params: dict[str, Any] | None = None) -> dict[str, Any]:
         url = f"{self.base_url}/{path.lstrip('/')}"
@@ -46,49 +41,20 @@ class KankaClient:
             "User-Agent": "Kanka-Librarian/0.4",
         }
 
-        response: requests.Response | None = None
-        for attempt in range(self.max_rate_limit_retries + 1):
-            self._wait_for_rate_limit()
-            try:
-                response = requests.get(
-                    url,
-                    headers=headers,
-                    params=params,
-                    timeout=self.timeout_seconds,
-                )
-                self._last_request_at = time.monotonic()
-            except requests.RequestException as exc:
-                raise KankaError(f"Could not reach Kanka: {exc}") from exc
+        try:
+            response = requests.get(
+                url,
+                headers=headers,
+                params=params,
+                timeout=self.timeout_seconds,
+            )
+        except requests.RequestException as exc:
+            raise KankaError(f"Could not reach Kanka: {exc}") from exc
 
-            if response.status_code != 429:
-                break
-
-            if attempt >= self.max_rate_limit_retries:
-                raise KankaError(
-                    "Kanka's API rate limit remained exhausted after "
-                    f"{self.max_rate_limit_retries} automatic retries."
-                )
-
-            retry_after_header = response.headers.get("Retry-After")
-            reset_header = response.headers.get("X-RateLimit-Reset")
-            delay_seconds = 60.0
-
-            if retry_after_header:
-                try:
-                    delay_seconds = max(1.0, float(retry_after_header))
-                except ValueError:
-                    pass
-            elif reset_header:
-                try:
-                    delay_seconds = max(1.0, float(reset_header) - time.time())
-                except ValueError:
-                    pass
-
-            # Add a small cushion so the retry does not arrive on the reset boundary.
-            time.sleep(delay_seconds + 1.0)
-
-        if response is None:
-            raise KankaError("Kanka did not return a response.")
+        if response.status_code == 429:
+            raise KankaError(
+                "Kanka's API rate limit remained exhausted after all automatic retries."
+            )
         if response.status_code == 401:
             raise KankaError("Kanka rejected the token. Check that it was copied correctly and has not expired.")
         if response.status_code == 403:

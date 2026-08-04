@@ -3,7 +3,9 @@
   "mode": "proposal-only",
   "campaign_id": 410879,
   "campaign_name": "Fogport",
-  "create_order": ["nine-spoons"],
+  "create_order": [
+    "nine-spoons"
+  ],
   "approval_questions": [],
   "proposals": [
     {
@@ -19,13 +21,17 @@
       "posts": [],
       "attributes": [],
       "relationships": [],
-      "blocked": false
+      "blocked": false,
+      "publication": {
+        "parent_name": "The Shambles",
+        "parent_link_phrase": "the Shambles"
+      }
     }
   ],
   "approval": {
     "status": "approved",
     "approved_by": "Daniel Davis",
-    "approved_at": "2026-07-24T17:00:00-07:00",
-    "proposal_sha256": "43716b9f11c6861679418b4807c5ef8297af4e9f5eb7c15fa98d55077264753c"
+    "approved_at": "2026-08-04T21:56:06.298126Z",
+    "proposal_sha256": "0ca19f3a708cf47e12978c01f8321809916a6bd38adbbd606b64b9d56a8450be"
   }
 }
