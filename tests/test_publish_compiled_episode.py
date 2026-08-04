@@ -35,6 +35,22 @@ from kanka_librarian.writer import KankaWriter
 
 
 class CompiledEpisodeTests(unittest.TestCase):
+    def test_writer_uses_shared_pacing_without_removed_client_fields(self):
+        class Response:
+            ok = True
+            status_code = 200
+            text = ""
+
+            @staticmethod
+            def json():
+                return {"data": {"id": 7}}
+
+        writer = KankaWriter(token="test-token", expected_campaign_id=410879)
+        with patch("kanka_librarian.writer.requests.request", return_value=Response()):
+            result = writer._send("PATCH", "campaigns/410879/locations/1", {"name": "The Pales"})
+
+        self.assertEqual(result["id"], 7)
+
     def test_reminder_writer_uses_kanka_reminders_routes(self):
         writer = KankaWriter(token="test-token", expected_campaign_id=410879)
         with patch.object(writer, "_send", return_value={"id": 7}) as send:

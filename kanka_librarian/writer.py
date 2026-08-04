@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from typing import Any
-import time
 
 import requests
 
@@ -46,26 +45,16 @@ class KankaWriter(KankaClient):
             "Content-Type": "application/json",
             "User-Agent": "Kanka-Librarian/0.6",
         }
-        response: requests.Response | None = None
-        for attempt in range(self.max_rate_limit_retries + 1):
-            self._wait_for_rate_limit()
-            try:
-                response = requests.request(
-                    method, url, headers=headers, json=payload, timeout=self.timeout_seconds
-                )
-                self._last_request_at = time.monotonic()
-            except requests.RequestException as exc:
-                raise KankaError(f"Could not reach Kanka: {exc}") from exc
-            if response.status_code != 429:
-                break
-            if attempt >= self.max_rate_limit_retries:
-                raise KankaError("Kanka's API rate limit remained exhausted.")
-            retry_after = response.headers.get("Retry-After")
-            delay = float(retry_after) if retry_after and retry_after.isdigit() else 60.0
-            time.sleep(delay + 1.0)
-        if response is None or not response.ok:
-            status = response.status_code if response is not None else "no response"
-            detail = response.text[:300] if response is not None else ""
+        try:
+            response = requests.request(
+                method, url, headers=headers, json=payload, timeout=self.timeout_seconds
+            )
+        except requests.RequestException as exc:
+            raise KankaError(f"Could not reach Kanka: {exc}") from exc
+
+        if not response.ok:
+            status = response.status_code
+            detail = response.text[:300]
             raise KankaError(f"Kanka write failed ({status}): {detail}")
         body = response.json()
         data = body.get("data")
