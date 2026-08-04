@@ -73,6 +73,7 @@ MODE_ROUTES = {
     "approved-batch": ("episode-batch", "scripts/publish_approved_batch.py"),
     "compiled-episode": ("episode", "scripts/publish_compiled_episode.py"),
     "compiled-note": ("note", "scripts/publish_compiled_episode.py"),
+    "compiled-canon": ("canon", "scripts/publish_compiled_episode.py"),
 }
 
 # Multi-phase subjects that keep their own dedicated workflows.
