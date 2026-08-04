@@ -55,12 +55,24 @@ def load_approval(path: Path) -> tuple[dict[str, Any], bytes, str]:
         raise SystemExit("Approved image path escapes the repository.") from exc
     if not candidate.is_file():
         raise SystemExit(f"Approved image is missing: {relative_path}")
-    if candidate.suffix == ".b64":
-        image_name = candidate.stem
+    if candidate.suffix == ".b64" or ".b64.part-" in candidate.name:
+        if candidate.suffix == ".b64":
+            encoded_parts = [candidate]
+            image_name = candidate.stem
+        else:
+            prefix, marker, number = candidate.name.rpartition(".part-")
+            if not marker or number != "000":
+                raise SystemExit("Approved split image must begin with .part-000.")
+            encoded_parts = sorted(candidate.parent.glob(f"{prefix}.part-*"))
+            expected_names = [f"{prefix}.part-{index:03d}" for index in range(len(encoded_parts))]
+            if [part.name for part in encoded_parts] != expected_names:
+                raise SystemExit("Approved split image parts are missing or out of order.")
+            image_name = Path(prefix).stem
         image_suffix = Path(image_name).suffix.lower()
         try:
             image_bytes = base64.b64decode(
-                candidate.read_text(encoding="ascii"), validate=True
+                "".join(part.read_text(encoding="ascii").strip() for part in encoded_parts),
+                validate=True,
             )
         except (ValueError, UnicodeError) as exc:
             raise SystemExit("Approved image base64 is invalid.") from exc
