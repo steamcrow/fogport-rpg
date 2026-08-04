@@ -83,6 +83,7 @@ EXCLUDED = {
     "approved/fogport-calendar.json",
     "approved_episodes/brawla.json",
     "approved_notes/gamemaster-guide-v2.json",
+    "approved_notes/gamemaster-guide-v3.json",
 }
 
 

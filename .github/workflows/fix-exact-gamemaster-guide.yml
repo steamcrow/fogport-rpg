@@ -1,4 +1,4 @@
-name: Fix Exact Fogport Gamemaster Guide and Clean Misplaced Journals
+name: Update Exact Fogport Gamemaster Guide
 
 on:
   workflow_dispatch:
@@ -12,7 +12,7 @@ concurrency:
 
 jobs:
   fix:
-    name: "FOGPORT ONLY — update Note 9626686, then clean 9 audited Journals"
+    name: "FOGPORT ONLY — update and verify Note 9626686"
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -28,24 +28,15 @@ jobs:
         env:
           KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
           KANKA_ENABLE_WRITES: FOGPORT_410879
-          MANIFEST_PATH: kanka_librarian/approved_notes/gamemaster-guide-v2.json
-          REPORT_PATH: receipts/gamemaster-guide-v2.json
+          MANIFEST_PATH: kanka_librarian/approved_notes/gamemaster-guide-v3.json
+          REPORT_PATH: receipts/gamemaster-guide-v3.json
           PYTHONPATH: ${{ github.workspace }}
         run: python scripts/publish_exact_gamemaster_guide.py
-      - name: Delete and verify only the nine audited misplaced Journals
-        env:
-          KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
-          KANKA_ENABLE_WRITES: FOGPORT_410879
-          REPORT_PATH: receipts/gamemaster-journal-cleanup.json
-          PYTHONPATH: ${{ github.workspace }}
-        run: python scripts/cleanup_misplaced_gm_journals.py
-      - name: Preserve exact update and cleanup receipts
+      - name: Preserve exact update receipt
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: exact-gamemaster-guide-fix-receipts
-          path: |
-            receipts/gamemaster-guide-v2.json
-            receipts/gamemaster-journal-cleanup.json
+          name: exact-gamemaster-guide-update-receipt
+          path: receipts/gamemaster-guide-v3.json
           if-no-files-found: error
           retention-days: 90
