@@ -30,6 +30,13 @@ class LibrarianSafetyTests(unittest.TestCase):
     def test_manual_read_only_writer_is_safe(self):
         self.assertEqual(self.audit(SAFE), [])
 
+    def test_export_prefix_is_recognized_as_read_only(self):
+        read_only = SAFE.replace("KANKA_ENABLE_WRITES: FOGPORT_410879\n", "")
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory, "export-fogport-voice-bible.yml")
+            path.write_text(read_only, encoding="utf-8")
+            self.assertEqual(audit_workflows(Path(directory)), [])
+
     def test_automatic_kanka_triggers_are_rejected(self):
         for trigger in ("push", "pull_request", "schedule"):
             with self.subTest(trigger):
