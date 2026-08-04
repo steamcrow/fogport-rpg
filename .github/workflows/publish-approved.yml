@@ -12,6 +12,7 @@ on:
         options:
           # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)
           - "-- choose a subject --"
+          - "location: the-pales"
           - "location: nine-spoons"
           - "location: shambles"
           - "location: twisted-eel-pawnshop"
@@ -26,7 +27,6 @@ on:
           - "character: constable-korch"
           - "note: gamemaster-npc-troubles"
           - "image: brawla-thief"
-          - "note: brawls"
           - "location: the-wayward-pint"
           - "item-batch: fogport-transit-system"
           # END AUTO-MENU
