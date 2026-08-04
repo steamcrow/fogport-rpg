@@ -1,4 +1,4 @@
-name: Publish the Shambles to Kanka
+name: "Kanka Librarian — Publish The Shambles"
 
 on:
   workflow_dispatch:
@@ -6,117 +6,37 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: kanka-librarian-fogport
+  cancel-in-progress: false
+
 jobs:
   publish:
-    name: Publish approved Shambles
+    name: "FOGPORT 410879 — publish The Shambles and verify"
     runs-on: ubuntu-latest
     timeout-minutes: 10
-
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
-
-      - name: Install dependencies
-        run: python -m pip install --requirement requirements.txt
-
-      - name: Verify and publish exact approved entry
+      - run: python -m pip install --requirement requirements.txt
+      - name: Run Librarian safety tests
+        run: python -m unittest discover -s tests
+      - name: Publish The Shambles and exact-read-back
         env:
           KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
           KANKA_ENABLE_WRITES: FOGPORT_410879
           PYTHONPATH: ${{ github.workspace }}
         run: |
-          python - <<'PY'
-          import json
-          import os
-          import time
-          from pathlib import Path
-
-          from kanka_librarian.client import KankaClient
-          from kanka_librarian.publisher import validate_approved_proposal
-          from kanka_librarian.writer import KankaWriter
-
-          document = json.loads(
-              Path("kanka_librarian/approved/shambles.json").read_text(encoding="utf-8")
-          )
-          validate_approved_proposal(document)
-          assert document["approval"]["proposal_sha256"] == "ae73ebedfdf0696e7c08af92f2ef22e0af4015791c893910c59545e1c76f153b"
-          assert len(document["proposals"]) == 1
-          change = document["proposals"][0]
-          assert change["name"] == "The Shambles"
-
-          client = KankaClient(os.environ["KANKA_API_TOKEN"])
-          locations = client.list_locations(410879)
-          fogport = [
-              item for item in locations
-              if str(item.get("name", "")).casefold() == "fogport"
-          ]
-          shambles = [
-              item for item in locations
-              if str(item.get("name", "")).casefold() == "the shambles"
-          ]
-          if len(fogport) != 1:
-              raise SystemExit(f"Expected exactly one Fogport; found {len(fogport)}.")
-          if len(shambles) > 1:
-              raise SystemExit("More than one exact Shambles location exists; refusing to guess.")
-
-          fogport_entity_id = int(fogport[0]["entity_id"])
-          entry = change["entry"].replace(
-              "Fogport", f"[entity:{fogport_entity_id}|Fogport]", 1
-          )
-          payload = {
-              "name": change["name"],
-              "type": change["type"],
-              "is_private": change["is_private"],
-              "entry": entry,
-              "parent_id": fogport_entity_id,
-          }
-          writer = KankaWriter(
-              token=os.environ["KANKA_API_TOKEN"],
-              expected_campaign_id=410879,
-          )
-          if shambles:
-              location_id = int(shambles[0]["id"])
-          else:
-              result = writer.create_entity(410879, "locations", payload)
-              location_id = int(result["id"])
-
-          # Kanka's list endpoint can briefly return its pre-update representation.
-          # Patch the exact existing record and verify that same record directly.
-          item = None
-          for attempt in range(3):
-              result = writer.update_entity(
-                  410879, "locations", location_id, payload
-              )
-              item = result
-              if item.get("parent_id") == fogport_entity_id:
-                  break
-              time.sleep(3)
-              direct = client._get(f"campaigns/410879/locations/{location_id}")
-              item = direct.get("data", {})
-              if item.get("parent_id") == fogport_entity_id:
-                  break
-          if not isinstance(item, dict):
-              raise SystemExit("Kanka did not return the Shambles location record.")
-          if item.get("parent_id") != fogport_entity_id:
-              raise SystemExit(f"Shambles has unexpected parent_id {item.get('parent_id')!r}.")
-
-          published_entry = str(item.get("entry", ""))
-          for required in ("Cinderhook", "The Crooked Wash", "Saint Rattle", "Patchcoat", "Nine Spoons", "Gutterkin"):
-              if required not in published_entry:
-                  raise SystemExit(f"Published entry is missing {required}.")
-          if f"[entity:{fogport_entity_id}|Fogport]" not in published_entry:
-              raise SystemExit("Published entry is missing its Fogport inline link.")
-          print(json.dumps({
-              "published": True,
-              "location_id": location_id,
-              "entity_id": item.get("entity_id"),
-              "parent_entity_id": fogport_entity_id,
-              "name": item.get("name"),
-          }, indent=2))
-          PY
+          python scripts/publish_approved_location.py \
+            kanka_librarian/approved/shambles.json \
+            --receipt receipts/shambles.json
+      - name: Preserve verified Shambles receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: kanka-shambles-publication-receipt
+          path: receipts/shambles.json
+          if-no-files-found: error
+          retention-days: 90
