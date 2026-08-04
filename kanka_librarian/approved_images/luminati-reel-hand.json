@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "entity_id": 9663318,
+  "entity_name": "The Luminati",
+  "repository_path": "assets/organizations/luminati-reel-hand.png",
+  "sha256": "3b3471f2bd308cbed0774d99d77ba7f88d72f59c0546291657d49890a271d69d",
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-08-03T17:00:00-07:00"
+  }
+}
