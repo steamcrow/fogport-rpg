@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "mode": "compiled-canon",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "episode": "Lumen and the Pales",
+  "aliases": {},
+  "changes": [
+    {
+      "section": "organizations",
+      "name": "The Luminati",
+      "type": "Licensed Lumenists",
+      "is_private": false,
+      "entry": "<p>The <strong>Luminati</strong> are Fogport’s licensed professional wizards: trained, examined, and sanctioned by the <strong>Collegium of Lumen</strong>. Their own respectable title is <em>Lumenist</em>. Everyone else calls them Luminati—sometimes admiringly, more often with suspicion.</p><p>Most Lumenists are independent workers. They own their own condenser rigs and wired wands, buy their own spell Reels, pay for annual inspections, and hire themselves out as healers, ward-setters, investigators, industrial consultants, private duelists, and specialists for the Civic Vigilance. A successful Lumenist may keep an assistant called a <strong>reel-hand</strong>, who operates the rig’s reader, catches and rewinds spent Reels, watches the gauges, and prevents an overdraw from becoming an explosion.</p><p>A Lumenist is expected to wear a fitted dark uniform coat with brass piping, their numbered registration seal, and the wax-sealed ribbon of their current license. An unsealed condenser is treated as an illegal industrial weapon. A person using one without a license is not simply “doing magic”; they are committing a serious civic offense.</p><p>Their prepared operations are precise and impressive: a ward across a doorway, a bone carefully mended, poisoned blood cleaned, a fire arrested, a fugitive outlined in pale light. Yet every operation draws Lumen from the surrounding neighborhood. A hard-working Lumenist leaves behind cold rooms, pale plants, listless people, bad luck, and commercially worthless <strong>bled fog</strong>.</p><p>The Luminati insist that this is the price of public safety. Fog harvesters, especially around the Pales, call it theft.</p><p>The Luminati are trained and licensed by the Collegium of Lumen, but they do not all serve it faithfully. Some resent the Collegium’s control of patents, examinations, and Reels. Some have begun buying counterfeit rolls. Some are quietly convinced that the greatest work of the Collegium is not meant to protect Fogport at all.</p>",
+      "references": [
+        {"phrase": "Collegium of Lumen", "name": "The Collegium of Lumen", "section": "locations"},
+        {"phrase": "Reels", "name": "Lumen", "section": "notes"},
+        {"phrase": "Civic Vigilance", "name": "The Civic Vigilance", "section": "organizations"},
+        {"phrase": "Lumen", "name": "Lumen", "section": "notes"},
+        {"phrase": "Pales", "name": "The Pales", "section": "locations"}
+      ]
+    },
+    {
+      "section": "notes",
+      "name": "Lumen",
+      "type": "Sanctioned magic",
+      "is_private": false,
+      "entry": "<p><strong>Lumen</strong> is the active, responsive essence found in Fogport’s fog, storm air, damp stone, old heat, living breath, and accumulated chance. In its raw state it is nearly invisible: a pressure in the air, a metallic taste on the tongue, a faint bluish gleam in deep fog.</p><p>When collected and condensed, Lumen becomes a physical substance: pale fluid and luminous vapor held under pressure in glass, brass, and leather. It is not magic by itself. Rather, it is the part of the world most ready to answer a magician’s impossible certainty.</p><p>The Luminati use backpack condensers to draw Lumen from their immediate surroundings. Insulated wires carry it to the wand, which acts as a precise delivery instrument. The actual operation is controlled by a hand-punched parchment <strong>Reel</strong> loaded into the condenser’s reader by a reel-hand.</p><p>A Reel does not contain magical power. It tells the rig exactly how to draw, regulate, shape, and release Lumen for one proven effect. Reels are handmade, expensive, reusable, and dangerous to damage. A dropped Ward Reel may be ruined by rain; a damaged healing Reel might close the wrong thing.</p><p>The Collegium of Lumen claims that its methods make magic safe because they make its cost predictable. This is only partly true. Every condenser draws its charge from somewhere local. When it takes too much, it causes <strong>overdraw</strong>.</p><p>An overdraw strips a place of its liveliness. Lamps burn weakly. Food tastes flat. Fog becomes thin, gray, and empty. People feel exhausted, joyless, and unlucky. Fog harvesters call the remainder <strong>bled fog</strong>, because its most valuable essence has already been taken.</p><p>This makes Lumen magic a direct enemy of Fogport’s fog trade. The city’s harvesters need fog whole. The Luminati need it responsive. In the Pales, that argument has become a permanent civic war.</p>",
+      "references": [
+        {"phrase": "Fogport", "name": "Fogport", "section": "locations"},
+        {"phrase": "Luminati", "name": "The Luminati", "section": "organizations"},
+        {"phrase": "Collegium of Lumen", "name": "The Collegium of Lumen", "section": "locations"},
+        {"phrase": "Pales", "name": "The Pales", "section": "locations"}
+      ]
+    },
+    {
+      "section": "locations",
+      "name": "The Pales",
+      "type": "Collegium district",
+      "is_private": false,
+      "parent_name": "Fogport",
+      "entry": "<p><strong>The Pales</strong> is the district of pale walls, copper stacks, wet slate roofs, and exhausted fog surrounding the Collegium of Lumen. It rises inland between Blackwake and the Grand Promenade, close enough to the docks to receive reagents and machinery, but walled off from the workers who make both possible.</p><p>The district takes its name from the color of its fog. Lumen extraction has left it strangely washed out: gray-white vapor, faded awnings, sickly gardens, and faces that seem to have gone too long without sleep. At night, condenser towers blink blue behind their lightning rods, and the streets hum with buried power lines.</p><p>The upper Pales belongs to the Collegium: lecture courts, guarded gates, student dormitories, precise gardens, sealed laboratories, and the towering halls of the Reel Monks. The lower Pales is crowded with licensed Luminati, reel-hands, instrument makers, retired professors, medical rooms, coffeehouses, and narrow shops selling wire insulation, replacement valves, wax seals, and secondhand cases for Lumen Reels.</p><h2>A Quiet Trade War</h2><p>Fog harvesters accuse the Collegium and its Lumenists of bleeding the fog before anyone else can collect its weather salts, vapors, molds, and other valuable products. The Collegium calls this an unfortunate but necessary expense of civilized infrastructure. Local residents call it unfair that the rich districts receive wards and bright lamps while the Pales and the docks are left cold and unlucky.</p><p>A person can buy almost any sanctioned magical service in the Pales—if they can afford it. They can also buy a counterfeit Reel, an expired license ribbon, an unregistered condenser part, or the name of a Lumenist desperate enough to work without asking questions.</p><p>Nobody enters the inner Collegium of Lumen without permission. That rule is obeyed publicly, challenged privately, and violated often enough to keep the Civic Vigilance busy.</p>",
+      "references": [
+        {"phrase": "Collegium of Lumen", "name": "The Collegium of Lumen", "section": "locations"},
+        {"phrase": "Blackwake", "name": "Blackwake", "section": "locations"},
+        {"phrase": "Grand Promenade", "name": "Grand Promenade", "section": "locations"},
+        {"phrase": "Lumen", "name": "Lumen", "section": "notes"},
+        {"phrase": "Luminati", "name": "The Luminati", "section": "organizations"},
+        {"phrase": "Civic Vigilance", "name": "The Civic Vigilance", "section": "organizations"}
+      ]
+    },
+    {
+      "section": "locations",
+      "name": "The Collegium of Lumen",
+      "type": "School and monopoly of sanctioned magic",
+      "is_private": false,
+      "parent_name": "The Pales",
+      "entry": "<p>The <strong>Collegium of Lumen</strong> is Fogport’s great school, licensing authority, research house, and monopoly-holder for sanctioned Lumen magic. It dominates the upper end of the Pales behind pale stone walls, copper roofs, narrow towers, and a forest of condenser chimneys.</p><p>To ordinary citizens, the Collegium is simply <strong>the Collegium</strong>: a place where serious people in dark coats learn to make the impossible obey diagrams, gauges, and carefully punched parchment. Students study mathematics, natural philosophy, legal doctrine, civic safety, fog chemistry, wand operation, and the dreadful art of calculating where a spell’s cost will fall.</p><p>The public may enter only its outer registry hall, infirmary, and supervised demonstration rooms. The inner courts, laboratories, scriptoria, tower galleries, and extraction works are closed to everyone without a student seal, staff ribbon, or a very powerful invitation.</p><p>Its most revered workers are the <strong>Reel Monks</strong>. These cloistered craft-scholars illuminate, calculate, hand-punch, test, repair, and certify the parchment Reels used by the Luminati. Their work resembles sacred manuscript-making crossed with instrument manufacture. Each proper Reel bears a tiny maker’s mark; an excellent one may be passed down for generations.</p><p>The Collegium trains Lumenists, but does not employ most of them. Once licensed, a wizard usually becomes an independent contractor and must purchase their own Reels from the institution that certified them. This keeps the Collegium wealthy, influential, and deeply resented.</p><p>Beneath its public halls lie the <strong>Grand Reel Galleries</strong>: locked corridors containing colossal parchment programs wound around drums taller than houses. Some are said to govern civic wards, hospital systems, tram protections, and storm engines. Others are classified beyond even most faculty.</p><p>The Collegium’s official purpose is to make magic useful, lawful, and safe. Its private purpose—or purposes—remain unclear. It consumes more Lumen than any other institution in Fogport, and its greatest works may be starving the city to make something immense.</p>",
+      "references": [
+        {"phrase": "Fogport", "name": "Fogport", "section": "locations"},
+        {"phrase": "Lumen", "name": "Lumen", "section": "notes"},
+        {"phrase": "Pales", "name": "The Pales", "section": "locations"},
+        {"phrase": "Luminati", "name": "The Luminati", "section": "organizations"}
+      ]
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-08-03T16:00:00-07:00",
+    "document_sha256": "16d2067ab45b05b2d62476a54d427a61d7ba9392bfe5e62b8be03874d258b133"
+  }
+}
