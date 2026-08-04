@@ -19,6 +19,26 @@ ENTITY_ID = 9626686
 POST_ID = 1413484
 
 
+def render_post_entry(post: dict) -> str:
+    """Render a maintainable section-based guide or accept the legacy entry."""
+    if isinstance(post.get("entry"), str):
+        return post["entry"]
+    introduction = post.get("introduction")
+    sections = post.get("sections")
+    if not isinstance(introduction, str) or not isinstance(sections, list):
+        raise SystemExit("Approved post needs entry or introduction plus sections.")
+    rendered = [introduction]
+    for section in sections:
+        if not isinstance(section, dict):
+            raise SystemExit("Every approved guide section must be an object.")
+        heading = section.get("heading")
+        body = section.get("body")
+        if not isinstance(heading, str) or not heading.strip() or not isinstance(body, str):
+            raise SystemExit("Every approved guide section needs heading and body HTML.")
+        rendered.append(f"<h2>{heading}</h2>{body}")
+    return "".join(rendered)
+
+
 def digest(document: dict) -> str:
     unsigned = deepcopy(document)
     unsigned.pop("approval", None)
@@ -83,7 +103,7 @@ def main() -> None:
     }
     post_payload = {
         "name": document["post"]["name"],
-        "entry": document["post"]["entry"],
+        "entry": render_post_entry(document["post"]),
         "entity_id": ENTITY_ID,
         "visibility_id": int(document["post"]["visibility_id"]),
     }
