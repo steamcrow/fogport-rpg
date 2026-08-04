@@ -144,9 +144,20 @@ def collect_related(entity: dict[str, Any], keys: tuple[str, ...]) -> list[dict[
     return []
 
 
-def normalize_entity(entity: dict[str, Any], posts: list[dict[str, Any]]) -> dict[str, Any]:
+def normalize_entity(
+    entity: dict[str, Any],
+    child: dict[str, Any],
+    posts: list[dict[str, Any]],
+) -> dict[str, Any]:
     """Keep complete API records while adding stable Voice-oriented metadata."""
     normalized = dict(entity)
+    normalized["child"] = child
+    normalized["entry"] = child.get("entry")
+    normalized["entry_parsed"] = child.get("entry_parsed")
+    normalized["subtype"] = child.get("type")
+    for field in ("is_private", "tags", "updated_at", "attributes", "relations", "relationships"):
+        if field in child:
+            normalized[field] = child[field]
     normalized["voice_export"] = {
         "display_name": entity_name(entity),
         "display_type": entity_type(entity),
@@ -228,7 +239,7 @@ def render_markdown(campaign: dict[str, Any], entities: list[dict[str, Any]], ge
                 f"- Privacy: {visibility_label(entity)}",
                 f"- Updated: {entity.get('updated_at') or 'unknown'}",
             ])
-            subtype = entity.get("type")
+            subtype = entity.get("subtype")
             if subtype:
                 lines.append(f"- Subtype: {subtype}")
             tags = entity.get("tags")
@@ -299,8 +310,11 @@ def export(client: KankaClient, output_dir: Path) -> tuple[Path, Path, Path]:
         entity_id = int(raw.get("id") or 0)
         if not entity_id:
             raise KankaError("Kanka returned an entity without a valid generic entity ID.")
+        child = client.get_entity_child(FOGPORT_CAMPAIGN_ID, raw)
+        if int(child.get("entity_id") or 0) != entity_id:
+            raise KankaError("Kanka module record did not match its generic entity ID.")
         posts = client.list_entity_posts(FOGPORT_CAMPAIGN_ID, entity_id)
-        entities.append(normalize_entity(raw, posts))
+        entities.append(normalize_entity(raw, child, posts))
     entities.sort(key=lambda item: (entity_type(item).casefold(), entity_name(item).casefold(), int(item["id"])))
 
     generated_at = datetime.now(timezone.utc).isoformat()

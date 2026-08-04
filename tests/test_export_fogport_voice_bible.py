@@ -24,6 +24,17 @@ class FakeReadOnlyClient:
         return [{
             "id": 9626686,
             "name": "Gamemaster Guide",
+            "type": "note",
+            "child_id": 332976,
+            "urls": {"api": "https://api.kanka.io/1.0/campaigns/410879/notes/332976"},
+            "is_private": False,
+        }]
+
+    def get_entity_child(self, campaign_id: int, entity):
+        return {
+            "id": 332976,
+            "entity_id": entity["id"],
+            "name": entity["name"],
             "type": "Ai Guide",
             "entry": "<p>People are <strong>messy</strong>.</p>",
             "is_private": False,
@@ -31,7 +42,7 @@ class FakeReadOnlyClient:
             "attributes": [{"name": "Aspect", "value": "Fogport remembers", "is_private": True}],
             "relations": [{"relation": "guides", "target_id": 7, "visibility_id": 1}],
             "tags": [],
-        }]
+        }
 
     def list_entity_posts(self, campaign_id: int, entity_id: int):
         self.post_reads.append((campaign_id, entity_id))

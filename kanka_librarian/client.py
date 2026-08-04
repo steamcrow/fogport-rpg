@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any
 import time
+from urllib.parse import urlparse
 
 import requests
 
@@ -159,6 +160,33 @@ class KankaClient:
         """Return every entity across every enabled campaign module."""
         params = {"related": 1} if related else None
         return self._get_all_pages(f"campaigns/{campaign_id}/entities", params=params)
+
+    def get_entity_child(
+        self,
+        campaign_id: int,
+        entity: dict[str, Any],
+    ) -> dict[str, Any]:
+        """Read the module-specific record referenced by a generic entity."""
+        urls = entity.get("urls")
+        api_url = urls.get("api") if isinstance(urls, dict) else None
+        if not isinstance(api_url, str) or not api_url:
+            raise KankaError("Kanka entity did not include its module API URL.")
+
+        expected = urlparse(self.base_url)
+        target = urlparse(api_url)
+        campaign_prefix = f"/1.0/campaigns/{int(campaign_id)}/"
+        if (
+            target.scheme != expected.scheme
+            or target.netloc != expected.netloc
+            or not target.path.startswith(campaign_prefix)
+        ):
+            raise KankaError("Kanka entity child URL escaped the locked campaign.")
+
+        payload = self._get(target.path.removeprefix("/1.0/"))
+        data = payload.get("data")
+        if not isinstance(data, dict):
+            raise KankaError("Kanka entity child response did not contain an object.")
+        return data
 
     def list_locations(
         self,
