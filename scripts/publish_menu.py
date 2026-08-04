@@ -53,6 +53,7 @@ FOLDER_ROUTES = {
     "approved_notes": ("note", "scripts/publish_compiled_episode.py"),
     "approved_items": ("item", None),           # bespoke; see OVERRIDES
     "approved_organizations": ("organization", None),  # bespoke; see OVERRIDES
+    "approved_images": ("image", "scripts/publish_approved_main_image.py"),
 }
 
 # Manifests that must use a specific publisher script.
