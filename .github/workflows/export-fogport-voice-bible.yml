@@ -1,0 +1,75 @@
+name: Fogport Voice Bible — Export All Kanka Lore (Read Only)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kanka-librarian-fogport-read-only-export
+  cancel-in-progress: false
+
+jobs:
+  export:
+    name: Build private Voice-ready Fogport synopsis
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out Librarian
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: python -m pip install --requirement requirements.txt
+
+      - name: Run Librarian safety tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Export all Fogport entries and GM posts without writing
+        env:
+          KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+          FOGPORT_VOICE_EXPORT_DIR: ${{ runner.temp }}/fogport-voice-bible
+        run: python scripts/export_fogport_voice_bible.py
+
+      - name: Verify private export package
+        env:
+          EXPORT_DIR: ${{ runner.temp }}/fogport-voice-bible
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+
+          root = Path(os.environ["EXPORT_DIR"])
+          synopsis = root / "FOGPORT_KANKA_SYNOPSIS.md"
+          snapshot = root / "fogport-kanka-snapshot.json"
+          checksums = json.loads((root / "checksums.json").read_text(encoding="utf-8"))
+          data = json.loads(snapshot.read_text(encoding="utf-8"))
+
+          assert data["mode"] == "read-only"
+          assert data["campaign"]["id"] == 410879
+          assert data["campaign"]["name"].casefold() == "fogport"
+          assert data["counts"]["entities"] == len(data["entities"])
+          assert data["counts"]["entities"] > 0
+          assert checksums["markdown_sha256"] == hashlib.sha256(synopsis.read_bytes()).hexdigest()
+          assert checksums["snapshot_sha256"] == hashlib.sha256(snapshot.read_bytes()).hexdigest()
+          print(
+              "Verified read-only Fogport Voice Bible package: "
+              f"{data['counts']['entities']} entries and {data['counts']['posts']} attached posts."
+          )
+          PY
+
+      - name: Upload private Fogport Voice Bible
+        uses: actions/upload-artifact@v4
+        with:
+          name: FOGPORT-VOICE-BIBLE-PRIVATE
+          path: ${{ runner.temp }}/fogport-voice-bible/
+          if-no-files-found: error
+          retention-days: 30
