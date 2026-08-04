@@ -12,6 +12,7 @@ on:
         options:
           # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)
           - "-- choose a subject --"
+          - "canon: white-eye-society"
           - "image: luminati-reel-hand"
           - "canon: lumen-and-the-pales"
           - "episode: the-salt-stained-case"
@@ -26,7 +27,6 @@ on:
           - "item: cinderwheel"
           - "creature: unhorse"
           - "location: ninety-nine-kingdoms"
-          - "note: fogport-cults"
           - "location: the-wayward-pint"
           - "item-batch: fogport-transit-system"
           # END AUTO-MENU
