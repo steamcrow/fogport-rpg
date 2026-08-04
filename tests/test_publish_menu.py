@@ -63,6 +63,14 @@ class MenuTests(unittest.TestCase):
         )
         self.assertNotIn("episode: fogport-cults", routes)
 
+    def test_white_eye_secrets_are_one_compiled_canon_menu_subject(self) -> None:
+        routes = {e["label"]: e["script"] for e in publish_menu.build_menu()}
+        self.assertEqual(
+            routes.get("canon: white-eye-society-secrets"),
+            "scripts/publish_compiled_episode.py",
+        )
+        self.assertNotIn("image: white-eye-society-secrets", routes)
+
     def test_sentinel_and_unknown_labels_are_refused(self) -> None:
         with self.assertRaises(SystemExit):
             publish_menu.resolve(publish_menu.SENTINEL)

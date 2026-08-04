@@ -33,7 +33,7 @@ def restore_image_if_chunked(manifest_path: Path) -> None:
         manifest = json.loads(manifest_path.read_text())
     except (OSError, ValueError):
         return
-    image_path = manifest.get("image_path")
+    image_path = manifest.get("image_path") or manifest.get("repository_path")
     expected_sha = manifest.get("sha256")
     if not image_path or not expected_sha:
         return
@@ -117,6 +117,34 @@ def main() -> None:
                 cwd=REPOSITORY_ROOT,
             )
             raise SystemExit(portrait_run.returncode)
+
+    # A compiled canon subject can carry one separately approved organization
+    # main image. This keeps a GM post plus its checksum-locked art behind the
+    # same dropdown selection without exposing the private post as a public
+    # image manifest.
+    if entry["label"].startswith("canon: "):
+        image_manifest = (
+            REPOSITORY_ROOT
+            / "kanka_librarian"
+            / "approved_organization_images"
+            / f"{manifest.stem}.json"
+        )
+        image_script = REPOSITORY_ROOT / "scripts" / "publish_organization_main_image.py"
+        if image_manifest.is_file():
+            restore_image_if_chunked(image_manifest)
+            image_receipt = REPOSITORY_ROOT / "receipts" / f"{manifest.stem}-image.json"
+            print(f"Publishing approved organization image for {entry['label']!r}")
+            image_run = subprocess.run(
+                [
+                    sys.executable,
+                    str(image_script),
+                    str(image_manifest),
+                    "--receipt",
+                    str(image_receipt),
+                ],
+                cwd=REPOSITORY_ROOT,
+            )
+            raise SystemExit(image_run.returncode)
 
 
 if __name__ == "__main__":
