@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": [
+    "the-pales"
+  ],
+  "approval_questions": [],
+  "proposals": [
+    {
+      "temp_id": "the-pales",
+      "action": "create",
+      "section": "locations",
+      "name": "The Pales",
+      "type": "Collegium district",
+      "is_private": false,
+      "entry": "<p><strong>The Pales</strong> is no longer simply a district of Fogport. It is the sprawling domain of the [entity:9663321|Collegium of Lumen], whose walls, towers, workshops, laboratories, libraries, dormitories, and manufactories have expanded over generations until they consumed nearly the entire neighborhood.</p>\n\n<p>From outside, the Pales appears as an immense city within the city. Pale limestone walls stretch for blocks beneath forests of copper roofs, slate towers, condenser chimneys, lightning rods, and elevated walkways. Steam drifts continuously from rooftop machinery, tinting the district in its characteristic white-gray haze from which the Pales takes its name.</p>\n\n<p>Almost every building belongs to the Collegium.</p>\n\n<p>Lecture halls become laboratories. Laboratories become manufactories. Dormitories become archives. Small colleges are absorbed into larger colleges, which are eventually demolished and rebuilt into even grander institutions. Construction never truly ends. Cranes, scaffolds, and temporary bridges have become permanent features of the skyline.</p>\n\n<p>The district is the undisputed center of sanctioned Lumen magic. Every licensed [entity:9663318|Luminati] in Fogport was educated here, examined here, licensed here, or answers to someone who was.</p>\n\n<h2>Entry is Restricted</h2>\n\n<p>Unlike every other district in Fogport, the Pales is not open to the public.</p>\n\n<p>Its walls are pierced by only a handful of guarded gates, each staffed by Collegium Wardens and watched by the [entity:9622254|Civic Vigilance]. Visitors must present identification, permits, or Collegium business before entry.</p>\n\n<p>The city’s tram network enters the district through a dedicated line, but only one station exists within the walls. Conductors inspect paperwork before the tram arrives, and passengers without authorization simply remain aboard as it passes through without stopping.</p>\n\n<p>Most citizens of Fogport have never set foot inside.</p>\n\n<p>For many, the pale walls are as mysterious as a foreign nation.</p>\n\n<h2>Life Within the Walls</h2>\n\n<p>Despite its restrictions, the Pales houses thousands of permanent residents.</p>\n\n<p>Students, professors, licensed Lumenists, Reel Monks, engineers, machinists, gardeners, physicians, servants, guards, clerks, and their families all live within Collegium housing. Entire generations have been born behind the walls and know little of the city beyond them.</p>\n\n<p>Everything needed for daily life exists inside.</p>\n\n<p>Small cafés serve exhausted students through the night. Instrument makers repair delicate condensers. Bookbinders stitch grimoires and examination texts. Chandlers produce specialized waxes for official license seals. Shops sell copper fittings, insulated wire, precision lenses, replacement valves, laboratory glass, and empty cases for Lumen Reels.</p>\n\n<p>Nearly every business ultimately serves the Collegium.</p>\n\n<h2>The Exhausted Fog</h2>\n\n<p>The air inside the Pales is unlike anywhere else in Fogport.</p>\n\n<p>Generations of Lumen extraction have left the district strangely washed out. The fog hangs pale and thin, stripped of much of its natural character before drifting beyond the walls. Gardens grow reluctantly. Stone seems bleached. Copper roofs weather into muted green. Even voices feel strangely dampened beneath the endless forest of chimneys.</p>\n\n<p>At night, hundreds of condenser stacks glow with quiet blue-white light while distant pumps and turbines thrum beneath the streets.</p>\n\n<p>People joke that even the ghosts here have been licensed.</p>\n\n<h2>A City Resented</h2>\n\n<p>The Collegium insists that its monopoly protects Fogport from dangerous magic and ensures that every sanctioned spellcaster is properly trained.</p>\n\n<p>Many outside the walls disagree.</p>\n\n<p>Fog harvesters accuse the Collegium of stripping valuable materials from the fog before independent collectors can reach them. Dockworkers complain that magical lighting, weather wards, and civic improvements always appear first inside the Pales while the working districts remain cold, damp, and neglected.</p>\n\n<p>The Collegium responds that civilization requires expertise.</p>\n\n<p>Its critics answer that expertise has become privilege.</p>\n\n<h2>Secrets Behind Pale Walls</h2>\n\n<p>Officially, every laboratory is inspected, every experiment recorded, and every reel accounted for.</p>\n\n<p>Officially.</p>\n\n<p>Behind locked doors, forgotten basements, sealed archives, and towers closed by ancient decree, rumors persist of abandoned research, confiscated artifacts, impossible reels, unauthorized experiments, and discoveries too dangerous to acknowledge.</p>\n\n<p>The Collegium dismisses such stories as nonsense.</p>\n\n<p>No one entirely believes them.</p>",
+      "fields": {},
+      "resolved_references": [],
+      "posts": [],
+      "attributes": [],
+      "relationships": [],
+      "publication": {
+        "parent_name": "Fogport",
+        "parent_link_phrase": "Fogport"
+      },
+      "blocked": false
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-08-04T23:00:00Z",
+    "proposal_sha256": "613dd8a5f73a557fb55ee80b87ac2e9f5ffdcd52e9414591eb7e1ca449d2d726"
+  }
+}
