@@ -176,6 +176,22 @@ class CompiledEpisodeTests(unittest.TestCase):
         changes = validate_document(document)
         self.assertEqual([change["section"] for change in changes], ["notes"])
 
+    def test_compiled_canon_allows_crosslinked_mixed_sections(self):
+        document = {
+            "schema_version": 1,
+            "mode": "compiled-canon",
+            "campaign_id": 410879,
+            "campaign_name": "Fogport",
+            "changes": [
+                {"section": "organizations", "name": "A"},
+                {"section": "notes", "name": "B"},
+                {"section": "locations", "name": "C"},
+            ],
+            "approval": {"status": "approved", "approved_by": "Daniel Davis"},
+        }
+        document["approval"]["document_sha256"] = document_digest(document)
+        self.assertEqual(len(validate_document(document)), 3)
+
     def test_compiled_note_rejects_journal_section(self):
         document = json.loads(
             Path("kanka_librarian/approved_notes/fogport-cults.json").read_text(
