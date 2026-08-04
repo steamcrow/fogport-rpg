@@ -150,6 +150,16 @@ class KankaClient:
             raise KankaError("Kanka's campaign response did not contain an object.")
         return data
 
+    def list_entities(
+        self,
+        campaign_id: int,
+        *,
+        related: bool = False,
+    ) -> list[dict[str, Any]]:
+        """Return every entity across every enabled campaign module."""
+        params = {"related": 1} if related else None
+        return self._get_all_pages(f"campaigns/{campaign_id}/entities", params=params)
+
     def list_locations(
         self,
         campaign_id: int,
