@@ -21,13 +21,17 @@
       "posts": [],
       "attributes": [],
       "relationships": [],
-      "blocked": false
+      "blocked": false,
+      "publication": {
+        "parent_name": "Fogport",
+        "parent_link_phrase": "Fogport"
+      }
     }
   ],
   "approval": {
     "status": "approved",
     "approved_by": "Daniel Davis",
-    "approved_at": "2026-07-24T17:00:00-07:00",
-    "proposal_sha256": "ae73ebedfdf0696e7c08af92f2ef22e0af4015791c893910c59545e1c76f153b"
+    "approved_at": "2026-08-04T21:56:06.298126Z",
+    "proposal_sha256": "ec9718713e3551a61ab0aecec169f2991e10f982b86d7373cb267c0eaa323ce4"
   }
 }
