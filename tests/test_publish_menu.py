@@ -104,6 +104,25 @@ class MenuTests(unittest.TestCase):
                 self.assertNotIn(f'- "{entry["label"]}"', workflow)
         self.assertIn("older_subject:", workflow)
 
+    def test_dropdown_choice_beats_optional_free_text(self) -> None:
+        workflow = (
+            REPOSITORY_ROOT / ".github" / "workflows" / "publish-approved.yml"
+        ).read_text()
+        expression = (
+            "inputs.subject != '-- choose a subject --' "
+            "&& inputs.subject || inputs.older_subject"
+        )
+        self.assertEqual(workflow.count(expression), 3)
+
+    def test_workflow_clears_stale_receipts_before_publication(self) -> None:
+        workflow = (
+            REPOSITORY_ROOT / ".github" / "workflows" / "publish-approved.yml"
+        ).read_text()
+        clear = "find receipts -maxdepth 1 -type f -name '*.json' -delete"
+        publish = 'python scripts/publish_selected.py --subject "$PUBLISH_SUBJECT"'
+        self.assertIn(clear, workflow)
+        self.assertLess(workflow.index(clear), workflow.index(publish))
+
 
 if __name__ == "__main__":
     unittest.main()
