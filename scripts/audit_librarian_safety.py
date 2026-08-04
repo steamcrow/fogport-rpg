@@ -8,7 +8,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 WORKFLOWS = ROOT / ".github" / "workflows"
-READ_ONLY_PREFIXES = ("inspect-", "test-")
+READ_ONLY_PREFIXES = ("inspect-", "test-", "export-")
 
 
 def audit_workflows(workflows: Path) -> list[str]:
