@@ -56,9 +56,10 @@ def validate_document(document: dict[str, Any]) -> list[dict[str, Any]]:
     if document.get("schema_version") != 1 or document.get("mode") not in {
         "compiled-episode",
         "compiled-note",
+        "compiled-canon",
     }:
         raise EpisodeError(
-            "Expected schema_version 1 and mode compiled-episode or compiled-note."
+            "Expected schema_version 1 and mode compiled-episode, compiled-note, or compiled-canon."
         )
     if int(document.get("campaign_id", 0)) != CAMPAIGN_ID:
         raise EpisodeError(f"Publisher is locked to Fogport campaign {CAMPAIGN_ID}.")
