@@ -11,12 +11,13 @@ from scripts.publish_exact_gamemaster_guide import (
     NOTE_ID,
     POST_ID,
     digest,
+    render_post_entry,
     verify_manifest,
 )
 
 
 ROOT = Path(__file__).resolve().parents[1]
-MANIFEST = ROOT / "kanka_librarian/approved_notes/gamemaster-guide-v2.json"
+MANIFEST = ROOT / "kanka_librarian/approved_notes/gamemaster-guide-v3.json"
 
 
 class ExactGamemasterGuideFixTests(unittest.TestCase):
@@ -25,6 +26,11 @@ class ExactGamemasterGuideFixTests(unittest.TestCase):
         verify_manifest(document)
         self.assertEqual((CAMPAIGN_ID, NOTE_ID, ENTITY_ID, POST_ID), (410879, 332976, 9626686, 1413484))
         self.assertEqual(document["approval"]["document_sha256"], digest(document))
+        rendered = render_post_entry(document["post"])
+        self.assertIn("Fogport Canon Foundations", rendered)
+        self.assertIn("The Collegium’s model is not a universal explanation", rendered)
+        self.assertIn("One-in-Fifty-Two Chance", rendered)
+        self.assertIn("War of 99 Kingdoms", rendered)
 
     def test_cleanup_is_locked_to_nine_exact_journals(self) -> None:
         self.assertEqual(len(MISPLACED), 9)
