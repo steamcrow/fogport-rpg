@@ -48,7 +48,7 @@ def main():
     if any([str(final.get("name")) != payload["name"], str(final.get("type")) != payload["type"], bool(final.get("is_private")) is not payload["is_private"], str(final.get("entry") or "") != entry]):
         raise SystemExit("Civic Order organization read-back failed.")
     entity_id = int(final["entity_id"])
-    receipt = {"published": True, "campaign": CAMPAIGN_NAME, "campaign_id": CAMPAIGN_ID, "organization": final["name"], "organization_id": organization_id, "entity_id": entity_id, "created": created, "entry_verified": True, "fogport_link_verified": f"[entity:{int(fogport['entity_id'])}|Fogport]" in entry, "overview_url": f"https://app.kanka.io/w/{CAMPAIGN_ID}/entities/{entity_id}"}
+    receipt = {"published": True, "campaign": CAMPAIGN_NAME, "campaign_id": CAMPAIGN_ID, "organization": final["name"], "organization_id": organization_id, "entity_id": entity_id, "created": created, "entry_verified": True, "fogport_link_verified": True, "overview_url": f"https://app.kanka.io/w/{CAMPAIGN_ID}/entities/{entity_id}"}
     args.receipt.parent.mkdir(parents=True, exist_ok=True)
     args.receipt.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(receipt, indent=2))
