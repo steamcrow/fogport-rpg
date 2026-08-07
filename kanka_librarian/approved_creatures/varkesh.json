@@ -38,6 +38,7 @@
   "approval": {
     "status": "approved",
     "approved_by": "Daniel Davis",
-    "approved_at": "2026-08-07T01:30:00-07:00"
+    "approved_at": "2026-08-07T01:30:00-07:00",
+    "proposal_sha256": "b8c531cd045b9b88bdc5a49530992c1c3c13cbbe74dfcb5bac4bb4e4a9d02a75"
   }
 }
