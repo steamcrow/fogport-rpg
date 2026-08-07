@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": [
+    "varkesh"
+  ],
+  "approval_questions": [],
+  "proposals": [
+    {
+      "temp_id": "varkesh",
+      "action": "create",
+      "section": "creatures",
+      "name": "Varkesh",
+      "type": "Sapient people",
+      "is_private": false,
+      "entry": "<p>The <strong>Varkesh</strong> are a people of broad bodies, powerful noses, excellent hearing, strong stomachs, and extraordinary memories for voices. They are not stupid or brutish. Varkesh culture prizes careful listening, practical intelligence, patience, and remembering exactly what someone promised.</p><p>Their homeland was the damp industrial kingdom of <strong>Ors Varkesh</strong>, a country of foundries, slaughterhouses, canal cities, salt marshes, and fortified farms. It possessed food, iron, engines, and people who could work in terrible conditions without complaint.</p><h2>The War of the 99 Kingdoms</h2><p>Every side in the war needed Ors Varkesh. Every side invaded it. The Varkesh survived by selling provisions, weapons, repairs, and soldiers to competing kingdoms, often on the same day.</p><p>During the war, Ors Varkesh developed the <strong>Brassmouth Regiments</strong>: negotiators, engineers, battlefield witnesses, prison officials, medical attendants, interpreters, and execution officers. Their brass masks protected them from smoke and ash, concealed rank and identity, amplified their voices, and made spoken oaths legally binding when recorded through the mask.</p><p>Near the end of the war, the Varkesh discovered that several kingdoms had agreed to divide Ors Varkesh after victory. The Varkesh government declared the Brassmouth Compact and closed its borders. Three kingdoms attacked together. The capital fell, the royal family disappeared, and the kingdom was partitioned into occupied territories, labor districts, and “protected agricultural zones.”</p><p>The Varkesh do not believe the war ended. They believe it became paperwork.</p><h2>The Varkesh Diaspora</h2><p>Varkesh people now live throughout the 99 kingdoms as dockworkers, cooks, engineers, soldiers, undertakers, mask-smiths, mechanics, diplomats, smugglers, bodyguards, prison officers, and professional witnesses.</p><p>In Fogport they are concentrated around the Bellworks, docks, repair shops, boarding houses, food stalls, and mask-smiths. The Civic Order calls their district Foreign Provision District Fourteen. The Varkesh call it <strong>The Place Where We Came Through</strong>.</p><h2>What the Varkesh Are Good At</h2><ul><li>Heavy labor, dock work, factory work, and dangerous machinery</li><li>Smelling trouble and recognizing people by voice</li><li>Remembering promises, contracts, and obligations</li><li>Repairing engines, pipes, cranes, locks, masks, and prosthetics</li><li>Listening patiently and serving as witnesses, inspectors, referees, and clerks</li><li>Close fighting, endurance, food preservation, fishing, cooking, and provisioning</li><li>Working in fog, smoke, polluted air, and poor visibility</li></ul><h2>What the Varkesh Are Bad At</h2><ul><li>Speed, agility, climbing, and delicate movement</li><li>Keeping secrets within their own communities</li><li>Ignoring insults involving promises, masks, or Ors Varkesh</li><li>High society and political compromise</li><li>Rapid improvisation when careful plans fail</li><li>Long starvation, small fragile mechanisms, and swimming in heavy clothing</li><li>Forgiving those who pretend that wartime crimes never happened</li></ul><h2>Varkesh and the Civic Order</h2><p>Varkesh are generally discriminated against in Fogport and treated as foreign laborers or dangerous remnants of the War of the 99 Kingdoms. However, a few loyalists have been permitted to join certain Civic Order chapters, especially the Civic Vigilance, Bellworks Production, Industrial Engines, Trams and Conductors, Artificial Limb Refitting, Civic Repairs, the Drip Cages, and Fishermen and Fish.</p><p>The Civic Order never fully trusts these Varkesh officials. The Varkesh never fully forgive them.</p><h2>Slurs</h2><p>Swine · Hog · Slop-Eater · War Pig · Brass Sow · Meat Cart · Trough-Born · Mudgut · Snout · Pig Soldier · Kingdom Pig · Foreign Hog · Grunter · Pork · Oath Pig · Mask Rat</p><p><strong>War Pig</strong> suggests that the Varkesh caused the war rather than being exploited by it. <strong>Oath Pig</strong> mocks their sacred relationship with promises and testimony. The worst insult is: “Take off the mask. I want to know what you really are.”</p>",
+      "fields": {},
+      "resolved_references": [],
+      "posts": [],
+      "attributes": [],
+      "relationships": [],
+      "publication": {
+        "references": [
+          {
+            "phrase": "Fogport",
+            "name": "Fogport",
+            "section": "locations"
+          }
+        ]
+      },
+      "blocked": false
+    }
+  ],
+  "image_path": "assets/creatures/varkesh-dockworker.png",
+  "sha256": "196b7d74f91651f6ccebc655457b496b927332395eaa3682df7ccf8ba1729c87",
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-08-07T01:30:00-07:00"
+  }
+}
