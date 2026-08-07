@@ -27,7 +27,6 @@ on:
           - "episode: the-salt-stained-case"
           - "episode: gamemaster-npc-troubles-by-character"
           - "character: constable-korch"
-          - "note: gamemaster-npc-troubles"
           - "location: the-wayward-pint"
           - "item-batch: fogport-transit-system"
           # END AUTO-MENU
