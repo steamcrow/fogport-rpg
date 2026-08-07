@@ -10,7 +10,7 @@ install_api_pacing()
 CAMPAIGN_ID = 410879
 CAMPAIGN_NAME = "Fogport"
 
-def main():
+def upload_image(token,eid,path):\n r=requests.post(f"https://api.kanka.io/1.0/campaigns/{CID}/entities/{eid}/image",headers={"Authorization":f"Bearer {token}","Accept":"application/json"},files={"file":(path.name,path.open("rb"),mimetypes.guess_type(path.name)[0] or "application/octet-stream")},timeout=120)\n if not r.ok: raise SystemExit(f"Image upload failed: {r.status_code}")\n return r.json().get("data",{}).get("image",{})\n\ndef main():
     parser = argparse.ArgumentParser()
     parser.add_argument("manifest", type=Path)
     parser.add_argument("--receipt", type=Path, required=True)
