@@ -1,7 +1,8 @@
-"""Publish and verify The Civic Order organization."""
+"""Publish and verify The Civic Order organization and image."""
 from __future__ import annotations
-import argparse, json, os
+import argparse, hashlib, json, mimetypes, os
 from pathlib import Path
+import requests
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from kanka_librarian.pacing import install_api_pacing
@@ -10,7 +11,23 @@ install_api_pacing()
 CAMPAIGN_ID = 410879
 CAMPAIGN_NAME = "Fogport"
 
-def upload_image(token,eid,path):\n r=requests.post(f"https://api.kanka.io/1.0/campaigns/{CID}/entities/{eid}/image",headers={"Authorization":f"Bearer {token}","Accept":"application/json"},files={"file":(path.name,path.open("rb"),mimetypes.guess_type(path.name)[0] or "application/octet-stream")},timeout=120)\n if not r.ok: raise SystemExit(f"Image upload failed: {r.status_code}")\n return r.json().get("data",{}).get("image",{})\n\ndef main():
+def upload_image(token: str, entity_id: int, image_path: Path) -> dict:
+    mime = mimetypes.guess_type(image_path.name)[0] or "application/octet-stream"
+    with image_path.open("rb") as stream:
+        response = requests.post(
+            f"https://api.kanka.io/1.0/campaigns/{CAMPAIGN_ID}/entities/{entity_id}/image",
+            headers={"Authorization": f"Bearer {token}", "Accept": "application/json"},
+            files={"file": (image_path.name, stream, mime)},
+            timeout=120,
+        )
+    if not response.ok:
+        raise SystemExit(f"Image upload failed: HTTP {response.status_code}")
+    image = response.json().get("data", {}).get("image", {})
+    if not image.get("uuid"):
+        raise SystemExit("Kanka returned no image UUID.")
+    return image
+
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("manifest", type=Path)
     parser.add_argument("--receipt", type=Path, required=True)
@@ -22,6 +39,10 @@ def upload_image(token,eid,path):\n r=requests.post(f"https://api.kanka.io/1.0/c
         raise SystemExit("Manifest is not locked to Fogport.")
     if doc.get("approval", {}).get("status") != "approved" or doc["approval"].get("approved_by") != "Daniel Davis":
         raise SystemExit("Daniel Davis approval is required.")
+    root = Path(__file__).resolve().parents[1]
+    image_path = (root / doc["image_path"]).resolve()
+    if not image_path.is_file() or hashlib.sha256(image_path.read_bytes()).hexdigest() != doc["sha256"]:
+        raise SystemExit("Approved Civic Order image checksum failed.")
     token = os.environ["KANKA_API_TOKEN"]
     campaign = request(token, "GET", f"campaigns/{CAMPAIGN_ID}").get("data", {})
     if str(campaign.get("name", "")).casefold() != CAMPAIGN_NAME.casefold():
@@ -30,11 +51,11 @@ def upload_image(token,eid,path):\n r=requests.post(f"https://api.kanka.io/1.0/c
     fogport = exact(locations, "Fogport", "location")
     if not fogport:
         raise SystemExit("Fogport location is missing.")
-    entry = doc["organization"]["entry"].replace("{{FOGPORT_LINK}}", f"[entity:{int(fogport['entity_id'])}|Fogport]")
+    fogport_link = f"[entity:{int(fogport['entity_id'])}|Fogport]"
+    entry = doc["organization"]["entry"].replace("{{FOGPORT_LINK}}", fogport_link)
     path = f"campaigns/{CAMPAIGN_ID}/organisations"
-    organizations = all_pages(token, path)
     spec = doc["organization"]
-    match = exact(organizations, spec["name"], "organization")
+    match = exact(all_pages(token, path), spec["name"], "organization")
     payload = {"name": spec["name"], "type": spec["type"], "entry": entry, "is_private": bool(spec.get("is_private", False))}
     if match:
         organization_id = int(match["id"])
@@ -48,9 +69,14 @@ def upload_image(token,eid,path):\n r=requests.post(f"https://api.kanka.io/1.0/c
     if any([str(final.get("name")) != payload["name"], str(final.get("type")) != payload["type"], bool(final.get("is_private")) is not payload["is_private"], str(final.get("entry") or "") != entry]):
         raise SystemExit("Civic Order organization read-back failed.")
     entity_id = int(final["entity_id"])
-    receipt = {"published": True, "campaign": CAMPAIGN_NAME, "campaign_id": CAMPAIGN_ID, "organization": final["name"], "organization_id": organization_id, "entity_id": entity_id, "created": created, "entry_verified": True, "fogport_link_verified": True, "overview_url": f"https://app.kanka.io/w/{CAMPAIGN_ID}/entities/{entity_id}"}
+    uploaded = upload_image(token, entity_id, image_path)
+    image = request(token, "GET", f"campaigns/{CAMPAIGN_ID}/entities/{entity_id}/image").get("data", {}).get("image", {})
+    if image.get("uuid") != uploaded.get("uuid") or not image.get("full") or not image.get("thumbnail"):
+        raise SystemExit("Civic Order image read-back failed.")
+    receipt = {"published": True, "campaign": CAMPAIGN_NAME, "campaign_id": CAMPAIGN_ID, "organization": final["name"], "organization_id": organization_id, "entity_id": entity_id, "created": created, "entry_verified": True, "fogport_link_verified": fogport_link in entry, "image_verified": True, "image_uuid": image["uuid"], "overview_url": f"https://app.kanka.io/w/{CAMPAIGN_ID}/entities/{entity_id}"}
     args.receipt.parent.mkdir(parents=True, exist_ok=True)
     args.receipt.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(receipt, indent=2))
+
 if __name__ == "__main__":
     main()
