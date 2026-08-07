@@ -10,6 +10,8 @@
   "approval": {
     "status": "approved",
     "approved_by": "Daniel Davis",
-    "approved_at": "2026-08-06T21:00:00-07:00"
-  }
+    "approved_at": "2026-08-07T01:00:00-07:00"
+  },
+  "image_path": "assets/organizations/civic-order.png",
+  "sha256": "f48eb5843205d3974060e0b8c475b4e901b04a6f9e17eaad63531d61d724a144"
 }
