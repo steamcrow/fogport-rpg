@@ -62,6 +62,7 @@ OVERRIDES = {
     "approved_items/cinderhack.json": "scripts/publish_cinderhack.py",
     "approved_items/cinderwheel.json": "scripts/publish_cinderhack.py",
     "approved_organizations/civic-vigilance.json": "scripts/publish_civic_vigilance.py",
+    "approved_organizations/church-of-orra.json": "scripts/publish_church_of_orra.py",
     "approved_organizations/daughters-last-bell.json": "scripts/publish_daughters_last_bell.py",
     "approved_organizations/order-last-landing.json": "scripts/publish_order_last_landing.py",
     "approved/fogport-history.json": "scripts/publish_fogport_history.py",
