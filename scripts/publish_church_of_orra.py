@@ -16,12 +16,29 @@ CAMPAIGN_ID = 410879
 CAMPAIGN_NAME = "Fogport"
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 
-def validate_manifest(document: dict[str, Any]) -> None:
+def validate_manifest(document: dict[str, Any]) -> tuple[Path, str]:
     if document.get("campaign_id") != CAMPAIGN_ID or str(document.get("campaign_name","")).casefold() != CAMPAIGN_NAME.casefold():
         raise SystemExit("Manifest is not locked to Fogport 410879.")
     approval=document.get("approval",{})
     if approval.get("status")!="approved" or approval.get("approved_by")!="Daniel Davis":
         raise SystemExit("Daniel Davis approval is required.")
+    image_path=(REPOSITORY_ROOT / str(document["image_path"])).resolve()
+    try: image_path.relative_to(REPOSITORY_ROOT)
+    except ValueError as exc: raise SystemExit("Image path escapes the repository.") from exc
+    if not image_path.is_file(): raise SystemExit("Approved Church of Orra image is missing.")
+    actual_sha=hashlib.sha256(image_path.read_bytes()).hexdigest()
+    if actual_sha != str(document["sha256"]).lower(): raise SystemExit("Approved image changed after approval.")
+    return image_path, actual_sha
+
+def upload_image(token: str, entity_id: int, image_path: Path) -> dict[str, Any]:
+    mime=mimetypes.guess_type(image_path.name)[0] or "application/octet-stream"
+    with image_path.open("rb") as stream:
+        response=requests.post(f"https://api.kanka.io/1.0/campaigns/{CAMPAIGN_ID}/entities/{entity_id}/image",
+            headers=headers(token), files={"file":(image_path.name,stream,mime)}, timeout=120)
+    if not response.ok: raise SystemExit(f"Kanka image upload returned HTTP {response.status_code}: {response.text[:500]}")
+    image=response.json().get("data",{}).get("image",{})
+    if not isinstance(image,dict) or not image.get("uuid"): raise SystemExit("Kanka did not return main-image metadata.")
+    return image
 
 def upsert_post(token: str, entity_id: int, name: str, entry: str, visibility_id: int) -> dict[str, Any]:
     path=f"campaigns/{CAMPAIGN_ID}/entities/{entity_id}/posts"
@@ -46,7 +63,7 @@ def main() -> None:
     if os.environ.get("KANKA_ENABLE_WRITES")!="FOGPORT_410879":
         raise SystemExit("KANKA_ENABLE_WRITES must explicitly select FOGPORT_410879.")
     document=json.loads(args.manifest.read_text(encoding="utf-8"))
-    validate_manifest(document); token=os.environ["KANKA_API_TOKEN"]
+    image_path,image_sha=validate_manifest(document); token=os.environ["KANKA_API_TOKEN"]
     campaign=request(token,"GET",f"campaigns/{CAMPAIGN_ID}").get("data",{})
     if str(campaign.get("name","")).casefold()!=CAMPAIGN_NAME.casefold(): raise SystemExit("Kanka campaign identity lock failed.")
     locations=all_pages(token,f"campaigns/{CAMPAIGN_ID}/locations")
@@ -68,11 +85,16 @@ def main() -> None:
     entity_id=int(final["entity_id"])
     gm_spec=document["gm_post"]; gm_entry=str(gm_spec["entry"])
     gm_post=upsert_post(token,entity_id,str(gm_spec["name"]),gm_entry,int(gm_spec["visibility_id"]))
+    uploaded=upload_image(token,entity_id,image_path)
+    image_readback=request(token,"GET",f"campaigns/{CAMPAIGN_ID}/entities/{entity_id}/image").get("data",{}).get("image",{})
+    if not isinstance(image_readback,dict) or image_readback.get("uuid")!=uploaded.get("uuid") or not image_readback.get("full") or not image_readback.get("thumbnail"):
+        raise SystemExit("Church of Orra image read-back failed.")
     receipt={"published":True,"campaign":CAMPAIGN_NAME,"campaign_id":CAMPAIGN_ID,"organization":final["name"],
       "organization_id":organization_id,"entity_id":entity_id,"created":created,"type":final["type"],
       "is_private":bool(final["is_private"]),"entry_verified":True,"fogport_link_verified":fogport_link in entry,
       "gm_post_id":int(gm_post["id"]),"gm_post_visibility_id":int(gm_post["visibility_id"]),
-      "gm_post_verified":True,"overview_url":f"https://app.kanka.io/w/{CAMPAIGN_ID}/entities/{entity_id}"}
+      "gm_post_verified":True,"source_sha256":image_sha,"image_uuid":image_readback["uuid"],
+      "image_verified":True,"overview_url":f"https://app.kanka.io/w/{CAMPAIGN_ID}/entities/{entity_id}"}
     args.receipt.parent.mkdir(parents=True,exist_ok=True); args.receipt.write_text(json.dumps(receipt,indent=2)+"\n",encoding="utf-8")
     print(json.dumps(receipt,indent=2))
 
