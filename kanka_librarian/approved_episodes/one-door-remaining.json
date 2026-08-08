@@ -247,7 +247,7 @@
       "posts": [
         {
           "name": "GAMEMASTER SECRETS — Nettle",
-          "entry": "<p>Nettle’s history, loyalties, and long-term relationship with the company have not yet been established beyond what occurred during the expedition. Preserve her as a person and new companion rather than reducing her to a generic feral-child guide.</p>",
+          "entry": "<p><strong>Established Secret — Mercy and Nettle are allies.</strong> Nettle is not secretly betraying Mercy, replacing her, or waiting to turn on the Twisted Eel. Mercy has earned Nettle’s loyalty by protecting Nine Spoons’ children and by treating Nettle as a capable person rather than a useful monster.</p><p>Nettle is one of Mercy’s trusted field allies. She uses Gutterkin routes, rooftops, drains, children’s gossip, and her own sharp observations to carry warnings, locate vulnerable people, and identify danger before it reaches the Eel. Mercy does not command her like a servant; their relationship is built from favors, candor, and the understanding that each will come when the other calls.</p><p>Mercy’s larger network is a loose counter-network of people who keep Fogport’s discarded citizens alive. Nettle knows some of its people and routes, but not the whole design. The network should emerge through separate favors, safe rooms, warnings, and practical rescues rather than as a formal organization.</p><p>Mercy sees Byl and Lott as possible antiheroes of Fogport. Nettle is one of the people who can gradually make that path possible: she brings them information, asks them to protect someone who cannot repay them, and notices when their choices begin to matter in Nine Spoons. Do not make her a passive mascot or a surprise antagonist.</p><p><strong>Continuity rule:</strong> Nettle and Mercy should cooperate in future episodes. They may disagree about danger, methods, or whether Byl and Lott can be trusted with a job, but the alliance itself is established.</p>",
           "visibility_id": 3
         }
       ]
@@ -892,6 +892,6 @@
     "status": "approved",
     "approved_by": "Daniel Davis",
     "approved_at": "2026-07-25T20:21:00-07:00",
-    "document_sha256": "5ed9e4d5f380e1d51243356db961b9558f0097dd83537e128662d7b45966b1cd"
+    "document_sha256": "f3e3d0af0334bbd569022a5db0e31bb64e566c8592659ad2ec67f312f5a586fb"
   }
 }
