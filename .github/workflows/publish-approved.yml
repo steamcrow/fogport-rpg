@@ -14,6 +14,7 @@ on:
           - "-- choose a subject --"
           - "character: mercy-vale"
           - "episode: one-door-remaining"
+          - "episode: gutterkin"
           - "organization: church-of-orra"
           - "location: fogport-history"
           - "canon: collegium-of-lumen-update"
