@@ -12,6 +12,7 @@ on:
         options:
           # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)
           - "-- choose a subject --"
+          - "organization: church-of-orra"
           - "location: fogport-history"
           - "canon: collegium-of-lumen-update"
           - "creature: varkesh"
@@ -26,7 +27,6 @@ on:
           - "image: luminati-reel-hand"
           - "canon: lumen-and-the-pales"
           - "episode: the-salt-stained-case"
-          - "episode: gamemaster-npc-troubles-by-character"
           - "location: the-wayward-pint"
           - "item-batch: fogport-transit-system"
           # END AUTO-MENU
