@@ -319,9 +319,9 @@
       "section": "events",
       "name": "The Last Light",
       "type": "Sacred History",
-      "date": "312 B.Cat. (traditional)",
+      "date": "329 B.Cat. (traditional)",
       "is_private": false,
-      "entry": "<p>During the Black Founding Storm, Orra kept a beacon burning atop the old chapel for three nights and guided more than a hundred boats home. The city still leaves one lamp burning for those who have not yet returned.</p>",
+      "entry": "<p>During the Black Founding Storm, the nameless priestess of the lighthouse chapel kept one beacon burning for three nights and guided more than a hundred boats home. The church later named her Saint Orra, the first saint of the goddess Orra.</p><p>The storm brought Fogport’s first <strong>green fog</strong>, which never left. The old town of Fogfort eventually became Fogport.</p>",
       "references": [
         {
           "phrase": "Orra",
@@ -585,6 +585,78 @@
           "visibility_id": 3
         }
       ]
+    },
+    {
+      "key": "isle-discovered",
+      "section": "events",
+      "name": "The Isle Is Discovered",
+      "type": "Founding History",
+      "date": "795 B.Cat.",
+      "is_private": false,
+      "entry": "<p>Sailors discover a small, rocky isle surrounded by dangerous currents. The island is later associated with the goddess Orra, patron of safe passage and returning travelers.</p>"
+    },
+    {
+      "key": "first-orra-chapel",
+      "section": "events",
+      "name": "The First Chapel Is Founded",
+      "type": "Religious Foundation",
+      "date": "789 B.Cat.",
+      "is_private": false,
+      "entry": "<p>A small lighthouse chapel dedicated to the goddess Orra is built on the isle’s highest crag. It serves as beacon, shrine, watchtower, and refuge for passing ships.</p>"
+    },
+    {
+      "key": "chapel-settlement",
+      "section": "events",
+      "name": "The Chapel Settlement",
+      "type": "Settlement",
+      "date": "744 B.Cat.",
+      "is_private": false,
+      "entry": "<p>Lighthouse keepers, fishermen, rope-makers, and their families establish a permanent settlement around the chapel. The isle is no longer merely a place ships visit; people now call it home.</p>"
+    },
+    {
+      "key": "fogfort-established",
+      "section": "events",
+      "name": "Fogfort Is Established",
+      "type": "Founding",
+      "date": "681 B.Cat.",
+      "is_private": false,
+      "entry": "<p>Defensive walls, storehouses, docks, and a harbor chain are constructed around the chapel settlement. The fortified harbor becomes known as <strong>Fogfort</strong>.</p>"
+    },
+    {
+      "key": "heliot-arrives",
+      "section": "events",
+      "name": "House Heliot Establishes Itself",
+      "type": "Royal History",
+      "date": "538 B.Cat.",
+      "is_private": false,
+      "entry": "<p>House Heliot becomes influential by financing harbor defenses, warehouses, and trade infrastructure. The family begins as patrons and administrators rather than monarchs.</p>"
+    },
+    {
+      "key": "heliot-crown",
+      "section": "events",
+      "name": "The Heliot Crown Is Established",
+      "type": "Royal History",
+      "date": "491 B.Cat.",
+      "is_private": false,
+      "entry": "<p>House Heliot formally establishes a hereditary royal court over Fogfort. The court claims authority over the harbor, though the Church of Orra continues to insist that the city’s oldest sacred traditions belong to the people.</p>"
+    },
+    {
+      "key": "iron-pier-century",
+      "section": "events",
+      "name": "The Century of Iron Piers",
+      "type": "Civic Expansion",
+      "date": "681–581 B.Cat.",
+      "is_private": false,
+      "entry": "<p>Despite its persistent local fog, Fogfort flourishes as a trade hub. Over roughly a century, the settlement expands beyond the rocky isle onto enormous iron piers, creating new docks, warehouses, workshops, and neighborhoods above the sea.</p>"
+    },
+    {
+      "key": "war-99-kingdoms",
+      "section": "events",
+      "name": "The War of the 99 Kingdoms",
+      "type": "Modern War",
+      "date": "Present A.Cat.",
+      "is_private": false,
+      "entry": "<p>The War of the 99 Kingdoms is a modern conflict among the surrounding kingdoms. Fogport is centrally located but was never part of the war. Its neutrality, ports, manufacturing, and access to trade make it indispensable to every side—and trusted by none.</p>"
     }
   ],
   "elements": [
@@ -797,12 +869,92 @@
       "colour": "purple",
       "position": 9,
       "visibility_id": 1
+    },
+    {
+      "name": "The Isle Is Discovered",
+      "entity_key": "isle-discovered",
+      "era_key": "before",
+      "date": "795 B.Cat.",
+      "entry": "Sailors discover the rocky isle.",
+      "colour": "blue",
+      "position": 1,
+      "visibility_id": 1
+    },
+    {
+      "name": "The First Chapel Is Founded",
+      "entity_key": "first-orra-chapel",
+      "era_key": "before",
+      "date": "789 B.Cat.",
+      "entry": "The first lighthouse chapel is dedicated to Orra.",
+      "colour": "yellow",
+      "position": 2,
+      "visibility_id": 1
+    },
+    {
+      "name": "The Chapel Settlement",
+      "entity_key": "chapel-settlement",
+      "era_key": "before",
+      "date": "744 B.Cat.",
+      "entry": "The chapel becomes a permanent settlement.",
+      "colour": "blue",
+      "position": 3,
+      "visibility_id": 1
+    },
+    {
+      "name": "Fogfort Is Established",
+      "entity_key": "fogfort-established",
+      "era_key": "before",
+      "date": "681 B.Cat.",
+      "entry": "The fortified harbor receives its name.",
+      "colour": "blue",
+      "position": 4,
+      "visibility_id": 1
+    },
+    {
+      "name": "House Heliot Establishes Itself",
+      "entity_key": "heliot-arrives",
+      "era_key": "before",
+      "date": "538 B.Cat.",
+      "entry": "House Heliot becomes the harbor’s great patron.",
+      "colour": "purple",
+      "position": 5,
+      "visibility_id": 1
+    },
+    {
+      "name": "The Heliot Crown Is Established",
+      "entity_key": "heliot-crown",
+      "era_key": "before",
+      "date": "491 B.Cat.",
+      "entry": "The Heliot hereditary court is formalized.",
+      "colour": "purple",
+      "position": 6,
+      "visibility_id": 1
+    },
+    {
+      "name": "The Century of Iron Piers",
+      "entity_key": "iron-pier-century",
+      "era_key": "before",
+      "date": "681–581 B.Cat.",
+      "entry": "Fogfort expands into an iron-pier trade hub.",
+      "colour": "blue",
+      "position": 7,
+      "visibility_id": 1
+    },
+    {
+      "name": "The War of the 99 Kingdoms",
+      "entity_key": "war-99-kingdoms",
+      "era_key": "after",
+      "date": "Present A.Cat.",
+      "entry": "Fogport remains neutral in the modern war.",
+      "colour": "red",
+      "position": 10,
+      "visibility_id": 1
     }
   ],
   "approval": {
     "status": "approved",
     "approved_by": "Daniel Davis",
-    "approved_at": "2026-07-26T13:52:00-07:00",
-    "document_sha256": "3133fc5722a10cf8a6f3a1b4f564d8b04d79d6f5e92d6591a002c25bc01c0c48"
+    "approved_at": "2026-08-07T19:00:00-07:00",
+    "document_sha256": "d23d156362e6ecab9225e10a2e8285221f1cf3c80e05f06ad72936aec601b6b7"
   }
 }
