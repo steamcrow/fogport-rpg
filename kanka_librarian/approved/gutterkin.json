@@ -32,7 +32,7 @@
       "posts": [
         {
           "name": "GAMEMASTER SECRETS — Gutterkin",
-          "entry": "<ul><li>The Gutterkin's true origin has not been established. Their connection to the Catastrophe is a widespread belief, not confirmed canon.</li><li>Whether they are literally ageless, merely extremely long-lived, or repeatedly replaced has not been proven.</li><li>Different Gutterkin bands may be playful, transactional, protective, predatory, or cannibalistic. Do not treat every Gutterkin as having the same temperament.</li><li>The nature of the hungry presence in the forbidden tunnels beneath Nine Spoons remains unrevealed.</li><li>Nettle is Gutterkin and a genuine ally of Mercy Vale. She is part of Mercy’s loose counter-network, using Gutterkin routes, rooftop paths, and street contacts to move messages, observe danger, and protect vulnerable people.</li><li>Nettle’s history and relationship to any particular Gutterkin band remain unresolved, but her loyalty to Mercy is established. Future episodes should show cooperation between them rather than a hidden betrayal.</li><li>Mercy’s larger network is meant to help Byl and Lott become morally complicated antiheroes of Fogport. Keep its full membership, purpose, and Mercy’s long game GM-only.</li></ul>",
+          "entry": "<ul><li>The Gutterkin's true origin has not been established. Their connection to the Catastrophe is a widespread belief, not confirmed canon.</li><li>Whether they are literally ageless, merely extremely long-lived, or repeatedly replaced has not been proven.</li><li>Different Gutterkin bands may be playful, transactional, protective, predatory, or cannibalistic. Do not treat every Gutterkin as having the same temperament.</li><li>The nature of the hungry presence in the forbidden tunnels beneath Nine Spoons remains unrevealed.</li><li>Nettle is Gutterkin, but her history, loyalties, and relationship to any particular band remain unresolved.</li></ul>",
           "visibility_id": 3,
           "references": [
             {
@@ -71,6 +71,6 @@
     "status": "approved",
     "approved_by": "Daniel Davis",
     "approved_at": "2026-08-08T18:00:00-07:00",
-    "document_sha256": "6b9ea1871868c4a742aa33d5b943a719ef1da36f95bf87b1b6eaa64a6ce9d418"
+    "document_sha256": "a36303d68028ce471fe163a8fd19365a9cf7a283de7d0a4acdd3f5455d55f3f5"
   }
 }
