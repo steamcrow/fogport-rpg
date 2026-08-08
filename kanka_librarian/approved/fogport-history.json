@@ -955,6 +955,6 @@
     "status": "approved",
     "approved_by": "Daniel Davis",
     "approved_at": "2026-08-07T19:00:00-07:00",
-    "document_sha256": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nModuleNotFoundError: No module named 'scripts'"
+    "document_sha256": "803cfacb10b5f6e3bab7a6efca44ba77161191df2b8661ef79aa900d0ccfd471"
   }
 }
