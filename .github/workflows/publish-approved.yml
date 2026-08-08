@@ -27,7 +27,6 @@ on:
           - "episode: gm-operating-manual"
           - "canon: white-eye-society-secrets"
           - "canon: white-eye-society"
-          - "canon: lumen-and-the-pales"
           - "location: the-wayward-pint"
           - "item-batch: fogport-transit-system"
           # END AUTO-MENU
