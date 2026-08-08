@@ -12,8 +12,8 @@ on:
         options:
           # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)
           - "-- choose a subject --"
+          - "episode: nettle-mercy-alliance"
           - "character: mercy-vale"
-          - "episode: one-door-remaining"
           - "episode: gutterkin"
           - "organization: church-of-orra"
           - "location: fogport-history"
