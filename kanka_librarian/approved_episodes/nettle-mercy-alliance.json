@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "mode": "compiled-episode",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "episode": "Nettle — Mercy Alliance Continuity",
+  "aliases": {},
+  "changes": [
+    {
+      "section": "characters",
+      "name": "Nettle",
+      "type": "Gutterkin child of Nine Spoons",
+      "is_private": false,
+      "entry": "<p>Nettle is a nine-year-old Gutterkin girl from Nine Spoons. She is small, quick, sharp-toothed, practical, perpetually hungry, and unimpressed by adult assurances. She has been known to eat a boiled egg shell and all.</p><p>Nettle is a streetwise ally of Mercy Vale and a familiar presence around the Twisted Eel. She knows the roofs, drains, alleys, and hidden routes of Nine Spoons, and has a habit of appearing when someone has made a problem more complicated than it needed to be.</p><p>Nettle is becoming part of Byl and Lott’s circle—not because she thinks they are respectable, but because they have repeatedly gone back for people who could not repay them.</p>",
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS — Nettle",
+          "visibility_id": 3,
+          "entry": "<p><strong>Established Secret — Mercy and Nettle are allies.</strong> Nettle is not secretly betraying Mercy, replacing her, or waiting to turn on the Twisted Eel. Mercy earned Nettle’s loyalty by protecting Nine Spoons’ children and by treating Nettle as a capable person rather than a useful monster.</p><p>Nettle is one of Mercy’s trusted field allies. She uses Gutterkin routes, rooftops, drains, children’s gossip, and her own sharp observations to carry warnings, locate vulnerable people, and identify danger before it reaches the Eel. Mercy does not command her like a servant; their relationship is built from favors, candor, and the understanding that each will come when the other calls.</p><p>Mercy’s larger network is a loose counter-network of people who keep Fogport’s discarded citizens alive. Nettle knows some of its people and routes, but not the whole design. The network should emerge through separate favors, safe rooms, warnings, and practical rescues rather than as a formal organization.</p><p>Mercy sees Byl and Lott as possible antiheroes of Fogport. Nettle is one of the people who can gradually make that path possible: she brings them information, asks them to protect someone who cannot repay them, and notices when their choices begin to matter in Nine Spoons. Do not make her a passive mascot or a surprise antagonist.</p><p><strong>Continuity rule:</strong> Nettle and Mercy should cooperate in future episodes. They may disagree about danger, methods, or whether Byl and Lott can be trusted with a job, but the alliance itself is established.</p>"
+        }
+      ]
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-08-08T19:00:00-07:00",
+    "document_sha256": "6221ed94c110e8f10abe485718e4961a7fb91ee639b28706ff90a26d0ab0ba49"
+  }
+}
