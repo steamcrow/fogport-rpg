@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "mode": "approved-entity-abilities",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "entity": {"section": "characters", "name": "Lott"},
+  "abilities": [
+    {"name": "Fate — Aspects", "type": "Fate Core", "entry": "<p><strong>High Concept:</strong> The Scarred Brute of Nine Spoons<br><strong>Trouble:</strong> A Murderer’s Reputation Never Dies</p><ul><li>I Follow Mr. Byl. Don’t Ask Why.</li><li>Anything Within Reach Is a Weapon</li><li>One Look Is Usually Enough.</li></ul>", "is_private": false, "visibility_id": 1, "position": 10},
+    {"name": "Fate — Skills", "type": "Fate Core", "entry": "<ul><li><strong>Superb (+5):</strong> Physique</li><li><strong>Great (+4):</strong> Fight</li><li><strong>Good (+3):</strong> Notice, Will</li><li><strong>Fair (+2):</strong> Athletics, Provoke, Stealth</li><li><strong>Average (+1):</strong> Burglary, Contacts, Crafts, Shoot</li></ul>", "is_private": false, "visibility_id": 1, "position": 20},
+    {"name": "Fate — Stunts", "type": "Fate Core", "entry": "<p><strong>Improvised Butchery:</strong> +2 to Fight when attacking with something never intended to be a weapon, provided it breaks, becomes unusable, or is discarded after the exchange.</p><p><strong>Behind Me:</strong> Once per scene, when someone in Lott’s zone is attacked, he may place himself between them and the attacker. Lott becomes the target and makes the defense roll.</p><p><strong>One Look:</strong> Lott may use Notice instead of Empathy to determine whether someone intends immediate violence, is concealing a weapon, or is preparing an ambush.</p>", "is_private": false, "visibility_id": 1, "position": 30},
+    {"name": "Fate — Stress & Refresh", "type": "Fate Core", "entry": "<p><strong>Refresh:</strong> 3<br><strong>Physical Stress:</strong> 4 boxes<br><strong>Mental Stress:</strong> 3 boxes</p><p><strong>Consequences:</strong> Mild (2), Moderate (4), Severe (6), plus one additional Mild Physical Consequence from exceptional Physique.</p>", "is_private": false, "visibility_id": 1, "position": 40},
+    {"name": "Fate — Kils", "type": "Fate Weapon", "entry": "<p>Lott’s enormous antique sailor’s cutlass. When weapon ratings are being used, Kils is <strong>Weapon:2</strong>. It is conspicuous, difficult to conceal, and recognizable to people familiar with Nine Spoons.</p>", "is_private": false, "visibility_id": 1, "position": 50}
+  ],
+  "approval": {"status": "approved", "approved_by": "Daniel Davis", "approved_at": "2026-08-09T10:44:00-07:00", "proposal_sha256": "579b07057f17720c9bbd0762dcbad87850a1f827fc1a39da1bd459b93622c39c"}
+}
