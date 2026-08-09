@@ -12,6 +12,7 @@ on:
         options:
           # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)
           - "-- choose a subject --"
+          - "canon: guff-crosslinks"
           - "character: guff"
           - "note: gamemaster-guide-fate-addendum"
           - "episode: nettle-mercy-alliance"
