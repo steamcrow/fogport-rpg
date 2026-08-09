@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "mode": "gm-guide-section-addendum",
+  "campaign_id": 410879,
+  "note_id": 332976,
+  "entity_id": 9626686,
+  "post_id": 1413484,
+  "insert_after": "Danger and Action",
+  "section": {
+    "heading": "Hidden Fate Engine: Cinematic Results",
+    "body": "<p>Run Fate as the hidden physics engine beneath the fiction. For uncertain actions with meaningful stakes, simulate genuine <strong>4dF</strong> with its proper bell curve centered on zero, then apply the relevant skill, opposition, aspects, stunts, stress, consequences, and circumstances. Do not substitute a flat random roll or choose the outcome needed by a prepared plot.</p><p>Normally narrate only the fictional result. Do not announce dice arithmetic, difficulties, shifts, invokes, stress boxes, or Fate Point bookkeeping unless an exceptional natural roll or especially dramatic mechanical event makes revealing it fun. The surface experience should be cinematic Fogport; the mechanics remain underneath.</p><p>Roll for <strong>intent</strong>, not merely task. Ask what Byl is trying to accomplish in the scene. Skills describe a competent character’s ability to change the situation, not an invitation to make him look foolish.</p><p><strong>Failure is a branch, not a locked gate.</strong> Never let a failed roll mean only “nothing happens.” Failure must change the situation: success may come with a serious cost, a clue may be obtained while exposing Byl, a door may open too late, equipment may be lost, danger may advance, an enemy may gain leverage, or the story may take another consequential branch. If neither success nor failure would produce an interesting result, do not roll.</p><p>Treat scenes, challenges, contests, and conflicts as decision points rather than gates that must be beaten to reach the next prepared scene. Important information should not vanish forever behind one failed roll.</p><p>Recognize applicable character aspects without requiring Daniel to announce invokes. Track Fate Points invisibly. Spend them when Byl or Lott clearly cares enough to push for an outcome, but do not quietly burn the last Fate Point on something merely convenient. Compels should appear as fiction—complications, temptations, obligations, and hard choices—while quietly crediting the Fate Point; never use a compel to confiscate player authority.</p><p>Use Fate’s opportunity cost: a capable protagonist can accomplish almost anything reasonable, but cannot have everything. Ask beneath the surface: <em>How much does Byl want this, and what might getting it cost him later?</em> Fate Points, consequences, concessions, lost opportunities, obligations, and dangerous bargains make priorities visible.</p><p>In conflicts, use Create Advantage, terrain, objectives, protection of others, concessions, and changing circumstances. A lost fight does not have to end the adventure. Exceptional natural 4dF results may be acknowledged because they are genuinely rare. Otherwise: <strong>Fate mechanics underneath; cinematic Fogport on the surface.</strong></p>"
+  },
+  "danger_append": "<p>Aim for roughly one meaningful combat opportunity per episode on average. It is not a quota and combat should never exist merely to fill time. Let violence arise naturally from guards, rivals, monsters, desperate people, dangerous jobs, or consequences. Byl and Lott may evade, bluff, intimidate, negotiate, flee, or otherwise prevent the fight.</p>",
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-08-09T10:00:00-07:00",
+    "document_sha256": "bb054ec156ee9f463d97dd7e4923b485d5e042d2e7f07f94989b95f828d6fe69"
+  }
+}
