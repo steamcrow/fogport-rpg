@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": ["guff"],
+  "approval_questions": [],
+  "proposals": [{
+    "temp_id": "guff",
+    "action": "create",
+    "section": "characters",
+    "name": "Guff",
+    "type": "Mercy's War Hound",
+    "is_private": false,
+    "entry": "<p><em>Mercy’s War Hound</em></p><p>Guff is an enormous, elderly brindled war hound who spends most of his days asleep somewhere inconvenient in the <strong>Twisted Eel</strong>.</p><p>He is scarred, grey around the muzzle, slightly cloudy in one eye, chronically flea-bitten, and wears an absurdly heavy old iron collar studded with blunt spikes. Nobody remembers seeing Mercy without him for very long.</p><p>Guff snores. He farts. He groans theatrically when asked to move. He has discovered that looking ancient and pathetic is an excellent way of obtaining sausages.</p><p>To people he knows, Guff is an enormous baby. He leans his entire weight against favored patrons, presents his scarred belly for scratching, and will rest his head on someone's knee with sufficient force to nearly overturn the chair. Children are permitted liberties that would cost most adults a hand.</p><p>He particularly likes being scratched behind the ruined edge of his left ear.</p><p>But Guff is <strong>Mercy’s dog</strong>. That distinction matters.</p><h2>The Old Days</h2><p>Mercy has never given Byl a satisfactory explanation of where Guff came from. She says only:</p><blockquote><p>“We worked together.”</p></blockquote><p>This is technically true.</p><p>Guff was with Mercy during the part of her life she doesn't advertise—the years before the Twisted Eel, when she knew rather more smugglers, thieves, dock gangs, fences and dangerous people than a respectable tavern keeper reasonably should.</p><p>Whether Guff was originally a guard dog, fighting dog, smuggler's dog, or something worse is uncertain. His scars suggest employment. So do Mercy's.</p><p>There are older criminals in Fogport who recognize Guff before they recognize Mercy. Some are delighted. Some aren't. Mercy generally changes the subject.</p><h2>An Old Professional</h2><p>Age has taken Guff's endurance but not his instincts.</p><p>Most disturbances at the Eel don't interest him. Drunks can shout. Chairs can break. Byl and Lott can come through the door covered in blood and Guff may barely open an eye.</p><p>But he knows the difference between <strong>noise</strong> and <strong>danger</strong>.</p><p>If Mercy's voice changes, Guff wakes. If someone reaches suddenly for Mercy, Guff is already standing.</p><p>And if Mercy says:</p><blockquote><p>“Guff.”</p></blockquote><p>The lazy old tavern dog disappears. What remains is the animal that survived Mercy's old life.</p><p>He may only have a few good fights left in him. Nobody sensible wants to discover exactly how many.</p><h2>Fate</h2><p><strong>High Concept:</strong> Mercy's Old War Hound<br><strong>Trouble:</strong> The Body Is Older Than the Bite</p><h3>Aspects</h3><ul><li>I Know Who Belongs Here</li><li>That Woman Is My Whole World</li></ul>",
+    "fields": {},
+    "resolved_references": [],
+    "posts": [],
+    "attributes": [],
+    "relationships": [],
+    "publication": {"references": [
+      {"phrase":"Twisted Eel","name":"The Twisted Eel Pawnshop","section":"locations"},
+      {"phrase":"Mercy","name":"Mercy","section":"characters"},
+      {"phrase":"Byl","name":"Byl Hasbaine","section":"characters"},
+      {"phrase":"Lott","name":"Lott","section":"characters"}
+    ]},
+    "blocked": false
+  }],
+  "approval": {"status":"approved","approved_by":"Daniel Davis","approved_at":"2026-08-09T11:47:00-07:00","proposal_sha256":"PENDING"}
+}
