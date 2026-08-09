@@ -12,6 +12,7 @@ on:
         options:
           # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)
           - "-- choose a subject --"
+          - "note: gamemaster-guide-fate-addendum"
           - "episode: nettle-mercy-alliance"
           - "character: mercy-vale"
           - "episode: gutterkin"
@@ -26,7 +27,6 @@ on:
           - "character: byl-hasbaine"
           - "episode: gm-operating-manual"
           - "canon: white-eye-society-secrets"
-          - "canon: white-eye-society"
           - "location: the-wayward-pint"
           - "item-batch: fogport-transit-system"
           # END AUTO-MENU
@@ -50,8 +50,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          # The compact menu is ordered by each manifest's last commit.
-          # A full history keeps its safety test stable in Actions.
           fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
