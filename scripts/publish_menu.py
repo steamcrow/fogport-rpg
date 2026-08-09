@@ -35,15 +35,11 @@ LIBRARIAN = REPOSITORY_ROOT / "kanka_librarian"
 SENTINEL = "-- choose a subject --"
 RECENT_LIMIT = 15
 
-# These older subjects remain in the compact menu because they are useful
-# recurring Fogport foundations, rather than merely historical entries.
 PINNED_LABELS = (
     "location: the-wayward-pint",
     "item-batch: fogport-transit-system",
 )
 
-
-# Folder -> (kind label, default publisher script)
 FOLDER_ROUTES = {
     "approved": ("location", "scripts/publish_approved_location.py"),
     "approved_characters": ("character", "scripts/publish_approved_character.py"),
@@ -51,12 +47,11 @@ FOLDER_ROUTES = {
     "approved_batches": ("episode-batch", "scripts/publish_approved_batch.py"),
     "approved_episodes": ("episode", "scripts/publish_compiled_episode.py"),
     "approved_notes": ("note", "scripts/publish_compiled_episode.py"),
-    "approved_items": ("item", None),           # bespoke; see OVERRIDES
-    "approved_organizations": ("organization", None),  # bespoke; see OVERRIDES
+    "approved_items": ("item", None),
+    "approved_organizations": ("organization", None),
     "approved_images": ("image", "scripts/publish_approved_main_image.py"),
 }
 
-# Manifests that must use a specific publisher script.
 OVERRIDES = {
     "approved_characters/inspector-adelaide-voss.json": "scripts/publish_inspector_adelaide_voss.py",
     "approved_items/cinderhack.json": "scripts/publish_cinderhack.py",
@@ -66,10 +61,9 @@ OVERRIDES = {
     "approved_organizations/daughters-last-bell.json": "scripts/publish_daughters_last_bell.py",
     "approved_organizations/order-last-landing.json": "scripts/publish_order_last_landing.py",
     "approved/fogport-history.json": "scripts/publish_fogport_history.py",
+    "approved_notes/gamemaster-guide-fate-addendum.json": "scripts/publish_gm_fate_addendum.py",
 }
 
-# Manifests whose mode selects a generic publisher regardless of folder.
-# Each mode also corrects the kind label shown in the menu.
 MODE_ROUTES = {
     "approved-item-batch": ("item-batch", "scripts/publish_approved_item_batch.py"),
     "approved-batch": ("episode-batch", "scripts/publish_approved_batch.py"),
@@ -78,7 +72,6 @@ MODE_ROUTES = {
     "compiled-canon": ("canon", "scripts/publish_compiled_episode.py"),
 }
 
-# Multi-phase subjects that keep their own dedicated workflows.
 EXCLUDED = {
     "approved/fogport-annual-observances.json",
     "approved/fogport-calendar.json",
@@ -89,13 +82,6 @@ EXCLUDED = {
 
 
 def manifest_recency(manifest: Path) -> int:
-    """Return the manifest's explicit approval timestamp when available.
-
-    The workflow menu is generated and committed, so this is evaluated when
-    the menu is refreshed—not while someone is trying to publish.  Approval
-    time is stable across ordinary branches and GitHub's temporary PR merge
-    commits; Git history is only a legacy fallback for older manifests.
-    """
     try:
         document = json.loads(manifest.read_text())
         approved_at = str(document.get("approval", {}).get("approved_at", ""))
@@ -139,7 +125,7 @@ def build_menu() -> list[dict[str, str]]:
             else:
                 kind_label = kind
             if script is None:
-                continue  # bespoke manifest with no known publisher: never guess
+                continue
             entries.append(
                 {
                     "label": f"{kind_label}: {manifest.stem}",
@@ -154,30 +140,21 @@ def build_menu() -> list[dict[str, str]]:
 
 
 def visible_menu() -> list[dict[str, str]]:
-    """Return the compact menu: newest approved subjects plus kept-visible pins."""
     entries = build_menu()
     recent = entries[:RECENT_LIMIT]
     recent_labels = {entry["label"] for entry in recent}
-    pinned = [
-        entry for entry in entries
-        if entry["label"] in PINNED_LABELS and entry["label"] not in recent_labels
-    ]
+    pinned = [entry for entry in entries if entry["label"] in PINNED_LABELS and entry["label"] not in recent_labels]
     return recent + pinned
 
 
 def resolve(label: str) -> dict[str, str]:
     wanted = label.strip()
     if not wanted or wanted == SENTINEL:
-        raise SystemExit(
-            "No subject was chosen. Pick a subject from the menu and run again."
-        )
+        raise SystemExit("No subject was chosen. Pick a subject from the menu and run again.")
     for entry in build_menu():
         if entry["label"] == wanted:
             return entry
-    raise SystemExit(
-        f"Unknown subject {wanted!r}. Refresh the menu with "
-        "scripts/refresh_publish_menu.py after adding new approved manifests."
-    )
+    raise SystemExit(f"Unknown subject {wanted!r}. Refresh the menu with scripts/refresh_publish_menu.py after adding new approved manifests.")
 
 
 def main() -> None:
@@ -187,17 +164,11 @@ def main() -> None:
     group.add_argument("--labels", action="store_true")
     group.add_argument("--resolve", metavar="LABEL")
     args = parser.parse_args()
-
     if args.resolve:
-        entry = resolve(args.resolve)
-        print(json.dumps(entry, indent=2))
-        return
-
+        print(json.dumps(resolve(args.resolve), indent=2)); return
     for entry in build_menu():
-        if args.labels:
-            print(entry["label"])
-        else:
-            print(f"{entry['label']:45} -> {entry['script']}  ({entry['manifest']})")
+        if args.labels: print(entry["label"])
+        else: print(f"{entry['label']:45} -> {entry['script']}  ({entry['manifest']})")
 
 
 if __name__ == "__main__":
