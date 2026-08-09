@@ -19,6 +19,27 @@ def digest_without_approval(document: dict[str, Any]) -> str:
     return hashlib.sha256(raw).hexdigest()
 
 
+def send_entity_ability(writer: KankaWriter, method: str, path: str, payload: dict[str, Any]) -> None:
+    """Send an entity-ability mutation without assuming Kanka returns one object.
+
+    Kanka's bulk-style entity_abilities endpoint can successfully return a list
+    (or an empty success body) rather than the object shape required by the
+    Librarian's generic _send helper. We verify the mutation with a fresh list
+    read immediately afterward, so the mutation response itself is not trusted.
+    """
+    url = f"{writer.base_url}/{path.lstrip('/')}"
+    headers = {
+        "Authorization": f"Bearer {writer.token}",
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "User-Agent": "Kanka-Librarian/0.6",
+    }
+    import requests
+    response = requests.request(method, url, headers=headers, json=payload, timeout=writer.timeout_seconds)
+    if not response.ok:
+        raise SystemExit(f"Kanka entity-ability write failed ({response.status_code}): {response.text[:300]}")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("proposal", type=Path)
@@ -47,7 +68,6 @@ def main() -> None:
     entity_id = int(matches[0]["entity_id"])
 
     all_abilities = client._get_all_pages(f"campaigns/{CAMPAIGN_ID}/abilities")
-    existing_links = client._get_all_pages(f"campaigns/{CAMPAIGN_ID}/entities/{entity_id}/entity_abilities")
     verified = []
     for position, approved in enumerate(doc.get("abilities", []), start=1):
         name = str(approved.get("name", "")).strip()
@@ -71,22 +91,27 @@ def main() -> None:
         if actual != expected:
             raise SystemExit("Kanka ability read-back mismatch:\n" + json.dumps({"expected": expected, "actual": actual}, indent=2))
 
+        existing_links = client._get_all_pages(f"campaigns/{CAMPAIGN_ID}/entities/{entity_id}/entity_abilities")
         links = [link for link in existing_links if int(link.get("ability_id", 0)) == ability_id]
         if len(links) > 1:
             raise SystemExit(f"Ability {name!r} is attached to Lott more than once.")
-        link_payload = {"abilities": [ability_id], "visibility_id": int(approved.get("visibility_id", 1)), "position": int(approved.get("position", position * 10)), "note": ""}
+        desired_position = int(approved.get("position", position * 10))
+        link_payload = {"abilities": [ability_id], "visibility_id": int(approved.get("visibility_id", 1)), "position": desired_position, "note": ""}
         if links:
             link_id = int(links[0]["id"])
-            writer._send("PATCH", f"campaigns/{CAMPAIGN_ID}/entities/{entity_id}/entity_abilities/{link_id}", link_payload)
+            send_entity_ability(writer, "PATCH", f"campaigns/{CAMPAIGN_ID}/entities/{entity_id}/entity_abilities/{link_id}", link_payload)
         else:
-            created_link = writer._send("POST", f"campaigns/{CAMPAIGN_ID}/entities/{entity_id}/entity_abilities", link_payload)
-            link_id = int(created_link["id"])
-            existing_links.append(created_link)
+            send_entity_ability(writer, "POST", f"campaigns/{CAMPAIGN_ID}/entities/{entity_id}/entity_abilities", link_payload)
 
-        readback = client._get(f"campaigns/{CAMPAIGN_ID}/entities/{entity_id}/entity_abilities/{link_id}").get("data", {})
-        if int(readback.get("ability_id", 0)) != ability_id or int(readback.get("visibility_id", 0)) != link_payload["visibility_id"] or int(readback.get("position", -1)) != link_payload["position"]:
+        fresh_links = client._get_all_pages(f"campaigns/{CAMPAIGN_ID}/entities/{entity_id}/entity_abilities")
+        links = [link for link in fresh_links if int(link.get("ability_id", 0)) == ability_id]
+        if len(links) != 1:
+            raise SystemExit(f"Expected exactly one verified attachment for {name!r}; found {len(links)}.")
+        readback = links[0]
+        link_id = int(readback["id"])
+        if int(readback.get("visibility_id", 0)) != link_payload["visibility_id"] or int(readback.get("position", -1)) != desired_position:
             raise SystemExit(f"Kanka entity-ability read-back mismatch for {name!r}.")
-        verified.append({"name": name, "ability_id": ability_id, "entity_ability_id": link_id, "position": link_payload["position"]})
+        verified.append({"name": name, "ability_id": ability_id, "entity_ability_id": link_id, "position": desired_position})
 
     receipt = {"published": True, "campaign": CAMPAIGN_NAME, "campaign_id": CAMPAIGN_ID, "entity": target["name"], "entity_id": entity_id, "abilities_verified": verified, "overview_url": f"https://app.kanka.io/w/{CAMPAIGN_ID}/entities/{entity_id}"}
     args.receipt.parent.mkdir(parents=True, exist_ok=True)
