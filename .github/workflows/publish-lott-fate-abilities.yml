@@ -1,0 +1,43 @@
+name: "Kanka Librarian — Publish Lott Fate Abilities"
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kanka-librarian-fogport
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: "FOGPORT 410879 — attach Lott Fate stats to Abilities and verify"
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install --requirement requirements.txt
+      - name: Validate repository tests
+        run: python -m unittest discover -s tests
+      - name: Publish Lott Fate abilities and exact-read-back
+        env:
+          KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+          KANKA_ENABLE_WRITES: FOGPORT_410879
+          PYTHONPATH: ${{ github.workspace }}
+        run: |
+          python scripts/publish_approved_entity_abilities.py \
+            kanka_librarian/approved_abilities/lott-fate.json \
+            --receipt receipts/lott-fate-abilities.json
+      - name: Preserve verified receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kanka-lott-fate-abilities-receipt
+          path: receipts/lott-fate-abilities.json
+          if-no-files-found: warn
+          retention-days: 90
