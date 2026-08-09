@@ -46,8 +46,8 @@ def main() -> None:
         raise SystemExit(f"Expected exactly one character named {target['name']!r}; found {len(matches)}.")
     entity_id = int(matches[0]["entity_id"])
 
-    all_abilities = client.list_abilities(CAMPAIGN_ID)
-    existing_links = client.list_entity_abilities(CAMPAIGN_ID, entity_id)
+    all_abilities = client._get_all_pages(f"campaigns/{CAMPAIGN_ID}/abilities")
+    existing_links = client._get_all_pages(f"campaigns/{CAMPAIGN_ID}/entities/{entity_id}/entity_abilities")
     verified = []
     for position, approved in enumerate(doc.get("abilities", []), start=1):
         name = str(approved.get("name", "")).strip()
@@ -56,17 +56,12 @@ def main() -> None:
         same = [a for a in all_abilities if str(a.get("name", "")).casefold() == name.casefold()]
         if len(same) > 1:
             raise SystemExit(f"More than one campaign ability named {name!r}; refusing to guess.")
-        payload = {
-            "name": name,
-            "entry": str(approved.get("entry", "")),
-            "type": str(approved.get("type", "Fate Core")),
-            "is_private": bool(approved.get("is_private", False)),
-        }
+        payload = {"name": name, "entry": str(approved.get("entry", "")), "type": str(approved.get("type", "Fate Core")), "is_private": bool(approved.get("is_private", False))}
         if same:
             ability_id = int(same[0]["id"])
-            writer.update_ability(CAMPAIGN_ID, ability_id, payload)
+            writer._send("PATCH", f"campaigns/{CAMPAIGN_ID}/abilities/{ability_id}", payload)
         else:
-            created = writer.create_ability(CAMPAIGN_ID, payload)
+            created = writer._send("POST", f"campaigns/{CAMPAIGN_ID}/abilities", payload)
             ability_id = int(created["id"])
             all_abilities.append(created)
 
@@ -79,17 +74,12 @@ def main() -> None:
         links = [link for link in existing_links if int(link.get("ability_id", 0)) == ability_id]
         if len(links) > 1:
             raise SystemExit(f"Ability {name!r} is attached to Lott more than once.")
-        link_payload = {
-            "abilities": [ability_id],
-            "visibility_id": int(approved.get("visibility_id", 1)),
-            "position": int(approved.get("position", position * 10)),
-            "note": "",
-        }
+        link_payload = {"abilities": [ability_id], "visibility_id": int(approved.get("visibility_id", 1)), "position": int(approved.get("position", position * 10)), "note": ""}
         if links:
             link_id = int(links[0]["id"])
-            writer.update_entity_ability(CAMPAIGN_ID, entity_id, link_id, link_payload)
+            writer._send("PATCH", f"campaigns/{CAMPAIGN_ID}/entities/{entity_id}/entity_abilities/{link_id}", link_payload)
         else:
-            created_link = writer.create_entity_ability(CAMPAIGN_ID, entity_id, link_payload)
+            created_link = writer._send("POST", f"campaigns/{CAMPAIGN_ID}/entities/{entity_id}/entity_abilities", link_payload)
             link_id = int(created_link["id"])
             existing_links.append(created_link)
 
