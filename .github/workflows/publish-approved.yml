@@ -12,6 +12,7 @@ on:
         options:
           # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)
           - "-- choose a subject --"
+          - "character: guff"
           - "note: gamemaster-guide-fate-addendum"
           - "episode: nettle-mercy-alliance"
           - "character: mercy-vale"
@@ -26,7 +27,6 @@ on:
           - "location: twisted-eel-pawnshop"
           - "character: byl-hasbaine"
           - "episode: gm-operating-manual"
-          - "canon: white-eye-society-secrets"
           - "location: the-wayward-pint"
           - "item-batch: fogport-transit-system"
           # END AUTO-MENU
