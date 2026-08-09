@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "mode": "compiled-canon",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "episode": "Guff — Mercy and Twisted Eel Cross-links",
+  "changes": [
+    {
+      "section": "characters",
+      "name": "Mercy Vale",
+      "append_entry": "<p><strong>Guff</strong>, Mercy’s enormous old brindled war hound, is rarely far from her. Age has made him flea-bitten, grey-muzzled, and fond of sleeping through most trouble, but he remains fiercely protective of Mercy and surprisingly affectionate with people he accepts.</p>",
+      "append_marker": "Guff</strong>, Mercy’s enormous old brindled war hound",
+      "references": [{"phrase": "Guff", "name": "Guff", "section": "characters"}]
+    },
+    {
+      "section": "locations",
+      "name": "The Twisted Eel Pawnshop",
+      "append_entry": "<p><strong>Guff</strong>, Mercy’s scarred old war hound, is as much a fixture of the Eel as the pawn counter. He can usually be found asleep somewhere inconvenient, accepting scraps and scratches from people he knows; anyone threatening Mercy may discover that the old dog still has some war left in him.</p>",
+      "append_marker": "Guff</strong>, Mercy’s scarred old war hound",
+      "references": [{"phrase": "Guff", "name": "Guff", "section": "characters"}]
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-08-09T11:55:00-07:00",
+    "document_sha256": "68703ab3c11dc723e186ed91496bd6ed4a088edc59ba57cef6944a1eff2d5b30"
+  }
+}
