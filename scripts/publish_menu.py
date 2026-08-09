@@ -66,6 +66,7 @@ OVERRIDES = {
     "approved_organizations/daughters-last-bell.json": "scripts/publish_daughters_last_bell.py",
     "approved_organizations/order-last-landing.json": "scripts/publish_order_last_landing.py",
     "approved/fogport-history.json": "scripts/publish_fogport_history.py",
+    "approved_notes/gamemaster-guide-fate-addendum.json": "scripts/publish_gm_fate_addendum.py",
 }
 
 # Manifests whose mode selects a generic publisher regardless of folder.
