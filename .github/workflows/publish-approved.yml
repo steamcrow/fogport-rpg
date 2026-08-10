@@ -27,7 +27,6 @@ on:
           - "location: nine-spoons"
           - "location: shambles"
           - "location: twisted-eel-pawnshop"
-          - "character: byl-hasbaine"
           - "location: the-wayward-pint"
           - "item-batch: fogport-transit-system"
           # END AUTO-MENU
