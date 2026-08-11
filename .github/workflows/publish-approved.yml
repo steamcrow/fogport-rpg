@@ -12,6 +12,7 @@ on:
         options:
           # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)
           - "-- choose a subject --"
+          - "creature: ratwretches"
           - "episode: bannon-peg-fog-shits-blackwake"
           - "canon: guff-crosslinks"
           - "character: guff"
@@ -26,7 +27,6 @@ on:
           - "location: the-pales"
           - "location: nine-spoons"
           - "location: shambles"
-          - "location: twisted-eel-pawnshop"
           - "location: the-wayward-pint"
           - "item-batch: fogport-transit-system"
           # END AUTO-MENU
