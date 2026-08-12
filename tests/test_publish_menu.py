@@ -96,12 +96,23 @@ class MenuTests(unittest.TestCase):
             REPOSITORY_ROOT / ".github" / "workflows" / "publish-approved.yml"
         ).read_text()
         visible = publish_menu.visible_menu()
-        visible_labels = {entry["label"] for entry in visible}
-        for entry in visible:
-            self.assertIn(f'- "{entry["label"]}"', workflow)
-        for entry in publish_menu.build_menu():
-            if entry["label"] not in visible_labels:
-                self.assertNotIn(f'- "{entry["label"]}"', workflow)
+        expected_labels = [entry["label"] for entry in visible]
+
+        begin = "          # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)\n"
+        end = "          # END AUTO-MENU\n"
+        self.assertIn(begin, workflow)
+        self.assertIn(end, workflow)
+        menu_text = workflow.split(begin, 1)[1].split(end, 1)[0]
+        actual_labels = []
+        for line in menu_text.splitlines():
+            stripped = line.strip()
+            if not stripped.startswith('- "') or not stripped.endswith('"'):
+                continue
+            label = stripped[3:-1]
+            if label != publish_menu.SENTINEL:
+                actual_labels.append(label)
+
+        self.assertEqual(actual_labels, expected_labels)
         self.assertIn("older_subject:", workflow)
 
     def test_dropdown_choice_beats_optional_free_text(self) -> None:
