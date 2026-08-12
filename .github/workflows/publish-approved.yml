@@ -12,6 +12,7 @@ on:
         options:
           # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)
           - "-- choose a subject --"
+          - "creature: fisherwitches"
           - "location: orlania"
           - "character: harlok-yix"
           - "creature: ratwretches"
@@ -27,7 +28,6 @@ on:
           - "creature: varkesh"
           - "canon: collegium-of-lumen-update"
           - "location: the-pales"
-          - "location: the-wayward-pint"
           - "item-batch: fogport-transit-system"
           # END AUTO-MENU
       older_subject:
