@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": ["orlania"],
+  "approval_questions": [],
+  "proposals": [
+    {
+      "temp_id": "orlania",
+      "action": "create",
+      "section": "locations",
+      "name": "Orlania",
+      "type": "Lost nation",
+      "is_private": false,
+      "entry": "<p><strong>Type:</strong> Lost Nation<br><strong>Region:</strong> Sayir Sea<br><strong>Capital:</strong> Orlan<br><strong>Status:</strong> Destroyed during the Hundred Kingdom Wars<br><strong>People:</strong> Orlanians</p>\n<p>Orlania was a rugged island nation of the <strong>Sayir Sea</strong>, remembered for its sailors, mercenary soldiers, metalworkers, and a cultural stubbornness that its neighbors alternately admired and found exhausting.</p>\n<p>Its people were distinctive for their great lower tusks and elaborate blue-black tattooing. Orlanian tattoos could record family, profession, military service, marriage, mourning, religious devotion, great journeys, and personal vows. An elderly Orlanian might carry something approaching a biography across their skin.</p>\n<h2>The Iron Islands</h2>\n<p>Orlania was never particularly rich in farmland. Its wealth came from the sea and from what lay beneath its rocky islands.</p>\n<p>The country exported <strong>iron, copper, worked steel, ship fittings, preserved fish, lamp oil, heavy rope, and weapons</strong>. Orlanian armorers were particularly respected. Their work favored durability over elegance, and surviving Orlanian military equipment remains valuable throughout the Sayir Sea.</p>\n<p>Orlania also exported soldiers.</p>\n<p>For generations, Orlanian companies served as marines, guards, engineers, and mercenaries throughout the Hundred Kingdoms. This produced a strange nation where fishermen might understand siegecraft and village blacksmiths could recognize the uniforms of six foreign armies.</p>\n<h2>The Hundred Kingdom Wars</h2>\n<p>Orlania entered the war gradually.</p>\n<p>At first it sold weapons, ships, and soldiers to several combatants while officially maintaining neutrality. As alliances hardened, this became increasingly impossible.</p>\n<p>Orlanian ships were attacked.</p>\n<p>Orlanian mercenaries found themselves fighting one another under foreign banners.</p>\n<p>Then Trovus demanded access to Orlanian harbors and military facilities.</p>\n<p>Orlania refused.</p>\n<p>The refusal transformed an inconvenient neutral nation into an enemy.</p>\n<h2>The Destruction of Orlania</h2>\n<p>The resulting <strong>Trovian invasion of Orlania</strong> was expected to last weeks.</p>\n<p>It lasted years.</p>\n<p>The Orlanians turned their islands into fortresses, fighting from harbors, mines, villages, sea caves, and mountain roads. Trovus eventually abandoned the idea of conquering a useful Orlania and instead decided to make continued resistance impossible.</p>\n<p>Ports were bombarded.</p>\n<p>Mines were collapsed.</p>\n<p>Fishing fleets were burned.</p>\n<p>Freshwater works were destroyed.</p>\n<p>Several smaller islands were almost completely depopulated.</p>\n<p>The capital, <strong>Orlan</strong>, finally fell after a prolonged siege. Much of it burned, and portions of the old harbor district reportedly slid into the sea during the bombardment.</p>\n<p>Trovus technically won.</p>\n<p>There was simply very little left to govern.</p>\n<h2>Orlanians Today</h2>\n<p>Orlania no longer exists as a functioning nation.</p>\n<p>Its surviving people are scattered throughout the Sayir Sea and beyond: sailors, refugees, laborers, mercenaries, smiths, criminals, and old soldiers who still describe themselves as Orlanian despite possessing no country to return to.</p>\n<p>Some preserve the language and tattoo traditions carefully.</p>\n<p>Others refuse to speak of the islands at all.</p>\n<p>In Fogport, the most infamous surviving Orlanian is <strong>Harlok Yix</strong>, the enormous veteran and murderer known throughout the Shambles as the Shambles Butcher.</p>\n<p>There remains one particularly dangerous disagreement among surviving Orlanians:</p>\n<p><strong>Whether Orlania is dead—or merely occupied.</strong></p>",
+      "fields": {},
+      "resolved_references": [],
+      "posts": [],
+      "attributes": [],
+      "relationships": [],
+      "publication": {"references": []},
+      "blocked": false
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-08-11T23:10:00-07:00",
+    "proposal_sha256": "orlania-approved-2026-08-11"
+  }
+}
