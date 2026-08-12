@@ -12,6 +12,7 @@ on:
         options:
           # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)
           - "-- choose a subject --"
+          - "location: orlania"
           - "character: harlok-yix"
           - "creature: ratwretches"
           - "episode: bannon-peg-fog-shits-blackwake"
@@ -26,7 +27,6 @@ on:
           - "creature: varkesh"
           - "canon: collegium-of-lumen-update"
           - "location: the-pales"
-          - "location: nine-spoons"
           - "location: the-wayward-pint"
           - "item-batch: fogport-transit-system"
           # END AUTO-MENU
