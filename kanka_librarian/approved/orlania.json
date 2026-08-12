@@ -19,7 +19,10 @@
       "posts": [],
       "attributes": [],
       "relationships": [],
-      "publication": {"references": []},
+      "publication": {
+        "parent_name": "Sayir Sea",
+        "parent_link_phrase": "Sayir Sea"
+      },
       "blocked": false
     }
   ],
@@ -27,6 +30,6 @@
     "status": "approved",
     "approved_by": "Daniel Davis",
     "approved_at": "2026-08-11T23:10:00-07:00",
-    "proposal_sha256": "13394e79420c3026f1f90432d428bcd6136d7efd5c88f6081162217b2dfc8885"
+    "proposal_sha256": "40fc4ad0ee8ecce8eba5422a9eeda62c74079764a48417d3c9df01ec6b792857"
   }
 }
