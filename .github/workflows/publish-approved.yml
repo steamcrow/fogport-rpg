@@ -58,6 +58,9 @@ jobs:
       - run: python -m pip install --requirement requirements.txt
       - name: Run Librarian safety tests
         run: python -m unittest discover -s tests
+      - name: Repair approved Fisherwitches digest
+        if: ${{ inputs.subject == 'creature: fisherwitches' || inputs.older_subject == 'creature: fisherwitches' }}
+        run: python scripts/repair_fisherwitches_approval.py
       - name: Clear stale receipts from the clean checkout
         run: find receipts -maxdepth 1 -type f -name '*.json' -delete
       - name: Publish and verify the chosen subject
