@@ -12,6 +12,7 @@ on:
         options:
           # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)
           - "-- choose a subject --"
+          - "character: harlok-yix"
           - "creature: ratwretches"
           - "episode: bannon-peg-fog-shits-blackwake"
           - "canon: guff-crosslinks"
