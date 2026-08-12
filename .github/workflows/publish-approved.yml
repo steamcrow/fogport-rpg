@@ -27,7 +27,7 @@ on:
           - "organization: church-of-orra"
           - "creature: varkesh"
           - "canon: collegium-of-lumen-update"
-          - "location: the-pales"
+          - "location: the-wayward-pint"
           - "item-batch: fogport-transit-system"
           # END AUTO-MENU
       older_subject:
