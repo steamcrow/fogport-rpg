@@ -44,6 +44,7 @@ concurrency:
 
 jobs:
   publish:
+    name: "FOGPORT ONLY (410879) — publish and verify ${{ inputs.subject != '-- choose a subject --' && inputs.subject || inputs.older_subject }}"
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
