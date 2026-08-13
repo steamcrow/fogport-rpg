@@ -12,8 +12,8 @@ on:
         options:
           # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)
           - "-- choose a subject --"
-          - "location: kadovar"
           - "creature: kadovarians"
+          - "location: kadovar"
           - "creature: civic-order-patrolmaton"
           - "location: skyport-station"
           - "creature: fisherwitches"
@@ -27,7 +27,6 @@ on:
           - "episode: nettle-mercy-alliance"
           - "character: mercy-vale"
           - "episode: gutterkin"
-          - "location: fogport-history"
           - "location: the-wayward-pint"
           - "item-batch: fogport-transit-system"
           # END AUTO-MENU
