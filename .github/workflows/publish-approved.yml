@@ -27,7 +27,6 @@ on:
           - "episode: gutterkin"
           - "location: fogport-history"
           - "organization: church-of-orra"
-          - "creature: varkesh"
           - "location: the-wayward-pint"
           - "item-batch: fogport-transit-system"
           # END AUTO-MENU
