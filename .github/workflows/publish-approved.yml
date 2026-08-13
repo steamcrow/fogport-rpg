@@ -12,6 +12,7 @@ on:
         options:
           # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)
           - "-- choose a subject --"
+          - "creature: civic-order-patrolmaton"
           - "location: skyport-station"
           - "creature: fisherwitches"
           - "location: orlania"
