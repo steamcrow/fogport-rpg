@@ -38,6 +38,9 @@ jobs:
           file="kanka_librarian/approved/$filename"
           test -f "$file"
           echo "file=$file" >> "$GITHUB_OUTPUT"
+      - name: Restore approved Kadovar checksum
+        if: ${{ inputs.proposal == 'kadovar.json' }}
+        run: python scripts/repair_kadovar_approval.py
       - name: Publish and exact-read-back
         env:
           KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
