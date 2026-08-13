@@ -28,7 +28,6 @@ on:
           - "character: mercy-vale"
           - "episode: gutterkin"
           - "location: fogport-history"
-          - "organization: church-of-orra"
           - "location: the-wayward-pint"
           - "item-batch: fogport-transit-system"
           # END AUTO-MENU
