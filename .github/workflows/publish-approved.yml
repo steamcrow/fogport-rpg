@@ -12,6 +12,8 @@ on:
         options:
           # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)
           - "-- choose a subject --"
+          - "creature: kadovarians"
+          - "organization: kadovar"
           - "creature: civic-order-patrolmaton"
           - "location: skyport-station"
           - "creature: fisherwitches"
