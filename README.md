@@ -9,6 +9,10 @@ Gamemaster posts, and process a whole approved episode as one batch.
 **If you are an AI assistant about to add a new entry, read
 [`docs/ADDING_A_NEW_ENTRY.md`](docs/ADDING_A_NEW_ENTRY.md) first.** It is
 short, and it will stop you from writing code you don't need to write.
+**If you only have a GitHub API token for this repo — no shell, no way to
+run Python here — read
+[`docs/API_ONLY_ASSISTANT_GUIDE.md`](docs/API_ONLY_ASSISTANT_GUIDE.md)
+instead**, which covers the same ground through GitHub's REST API alone.
 
 ## Normal Fogport workflow
 
