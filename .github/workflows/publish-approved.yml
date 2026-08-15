@@ -61,7 +61,7 @@ jobs:
       - name: Restore approved Fisherwitches checksum
         run: python scripts/repair_fisherwitches_approval.py
       - name: Restore approved Kadovar checksum
-        if: ${{ inputs.subject == 'location: kadovar' || inputs.older_subject == 'location: kadovar' }}
+        if: "${{ inputs.subject == 'location: kadovar' || inputs.older_subject == 'location: kadovar' }}"
         run: python scripts/repair_kadovar_approval.py
       - name: Clear stale receipts from the clean checkout
         run: find receipts -maxdepth 1 -type f -name '*.json' -delete
