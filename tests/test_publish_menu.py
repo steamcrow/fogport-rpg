@@ -125,6 +125,21 @@ class MenuTests(unittest.TestCase):
         )
         self.assertEqual(workflow.count(expression), 3)
 
+    def test_new_items_and_organizations_get_a_generic_publisher_by_default(self) -> None:
+        # Any item or organization manifest that is not specifically listed
+        # in OVERRIDES must fall back to a real, generic publisher script
+        # rather than being silently dropped from the menu (script=None).
+        # This is what lets a brand-new item or organization be published
+        # without anyone writing a new Python script.
+        item_kind, item_script = publish_menu.FOLDER_ROUTES["approved_items"]
+        org_kind, org_script = publish_menu.FOLDER_ROUTES["approved_organizations"]
+        self.assertEqual(item_kind, "item")
+        self.assertEqual(org_kind, "organization")
+        self.assertIsNotNone(item_script)
+        self.assertIsNotNone(org_script)
+        self.assertTrue((REPOSITORY_ROOT / item_script).is_file())
+        self.assertTrue((REPOSITORY_ROOT / org_script).is_file())
+
     def test_workflow_clears_stale_receipts_before_publication(self) -> None:
         workflow = (
             REPOSITORY_ROOT / ".github" / "workflows" / "publish-approved.yml"

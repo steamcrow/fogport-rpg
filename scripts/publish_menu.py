@@ -47,9 +47,10 @@ FOLDER_ROUTES = {
     "approved_batches": ("episode-batch", "scripts/publish_approved_batch.py"),
     "approved_episodes": ("episode", "scripts/publish_compiled_episode.py"),
     "approved_notes": ("note", "scripts/publish_compiled_episode.py"),
-    "approved_items": ("item", None),
-    "approved_organizations": ("organization", None),
+    "approved_items": ("item", "scripts/publish_approved_item.py"),
+    "approved_organizations": ("organization", "scripts/publish_approved_organization.py"),
     "approved_images": ("image", "scripts/publish_approved_main_image.py"),
+    "approved_eras": ("era", "scripts/publish_approved_era.py"),
 }
 
 OVERRIDES = {
@@ -62,6 +63,17 @@ OVERRIDES = {
     "approved_organizations/order-last-landing.json": "scripts/publish_order_last_landing.py",
     "approved/fogport-history.json": "scripts/publish_fogport_history.py",
     "approved_notes/gamemaster-guide-fate-addendum.json": "scripts/publish_gm_fate_addendum.py",
+    # These items/organizations predate the generic item/organization
+    # publisher and use their own older JSON shapes, so they keep using
+    # the bespoke scripts that already know how to read them. Only
+    # NEW items/organizations (added after 2026-08-14) use the generic
+    # publisher automatically.
+    "approved_organizations/chartered-duel-corps.json": "scripts/publish_chartered_duel_corps.py",
+    "approved_organizations/civic-order-mail-service.json": "scripts/publish_civic_order_mail_service.py",
+    "approved_organizations/civic-order-secrets.json": "scripts/publish_civic_order_secrets.py",
+    "approved_organizations/civic-order.json": "scripts/publish_civic_order.py",
+    "approved_organizations/divided-saint.json": "scripts/publish_divided_saint.py",
+    "approved_items/transit-artwork.json": "scripts/publish_item_artwork.py",
 }
 
 MODE_ROUTES = {
