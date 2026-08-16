@@ -12,6 +12,7 @@ on:
         options:
           # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)
           - "-- choose a subject --"
+          - "canon: thrx-devor-canon"
           - "character: kavra-morn"
           - "creature: gravosk"
           - "creature: lumber-maton"
@@ -26,7 +27,6 @@ on:
           - "creature: kadovarians"
           - "location: kadovar"
           - "creature: civic-order-patrolmaton"
-          - "location: skyport-station"
           - "location: the-wayward-pint"
           - "item-batch: fogport-transit-system"
           # END AUTO-MENU
