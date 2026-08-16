@@ -70,6 +70,18 @@ jobs:
           PYTHONPATH: ${{ github.workspace }}
           PUBLISH_SUBJECT: ${{ inputs.subject != '-- choose a subject --' && inputs.subject || inputs.older_subject }}
         run: python scripts/publish_selected.py --subject "$PUBLISH_SUBJECT"
+      - name: Cross-link Fogport after Thrx and Devor publish
+        if: "${{ inputs.subject == 'canon: thrx-devor-canon' || inputs.older_subject == 'canon: thrx-devor-canon' }}"
+        env:
+          KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+          KANKA_ENABLE_WRITES: FOGPORT_410879
+          PYTHONPATH: ${{ github.workspace }}
+        run: |
+          python scripts/crosslink_cleanup.py \
+            kanka_librarian/approved_crosslinks/fogport-network-cleanup.json \
+            --apply \
+            --registry receipts/fogport-network-registry.json \
+            --receipt receipts/fogport-network-cleanup-receipt.json
       - name: Preserve verified receipts
         if: always()
         uses: actions/upload-artifact@v4
