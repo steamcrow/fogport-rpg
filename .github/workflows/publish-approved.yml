@@ -23,6 +23,8 @@ on:
           - "note: winter-of-176"
           - "organization: battle-poets"
           - "organization: gravoska-kingdom"
+          - "creature: kadovarians"
+          - "location: kadovar"
           - "creature: civic-order-patrolmaton"
           - "location: skyport-station"
           - "location: the-wayward-pint"
