@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": ["red-church-of-vor"],
+  "approval_questions": [],
+  "proposals": [
+    {
+      "temp_id": "red-church-of-vor",
+      "action": "create",
+      "section": "organizations",
+      "name": "The Red Church of Vor",
+      "type": "Religious Organization",
+      "is_private": false,
+      "entry": "<p>The <strong>Red Church of Vor</strong> is the organized priesthood of <strong>Vor, the Red Bat</strong>—also commonly called <strong>the War Bat</strong>—a foreign god of war whose popularity has grown enormously during the 99 War.</p><p>The church teaches that violence is neither inherently noble nor shameful. It is one of the great passions of living things, alongside love, hunger, grief and creation. To fight while pretending otherwise is hypocrisy.</p><p>Vor demands commitment. His worshippers offer blood, weapons, trophies and things of genuine personal value. Soldiers cut their palms before battle. Brawla dedicate victories to him. Veterans leave medals, teeth, broken weapons and locks of hair at his altars.</p><p>The church's best-known ceremony is the <strong>Red Dance</strong>, an escalating ritual of drums, stamping, shouting, incense and controlled bloodletting. Participants sometimes enter a shared battle-trance in which fear and pain diminish dramatically.</p><p>Vorrans insist this isn't magic. They say: <em>“Vor has come near.”</em></p><h2>The Red Priests</h2><p>Priests of Vor wear dark robes with red sashes and generally carry a spear, though many have never served professionally as soldiers. They are expected to understand violence rather than merely admire it.</p><p>A priest may bless a regiment in the morning, officiate a duel that afternoon, and spend the evening sitting silently with a veteran who cannot stop shaking.</p><p>Cowardice does not offend them nearly as much as <strong>false courage</strong>. They have particular contempt for people who send others into violence they would never personally face.</p>",
+      "fields": {},
+      "resolved_references": [],
+      "posts": [{"name":"GAMEMASTER SECRETS","entry":"<p>The Fogport church is becoming different from the foreign faith that founded it. The 99 War has produced so much worship, sacrifice and violent death that some priests believe Vor is changing—or drawing nearer.</p><p>During particularly intense Red Dances, participants have simultaneously described an impossible sensation of something enormous <strong>hanging upside down above them in darkness</strong>. One senior priest secretly keeps records of every occurrence. They are becoming more frequent.</p><p>Worse, someone has begun leaving <strong>human sacrifices</strong> inside the temple after closing. The victims are people associated with the 99 War: deserters, recruiters, weapons merchants and veterans.</p><p>The priests genuinely don't know who is responsible. They desperately want it stopped. They also haven't reported the murders to the Civic Vigilance because each morning after a sacrifice, <strong>the great statue outside has changed position slightly.</strong></p>","visibility_id":3}],
+      "attributes": [],
+      "relationships": [],
+      "publication": {},
+      "artwork": {"main_image_path":"assets/organizations/red-church-of-vor.png","sha256":"f9fa8fa637c7e48115019cad9c9be754b58bec392a40647cb315b611c5a9d3c2"}
+    }
+  ],
+  "approval": {"status":"approved","approved_by":"Daniel Davis","approved_at":"2026-08-16T19:40:00-07:00","proposal_sha256":"REPLACE_ME"}
+}
