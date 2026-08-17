@@ -17,3 +17,4 @@ jobs:
           KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
       - uses: actions/upload-artifact@v4
         with: {name: khoru-receipt, path: receipts/khoru.json}
+
