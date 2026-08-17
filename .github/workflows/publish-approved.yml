@@ -25,9 +25,8 @@ on:
           - "note: vorun-the-last-hearth"
           - "note: winter-of-176"
           - "organization: battle-poets"
-          - "organization: lamplighters-guild"
           - "organization: gravoska-kingdom"
-          - "creature: kadovarians"
+          - "organization: lamplighters-guild"
           - "location: the-wayward-pint"
           - "item-batch: fogport-transit-system"
           # END AUTO-MENU
