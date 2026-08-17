@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": [
+    "golden-god"
+  ],
+  "approval_questions": [],
+  "proposals": [
+    {
+      "temp_id": "golden-god",
+      "action": "create",
+      "section": "organizations",
+      "name": "The Golden God",
+      "type": "Mung religion / Foreign mystery cult",
+      "is_private": false,
+      "entry": "<p>The <strong>Golden God</strong> is primarily a Mung god. The Mung do not seek converts, preach sermons, preserve scripture, or distinguish religion from carrying a burden. A small foreign following nonetheless exists among defeated soldiers, debtors, prisoners, refugees, stretcher-bearers, and people who have been asked to carry too much for too long. They call their belief the <strong>Faith of the Weight</strong>.</p><h2>The God</h2><p>The Golden God is a vast hollow skull-head of hammered gold, shaped in a brutal stylized Mung likeness: hollow eye sockets, flat blunt nose, carved cheek channels, heavy muzzle, and square teeth. It is the Mung’s only representational art. Hundreds carry it on poles; in battle, they may throw it into the enemy and push it through the broken line. It does not speak, judge, promise mercy, or offer an afterlife. It must be carried forward.</p><h2>Doctrine of the Weight</h2><p><strong>What is carried is real.</strong> Intentions and pedigree matter less than the burden actually in one’s hands.</p><p><strong>What cannot be carried must be divided.</strong> No burden is too great if enough bodies share it; individual self-sacrifice is poor distribution.</p><p><strong>The fallen become ground.</strong> Death is neither disgrace nor triumph. The dead are incorporated: buried, burned, used to strengthen a crossing, or left where they impede the enemy.</p><p><strong>The god does not look back.</strong> Its hollow eyes face forward. Loss may be carried in the body, but never dragged behind it.</p><p><strong>Victory is passage.</strong> A wall, army, river, or city is an obstruction, meaningful only when the host has passed over, through, or around it.</p><p><strong>No one carries alone.</strong> This is the faith’s closest equivalent to mercy: no essential load belongs on one bearer when many can take it.</p><h2>Foreign Adherents</h2><p>Foreign devotees do not make golden heads. They scratch two hollow circles above a horizontal bar in soot, under bridges, inside lockers, or beneath coffins: <em>There is weight here. Take hold.</em> Some organize food, shelter, escape routes, and mutual aid with unnerving efficiency. Others decide that anyone unable to keep pace is merely an obstruction. The Mung do not correct either interpretation.</p><h2>Observance</h2><p>A Mung rite looks like work. A building begins when more hands lift its first beam than it needs. A birth is marked by a first useful task. A unit surviving battle may carry an unnecessary stone for a day, simply to demonstrate that it can. When the Golden God is raised, the host tightens its grip on the poles. That is the prayer.</p>",
+      "fields": {},
+      "resolved_references": [],
+      "posts": [],
+      "attributes": [],
+      "relationships": [],
+      "publication": {
+        "references": []
+      },
+      "blocked": false
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-08-18T00:11:00-07:00",
+    "proposal_sha256": "39f352d97b1d2cdf851e71d1f294f6d70efe41bb17298edf4e9e220d789b3e16"
+  }
+}
