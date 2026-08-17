@@ -12,6 +12,9 @@ on:
         options:
           # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)
           - "-- choose a subject --"
+          - "organization: golden-god"
+          - "creature: mung"
+          - "creature: khoru"
           - "location: ninety-nine-kingdoms-refresh"
           - "character: sister-lya-orlan"
           - "organization: lamplighters-guild"
@@ -24,9 +27,6 @@ on:
           - "creature: pyre-bee"
           - "item: gravosk-great-bombard"
           - "item: thunder-mead"
-          - "location: ship-stair-of-keld"
-          - "note: vorun-the-last-hearth"
-          - "note: winter-of-176"
           - "location: the-wayward-pint"
           - "item-batch: fogport-transit-system"
           # END AUTO-MENU
