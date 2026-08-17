@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": ["temple-of-the-red-bat"],
+  "approval_questions": [],
+  "proposals": [
+    {
+      "temp_id": "temple-of-the-red-bat",
+      "action": "create",
+      "section": "locations",
+      "name": "The Temple of the Red Bat",
+      "type": "Temple",
+      "is_private": false,
+      "entry": "<p>Fogport has only <strong>one temple dedicated to Vor</strong>, the foreign war god called the Red Bat and, more commonly in Fogport, <strong>the War Bat</strong>.</p><p>It wasn't built for him.</p><p>The building is considerably older than the Red Church and originally belonged to another god whose congregation dwindled until the temple could no longer support itself. The Vorrans bought it cheaply during the early decades of the 99 War.</p><p>They removed the old god's name.</p><p>Mostly.</p><h2>The Temple</h2><p>The building is a tall, severe stone structure wedged into an older Fogport neighborhood. The Vorrans have altered it with red banners, iron spearheads, foreign bells and heavy bronze doors.</p><p>Before its entrance stands the enormous masked <strong>statue of Vor</strong>: hunting spear in hand, the stylized wings of the Red Bat rising behind his head.</p><p>Offerings accumulate around its feet: broken swords, spent cartridges, military medals, prize belts from Brawla, crutches, love letters, and occasionally something considerably harder to explain.</p><p>Inside, the former sanctuary has become the <strong>Red Hall</strong>. There are no pews. The floor must remain open.</p><p>Drums line one wall. Weapons surrendered as offerings cover another. Dark stains between the floorstones have resisted every attempt at cleaning.</p><p>Services can be extraordinarily loud.</p><p>Funerals are almost completely silent.</p><h2>The Forgotten God</h2><p>The Vorrans never successfully removed everything belonging to the temple's previous occupant.</p><p>An unfamiliar symbol remains carved beneath the altar. Several sealed chambers survive below the building. And behind the enormous image of Vor in the sanctuary is an older stone figure that couldn't be removed without bringing down part of the wall.</p><p>So they simply built Vor <strong>in front of it</strong>.</p><p>Nobody currently remembers the old god's name.</p>",
+      "fields": {},
+      "resolved_references": [],
+      "posts": [{"name":"GAMEMASTER SECRETS","entry":"<p>The old god did not die.</p><p><strong>It was forgotten.</strong></p><p>Something remains beneath the temple: weak, starving and almost incapable of making itself understood.</p><p>Recently it has begun communicating through people sleeping nearby. Not with prophecy. With extremely mundane requests:</p><p><em>Open the blue door.</em></p><p><em>Bring me water.</em></p><p><em>Please move him.</em></p><p>The Red Church has absolutely no doctrine for what to do when the previous owner of your temple starts complaining.</p><p>And the most dangerous possibility is that <strong>Vor knows perfectly well that it's there.</strong></p><p>He may even like it.</p>","visibility_id":3}],
+      "attributes": [],
+      "relationships": [],
+      "publication": {"parent_name":"Fogport","parent_link_phrase":"Fogport"},
+      "artwork": {"main_image_path":"assets/locations/temple-of-the-red-bat.png","sha256":"f9fa8fa637c7e48115019cad9c9be754b58bec392a40647cb315b611c5a9d3c2"}
+    }
+  ],
+  "approval": {"status":"approved","approved_by":"Daniel Davis","approved_at":"2026-08-16T19:40:00-07:00","proposal_sha256":"REPLACE_ME"}
+}
