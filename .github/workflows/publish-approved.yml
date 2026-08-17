@@ -12,6 +12,8 @@ on:
         options:
           # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)
           - "-- choose a subject --"
+          - "location: temple-of-the-red-bat"
+          - "organization: red-church-of-vor"
           - "canon: thrx-devor-canon"
           - "character: kavra-morn"
           - "creature: gravosk"
@@ -25,8 +27,6 @@ on:
           - "organization: battle-poets"
           - "organization: gravoska-kingdom"
           - "creature: kadovarians"
-          - "location: kadovar"
-          - "creature: civic-order-patrolmaton"
           - "location: the-wayward-pint"
           - "item-batch: fogport-transit-system"
           # END AUTO-MENU
