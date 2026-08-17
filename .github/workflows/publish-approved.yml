@@ -12,6 +12,7 @@ on:
         options:
           # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)
           - "-- choose a subject --"
+          - "organization: lamplighters-guild"
           - "location: temple-of-the-red-bat"
           - "organization: red-church-of-vor"
           - "canon: thrx-devor-canon"
@@ -26,7 +27,6 @@ on:
           - "note: winter-of-176"
           - "organization: battle-poets"
           - "organization: gravoska-kingdom"
-          - "organization: lamplighters-guild"
           - "location: the-wayward-pint"
           - "item-batch: fogport-transit-system"
           # END AUTO-MENU
