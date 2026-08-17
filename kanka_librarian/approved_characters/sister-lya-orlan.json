@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": [
+    "sister-lya-orlan"
+  ],
+  "approval_questions": [],
+  "proposals": [
+    {
+      "temp_id": "sister-lya-orlan",
+      "action": "create",
+      "section": "characters",
+      "name": "Sister Lya Orlan",
+      "type": "Nun of the Church of Orra; Swordswoman",
+      "is_private": false,
+      "entry": "<p><strong>Sister Lya Orlan</strong> never meant to become a soldier. The Church of Orra does not maintain a warrior order. Its people keep lamps, perform rites for the missing, guide sailors through bad weather, run lost-property counters, mend wet clothing, record names, and make sure somebody is waiting when a frightened person comes home.</p><p>That work became dangerous. At first, Lya only accompanied other sisters into streets where Civic Vigilance patrols had stopped answering calls. Then she escorted witnesses from Black Houses. Then she began retrieving people whose names had been entered incorrectly, transferred to the wrong cell, or simply removed from the records.</p><p>The sword came later. She learned from an aging duelist who had once been paid by the Civic Order to train officers. He taught her because, in his words, <em>“Your Church keeps finding the people we fail to protect.”</em></p><p>Lya does not call herself a knight, a champion, or an inquisitor. She dislikes all three words. She is a nun with a sword because there are now places in Fogport where a lamp, a ledger, and a calm voice are no longer enough.</p><h2>Third Greatest</h2><p>Nobody agrees how the city ranks swordsmen. The list changes depending on district, money, grudges, and who survived the last public duel.</p><p>Lya is generally called the third-greatest swordsman in Fogport because almost everyone who has fought her agrees she is better than they expected, and because the two names above hers are too politically useful to challenge.</p><p>She does not seek formal duels. She accepts them when they will stop a beating, delay an arrest, protect a witness, or embarrass the right person in public. Her style is practical, compact, and unnerving. She does not flourish. She does not waste movement. She watches people’s feet, shoulders, breathing, and friends.</p><p>Lya has never killed in a sanctioned duel.</p><h2>The Church and the City</h2><p>The Church of Orra is old, modest, and stubbornly local. It is respected by sailors, lamplighters, tram conductors, missing children, and people who have run out of better doors to knock upon.</p><p>The Civic Order tolerates it because the Church performs useful work the city does not wish to pay for. It dislikes the Church because Orrian priests and nuns keep names. They know who went missing after being detained, which families received identical official letters, which streets lost their lamps before arrests began, and how often a person is declared <em>“properly processed”</em> without ever being seen again.</p><p>Lya has become a problem because she treats every missing person as someone expected home.</p><h2>The Torch</h2><p>Lya wears a simple brass torch rather than the more common covered blue lamp of the Church. She says it is not a special relic. Those who have seen her in the fog disagree.</p><p>The torch is kept unlit during ordinary work. Before she enters a Black House, flooded tenement, or abandoned tram tunnel, she lights it herself. The flame burns amber in clear air and a low, hard blue in the presence of a lie that has been made official.</p><p>The Civic Order has begun asking questions about it.</p><h2>What Lya Wants</h2><p>Lya is not trying to overthrow Vauntin Quell. She knows enough about Fogport to distrust anyone who claims they can save it all at once.</p><p>She wants smaller, harder things: a missing person returned alive; a false charge exposed before it becomes permanent; a frightened witness safely moved across the city; a Civic Vigilance officer forced to say what happened; a family given the truth instead of a stamped lie; a door left open long enough for someone to come home.</p><p>She will compromise, bargain, threaten, conceal evidence, and occasionally break a law. She will not abandon someone who has asked the Church for help.</p><h2>Relationships</h2><p><strong>The Church of Orra:</strong> Lya is loved by the people who work beside her and worried over by the people who must clean up after her. The Church has no formal authority over her sword work, which is both protection and danger.</p><p><strong>The Civic Vigilance:</strong> Most constables know her face. Some respect her. Some avoid her. A few have standing orders to report her movements.</p><p><strong>The Lamplighters’ Guild:</strong> Lya has walked enough night routes to earn their trust. They tell her which districts have gone dark, which electric lights fail at convenient times, and which old lamps have started burning without fuel.</p><p><strong>Old Vesper:</strong> He calls her “the nun with the wrong kind of patience.” She has never decided whether that is praise.</p><h2>Rumors and Trouble</h2><ul><li>A child’s shoe was left beneath Saint Orra’s Colossus, tied to a Civic Vigilance arrest tag.</li><li>A constable Lya once spared in public arrived at the Church bleeding, with a ledger proving a whole Black House has been arresting people under names that do not exist.</li><li>A shipment of recovered possessions from a flooded prison barge included a sword bearing Lya’s name.</li><li>A new electric district goes dark for exactly eleven minutes each night. During those minutes, Lya’s torch points toward a different house.</li><li>Someone claiming to be Fogport’s second-greatest swordsman has challenged her. The duel is plainly a trap, but refusing would place the Church under Civic Order investigation.</li></ul>",
+      "fields": {},
+      "resolved_references": [],
+      "posts": [
+        {
+          "name": "Gamemaster Only",
+          "entry": "<p>Lya’s one killing was not an act of righteous defense.</p><p>Years ago, she killed a Civic Vigilance officer who had surrendered after a raid on an Orrian refuge. The officer had information about several disappeared children. Lya believed he was about to destroy it.</p><p>He may not have been.</p><p>The Church concealed the details, not because it believes Lya innocent, but because it believes the truth would bury the children’s cases forever.</p><p>The officer’s surviving family does not know what really happened. One of them has recently begun asking questions.</p><p>Lya’s torch does not reveal lies. It reacts to <strong>official falsehoods</strong>: records altered by authority, names erased by procedure, and orders made to look lawful after the fact.</p><p>That makes it valuable. Someone inside the Civic Order has begun trying to acquire it.</p>",
+          "visibility_id": 3
+        }
+      ],
+      "attributes": [],
+      "relationships": [],
+      "publication": {
+        "references": []
+      },
+      "blocked": false
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-08-17T00:00:00-07:00",
+    "proposal_sha256": "0076bcac0ab0534e5bbfadb28c77780b628434582490ff48989b365aa04cea46"
+  }
+}
