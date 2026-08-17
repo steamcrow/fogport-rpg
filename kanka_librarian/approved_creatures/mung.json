@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": [
+    "mung"
+  ],
+  "approval_questions": [],
+  "proposals": [
+    {
+      "temp_id": "mung",
+      "action": "create",
+      "section": "creatures",
+      "name": "The Mung",
+      "type": "Sapient people / Superpower bloc",
+      "is_private": false,
+      "entry": "<p><strong>The Mung</strong> are one of the four great powers of the <strong>99 War</strong>: four-foot, blue-gray, bald-headed people with shaggy shoulders and limbs, broad hands, bulldog faces, sharp teeth, and lean blocky bodies. They are numerous, fast-growing, relentlessly practical, and unnervingly alike.</p><p>They make no songs, stories, paintings, jokes, written language, heirlooms, or monuments to individual lives. They regard commemoration as a costly distraction.</p><h2>The Great Multiplication</h2><p>Mung settlements are dense fields of dried mud brick: nurseries, ration courts, iron pits, drill yards, and shared sleeping chambers. Their people mature quickly and recover population with alarming speed.</p><h2>War Without Glory</h2><p>Mung equipment is basic black iron: round helmets, tall rectangular shields, spears, hooks, axes, and stout spring-iron bows firing cheap one-piece cast arrows. They have no guns, artillery schools, knightly orders, or celebrated captains. Flags, horn blasts, moving standards, and task-marks direct them.</p><p>Their doctrine is <strong>Expenditure</strong>: bodies and labor substitute for costly craft. They cross marshes, fill trenches, breach walls, and continue a charge after other armies would call its price impossible. Their weakness is imagination: false routes, hidden mechanisms, broken supply rhythms, and impossible choices can defeat a host built to solve literal problems.</p><h2>Marks Instead of Writing</h2><p>The geometric brands on Mung helmets and left breasts are not letters. They identify task, breeding-house, and ration priority. A Mung reassigned from bridge-building to siege labor receives a new mark and ceases to be what it was.</p><h2>War Barges</h2><p>Mung fleets are giant, low black war barges—broad mud-water hulls crowded with infantry, poles, shields, grain paste, iron, and the equipment to unload an army into a floodplain. They are floating workyards, not elegant ships.</p><h2>The Golden God</h2><p>The Mung’s only representational art is the <strong>Golden God</strong>, a colossal hollow golden skull-head carried above the host on hundreds of poles. Its deep hollow eyes, hard geometric muzzle, and square teeth are the holy sign of the Mung. At the decisive moment, a war host may hurl the Golden God into the enemy line, then push it over the fallen. The god’s purpose is to move forward.</p><h2>Fogport Hooks</h2><ul><li>A Mung work-host has bought a derelict warehouse and begun excavating below it, using poles too long to fit through any door.</li><li>Hundreds of Mung children arrive without soldiers; the Civic Order wants them confined, while their caretaker insists they are neither cargo nor prisoners.</li><li>A piece of hammered gold from the Golden God circulates through the Shambles, and Mung laborers begin appearing outside whoever carries it.</li></ul>",
+      "fields": {},
+      "resolved_references": [],
+      "posts": [],
+      "attributes": [],
+      "relationships": [],
+      "publication": {
+        "references": []
+      },
+      "blocked": false
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-08-18T00:10:00-07:00",
+    "proposal_sha256": "7005c774614e1568c43d49e9f51c47dbc82d3af662a4402ce516d002f60c4cf0"
+  }
+}
