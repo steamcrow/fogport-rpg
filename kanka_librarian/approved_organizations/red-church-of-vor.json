@@ -19,8 +19,7 @@
       "posts": [{"name":"GAMEMASTER SECRETS","entry":"<p>The Fogport church is becoming different from the foreign faith that founded it. The 99 War has produced so much worship, sacrifice and violent death that some priests believe Vor is changing—or drawing nearer.</p><p>During particularly intense Red Dances, participants have simultaneously described an impossible sensation of something enormous <strong>hanging upside down above them in darkness</strong>. One senior priest secretly keeps records of every occurrence. They are becoming more frequent.</p><p>Worse, someone has begun leaving <strong>human sacrifices</strong> inside the temple after closing. The victims are people associated with the 99 War: deserters, recruiters, weapons merchants and veterans.</p><p>The priests genuinely don't know who is responsible. They desperately want it stopped. They also haven't reported the murders to the Civic Vigilance because each morning after a sacrifice, <strong>the great statue outside has changed position slightly.</strong></p>","visibility_id":3}],
       "attributes": [],
       "relationships": [],
-      "publication": {},
-      "artwork": {"main_image_path":"assets/organizations/red-church-of-vor.png","sha256":"f9fa8fa637c7e48115019cad9c9be754b58bec392a40647cb315b611c5a9d3c2"}
+      "publication": {}
     }
   ],
   "approval": {"status":"approved","approved_by":"Daniel Davis","approved_at":"2026-08-16T19:40:00-07:00","proposal_sha256":"REPLACE_ME"}
