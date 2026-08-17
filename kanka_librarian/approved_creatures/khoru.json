@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": [
+    "khoru"
+  ],
+  "approval_questions": [],
+  "proposals": [
+    {
+      "temp_id": "khoru",
+      "action": "create",
+      "section": "creatures",
+      "name": "The Khoru",
+      "type": "Sapient people / Veyran auxiliary caste",
+      "is_private": false,
+      "entry": "<p><strong>The Khoru</strong> are huge, low-slung amphibious humanoids: broad-backed, long-armed, green-skinned, and built for dreadful endurance in flooded ground, smoke, cramped ruins, and ship holds. They are not born servants. They were made into them.</p>\n<h2>The Stewardship War</h2><p>Before Veyr, the Khoru lived in independent marsh and mound communities. Veyran histories say the <strong>Stewardship War</strong> ended Khoru clan warfare and gave them roads, food, and lawful purpose. Khoru survivors say Veyr drained their strongholds, severed the raised paths between communities, broke their gates with Battle Matons, and took children as guarantees after every surrender.</p><p>Veyr did not destroy the Khoru. It classified them as a protected martial population, banned their weapons and language from schools, and divided their young among military houses. Generation by generation, official registries selected pairings for size, lungs, endurance, jaws, and obedience under noise and fire. Veyr calls this preservation.</p>\n<h2>The Iron-Jaw Mask</h2><p>Each deployed Khoru receives a factory-stamped leather-and-iron mask. Narrow eye slits permit sight without inviting a Veyran officer to meet the wearer’s gaze. Its hinged lower jaw opens for food, speech, and biting. The mask is officially a safety device and mark of service. Its real purpose is that Veyr does not wish to look upon the people it owns.</p>\n<h2>The Auxiliary Houses</h2><p>Khoru serve in prestigious but hereditary <strong>Veyran Auxiliary Houses</strong>: immaculate barracks, formal banners, strong rations, polished equipment, and no citizenship. A House may retain one old rite or wordless song if it does not interfere with duty. Bravery earns better quarters, a brass name-token, or the right to keep a child in the same House. The Khoru call such privileges <strong>small doors in a wall</strong>.</p>\n<h2>War Service</h2><ul><li>Boarding actions through rain, smoke, and flooded decks</li><li>Breaching gates, tunnels, ruins, and excavation sites</li><li>Night assaults, sewer fighting, and holding ground after Battle Matons break a line</li><li>Guarding Veyran relic expeditions seeking Apparatus and Wychglass</li></ul>\n<h2>Things Worth Knowing</h2><ul><li>Khoru communicate through foot pressure, claws on metal, breath rhythms, and knocks inside their masks. Veyr calls it “auxiliary percussion.” It is a surviving language.</li><li>Masks are never removed before Veyran officers, even for medical treatment.</li><li>Many Khoru know exactly which officers are cowardly, corrupt, or worth keeping alive.</li><li>Some Houses depend upon Veyran supply systems; others build escape routes and favor-networks through foreign ports, including Fogport.</li><li>When the Veyr symbol is secretly turned upside down, it means: <strong>the house still has a floor beneath it.</strong></li></ul>\n<h2>Fogport Hooks</h2><ul><li>A veteran arrives with a perfect discharge certificate and a sealed order authorizing their reclamation as property.</li><li>A sunken Veyran ship contains Khoru children being transferred to a new House.</li><li>A Khoru House needs outsiders to sabotage a lethal Wychglass expedition without making it look like mutiny.</li></ul>",
+      "fields": {},
+      "resolved_references": [],
+      "posts": [],
+      "attributes": [],
+      "relationships": [],
+      "publication": {
+        "references": []
+      },
+      "blocked": false
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-08-17T22:00:00-07:00",
+    "proposal_sha256": "92cc8a18e40014e005f3204043b6b8ba0a2196d944f589202654625713c3fced"
+  }
+}
