@@ -1,0 +1,19 @@
+name: Publish the Khoru
+on:
+  push:
+    paths:
+      - kanka_librarian/approved_creatures/khoru.json
+      - .github/workflows/publish-khoru.yml
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install -r requirements.txt
+      - run: python scripts/publish_approved_creature.py kanka_librarian/approved_creatures/khoru.json --receipt receipts/khoru.json
+        env:
+          KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+      - uses: actions/upload-artifact@v4
+        with: {name: khoru-receipt, path: receipts/khoru.json}
