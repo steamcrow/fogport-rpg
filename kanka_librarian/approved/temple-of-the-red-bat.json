@@ -19,8 +19,7 @@
       "posts": [{"name":"GAMEMASTER SECRETS","entry":"<p>The old god did not die.</p><p><strong>It was forgotten.</strong></p><p>Something remains beneath the temple: weak, starving and almost incapable of making itself understood.</p><p>Recently it has begun communicating through people sleeping nearby. Not with prophecy. With extremely mundane requests:</p><p><em>Open the blue door.</em></p><p><em>Bring me water.</em></p><p><em>Please move him.</em></p><p>The Red Church has absolutely no doctrine for what to do when the previous owner of your temple starts complaining.</p><p>And the most dangerous possibility is that <strong>Vor knows perfectly well that it's there.</strong></p><p>He may even like it.</p>","visibility_id":3}],
       "attributes": [],
       "relationships": [],
-      "publication": {"parent_name":"Fogport","parent_link_phrase":"Fogport"},
-      "artwork": {"main_image_path":"assets/locations/temple-of-the-red-bat.png","sha256":"f9fa8fa637c7e48115019cad9c9be754b58bec392a40647cb315b611c5a9d3c2"}
+      "publication": {"parent_name":"Fogport","parent_link_phrase":"Fogport"}
     }
   ],
   "approval": {"status":"approved","approved_by":"Daniel Davis","approved_at":"2026-08-16T19:40:00-07:00","proposal_sha256":"REPLACE_ME"}
