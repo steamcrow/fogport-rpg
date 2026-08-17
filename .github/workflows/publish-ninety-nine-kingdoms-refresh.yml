@@ -1,0 +1,27 @@
+name: Publish expanded 99 Kingdoms
+
+on:
+  push:
+    paths:
+      - kanka_librarian/approved/ninety-nine-kingdoms-refresh.json
+      - .github/workflows/publish-ninety-nine-kingdoms-refresh.yml
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - run: python -m unittest discover -s tests
+      - run: python scripts/publish_approved_location.py kanka_librarian/approved/ninety-nine-kingdoms-refresh.json --receipt receipts/ninety-nine-kingdoms-refresh.json
+        env:
+          KANKA_API_TOKEN: ${{ secrets.KANKA_API_TOKEN }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ninety-nine-kingdoms-refresh-receipt
+          path: receipts/ninety-nine-kingdoms-refresh.json
