@@ -61,6 +61,9 @@ jobs:
       - name: Restore approved Ship-Stair checksum
         if: "${{ inputs.subject == 'location: ship-stair-of-keld' || inputs.older_subject == 'location: ship-stair-of-keld' }}"
         run: python scripts/repair_ship_stair_approval.py
+      - name: Restore approved Vor checksums
+        if: "${{ inputs.subject == 'organization: red-church-of-vor' || inputs.older_subject == 'organization: red-church-of-vor' || inputs.subject == 'location: temple-of-the-red-bat' || inputs.older_subject == 'location: temple-of-the-red-bat' }}"
+        run: python scripts/repair_vor_approvals.py
       - name: Clear stale receipts from the clean checkout
         run: find receipts -maxdepth 1 -type f -name '*.json' -delete
       - name: Publish and verify the chosen subject
