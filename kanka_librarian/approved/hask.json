@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": ["hask"],
+  "approval_questions": [],
+  "proposals": [{
+    "temp_id": "hask",
+    "action": "create",
+    "section": "locations",
+    "name": "Hask",
+    "type": "Revolutionary maritime nation / drowned former slave kingdom",
+    "is_private": false,
+    "entry": "<p><strong>Hask</strong> is a hard coast of wreckers, salvagers, storm-pilots, and tide-fortresses. Once a maritime kingdom whose docks, shipyards, repair yards, and fortified channels made it indispensable to the <strong>99 War</strong>, it is now ruled by the people its old masters enslaved: the <strong>Brinebacks</strong>.</p><p>Hask remains strategically vital. Its pilots know waters foreign fleets cannot safely enter, its yards can repair ships others must abandon, and its drowned cities still yield war matériel, records, and dangerous inherited wealth. The 99 War has continued for more than a century; Hask's revolution did not end it. It deprived several powers of a naval partner and created a free coast that every belligerent now wants to influence, buy, or occupy.</p><h2>The Flooding of Hask</h2><p>The old kingdom relied on enslaved Brinebacks to build and maintain its seawalls, lock systems, storm tunnels, pumping houses, harbor chains, and submerged foundations. At a planned spring tide, Brineback crews opened the wrong gates, sabotaged the pumps, jammed escape locks, and broke seawalls from beneath. The royal capital drowned district by district while slave pens, arsenals, and storehouses were opened.</p><p>The old government did not fall in a single battle. It drowned while trying to decide whether its labor force was truly revolting.</p><p>Much of old Hask lies beneath green water: tiled avenues, customs houses, noble estates, royal arsenals, and whole streets visible at low tide. Every recovered heirloom is either lawful salvage, stolen property, or a weapon, depending on who found it.</p><h2>The Free Tide-Holds</h2><p>Hask has no king. It is governed by the <strong>Tide Assembly</strong>, a council of Brineback-held fortresses that controls common defense, foreign treaties, channel law, and major salvage claims. Each hold governs its own docks, fisheries, floodworks, and militia. Its standing in the Assembly is earned by what it keeps functioning: a safe channel, a stormwall, a harbor chain, a repair yard, or a naval patrol.</p><p>The holds are not united in purpose. Some want a Brineback homeland. Some favor mixed free ports under strict Tide Law. Some demand that every surviving master family be expelled or held to account. Others have become admirals, merchants, and salvage magnates who are uncomfortably skilled at using the machinery of the old kingdom.</p><h2>Wreck Law</h2><p>Hask's famous law holds that a dead ship is public salvage, provided no one asks too much about its crew. A wreck belongs first to the people who make it safe, then to the hold whose waters received it, then to those with a lawful claim. Foreign fleets hate the law until they need Hask pilots, repairs, or a way to recover something they cannot publicly admit they lost.</p><h2>Current Pressures</h2><ul><li>Former Hask nobles fund restoration movements from abroad.</li><li>Foreign powers seek maps to drowned naval vaults and sealed war docks.</li><li>Brineback activists collect slave ledgers to identify families still owed restitution.</li><li>Several holds accuse one another of recreating slavery through debt, prison labor, and war contracts.</li></ul>",
+    "fields": {},
+    "resolved_references": [],
+    "posts": [],
+    "attributes": [],
+    "relationships": [],
+    "publication": {"parent_name": "99 Kingdoms", "parent_link_phrase": "99 Kingdoms"},
+    "blocked": false
+  }],
+  "approval": {"status": "approved", "approved_by": "Daniel Davis", "approved_at": "2026-08-17T23:59:00-07:00", "proposal_sha256": "4542c0642a2ce9abd7d74e679b2c55d5e557a10087d3f79628fb747a575c5d15"}
+}
