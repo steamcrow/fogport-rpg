@@ -12,10 +12,10 @@ on:
         options:
           # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)
           - "-- choose a subject --"
-          - "creature: brinebacks"
-          - "location: hask"
           - "organization: golden-god"
           - "creature: mung"
+          - "creature: brinebacks"
+          - "location: hask"
           - "creature: khoru"
           - "location: ninety-nine-kingdoms-refresh"
           - "character: sister-lya-orlan"
