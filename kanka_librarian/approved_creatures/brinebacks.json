@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": ["brinebacks"],
+  "approval_questions": [],
+  "proposals": [{
+    "temp_id": "brinebacks",
+    "action": "create",
+    "section": "creatures",
+    "name": "Brinebacks",
+    "type": "Sapient amphibious people / rulers of Hask",
+    "is_private": false,
+    "entry": "<p><strong>Brinebacks</strong> are a broad, squat amphibious people of Hask's tidal coast. They have green-to-olive skin, powerful shoulders and hips, broad hands, low blunt muzzles, sharp teeth, and heavy feet made for wet stone, mud, ship decks, and flood tunnels. Their faces can seem impassive to outsiders, but Brinebacks communicate much through posture, eye contact, breath, and the position of their hands.</p><p>For generations, old Hask enslaved them as divers, fortress-builders, chain-haulers, shipbreakers, dock laborers, and marines. The Brinebacks answered by flooding Hask and overthrowing the kingdom. They now rule the coast through the Tide Assembly and its fortress-holds.</p><h2>The Holds</h2><p>Brineback society is organized around <strong>holds</strong>: extended communities bound to a breakwater, shipyard, reef, drowned district, floodgate, or section of fortress wall. A hold is part family, part work-guild, part militia, and part legal authority. Its reputation comes from what it keeps intact. A hold that maintains a stormwall through three bad seasons is honored more than one that merely owns a fine hall.</p><p>They respect demonstrated responsibility over inherited title. The person trusted to close a floodgate during a panic holds more practical authority than a distant noble ever could.</p><h2>War and Work</h2><p>Brinebacks serve as Hask's heavy marines, salvage crews, and breach-holders. Their gear is made for wet, close work: tarred leather, distinct black-iron breastplates, riveted shoulder guards, low helmets with fitted face-guards, great oval shields, hook-maces, hooked axes, short boarding spears, chains, and portable barricades. They can fight in chest-deep water, flooded corridors, and across decks other soldiers cannot keep their feet on.</p><p>A Brineback shield is commonly passed through a hold for generations, repaired until almost none of its original surface remains. Repair is a moral act: a thing made useful again carries the visible labor of everyone who kept it in service.</p><h2>Freedom's Argument</h2><p>Brinebacks agree that Hask must remain free. They disagree fiercely on what freedom requires. The <strong>Deep Holds</strong> seek a Brineback homeland and distrust mixed rule. The <strong>Open-Gate Holds</strong> favor mixed free ports under Tide Law. The <strong>Salt Ledgers</strong> recover slave records and treat old debts as active obligations, hunting restitution rather than revenge. Other Brinebacks have become wealthy from salvage and war contracts, raising the question of whether a people can overthrow masters without producing new ones.</p><h2>Customs and Travel</h2><p>A promise made while standing in water is especially binding: conditions may change, but the speaker's word must not. Many Brinebacks refuse to enter an unfamiliar dry room until they know where its drains lead.</p><p>Beyond Hask, Brinebacks work as divers, shipwrights, marines, bodyguards, dock bosses, tunnel workers, and salvage experts. A Brineback abroad may be making good money, serving a hold, hiding from a political enemy, or searching for something taken from drowned Hask.</p><h2>Fogport Hooks</h2><ul><li>A Brineback hold hires the party to retrieve a slave ledger from a drowned archive before foreign collectors reach it.</li><li>A former Hask family claims its ancestors aided the Flooding and demands legal protection from the Tide Assembly.</li><li>A salvage captain has found a sealed Hask warship beneath old streets, still carrying a cargo useful to the current 99 War.</li></ul>",
+    "fields": {},
+    "resolved_references": [],
+    "posts": [],
+    "attributes": [],
+    "relationships": [],
+    "publication": {"references": []},
+    "blocked": false
+  }],
+  "approval": {"status": "approved", "approved_by": "Daniel Davis", "approved_at": "2026-08-17T23:59:00-07:00", "proposal_sha256": "601f1d74c6012b768ed31bae44f4c7e52c6d51941df5ec8c0337cf358829abfa"}
+}
