@@ -12,6 +12,8 @@ on:
         options:
           # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)
           - "-- choose a subject --"
+          - "location: hask"
+          - "creature: brinebacks"
           - "organization: golden-god"
           - "creature: mung"
           - "creature: khoru"
