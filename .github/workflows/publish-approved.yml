@@ -12,8 +12,8 @@ on:
         options:
           # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)
           - "-- choose a subject --"
-          - "location: hask"
           - "creature: brinebacks"
+          - "location: hask"
           - "organization: golden-god"
           - "creature: mung"
           - "creature: khoru"
@@ -27,8 +27,6 @@ on:
           - "creature: gravosk"
           - "creature: lumber-maton"
           - "creature: pyre-bee"
-          - "item: gravosk-great-bombard"
-          - "item: thunder-mead"
           - "location: the-wayward-pint"
           - "item-batch: fogport-transit-system"
           # END AUTO-MENU
