@@ -27,7 +27,6 @@ on:
           - "character: kavra-morn"
           - "creature: gravosk"
           - "creature: lumber-maton"
-          - "creature: pyre-bee"
           - "location: the-wayward-pint"
           - "item-batch: fogport-transit-system"
           # END AUTO-MENU
