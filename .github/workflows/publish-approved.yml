@@ -12,6 +12,7 @@ on:
         options:
           # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)
           - "-- choose a subject --"
+          - "canon: toxia-vane-canon"
           - "organization: golden-god"
           - "creature: mung"
           - "creature: brinebacks"
