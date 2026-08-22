@@ -13,7 +13,7 @@
       "action": "create",
       "section": "characters",
       "name": "Zee-Fohr Whun-Ait",
-      "type": "Maton Drug Purveyor; Proprietor of the Ninth Condition",
+      "type": "Maton Drug Purveyor",
       "is_private": false,
       "entry": "<p><strong>Zee-Fohr Whun-Ait</strong> is an exceptionally tall, slender Maton with polished steel limbs, long articulated fingers and copper-ringed eyes. He wears an ivory waistcoat and magnificent purple coat, speaking to addicts, aristocrats and dying laborers with identical courtesy.</p><p>He does not consider himself a criminal. Every thinking creature alters its condition through food, sleep, religion, violence, love or money. His products are merely more honest about the transaction.</p><blockquote><p>“Addiction is a vulgar word. Dream-Sleed merely possesses unusually persuasive repeat clientele.”</p></blockquote><h2>History</h2><p>Zee-Fohr claims to have served as a diagnostic Maton in a private hospital that has no surviving record. He arrived in Blackwake with three brass cases and knowledge unknown to Fogport apothecaries. He now supplies Civic Vigilance interrogators, smugglers and duelists while respectable physicians denounce him publicly and refer hopeless patients privately.</p><h2>Personality and Goals</h2><p>He is charming, composed and relentlessly transactional. He never lies about a Second Condition, but never volunteers what a customer failed to ask. He likes Byl Hasbaine, fears Lott, seeks a drug capable of intoxicating Matons, and refuses ever again to become another person’s property.</p>",
       "fields": {},
@@ -37,6 +37,6 @@
     "status": "approved",
     "approved_by": "Daniel Davis",
     "approved_at": "2026-08-21T17:30:00-07:00",
-    "proposal_sha256": "3bcd8d8e0b8ac557ee0a80616551eb525deaf989e18ada3bd7de90f158f157ce"
+    "proposal_sha256": "080148625aee98d25630d96ea923a444601f15b5ef5494c709af0ad2dc2c7c3a"
   }
 }
