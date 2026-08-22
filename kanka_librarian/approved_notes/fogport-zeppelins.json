@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "mode": "compiled-note",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "episode": "Fogport Zeppelins",
+  "aliases": {},
+  "changes": [
+    {
+      "section": "notes",
+      "name": "Fogport Zeppelins",
+      "type": "Note",
+      "is_private": false,
+      "entry": "<p>Fogport’s zeppelins are enormous rigid-framed aircraft lifted by a combination of hydrogen gas and preserved <strong>Dream-Sleed husks</strong>.</p><p>Dream-Sleed users become progressively lighter than air, and this buoyancy does not end when the user dies. Properly preserved, a Sleed-Husk can continue producing lift indefinitely. The strength of a husk depends upon the deceased user’s history with the drug. Each dose increases the body’s buoyancy. Longtime addicts—called <strong>Long Dreamers</strong> by the aeronautical industry—may possess several times the ascensional value of an ordinary husk.</p><h2>Husk-Cells</h2><p>The lifting envelope contains conventional hydrogen cells alongside reinforced <strong>husk-cells</strong>: long industrial racks holding dozens or hundreds of preserved bodies.</p><p>Each husk is dried until its skin becomes black and leathery, then secured horizontally in a padded brass frame. Gauges measure ascensional value while mechanical restraints prevent it from drifting loose.</p><p>Hydrogen and Sleed-Husks together produce exceptional lift. Fogport zeppelins can therefore carry heavy armor, artillery, cranes, cargo, elaborate passenger compartments and machinery that would ground an ordinary airship. Military vessels surround vulnerable gas cells with racks of Long Dreamers, allowing them to remain airborne after losing much of their hydrogen.</p><h2>The Ascensional Trade</h2><p>Sleed dens sell unclaimed bodies to licensed aeronautical brokers. Undertakers evaluate corpses for ascensional value, and indebted families may surrender a relative’s remains to settle treatment costs. Reputable dens ask customers whether their bodies may be sold. Less reputable establishments interpret inability to pay as consent.</p><p>Valuable Long Dreamers are auctioned to naval yards, passenger lines and private collectors. Poor addicts are sometimes kept alive and repeatedly dosed solely to increase the eventual value of their remains. Airship crews call the bodies <strong>dreamers</strong>, never corpses.</p><h2>Common Fogport Designs</h2><h3>I — Civilian Passenger Packet</h3><p>Elegant passenger packets carry merchants, officials and wealthy travelers. Their narrow salon gondolas contain private cabins, dining rooms and observation balconies. Dreamers are concealed behind polished panels, and passengers are rarely told precisely what keeps the vessel aloft.</p><h3>II — Armored Naval Monitor</h3><p>Slow, tremendously armored warships carry cannon batteries, observation towers and reinforced engines. Husk-cells compensate for iron armor. Even after its hydrogen cells are punctured, a monitor may remain suspended as an almost immovable gun platform.</p><h3>III — Cargo and Dockyard Hauler</h3><p>Broad working craft equipped with cranes, chains and modular freight cages move machinery, tram carriages, ship components and prefabricated buildings. Some serve as aerial tugboats, lifting damaged vessels clear of reefs.</p><h3>IV — Civic Vigilance Patrol Craft</h3><p>Compact patrol ships carry searchlights, boarding hooks and Civic Vigilance officers. They hover above demonstrations, pursue smugglers through harbor fog and lower constables onto rooftops. Crews call them <strong>Watchbirds</strong>; everyone else calls them <strong>Brown Balloons</strong>.</p><h3>V — Hospital and Rescue Ship</h3><p>White-painted hospital zeppelins carry surgeons, rescue crews, emergency winches and enclosed wards. Their lower decks treat the living. Their upper husk-cells contain former patients whose bodies were donated to keep future victims alive.</p><h3>VI — Long-Range Funeral Carrier</h3><p>Funeral carriers transport the dead between nations, battlefields and ancestral burial grounds. Their enormous envelopes contain hundreds of coffin-shaped husk modules arranged like the ribs of a flying cathedral. Some are permanent aerial mausoleums. The oldest have no functioning engines and drift along ancient atmospheric routes, guided by sails, weather and generations of dead dreamers.</p><h2>Dangers</h2><p>Hydrogen still makes Fogport zeppelins vulnerable to fire, but destroying one may not make it fall. A burning airship can lose its gas cells and remain suspended by its husks while everything beneath the envelope burns.</p><p>When a vessel breaks apart, unsecured Sleed-Husks drift upward. Some are recovered with tether balloons and nets. Others disappear into the high atmosphere. Sailors report black, frozen bodies passing silently overhead—still dreaming, still rising and carrying nothing but themselves.</p>",
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS",
+          "entry": "<p>The strongest Long Dreamers do more than provide lift. Some subtly influence the course of the vessels carrying them.</p><p>A zeppelin filled with dreamers who imagined the same city may drift toward it despite its navigator’s corrections. Ships carrying military prisoners sometimes refuse to cross their former borders. One funeral carrier has circled an uncharted point above the Sayir Sea for seventy-three years.</p><p>Zee-Fohr Whun-Ait believes every Dream-Sleed user remains conscious inside the Sleed Life after bodily death.</p><p>If he is correct, Fogport’s zeppelins are not powered by corpses. They are lifted by thousands of people who are still dreaming.</p>",
+          "visibility_id": 3
+        }
+      ]
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-08-21T20:10:00-07:00",
+    "document_sha256": "4944d8ba046b54cd9b532cc4519559afcaf60b20667bd9671dcfce5e2e982c65"
+  }
+}
+
