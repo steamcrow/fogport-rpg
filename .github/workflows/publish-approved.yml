@@ -12,6 +12,9 @@ on:
         options:
           # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)
           - "-- choose a subject --"
+          - "character: zee-fohr-whun-ait"
+          - "location: the-ninth-condition"
+          - "note: drugs-of-fogport"
           - "canon: toxia-vane-canon"
           - "organization: golden-god"
           - "creature: mung"
@@ -24,9 +27,6 @@ on:
           - "location: temple-of-the-red-bat"
           - "organization: red-church-of-vor"
           - "canon: thrx-devor-canon"
-          - "character: kavra-morn"
-          - "creature: gravosk"
-          - "creature: lumber-maton"
           - "location: the-wayward-pint"
           - "item-batch: fogport-transit-system"
           # END AUTO-MENU
