@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": [
+    "the-ninth-condition"
+  ],
+  "approval_questions": [],
+  "proposals": [
+    {
+      "temp_id": "the-ninth-condition",
+      "action": "create",
+      "section": "locations",
+      "name": "The Ninth Condition",
+      "type": "Drug Parlor, Apothecary and Consultation House",
+      "is_private": false,
+      "entry": "<p><strong>The Ninth Condition</strong> is Zee-Fohr Whun-Ait’s drug parlor, apothecary and consultation house on Elist Quay in Blackwake. Purple velvet screens divide private alcoves, copper pipes carry filtered smoke away, and brass speaking tubes summon attendants discreetly.</p><p>Dream-Sleed customers are secured beneath padded cargo nets and supplied nutrient water. Red Mathematics customers surrender their weapons. Dead Man’s Holiday buyers may hire a trained reawakener. These precautions do not make the establishment safe. They make it respectable.</p><h2>The Three Conditions</h2><p>Zee-Fohr sells Dream-Sleed to those wishing to escape their lives, Red Mathematics to those wishing to control them, and Dead Man’s Holiday to those willing to risk them. He calls these sleep, thought and death. He will not explain the other six conditions.</p>",
+      "fields": {},
+      "resolved_references": [],
+      "posts": [
+        {
+          "name": "GAMEMASTER SECRETS",
+          "entry": "<p>The reawakeners are Matons whose hands conceal electrical contacts. Every revived customer leaves a fragment of memory behind. Zee-Fohr has arranged thousands of fragments into one continuous memory belonging to someone who may not yet have been born. Several fragments depict Byl Hasbaine and Lott entering under circumstances that have not happened yet.</p>",
+          "visibility_id": 3
+        }
+      ],
+      "attributes": [],
+      "relationships": [],
+      "publication": {
+        "parent_name": "Blackwake",
+        "parent_link_phrase": "Blackwake"
+      },
+      "blocked": false
+    }
+  ],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-08-21T17:30:00-07:00",
+    "proposal_sha256": "f674bc438babacea17baae6492a2b1ee18dc8ca26168937de29d9bdba0ceb882"
+  }
+}
