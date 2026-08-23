@@ -12,6 +12,7 @@ on:
         options:
           # BEGIN AUTO-MENU (run scripts/refresh_publish_menu.py)
           - "-- choose a subject --"
+          - "creature: snatchbats"
           - "note: fogport-zeppelins"
           - "character: zee-fohr-whun-ait"
           - "location: the-ninth-condition"
@@ -26,7 +27,6 @@ on:
           - "character: sister-lya-orlan"
           - "organization: lamplighters-guild"
           - "location: temple-of-the-red-bat"
-          - "organization: red-church-of-vor"
           - "location: the-wayward-pint"
           - "item-batch: fogport-transit-system"
           # END AUTO-MENU
