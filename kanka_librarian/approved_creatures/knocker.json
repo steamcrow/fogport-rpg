@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "mode": "proposal-only",
+  "campaign_id": 410879,
+  "campaign_name": "Fogport",
+  "create_order": ["knocker"],
+  "approval_questions": [],
+  "proposals": [{
+    "temp_id": "knocker",
+    "action": "create",
+    "section": "creatures",
+    "name": "Knocker",
+    "type": "Unique Creature",
+    "is_private": false,
+    "entry": "<p>The <strong>Knocker</strong> is a solitary, impossibly tall creature that has wandered Fogport for as long as anyone can determine. Pale, skeletal, and nearly fifteen feet tall, it possesses extraordinarily long limbs and enormous hands tipped with hooked fingers.</p><p>Despite its disturbing appearance, the Knocker is not known to openly hunt people. Instead, it <strong>knocks on windows.</strong></p><p>It appears almost exclusively at night and most frequently during heavy fog. The creature approaches a building, selects an occupied room several stories above the street, and gently taps upon the glass.</p><p><strong>The first knock means it has arrived.<br>The second means it knows you're there.<br>The third means it has seen you.</strong></p><p>Those familiar with the Knocker extinguish their lamps, move away from the window, and wait. Above all else, <strong>they do not open it.</strong></p><h2>Behavior</h2><p>The Knocker moves slowly and deliberately through the city, stooping beneath bridges and tram wires while stepping surprisingly carefully through crowded streets. No reliable account describes it eating, sleeping, speaking, or making any sound other than its characteristic knocking. Animals avoid it.</p><p>Attempts to attack the Knocker have produced contradictory results. Some witnesses claim bullets pass through it. Others insist it can bleed. Several people have supposedly wounded it badly enough to drive it away. Unfortunately, the Knocker remembers them. Sooner or later, it comes to their window.</p><h2>Those Who Answer</h2><p>What actually happens when someone opens the window remains one of Fogport's oldest arguments. Some have disappeared. Some remember nothing. A handful claim the creature simply looked at them and departed. There are even accounts of people conversing quietly with it, although none have subsequently revealed what was said.</p><p>Most troublingly, Knocker appearances sometimes precede fires, murders, disappearances, structural collapses, and other disasters. This has created an uncomfortable possibility: <strong>The Knocker may not be threatening the people it visits. It may be warning them.</strong></p><h2>Folklore</h2><p>Children throughout Fogport know variations of the Knocker rhyme, and nearly every district has accumulated its own rules concerning the creature: never knock back; never count its fingers; never say its name while looking through glass; never leave curtains open during heavy fog.</p><p>And if you hear three gentle taps against a window far above the street—<strong>do not look outside.</strong></p>",
+    "fields": {},
+    "resolved_references": [],
+    "posts": [{"name":"GAMEMASTER SECRETS","entry":"<p>The Knocker should remain genuinely mysterious. There is <strong>no confirmed explanation</strong> for its origin, motives, or relationship with Fogport. It is ancient enough that even very old creatures may simply accept that the Knocker has always been here.</p><p>Possible uses:</p><ul><li>The Knocker visits the same person every night for a week.</li><li>Someone hears <strong>four knocks</strong>.</li><li>The Knocker appears at Byl's window.</li><li>Someone knocks back—and the creature immediately walks away.</li><li>An ancient illustration depicts the Knocker standing peacefully beside Fogport's earliest inhabitants.</li><li>Civic Vigilance attempts to capture it and discovers that the creature apparently understands their plans.</li><li>A murder victim's neighbors insist the Knocker tried desperately to get the victim's attention the night before.</li><li>During a citywide emergency, the Knocker abandons its quiet ritual and begins <strong>hammering frantically on hundreds of windows</strong>.</li><li>A Gutterkin casually refers to the Knocker as though it were an old acquaintance.</li><li>The Knocker visits a bricked-over window belonging to a room sealed since Fogport's earliest days.</li></ul><p><strong>The Deeper Mystery:</strong> Records of the creature become older as records of Fogport become older. There is no first sighting. No arrival. No discovery. Eventually the records simply run out. And the Knocker is still there.</p>","visibility_id":3}],
+    "attributes": [{"name":"Canon Status","value":"Established"}],
+    "relationships": [],
+    "publication": {}
+  }],
+  "approval": {
+    "status": "approved",
+    "approved_by": "Daniel Davis",
+    "approved_at": "2026-08-23T22:08:00-07:00",
+    "proposal_sha256": "56fc670a9743dd2452396f34317904d0570b9148654337b068577daf1b03a23e"
+  }
+}
